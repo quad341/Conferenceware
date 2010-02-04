@@ -11,7 +11,7 @@ namespace Conferenceware.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            ViewData["Message"] = "Welcome to ASP.NET MVC! (Simo was here)";
 
             return View();
         }
