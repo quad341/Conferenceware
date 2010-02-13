@@ -62,11 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Attendee.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Speaker.cs" />
+    <Compile Include="Models\TimeSlot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
