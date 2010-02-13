@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Conferenceware
+namespace Conferenceware.Models
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -39,15 +39,21 @@ namespace Conferenceware
     partial void InsertEvent(Event instance);
     partial void UpdateEvent(Event instance);
     partial void DeleteEvent(Event instance);
+    partial void InsertEventsAttendee(EventsAttendee instance);
+    partial void UpdateEventsAttendee(EventsAttendee instance);
+    partial void DeleteEventsAttendee(EventsAttendee instance);
+    partial void InsertEventsSpeaker(EventsSpeaker instance);
+    partial void UpdateEventsSpeaker(EventsSpeaker instance);
+    partial void DeleteEventsSpeaker(EventsSpeaker instance);
     partial void InsertFood(Food instance);
     partial void UpdateFood(Food instance);
     partial void DeleteFood(Food instance);
     partial void InsertLocation(Location instance);
     partial void UpdateLocation(Location instance);
     partial void DeleteLocation(Location instance);
-    partial void InsertPerson(Person instance);
-    partial void UpdatePerson(Person instance);
-    partial void DeletePerson(Person instance);
+    partial void InsertPeople(People instance);
+    partial void UpdatePeople(People instance);
+    partial void DeletePeople(People instance);
     partial void InsertSpeaker(Speaker instance);
     partial void UpdateSpeaker(Speaker instance);
     partial void DeleteSpeaker(Speaker instance);
@@ -110,6 +116,22 @@ namespace Conferenceware
 			}
 		}
 		
+		public System.Data.Linq.Table<EventsAttendee> EventsAttendees
+		{
+			get
+			{
+				return this.GetTable<EventsAttendee>();
+			}
+		}
+		
+		public System.Data.Linq.Table<EventsSpeaker> EventsSpeakers
+		{
+			get
+			{
+				return this.GetTable<EventsSpeaker>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Food> Foods
 		{
 			get
@@ -126,11 +148,11 @@ namespace Conferenceware
 			}
 		}
 		
-		public System.Data.Linq.Table<Person> Persons
+		public System.Data.Linq.Table<People> Peoples
 		{
 			get
 			{
-				return this.GetTable<Person>();
+				return this.GetTable<People>();
 			}
 		}
 		
@@ -149,22 +171,6 @@ namespace Conferenceware
 				return this.GetTable<TimeSlot>();
 			}
 		}
-		
-		public System.Data.Linq.Table<EventsSpeaker> EventsSpeakers
-		{
-			get
-			{
-				return this.GetTable<EventsSpeaker>();
-			}
-		}
-		
-		public System.Data.Linq.Table<EventsAttendee> EventsAttendees
-		{
-			get
-			{
-				return this.GetTable<EventsAttendee>();
-			}
-		}
 	}
 	
 	[Table(Name="dbo.Attendees")]
@@ -179,11 +185,13 @@ namespace Conferenceware
 		
 		private int _tshirt_id;
 		
+		private EntitySet<EventsAttendee> _EventsAttendees;
+		
 		private EntityRef<TShirtSize> _TShirtSize;
 		
 		private EntityRef<Food> _Food;
 		
-		private EntityRef<Person> _Person;
+		private EntityRef<People> _People;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -199,9 +207,10 @@ namespace Conferenceware
 		
 		public Attendee()
 		{
+			this._EventsAttendees = new EntitySet<EventsAttendee>(new Action<EventsAttendee>(this.attach_EventsAttendees), new Action<EventsAttendee>(this.detach_EventsAttendees));
 			this._TShirtSize = default(EntityRef<TShirtSize>);
 			this._Food = default(EntityRef<Food>);
-			this._Person = default(EntityRef<Person>);
+			this._People = default(EntityRef<People>);
 			OnCreated();
 		}
 		
@@ -216,7 +225,7 @@ namespace Conferenceware
 			{
 				if ((this._person_id != value))
 				{
-					if (this._Person.HasLoadedOrAssignedValue)
+					if (this._People.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -274,6 +283,19 @@ namespace Conferenceware
 					this.SendPropertyChanged("tshirt_id");
 					this.Ontshirt_idChanged();
 				}
+			}
+		}
+		
+		[Association(Name="Attendee_EventsAttendee", Storage="_EventsAttendees", ThisKey="person_id", OtherKey="attendee_id")]
+		public EntitySet<EventsAttendee> EventsAttendees
+		{
+			get
+			{
+				return this._EventsAttendees;
+			}
+			set
+			{
+				this._EventsAttendees.Assign(value);
 			}
 		}
 		
@@ -345,26 +367,26 @@ namespace Conferenceware
 			}
 		}
 		
-		[Association(Name="People_Attendee", Storage="_Person", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
-		public Person Person
+		[Association(Name="People_Attendee", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		public People People
 		{
 			get
 			{
-				return this._Person.Entity;
+				return this._People.Entity;
 			}
 			set
 			{
-				Person previousValue = this._Person.Entity;
+				People previousValue = this._People.Entity;
 				if (((previousValue != value) 
-							|| (this._Person.HasLoadedOrAssignedValue == false)))
+							|| (this._People.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Person.Entity = null;
+						this._People.Entity = null;
 						previousValue.Attendee = null;
 					}
-					this._Person.Entity = value;
+					this._People.Entity = value;
 					if ((value != null))
 					{
 						value.Attendee = this;
@@ -374,7 +396,7 @@ namespace Conferenceware
 					{
 						this._person_id = default(int);
 					}
-					this.SendPropertyChanged("Person");
+					this.SendPropertyChanged("People");
 				}
 			}
 		}
@@ -397,6 +419,18 @@ namespace Conferenceware
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_EventsAttendees(EventsAttendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee = this;
+		}
+		
+		private void detach_EventsAttendees(EventsAttendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee = null;
 		}
 	}
 	
@@ -532,6 +566,10 @@ namespace Conferenceware
 		
 		private int _location_id;
 		
+		private EntitySet<EventsAttendee> _EventsAttendees;
+		
+		private EntitySet<EventsSpeaker> _EventsSpeakers;
+		
 		private EntityRef<Location> _Location;
 		
 		private EntityRef<TimeSlot> _TimeSlot;
@@ -556,6 +594,8 @@ namespace Conferenceware
 		
 		public Event()
 		{
+			this._EventsAttendees = new EntitySet<EventsAttendee>(new Action<EventsAttendee>(this.attach_EventsAttendees), new Action<EventsAttendee>(this.detach_EventsAttendees));
+			this._EventsSpeakers = new EntitySet<EventsSpeaker>(new Action<EventsSpeaker>(this.attach_EventsSpeakers), new Action<EventsSpeaker>(this.detach_EventsSpeakers));
 			this._Location = default(EntityRef<Location>);
 			this._TimeSlot = default(EntityRef<TimeSlot>);
 			OnCreated();
@@ -689,6 +729,32 @@ namespace Conferenceware
 			}
 		}
 		
+		[Association(Name="Event_EventsAttendee", Storage="_EventsAttendees", ThisKey="id", OtherKey="event_id")]
+		public EntitySet<EventsAttendee> EventsAttendees
+		{
+			get
+			{
+				return this._EventsAttendees;
+			}
+			set
+			{
+				this._EventsAttendees.Assign(value);
+			}
+		}
+		
+		[Association(Name="Event_EventsSpeaker", Storage="_EventsSpeakers", ThisKey="id", OtherKey="event_id")]
+		public EntitySet<EventsSpeaker> EventsSpeakers
+		{
+			get
+			{
+				return this._EventsSpeakers;
+			}
+			set
+			{
+				this._EventsSpeakers.Assign(value);
+			}
+		}
+		
 		[Association(Name="Location_Event", Storage="_Location", ThisKey="location_id", OtherKey="id", IsForeignKey=true)]
 		public Location Location
 		{
@@ -753,6 +819,366 @@ namespace Conferenceware
 						this._timeslot_id = default(int);
 					}
 					this.SendPropertyChanged("TimeSlot");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_EventsAttendees(EventsAttendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = this;
+		}
+		
+		private void detach_EventsAttendees(EventsAttendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = null;
+		}
+		
+		private void attach_EventsSpeakers(EventsSpeaker entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = this;
+		}
+		
+		private void detach_EventsSpeakers(EventsSpeaker entity)
+		{
+			this.SendPropertyChanging();
+			entity.Event = null;
+		}
+	}
+	
+	[Table(Name="dbo.EventsAttendees")]
+	public partial class EventsAttendee : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _event_id;
+		
+		private int _attendee_id;
+		
+		private EntityRef<Attendee> _Attendee;
+		
+		private EntityRef<Event> _Event;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onevent_idChanging(int value);
+    partial void Onevent_idChanged();
+    partial void Onattendee_idChanging(int value);
+    partial void Onattendee_idChanged();
+    #endregion
+		
+		public EventsAttendee()
+		{
+			this._Attendee = default(EntityRef<Attendee>);
+			this._Event = default(EntityRef<Event>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_event_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int event_id
+		{
+			get
+			{
+				return this._event_id;
+			}
+			set
+			{
+				if ((this._event_id != value))
+				{
+					if (this._Event.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onevent_idChanging(value);
+					this.SendPropertyChanging();
+					this._event_id = value;
+					this.SendPropertyChanged("event_id");
+					this.Onevent_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_attendee_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int attendee_id
+		{
+			get
+			{
+				return this._attendee_id;
+			}
+			set
+			{
+				if ((this._attendee_id != value))
+				{
+					if (this._Attendee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onattendee_idChanging(value);
+					this.SendPropertyChanging();
+					this._attendee_id = value;
+					this.SendPropertyChanged("attendee_id");
+					this.Onattendee_idChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Attendee_EventsAttendee", Storage="_Attendee", ThisKey="attendee_id", OtherKey="person_id", IsForeignKey=true)]
+		public Attendee Attendee
+		{
+			get
+			{
+				return this._Attendee.Entity;
+			}
+			set
+			{
+				Attendee previousValue = this._Attendee.Entity;
+				if (((previousValue != value) 
+							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attendee.Entity = null;
+						previousValue.EventsAttendees.Remove(this);
+					}
+					this._Attendee.Entity = value;
+					if ((value != null))
+					{
+						value.EventsAttendees.Add(this);
+						this._attendee_id = value.person_id;
+					}
+					else
+					{
+						this._attendee_id = default(int);
+					}
+					this.SendPropertyChanged("Attendee");
+				}
+			}
+		}
+		
+		[Association(Name="Event_EventsAttendee", Storage="_Event", ThisKey="event_id", OtherKey="id", IsForeignKey=true)]
+		public Event Event
+		{
+			get
+			{
+				return this._Event.Entity;
+			}
+			set
+			{
+				Event previousValue = this._Event.Entity;
+				if (((previousValue != value) 
+							|| (this._Event.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Event.Entity = null;
+						previousValue.EventsAttendees.Remove(this);
+					}
+					this._Event.Entity = value;
+					if ((value != null))
+					{
+						value.EventsAttendees.Add(this);
+						this._event_id = value.id;
+					}
+					else
+					{
+						this._event_id = default(int);
+					}
+					this.SendPropertyChanged("Event");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.EventsSpeakers")]
+	public partial class EventsSpeaker : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _event_id;
+		
+		private int _speaker_id;
+		
+		private EntityRef<Event> _Event;
+		
+		private EntityRef<Speaker> _Speaker;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onevent_idChanging(int value);
+    partial void Onevent_idChanged();
+    partial void Onspeaker_idChanging(int value);
+    partial void Onspeaker_idChanged();
+    #endregion
+		
+		public EventsSpeaker()
+		{
+			this._Event = default(EntityRef<Event>);
+			this._Speaker = default(EntityRef<Speaker>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_event_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int event_id
+		{
+			get
+			{
+				return this._event_id;
+			}
+			set
+			{
+				if ((this._event_id != value))
+				{
+					if (this._Event.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onevent_idChanging(value);
+					this.SendPropertyChanging();
+					this._event_id = value;
+					this.SendPropertyChanged("event_id");
+					this.Onevent_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_speaker_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int speaker_id
+		{
+			get
+			{
+				return this._speaker_id;
+			}
+			set
+			{
+				if ((this._speaker_id != value))
+				{
+					if (this._Speaker.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onspeaker_idChanging(value);
+					this.SendPropertyChanging();
+					this._speaker_id = value;
+					this.SendPropertyChanged("speaker_id");
+					this.Onspeaker_idChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Event_EventsSpeaker", Storage="_Event", ThisKey="event_id", OtherKey="id", IsForeignKey=true)]
+		public Event Event
+		{
+			get
+			{
+				return this._Event.Entity;
+			}
+			set
+			{
+				Event previousValue = this._Event.Entity;
+				if (((previousValue != value) 
+							|| (this._Event.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Event.Entity = null;
+						previousValue.EventsSpeakers.Remove(this);
+					}
+					this._Event.Entity = value;
+					if ((value != null))
+					{
+						value.EventsSpeakers.Add(this);
+						this._event_id = value.id;
+					}
+					else
+					{
+						this._event_id = default(int);
+					}
+					this.SendPropertyChanged("Event");
+				}
+			}
+		}
+		
+		[Association(Name="Speaker_EventsSpeaker", Storage="_Speaker", ThisKey="speaker_id", OtherKey="person_id", IsForeignKey=true)]
+		public Speaker Speaker
+		{
+			get
+			{
+				return this._Speaker.Entity;
+			}
+			set
+			{
+				Speaker previousValue = this._Speaker.Entity;
+				if (((previousValue != value) 
+							|| (this._Speaker.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Speaker.Entity = null;
+						previousValue.EventsSpeakers.Remove(this);
+					}
+					this._Speaker.Entity = value;
+					if ((value != null))
+					{
+						value.EventsSpeakers.Add(this);
+						this._speaker_id = value.person_id;
+					}
+					else
+					{
+						this._speaker_id = default(int);
+					}
+					this.SendPropertyChanged("Speaker");
 				}
 			}
 		}
@@ -1079,7 +1505,7 @@ namespace Conferenceware
 	}
 	
 	[Table(Name="dbo.People")]
-	public partial class Person : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class People : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1110,7 +1536,7 @@ namespace Conferenceware
     partial void Onphone_numberChanged();
     #endregion
 		
-		public Person()
+		public People()
 		{
 			this._Attendee = default(EntityRef<Attendee>);
 			this._Speaker = default(EntityRef<Speaker>);
@@ -1214,12 +1640,12 @@ namespace Conferenceware
 					if ((previousValue != null))
 					{
 						this._Attendee.Entity = null;
-						previousValue.Person = null;
+						previousValue.People = null;
 					}
 					this._Attendee.Entity = value;
 					if ((value != null))
 					{
-						value.Person = this;
+						value.People = this;
 					}
 					this.SendPropertyChanged("Attendee");
 				}
@@ -1243,12 +1669,12 @@ namespace Conferenceware
 					if ((previousValue != null))
 					{
 						this._Speaker.Entity = null;
-						previousValue.Person = null;
+						previousValue.People = null;
 					}
 					this._Speaker.Entity = value;
 					if ((value != null))
 					{
-						value.Person = this;
+						value.People = this;
 					}
 					this.SendPropertyChanged("Speaker");
 				}
@@ -1284,7 +1710,9 @@ namespace Conferenceware
 		
 		private int _person_id;
 		
-		private EntityRef<Person> _Person;
+		private EntitySet<EventsSpeaker> _EventsSpeakers;
+		
+		private EntityRef<People> _People;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1296,7 +1724,8 @@ namespace Conferenceware
 		
 		public Speaker()
 		{
-			this._Person = default(EntityRef<Person>);
+			this._EventsSpeakers = new EntitySet<EventsSpeaker>(new Action<EventsSpeaker>(this.attach_EventsSpeakers), new Action<EventsSpeaker>(this.detach_EventsSpeakers));
+			this._People = default(EntityRef<People>);
 			OnCreated();
 		}
 		
@@ -1311,7 +1740,7 @@ namespace Conferenceware
 			{
 				if ((this._person_id != value))
 				{
-					if (this._Person.HasLoadedOrAssignedValue)
+					if (this._People.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1324,26 +1753,39 @@ namespace Conferenceware
 			}
 		}
 		
-		[Association(Name="People_Speaker", Storage="_Person", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
-		public Person Person
+		[Association(Name="Speaker_EventsSpeaker", Storage="_EventsSpeakers", ThisKey="person_id", OtherKey="speaker_id")]
+		public EntitySet<EventsSpeaker> EventsSpeakers
 		{
 			get
 			{
-				return this._Person.Entity;
+				return this._EventsSpeakers;
 			}
 			set
 			{
-				Person previousValue = this._Person.Entity;
+				this._EventsSpeakers.Assign(value);
+			}
+		}
+		
+		[Association(Name="People_Speaker", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		public People People
+		{
+			get
+			{
+				return this._People.Entity;
+			}
+			set
+			{
+				People previousValue = this._People.Entity;
 				if (((previousValue != value) 
-							|| (this._Person.HasLoadedOrAssignedValue == false)))
+							|| (this._People.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Person.Entity = null;
+						this._People.Entity = null;
 						previousValue.Speaker = null;
 					}
-					this._Person.Entity = value;
+					this._People.Entity = value;
 					if ((value != null))
 					{
 						value.Speaker = this;
@@ -1353,7 +1795,7 @@ namespace Conferenceware
 					{
 						this._person_id = default(int);
 					}
-					this.SendPropertyChanged("Person");
+					this.SendPropertyChanged("People");
 				}
 			}
 		}
@@ -1376,6 +1818,18 @@ namespace Conferenceware
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_EventsSpeakers(EventsSpeaker entity)
+		{
+			this.SendPropertyChanging();
+			entity.Speaker = this;
+		}
+		
+		private void detach_EventsSpeakers(EventsSpeaker entity)
+		{
+			this.SendPropertyChanging();
+			entity.Speaker = null;
 		}
 	}
 	
@@ -1514,96 +1968,6 @@ namespace Conferenceware
 		{
 			this.SendPropertyChanging();
 			entity.TimeSlot = null;
-		}
-	}
-	
-	[Table(Name="dbo.EventsSpeakers")]
-	public partial class EventsSpeaker
-	{
-		
-		private int _event_id;
-		
-		private int _speaker_id;
-		
-		public EventsSpeaker()
-		{
-		}
-		
-		[Column(Storage="_event_id", DbType="Int NOT NULL")]
-		public int event_id
-		{
-			get
-			{
-				return this._event_id;
-			}
-			set
-			{
-				if ((this._event_id != value))
-				{
-					this._event_id = value;
-				}
-			}
-		}
-		
-		[Column(Storage="_speaker_id", DbType="Int NOT NULL")]
-		public int speaker_id
-		{
-			get
-			{
-				return this._speaker_id;
-			}
-			set
-			{
-				if ((this._speaker_id != value))
-				{
-					this._speaker_id = value;
-				}
-			}
-		}
-	}
-	
-	[Table(Name="dbo.EventsAttendees")]
-	public partial class EventsAttendee
-	{
-		
-		private int _event_id;
-		
-		private int _attendee_id;
-		
-		public EventsAttendee()
-		{
-		}
-		
-		[Column(Storage="_event_id", DbType="Int NOT NULL")]
-		public int event_id
-		{
-			get
-			{
-				return this._event_id;
-			}
-			set
-			{
-				if ((this._event_id != value))
-				{
-					this._event_id = value;
-				}
-			}
-		}
-		
-		[Column(Storage="_attendee_id", DbType="Int NOT NULL")]
-		public int attendee_id
-		{
-			get
-			{
-				return this._attendee_id;
-			}
-			set
-			{
-				if ((this._attendee_id != value))
-				{
-					this._attendee_id = value;
-				}
-			}
 		}
 	}
 }

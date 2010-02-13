@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 15.25" name="Conferenceware">
+  <DataContextMoniker Name="/ConferencewareDataContext" />
+  <nestedChildShapes>
+    <classShape Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" absoluteBounds="3.5, 12.625, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/ConferencewareDataContext/Attendee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="22affe4b-a349-4013-a2b5-afc48d40dfaf" absoluteBounds="3.515, 13.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="36e0b017-f283-4dac-8202-dfea551687fd" absoluteBounds="0.75, 11.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ConferencewareDataContext/TShirtSize" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7730468f-0c06-41e3-828e-b43ae260c92b" absoluteBounds="0.765, 12.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e31158c1-1825-4e0e-a16f-91b867047407" absoluteBounds="3.5, 2.375, 2, 1.9631982421874996">
+      <DataClassMoniker Name="/ConferencewareDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2464c4ce-f6e1-4877-af27-e60a9228f46f" absoluteBounds="3.515, 2.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7c18ab02-0eed-4a33-aaf3-2def70e6ab7a" absoluteBounds="6.25, 2.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/ConferencewareDataContext/EventsAttendee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4647f0d5-99c9-4253-af5a-c9aa04865276" absoluteBounds="6.265, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="26e52121-9884-4c0f-86ca-f3cf717647bf" absoluteBounds="6.25, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/ConferencewareDataContext/EventsSpeaker" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f2d47e4-e032-4793-a309-2aed4de7ff81" absoluteBounds="6.265, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5b422fb2-a7b0-460d-a068-cfbca1e1df8f" absoluteBounds="0.75, 13.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ConferencewareDataContext/Food" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c2ef6c51-5343-47b5-aa5a-dcfc7f599510" absoluteBounds="0.765, 14.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="46dc3092-adcf-4634-9230-c54b3123b04e" absoluteBounds="0.75, 6.5, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ConferencewareDataContext/Location" />
+      <nestedChildShapes>
+        <elementListCompartment Id="517456c3-4c39-4771-b09f-f5bc98e2c5d7" absoluteBounds="0.765, 6.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1c8ec19c-920f-447d-a4fe-6c0da7017e8d" absoluteBounds="0.75, 9.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ConferencewareDataContext/People" />
+      <nestedChildShapes>
+        <elementListCompartment Id="10a851ac-f356-4578-ae33-c9a3541b4c94" absoluteBounds="0.765, 9.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7489df15-bad7-4a3f-9c44-f7f240ff247a" absoluteBounds="3.5, 9.375, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/ConferencewareDataContext/Speaker" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5a8d0bc3-2cae-474c-b8e6-a77f4d223c56" absoluteBounds="3.515, 9.835, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b25e0ad1-89c9-4eee-b522-dbb1c4b5a3dc" absoluteBounds="0.75, 2.625, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/ConferencewareDataContext/TimeSlot" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b72ed9ee-99c0-4552-ae5d-3beacb0623c6" absoluteBounds="0.765, 3.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 12.7844962565104); (3.04166666666667 : 12.7844962565104 : JumpStart); (3.20833333333333 : 12.7844962565104 : JumpEnd); (3.5 : 12.7844962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/TShirtSize/TShirtSize_Attendee" />
+      <nodes>
+        <classShapeMoniker Id="36e0b017-f283-4dac-8202-dfea551687fd" />
+        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 13.3181469726562); (7.25 : 13.3181469726562); (7.25 : 3.94399251302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_EventsAttendee" />
+      <nodes>
+        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
+        <classShapeMoniker Id="7c18ab02-0eed-4a33-aaf3-2def70e6ab7a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 3.34699625651042); (5.79166666666667 : 3.34699625651042 : JumpStart); (5.95833333333333 : 3.34699625651042 : JumpEnd); (6.25 : 3.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Event/Event_EventsAttendee" />
+      <nodes>
+        <classShapeMoniker Id="e31158c1-1825-4e0e-a16f-91b867047407" />
+        <classShapeMoniker Id="7c18ab02-0eed-4a33-aaf3-2def70e6ab7a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 2.375); (4.5 : 1.34699625651042); (6.25 : 1.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Event/Event_EventsSpeaker" />
+      <nodes>
+        <classShapeMoniker Id="e31158c1-1825-4e0e-a16f-91b867047407" />
+        <classShapeMoniker Id="26e52121-9884-4c0f-86ca-f3cf717647bf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 13.8806469726562); (3.5 : 13.8806469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Food/Food_Attendee" />
+      <nodes>
+        <classShapeMoniker Id="5b422fb2-a7b0-460d-a068-cfbca1e1df8f" />
+        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.38544840494792); (4.5 : 7.38544840494792); (4.5 : 4.3381982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Location/Location_Event" />
+      <nodes>
+        <classShapeMoniker Id="46dc3092-adcf-4634-9230-c54b3123b04e" />
+        <classShapeMoniker Id="e31158c1-1825-4e0e-a16f-91b867047407" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 10.7035953776042); (3.125 : 11.0785953776042); (3.125 : 13.3325716145833); (3.5 : 13.3325716145833)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/People/People_Attendee" />
+      <nodes>
+        <classShapeMoniker Id="1c8ec19c-920f-447d-a4fe-6c0da7017e8d" />
+        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 9.37576953160056); (5.875 : 9.00076953160056); (5.875 : 2.31899251302083); (6.25 : 1.94399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ConferencewareDataContext/Speaker/Speaker_EventsSpeaker" />
+      <nodes>
+        <classShapeMoniker Id="7489df15-bad7-4a3f-9c44-f7f240ff247a" />
+        <classShapeMoniker Id="26e52121-9884-4c0f-86ca-f3cf717647bf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.87584554036458); (3.5 : 9.87584554036458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/People/People_Speaker" />
+      <nodes>
+        <classShapeMoniker Id="1c8ec19c-920f-447d-a4fe-6c0da7017e8d" />
+        <classShapeMoniker Id="7489df15-bad7-4a3f-9c44-f7f240ff247a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.31814697265625); (3.5 : 3.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/TimeSlot/TimeSlot_Event" />
+      <nodes>
+        <classShapeMoniker Id="b25e0ad1-89c9-4eee-b522-dbb1c4b5a3dc" />
+        <classShapeMoniker Id="e31158c1-1825-4e0e-a16f-91b867047407" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
