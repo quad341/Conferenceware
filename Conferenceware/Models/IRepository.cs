@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Conferenceware.Models
 {
@@ -129,7 +132,7 @@ namespace Conferenceware.Models
         /// </summary>
         /// <returns>A List object containing all Location objects from the data repository.</returns>
         List<Location> GetAllLocations();
-        
+
         //TimeSlots
         /// <summary>
         /// Add a TimeSlot to a data repository. 
