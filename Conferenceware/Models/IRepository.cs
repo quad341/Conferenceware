@@ -2,7 +2,7 @@
 
 namespace Conferenceware.Models
 {
-    interface IRepository
+    public interface IRepository
     {
         //Events
         /// <summary>
