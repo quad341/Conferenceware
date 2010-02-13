@@ -1,0 +1,111 @@
+USE [master]
+GO
+
+/****** Object:  Database [Conferenceware]    Script Date: 02/13/2010 15:59:27 ******/
+IF  EXISTS (SELECT name FROM sys.databases WHERE name = N'Conferenceware')
+DROP DATABASE [Conferenceware]
+GO
+
+USE [master]
+GO
+
+/****** Object:  Database [Conferenceware]    Script Date: 02/13/2010 15:59:27 ******/
+CREATE DATABASE [Conferenceware] ON  PRIMARY 
+( NAME = N'Conferenceware', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL10.MSSQLSERVER\MSSQL\DATA\Conferenceware.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'Conferenceware_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL10.MSSQLSERVER\MSSQL\DATA\Conferenceware_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+
+ALTER DATABASE [Conferenceware] SET COMPATIBILITY_LEVEL = 100
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Conferenceware].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [Conferenceware] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET AUTO_CREATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [Conferenceware] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [Conferenceware] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [Conferenceware] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [Conferenceware] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [Conferenceware] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [Conferenceware] SET  READ_WRITE 
+GO
+
+ALTER DATABASE [Conferenceware] SET RECOVERY FULL 
+GO
+
+ALTER DATABASE [Conferenceware] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [Conferenceware] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [Conferenceware] SET DB_CHAINING OFF 
+GO
+
