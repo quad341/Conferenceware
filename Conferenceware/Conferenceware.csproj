@@ -67,6 +67,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Attendee.cs" />
+    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Speaker.cs" />
+    <Compile Include="Models\TimeSlot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
