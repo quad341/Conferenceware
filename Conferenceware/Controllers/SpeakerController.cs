@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Conferenceware.Controllers
 {
-    public class TimeSlotController : Controller
+    public class SpeakerController : Controller
     {
         //
-        // GET: /TimeSlot/
+        // GET: /Speaker/
 
         public ActionResult Index()
         {
@@ -17,7 +17,7 @@ namespace Conferenceware.Controllers
         }
 
         //
-        // GET: /TimeSlot/Details/5
+        // GET: /Speaker/Details/5
 
         public ActionResult Details(int id)
         {
@@ -25,7 +25,7 @@ namespace Conferenceware.Controllers
         }
 
         //
-        // GET: /TimeSlot/Create
+        // GET: /Speaker/Create
 
         public ActionResult Create()
         {
@@ -33,7 +33,7 @@ namespace Conferenceware.Controllers
         } 
 
         //
-        // POST: /TimeSlot/Create
+        // POST: /Speaker/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -51,7 +51,7 @@ namespace Conferenceware.Controllers
         }
 
         //
-        // GET: /TimeSlot/Edit/5
+        // GET: /Speaker/Edit/5
  
         public ActionResult Edit(int id)
         {
@@ -59,7 +59,7 @@ namespace Conferenceware.Controllers
         }
 
         //
-        // POST: /TimeSlot/Edit/5
+        // POST: /Speaker/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
