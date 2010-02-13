@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Conferenceware" Class="ConferencewareDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ECHO;Initial Catalog=Conferenceware;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ConferencewareConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Attendees" Member="Attendees">
+    <Type Name="Attendee">
+      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="food_choice_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tshirt_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Attendee_EventsAttendee" Member="EventsAttendees" ThisKey="person_id" OtherKey="attendee_id" Type="EventsAttendee" />
+      <Association Name="TShirtSize_Attendee" Member="TShirtSize" ThisKey="tshirt_id" OtherKey="id" Type="TShirtSize" IsForeignKey="true" />
+      <Association Name="Food_Attendee" Member="Food" ThisKey="food_choice_id" OtherKey="id" Type="Food" IsForeignKey="true" />
+      <Association Name="People_Attendee" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TShirtSizes" Member="TShirtSizes">
+    <Type Name="TShirtSize">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="TShirtSize_Attendee" Member="Attendees" ThisKey="id" OtherKey="tshirt_id" Type="Attendee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Events" Member="Events">
+    <Type Name="Event">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="max_attendees" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="timeslot_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="location_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Event_EventsAttendee" Member="EventsAttendees" ThisKey="id" OtherKey="event_id" Type="EventsAttendee" />
+      <Association Name="Event_EventsSpeaker" Member="EventsSpeakers" ThisKey="id" OtherKey="event_id" Type="EventsSpeaker" />
+      <Association Name="Location_Event" Member="Location" ThisKey="location_id" OtherKey="id" Type="Location" IsForeignKey="true" />
+      <Association Name="TimeSlot_Event" Member="TimeSlot" ThisKey="timeslot_id" OtherKey="id" Type="TimeSlot" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventsAttendees" Member="EventsAttendees">
+    <Type Name="EventsAttendee">
+      <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="attendee_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Attendee_EventsAttendee" Member="Attendee" ThisKey="attendee_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
+      <Association Name="Event_EventsAttendee" Member="Event" ThisKey="event_id" OtherKey="id" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventsSpeakers" Member="EventsSpeakers">
+    <Type Name="EventsSpeaker">
+      <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="speaker_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Event_EventsSpeaker" Member="Event" ThisKey="event_id" OtherKey="id" Type="Event" IsForeignKey="true" />
+      <Association Name="Speaker_EventsSpeaker" Member="Speaker" ThisKey="speaker_id" OtherKey="person_id" Type="Speaker" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Foods" Member="Foods">
+    <Type Name="Food">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Food_Attendee" Member="Attendees" ThisKey="id" OtherKey="food_choice_id" Type="Attendee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Locations" Member="Locations">
+    <Type Name="Location">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="max_capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="building_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="room_number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="notes" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Location_Event" Member="Events" ThisKey="id" OtherKey="location_id" Type="Event" />
+    </Type>
+  </Table>
+  <Table Name="dbo.People" Member="Peoples">
+    <Type Name="People">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="phone_number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="People_Attendee" Member="Attendee" ThisKey="id" OtherKey="person_id" Type="Attendee" Cardinality="One" />
+      <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Speakers" Member="Speakers">
+    <Type Name="Speaker">
+      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Speaker_EventsSpeaker" Member="EventsSpeakers" ThisKey="person_id" OtherKey="speaker_id" Type="EventsSpeaker" />
+      <Association Name="People_Speaker" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TimeSlots" Member="TimeSlots">
+    <Type Name="TimeSlot">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TimeSlot_Event" Member="Events" ThisKey="id" OtherKey="timeslot_id" Type="Event" />
+    </Type>
+  </Table>
+</Database>
