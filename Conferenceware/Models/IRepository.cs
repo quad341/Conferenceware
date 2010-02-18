@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Conferenceware.Models
 {
@@ -44,7 +45,7 @@ namespace Conferenceware.Models
         /// Get all Event objects from the data repository.
         /// </summary>
         /// <returns>A List object containing all Event objects from the data repository.</returns>
-        List<Event> GetAllEvents();
+        IQueryable<Event> GetAllEvents();
 
         //Attendees
         /// <summary>
@@ -86,7 +87,7 @@ namespace Conferenceware.Models
         /// Get all Attendee objects from the data repository.
         /// </summary>
         /// <returns>A List object containing all Attendee objects from the data repository.</returns>
-        List<Attendee> GetAllAttendees();
+        IQueryable<Attendee> GetAllAttendees();
 
         //Locations
         /// <summary>
@@ -128,7 +129,7 @@ namespace Conferenceware.Models
         /// Get all Location objects from the data repository.
         /// </summary>
         /// <returns>A List object containing all Location objects from the data repository.</returns>
-        List<Location> GetAllLocations();
+        IQueryable<Location> GetAllLocations();
 
         //TimeSlots
         /// <summary>
@@ -170,7 +171,7 @@ namespace Conferenceware.Models
         /// Get all TimeSlot objects from the data repository.
         /// </summary>
         /// <returns>A List object containing all TimeSlot objects from the data repository.</returns>
-        List<TimeSlot> GetAllTimeSlots();
+        IQueryable<TimeSlot> GetAllTimeSlots();
 
         //Speakers
         /// <summary>
@@ -212,7 +213,7 @@ namespace Conferenceware.Models
         /// Get all Speaker objects from the data repository.
         /// </summary>
         /// <returns>A List object containing all Speaker objects from the data repository.</returns>
-        List<Speaker> GetAllSpeakers();
+        IQueryable<Speaker> GetAllSpeakers();
 
         //RegisterMethods
         /// <summary>
@@ -231,6 +232,12 @@ namespace Conferenceware.Models
         /// <param name="speaker">A Speaker object with a valid ID from the repository</param>
         /// <param name="ev">An Event object with a valid ID from the respository</param>
         void RegisterSpeakerForEvent(Speaker speaker, Event ev);
+
+		//General
+		/// <summary>
+		/// Causes the repository to commit its changes
+		/// </summary>
+    	void Save();
 
     }
 }

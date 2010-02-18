@@ -1,16 +1,24 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Conferenceware.Models;
 
-namespace Conferenceware.Tests.Models
+namespace Conferenceware.Models
 {
-	class TestRepository : IRepository
+	public class ConferencewareRepository : IRepository
 	{
-		/// <summary>
-		/// Internal storage for locations in memory
-		/// </summary>
-		private List<Location> _locations = new List<Location>();
+		protected ConferencewareDataContext _conferenceware = null;
+
+		public ConferencewareRepository() : this(new ConferencewareDataContext())
+		{
+			// no additional actions needed
+		}
+
+		public ConferencewareRepository(ConferencewareDataContext context)
+		{
+			_conferenceware = context;
+		}
 
 		public void AddEvent(Event ev)
 		{
@@ -33,11 +41,6 @@ namespace Conferenceware.Tests.Models
 		}
 
 		public Event GetEventById(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		IQueryable<Event> IRepository.GetAllEvents()
 		{
 			throw new NotImplementedException();
 		}
@@ -72,11 +75,6 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
-		IQueryable<Attendee> IRepository.GetAllAttendees()
-		{
-			throw new NotImplementedException();
-		}
-
 		public IQueryable<Attendee> GetAllAttendees()
 		{
 			throw new NotImplementedException();
@@ -84,12 +82,12 @@ namespace Conferenceware.Tests.Models
 
 		public void AddLocation(Location location)
 		{
-			_locations.Add(location);
+			_conferenceware.Locations.InsertOnSubmit(location);
 		}
 
 		public void DeleteLocation(Location location)
 		{
-			_locations.Remove(location);
+			_conferenceware.Locations.DeleteOnSubmit(location);
 		}
 
 		public void DeleteLocation(int id)
@@ -99,21 +97,17 @@ namespace Conferenceware.Tests.Models
 
 		public void UpdateLocation(Location location)
 		{
-			var internalLocation = GetLocationById(location.id);
-			internalLocation.building_name = location.building_name;
-			internalLocation.max_capacity = location.max_capacity;
-			internalLocation.notes = location.notes;
-			internalLocation.room_number = location.room_number;
+			_conferenceware.Locations.Attach(location, true);
 		}
 
 		public Location GetLocationById(int id)
 		{
-			return _locations.SingleOrDefault(x => x.id == id);
+			return _conferenceware.Locations.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<Location> GetAllLocations()
 		{
-			return _locations.AsQueryable();
+			return _conferenceware.Locations.AsQueryable();
 		}
 
 		public void AddTimeSlot(TimeSlot timeslot)
@@ -137,11 +131,6 @@ namespace Conferenceware.Tests.Models
 		}
 
 		public TimeSlot GetTimeSlotById(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		IQueryable<TimeSlot> IRepository.GetAllTimeSlots()
 		{
 			throw new NotImplementedException();
 		}
@@ -176,11 +165,6 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
-		IQueryable<Speaker> IRepository.GetAllSpeakers()
-		{
-			throw new NotImplementedException();
-		}
-
 		public IQueryable<Speaker> GetAllSpeakers()
 		{
 			throw new NotImplementedException();
@@ -198,8 +182,8 @@ namespace Conferenceware.Tests.Models
 
 		public void Save()
 		{
-			// we do that anyway. we might want to do something more interesting 
-			// with validation, etc.
+			_conferenceware.SubmitChanges();
 		}
 	}
+
 }
