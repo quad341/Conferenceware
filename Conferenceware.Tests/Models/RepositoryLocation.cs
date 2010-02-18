@@ -143,14 +143,26 @@ namespace Conferenceware.Tests.Models
 			Location loc = GenerateNewLocation2();
 			_repository.AddLocation(loc);
 			_repository.Save();
-			int loc_id = loc.id;
+			int locId = loc.id;
 			loc.building_name = "New Building";
 			loc.notes = "New Notes";
 			_repository.UpdateLocation(loc);
 			_repository.Save();
-			Location testLoc = _repository.GetLocationById(loc_id);
+			Location testLoc = _repository.GetLocationById(locId);
 			Assert.IsTrue(EqualLocationProperties(loc, testLoc));
 
+		}
+
+		[TestMethod]
+		public void TestDeleteLocationCausesCountToDecrimentByOne()
+		{
+			InsertLocations1and2IntoRepo();
+			Location loc = GenerateNewLocation1();
+			_repository.AddLocation(loc);
+			_repository.Save();
+			_repository.DeleteLocation(loc);
+			_repository.Save();
+			Assert.AreEqual(2, _repository.GetAllLocations().Count());
 		}
 	}
 }
