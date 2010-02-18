@@ -20,40 +20,6 @@ namespace Conferenceware.Tests.Models
 		//private IRepository _repository = new ConferencewareRepository();
 
 		/// <summary>
-		/// Internal method to generate the first example location
-		/// </summary>
-		/// <returns>Example location 1</returns>
-		private Location GenerateLocation1()
-		{
-			var l = new Location
-			        	{
-			        		id = 10,
-			        		building_name = "Siebel Center",
-			        		max_capacity = 75,
-			        		notes = "Food allowed",
-			        		room_number = "2405"
-			        	};
-			return l;
-		}
-
-		/// <summary>
-		/// Generates second location example
-		/// </summary>
-		/// <returns>The second example location</returns>
-		private Location GenerateLocation2()
-		{
-			var l = new Location
-			        	{
-			        		id = 25,
-			        		building_name = "Digital Computer Laboritory",
-			        		max_capacity = 150,
-			        		notes = "Big lecture hall in DCL",
-			        		room_number = "1320"
-			        	};
-			return l;
-		}
-
-		/// <summary>
 		/// Generates a location to be inserted (valid location, no id)
 		/// </summary>
 		/// <returns>A location without an id</returns>
@@ -67,6 +33,46 @@ namespace Conferenceware.Tests.Models
 			        		notes = "Big lecture hall in Siebel"
 			        	};
 			return l;
+		}
+
+		/// <summary>
+		/// Generates second location example
+		/// </summary>
+		/// <returns>The second example location</returns>
+		private Location GenerateNewLocation2()
+		{
+			var l = new Location
+			        	{
+			        		building_name = "Digital Computer Laboritory",
+			        		max_capacity = 150,
+			        		notes = "Big lecture hall in DCL",
+			        		room_number = "1320"
+			        	};
+			return l;
+		}
+
+		/// <summary>
+		/// Internal method to generate the first example location
+		/// </summary>
+		/// <returns>Example location 1</returns>
+		private Location GenerateNewLocation3()
+		{
+			var l = new Location
+			        	{
+			        		building_name = "Siebel Center",
+			        		max_capacity = 75,
+			        		notes = "Food allowed",
+			        		room_number = "2405"
+			        	};
+			return l;
+		}
+
+		private void InsertLocations1and2IntoRepo()
+		{
+			_repository.AddLocation(GenerateNewLocation1());
+			_repository.AddLocation(GenerateNewLocation2());
+			_repository.Save();
+			Assert.AreEqual(2, _repository.GetAllLocations().Count());
 		}
 
 		/// <summary>
@@ -93,6 +99,58 @@ namespace Conferenceware.Tests.Models
 		public void TestEmptyRepoReturnsNullForGetLocationById()
 		{
 			Assert.IsNull(_repository.GetLocationById(1), "Should get null for non-existing element");
+		}
+
+		[TestMethod]
+		public void TestAddLocationToEmptyRepoHasOneAfter()
+		{
+			_repository.AddLocation(GenerateNewLocation1());
+			_repository.Save();
+			Assert.AreEqual(1,_repository.GetAllLocations().Count());
+		}
+
+		[TestMethod]
+		public void TestGetLocationByIdGivesSomethingAfterInsert()
+		{
+			Location loc1 = GenerateNewLocation1();
+			_repository.AddLocation(loc1);
+			_repository.Save();
+			Assert.IsNotNull(_repository.GetLocationById(loc1.id));
+		}
+
+		[TestMethod]
+		public void TestGetLocationByIdGivesLocation1AfterInsertingLocation1()
+		{
+			Location loc1 = GenerateNewLocation1();
+			_repository.AddLocation(loc1);
+			_repository.Save();
+			Location fromRepo = _repository.GetLocationById(loc1.id);
+			Assert.IsTrue(EqualLocationProperties(fromRepo, loc1));
+		}
+
+		[TestMethod]
+		public void TestAddLocationAfterAddingTwoGivesThreeForCount()
+		{
+			InsertLocations1and2IntoRepo();
+			_repository.AddLocation(GenerateNewLocation3());
+			_repository.Save();
+			Assert.AreEqual(3, _repository.GetAllLocations().Count());
+		}
+
+		[TestMethod]
+		public void TestUpdateLocationCausesGetOfIdToReturnUpdatedVersion()
+		{
+			Location loc = GenerateNewLocation2();
+			_repository.AddLocation(loc);
+			_repository.Save();
+			int loc_id = loc.id;
+			loc.building_name = "New Building";
+			loc.notes = "New Notes";
+			_repository.UpdateLocation(loc);
+			_repository.Save();
+			Location testLoc = _repository.GetLocationById(loc_id);
+			Assert.IsTrue(EqualLocationProperties(loc, testLoc));
+
 		}
 	}
 }
