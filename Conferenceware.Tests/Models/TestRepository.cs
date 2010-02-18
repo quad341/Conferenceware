@@ -84,6 +84,8 @@ namespace Conferenceware.Tests.Models
 
 		public void AddLocation(Location location)
 		{
+			int maxId = _locations.Max(l => l.id);
+			location.id = maxId + 1;
 			_locations.Add(location);
 		}
 
