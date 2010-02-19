@@ -12,6 +12,11 @@ namespace Conferenceware.Tests.Models
 		/// </summary>
 		private List<Location> _locations = new List<Location>();
 
+		/// <summary>
+		/// The last used Id for locations
+		/// </summary>
+		private int _locationMaxId = 0;
+
 		public void AddEvent(Event ev)
 		{
 			throw new NotImplementedException();
@@ -84,12 +89,7 @@ namespace Conferenceware.Tests.Models
 
 		public void AddLocation(Location location)
 		{
-			int maxId = 0;
-			if (_locations.Count > 0)
-			{
-				maxId = _locations.Max(loc => loc.id);
-			}
-			location.id = maxId + 1;
+			location.id = ++_locationMaxId;
 			_locations.Add(location);
 		}
 

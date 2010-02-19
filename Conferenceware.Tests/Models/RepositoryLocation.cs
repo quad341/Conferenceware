@@ -1,7 +1,4 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Conferenceware.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -16,14 +13,14 @@ namespace Conferenceware.Tests.Models
 		/// <summary>
 		/// Repository to use for testing
 		/// </summary>
-		private IRepository _repository = new TestRepository();
+		private readonly IRepository _repository = new TestRepository();
 		//private IRepository _repository = new ConferencewareRepository();
 
 		/// <summary>
 		/// Generates a location to be inserted (valid location, no id)
 		/// </summary>
 		/// <returns>A location without an id</returns>
-		private Location GenerateNewLocation1()
+		private static Location GenerateNewLocation1()
 		{
 			var l = new Location
 			        	{
@@ -39,7 +36,7 @@ namespace Conferenceware.Tests.Models
 		/// Generates second location example
 		/// </summary>
 		/// <returns>The second example location</returns>
-		private Location GenerateNewLocation2()
+		private static Location GenerateNewLocation2()
 		{
 			var l = new Location
 			        	{
@@ -55,7 +52,7 @@ namespace Conferenceware.Tests.Models
 		/// Internal method to generate the first example location
 		/// </summary>
 		/// <returns>Example location 1</returns>
-		private Location GenerateNewLocation3()
+		private static Location GenerateNewLocation3()
 		{
 			var l = new Location
 			        	{
@@ -67,7 +64,7 @@ namespace Conferenceware.Tests.Models
 			return l;
 		}
 
-		private void InsertLocations1and2IntoRepo()
+		private void InsertLocations1And2IntoRepo()
 		{
 			_repository.AddLocation(GenerateNewLocation1());
 			_repository.AddLocation(GenerateNewLocation2());
@@ -81,7 +78,7 @@ namespace Conferenceware.Tests.Models
 		/// <param name="loc1">The first location to consider</param>
 		/// <param name="loc2">The second location to consider</param>
 		/// <returns>Whether or not all the properties except for id are the same</returns>
-		private bool EqualLocationProperties(Location loc1, Location loc2)
+		private static bool EqualLocationProperties(Location loc1, Location loc2)
 		{
 			return loc1.building_name == loc2.building_name &&
 			       loc1.max_capacity == loc2.max_capacity &&
@@ -106,7 +103,7 @@ namespace Conferenceware.Tests.Models
 		{
 			_repository.AddLocation(GenerateNewLocation1());
 			_repository.Save();
-			Assert.AreEqual(1,_repository.GetAllLocations().Count());
+			Assert.AreEqual(1,_repository.GetAllLocations().Count(), "Something should be there");
 		}
 
 		[TestMethod]
@@ -115,7 +112,7 @@ namespace Conferenceware.Tests.Models
 			Location loc1 = GenerateNewLocation1();
 			_repository.AddLocation(loc1);
 			_repository.Save();
-			Assert.IsNotNull(_repository.GetLocationById(loc1.id));
+			Assert.IsNotNull(_repository.GetLocationById(loc1.id), "The object should have been found");
 		}
 
 		[TestMethod]
@@ -125,16 +122,16 @@ namespace Conferenceware.Tests.Models
 			_repository.AddLocation(loc1);
 			_repository.Save();
 			Location fromRepo = _repository.GetLocationById(loc1.id);
-			Assert.IsTrue(EqualLocationProperties(fromRepo, loc1));
+			Assert.IsTrue(EqualLocationProperties(fromRepo, loc1), "The same object should have come back");
 		}
 
 		[TestMethod]
 		public void TestAddLocationAfterAddingTwoGivesThreeForCount()
 		{
-			InsertLocations1and2IntoRepo();
+			InsertLocations1And2IntoRepo();
 			_repository.AddLocation(GenerateNewLocation3());
 			_repository.Save();
-			Assert.AreEqual(3, _repository.GetAllLocations().Count());
+			Assert.AreEqual(3, _repository.GetAllLocations().Count(), "Another location should have been added");
 		}
 
 		[TestMethod]
@@ -149,20 +146,70 @@ namespace Conferenceware.Tests.Models
 			_repository.UpdateLocation(loc);
 			_repository.Save();
 			Location testLoc = _repository.GetLocationById(locId);
-			Assert.IsTrue(EqualLocationProperties(loc, testLoc));
+			Assert.IsTrue(EqualLocationProperties(loc, testLoc), "The newly queried object should be the same as the updated one");
 
 		}
 
 		[TestMethod]
 		public void TestDeleteLocationCausesCountToDecrimentByOne()
 		{
-			InsertLocations1and2IntoRepo();
+			InsertLocations1And2IntoRepo();
 			Location loc = GenerateNewLocation1();
 			_repository.AddLocation(loc);
 			_repository.Save();
 			_repository.DeleteLocation(loc);
 			_repository.Save();
-			Assert.AreEqual(2, _repository.GetAllLocations().Count());
+			Assert.AreEqual(2, _repository.GetAllLocations().Count(), "One less location should be present");
+		}
+
+		[TestMethod]
+		public void TestDeleteLocationCausesRepoToReturnNullWhenItsIdIsRequested()
+		{
+			InsertLocations1And2IntoRepo();
+			Location loc = GenerateNewLocation1();
+			_repository.AddLocation(loc);
+			_repository.Save();
+			_repository.DeleteLocation(loc);
+			_repository.Save();
+			Assert.IsNull(_repository.GetLocationById(loc.id), "Location should not exist anymore");
+		}
+
+		[TestMethod]
+		public void TestDeleteLocationWithIdCausesCountToDecrimentByOne()
+		{
+			InsertLocations1And2IntoRepo();
+			Location loc = GenerateNewLocation1();
+			_repository.AddLocation(loc);
+			_repository.Save();
+			_repository.DeleteLocation(loc.id);
+			_repository.Save();
+			Assert.AreEqual(2, _repository.GetAllLocations().Count(), "One less location should exist");
+		}
+
+		[TestMethod]
+		public void TestDeleteLocationWithIdCausesRepoToReturnNullWhenItsIdIsRequested()
+		{
+			InsertLocations1And2IntoRepo();
+			Location loc = GenerateNewLocation1();
+			_repository.AddLocation(loc);
+			_repository.Save();
+			_repository.DeleteLocation(loc.id);
+			_repository.Save();
+			Assert.IsNull(_repository.GetLocationById(loc.id), "Location should not exist anymore");
+		}
+
+		[TestMethod]
+		public void TestInsertingThenDeletingThenInsertingLocationsGeneratesDistinctIds()
+		{
+			Location loc1 = GenerateNewLocation1();
+			Location loc2 = GenerateNewLocation2();
+			_repository.AddLocation(loc1);
+			_repository.Save();
+			_repository.DeleteLocation(loc1);
+			_repository.Save();
+			_repository.AddLocation(loc2);
+			_repository.Save();
+			Assert.AreNotEqual(loc1.id, loc2.id, "Should have generated distinct values");
 		}
 	}
 }
