@@ -1,27 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
     public class LocationController : Controller
     {
+    	private readonly IRepository _repository;
+
+		public LocationController(IRepository repo)
+		{
+			_repository = repo;
+		}
+
+		public LocationController () : this(new ConferencewareRepository())
+		{
+			// no other actions needed
+		}
+
         //
         // GET: /Location/
 
         public ActionResult Index()
         {
-            return View();
-        }
-
-        //
-        // GET: /Location/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View(_repository.GetAllLocations());
         }
 
         //
@@ -29,7 +30,7 @@ namespace Conferenceware.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View(new Location());
         } 
 
         //
@@ -38,15 +39,17 @@ namespace Conferenceware.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+			var loc = new Location();
             try
             {
-                // TODO: Add insert logic here
-
+				UpdateModel(loc);
+				_repository.AddLocation(loc);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+				// add errors
+                return View(loc);
             }
         }
 
@@ -55,7 +58,7 @@ namespace Conferenceware.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_repository.GetLocationById(id));
         }
 
         //
@@ -64,16 +67,33 @@ namespace Conferenceware.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+        	var loc = _repository.GetLocationById(id);
             try
             {
-                // TODO: Add update logic here
+				UpdateModel(loc);
+				_repository.AddLocation(loc);
+				_repository.Save();
  
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+				// add errors
+                return View(loc);
             }
         }
+
+		public ActionResult Delete(int id)
+		{
+			try
+			{
+				_repository.DeleteLocation(id);
+			}
+			catch
+			{
+				// i guess it didn't work?
+			}
+			return RedirectToAction("Index");
+		}
     }
 }

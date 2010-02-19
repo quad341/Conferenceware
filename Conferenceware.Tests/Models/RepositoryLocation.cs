@@ -10,7 +10,7 @@ namespace Conferenceware.Tests.Models
 	[TestClass]
 	public class RepositoryLocation
 	{
-		/// <summary>
+		/// <summary
 		/// Repository to use for testing
 		/// </summary>
 		private readonly IRepository _repository = new TestRepository();
