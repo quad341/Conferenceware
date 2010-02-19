@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -42,14 +43,17 @@ namespace Conferenceware.Controllers
 			var loc = new Location();
             try
             {
-				UpdateModel(loc);
+				// so the only reason we have to specify the fields is because there's a bug in the rc
+				// which causes null or empty fields, if they exist, to throw an exception
+				UpdateModel(loc, new[] {"building_name", "room_number", "notes"});
 				_repository.AddLocation(loc);
+				_repository.Save();
                 return RedirectToAction("Index");
             }
             catch
             {
-				// add errors
-                return View(loc);
+            	// add errors
+            	return View(loc);
             }
         }
 
@@ -70,8 +74,7 @@ namespace Conferenceware.Controllers
         	var loc = _repository.GetLocationById(id);
             try
             {
-				UpdateModel(loc);
-				_repository.AddLocation(loc);
+            	UpdateModel(loc);
 				_repository.Save();
  
                 return RedirectToAction("Index");
@@ -88,6 +91,7 @@ namespace Conferenceware.Controllers
 			try
 			{
 				_repository.DeleteLocation(id);
+				_repository.Save();
 			}
 			catch
 			{

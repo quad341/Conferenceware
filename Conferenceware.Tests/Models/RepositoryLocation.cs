@@ -143,7 +143,6 @@ namespace Conferenceware.Tests.Models
 			int locId = loc.id;
 			loc.building_name = "New Building";
 			loc.notes = "New Notes";
-			_repository.UpdateLocation(loc);
 			_repository.Save();
 			Location testLoc = _repository.GetLocationById(locId);
 			Assert.IsTrue(EqualLocationProperties(loc, testLoc), "The newly queried object should be the same as the updated one");

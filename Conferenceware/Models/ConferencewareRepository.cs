@@ -35,11 +35,6 @@ namespace Conferenceware.Models
 			throw new NotImplementedException();
 		}
 
-		public void UpdateEvent(Event ev)
-		{
-			throw new NotImplementedException();
-		}
-
 		public Event GetEventById(int id)
 		{
 			throw new NotImplementedException();
@@ -61,11 +56,6 @@ namespace Conferenceware.Models
 		}
 
 		public void DeleteAttendee(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void UpdateAttendee(Attendee attendee)
 		{
 			throw new NotImplementedException();
 		}
@@ -95,11 +85,6 @@ namespace Conferenceware.Models
 			DeleteLocation(GetLocationById(id));
 		}
 
-		public void UpdateLocation(Location location)
-		{
-			_conferenceware.Locations.Attach(location, true);
-		}
-
 		public Location GetLocationById(int id)
 		{
 			return _conferenceware.Locations.SingleOrDefault(x => x.id == id);
@@ -125,11 +110,6 @@ namespace Conferenceware.Models
 			throw new NotImplementedException();
 		}
 
-		public void UpdateTimeSlot(TimeSlot timeslot)
-		{
-			throw new NotImplementedException();
-		}
-
 		public TimeSlot GetTimeSlotById(int id)
 		{
 			throw new NotImplementedException();
@@ -151,11 +131,6 @@ namespace Conferenceware.Models
 		}
 
 		public void DeleteSpeaker(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void UpdateSpeaker(Speaker speaker)
 		{
 			throw new NotImplementedException();
 		}

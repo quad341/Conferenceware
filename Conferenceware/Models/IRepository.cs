@@ -28,13 +28,6 @@ namespace Conferenceware.Models
         /// <param name="id">An ID associated to an Event.</param>
         void DeleteEvent(int id);
         /// <summary>
-        /// Update an existing Event in a data repository.
-        /// Precondition: Event exists, Event object has changed properties set.
-        /// Postcondition: Event properties will be updated in the data repository.
-        /// </summary>
-        /// <param name="ev">An Event object with updated properties.</param>
-        void UpdateEvent(Event ev);
-        /// <summary>
         /// Get an Event object from the data repository.
         /// Precondition: ID is for an existing Event.
         /// </summary>
@@ -69,13 +62,6 @@ namespace Conferenceware.Models
         /// </summary>
         /// <param name="id">An ID associated to an Attendee.</param>
         void DeleteAttendee(int id);
-        /// <summary>
-        /// Update an existing Attendee in a data repository.
-        /// Precondition: Attendee exists, Attendee object has changed properties set.
-        /// Postcondition: Attendee properties will be updated in the data repository.
-        /// </summary>
-        /// <param name="attendee">An Attendee object with updated properties.</param>
-        void UpdateAttendee(Attendee attendee);
         /// <summary>
         /// Get an Attendee object from the data repository.
         /// Precondition: ID is for an existing Attendee.
@@ -112,13 +98,6 @@ namespace Conferenceware.Models
         /// <param name="id">An ID associated to a Location.</param>
         void DeleteLocation(int id);
         /// <summary>
-        /// Update an existing Location in a data repository.
-        /// Precondition: Location exists, Location object has changed properties set.
-        /// Postcondition: Location properties will be updated in the data repository.
-        /// </summary>
-        /// <param name="location">A Location object with updated properties.</param>
-        void UpdateLocation(Location location);
-        /// <summary>
         /// Get a Location object from the data repository.
         /// Precondition: ID is for an existing Location.
         /// </summary>
@@ -154,13 +133,6 @@ namespace Conferenceware.Models
         /// <param name="id">An ID associated to a TimeSlot.</param>
         void DeleteTimeSlot(int id);
         /// <summary>
-        /// Update an existing TimeSlot in a data repository.
-        /// Precondition: TimeSlot exists, TimeSlot object has changed properties set.
-        /// Postcondition: TimeSlot properties will be updated in the data repository.
-        /// </summary>
-        /// <param name="timeslot">A TimeSlot object with updated properties.</param>
-        void UpdateTimeSlot(TimeSlot timeslot);
-        /// <summary>
         /// Get a TimeSlot object from the data repository.
         /// Precondition: ID is for an existing TimeSlot.
         /// </summary>
@@ -195,13 +167,6 @@ namespace Conferenceware.Models
         /// </summary>
         /// <param name="id">An ID associated to a Speaker.</param>
         void DeleteSpeaker(int id);
-        /// <summary>
-        /// Update an existing Speaker in a data repository.
-        /// Precondition: Speaker exists, Speaker object has changed properties set.
-        /// Postcondition: Speaker properties will be updated in the data repository.
-        /// </summary>
-        /// <param name="speaker">A Speaker object with updated properties.</param>
-        void UpdateSpeaker(Speaker speaker);
         /// <summary>
         /// Get a Speaker object from the data repository.
         /// Precondition: ID is for an existing Speaker.

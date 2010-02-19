@@ -32,11 +32,6 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
-		public void UpdateEvent(Event ev)
-		{
-			throw new NotImplementedException();
-		}
-
 		public Event GetEventById(int id)
 		{
 			throw new NotImplementedException();
@@ -63,11 +58,6 @@ namespace Conferenceware.Tests.Models
 		}
 
 		public void DeleteAttendee(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void UpdateAttendee(Attendee attendee)
 		{
 			throw new NotImplementedException();
 		}
@@ -103,15 +93,6 @@ namespace Conferenceware.Tests.Models
 			DeleteLocation(GetLocationById(id));
 		}
 
-		public void UpdateLocation(Location location)
-		{
-			var internalLocation = GetLocationById(location.id);
-			internalLocation.building_name = location.building_name;
-			internalLocation.max_capacity = location.max_capacity;
-			internalLocation.notes = location.notes;
-			internalLocation.room_number = location.room_number;
-		}
-
 		public Location GetLocationById(int id)
 		{
 			return _locations.SingleOrDefault(x => x.id == id);
@@ -133,11 +114,6 @@ namespace Conferenceware.Tests.Models
 		}
 
 		public void DeleteTimeSlot(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void UpdateTimeSlot(TimeSlot timeslot)
 		{
 			throw new NotImplementedException();
 		}
@@ -168,11 +144,6 @@ namespace Conferenceware.Tests.Models
 		}
 
 		public void DeleteSpeaker(int id)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void UpdateSpeaker(Speaker speaker)
 		{
 			throw new NotImplementedException();
 		}
