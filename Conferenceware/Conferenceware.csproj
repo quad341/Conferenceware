@@ -83,9 +83,11 @@
       <DependentUpon>Conferenceware.dbml</DependentUpon>
     </Compile>
     <Compile Include="Models\ConferencewareRepository.cs" />
+    <Compile Include="Models\DataAnnotationsValidationRunner.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\LocationMetadata.cs" />
     <Compile Include="Models\Speaker.cs" />
     <Compile Include="Models\TimeSlot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,7 +8,7 @@ namespace Conferenceware.Tests.Models
 	/// Unit tests for the location methods of the repository
 	/// </summary>
 	[TestClass]
-	public class RepositoryLocation
+	public class RepositoryLocationTests
 	{
 		/// <summary
 		/// Repository to use for testing

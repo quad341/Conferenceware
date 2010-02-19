@@ -1,14 +1,11 @@
-﻿
-
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 
 namespace Conferenceware.Models
 {
 	public class ConferencewareRepository : IRepository
 	{
-		protected ConferencewareDataContext _conferenceware = null;
+		private readonly ConferencewareDataContext _conferenceware;
 
 		public ConferencewareRepository() : this(new ConferencewareDataContext())
 		{

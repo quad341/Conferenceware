@@ -54,7 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\RepositoryLocation.cs" />
+    <Compile Include="Models\LocationTests.cs" />
+    <Compile Include="Models\RepositoryLocationTests.cs" />
     <Compile Include="Models\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
