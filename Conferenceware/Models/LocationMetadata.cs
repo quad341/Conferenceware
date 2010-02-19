@@ -19,8 +19,8 @@ namespace Conferenceware.Models
 			get; set;
 		}
 
-		[Range(2, int.MaxValue)]
-		public int max_occupants
+		[Range(1, int.MaxValue)]
+		public int max_capacity
 		{
 			get; set;
 		}

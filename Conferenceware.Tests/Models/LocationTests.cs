@@ -91,7 +91,7 @@ namespace Conferenceware.Tests.Models
 			{
 				RoomNumber = "room",
 				BuildingName = "building",
-				MaxCapacity = -10
+				MaxCapacity = 0
 			};
 			Assert.IsFalse(l.IsValid);
 		}
