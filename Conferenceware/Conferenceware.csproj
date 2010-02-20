@@ -101,6 +101,7 @@
     <Content Include="Content\xVal.jquery.validate.js" />
     <Content Include="Libraries\xVal.dll" />
     <Content Include="Libraries\xVal.license.txt" />
+    <Content Include="Views\Attendee\Create.aspx" />
     <Content Include="Views\Location\Create.aspx" />
     <Content Include="Views\Location\Edit.aspx" />
     <Content Include="Views\Location\Index.aspx" />
@@ -147,9 +148,6 @@
     <None Include="Models\Conferenceware.dbml.layout">
       <DependentUpon>Conferenceware.dbml</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Attendee\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

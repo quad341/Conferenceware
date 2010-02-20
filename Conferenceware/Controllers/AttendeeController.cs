@@ -37,7 +37,7 @@ namespace Conferenceware.Controllers
 
         public ActionResult Create()
         {
-            return View(new Attendee());
+            return View(new AttendeeEditData());
         }
 
         //
