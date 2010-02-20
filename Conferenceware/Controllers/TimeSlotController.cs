@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
     public class TimeSlotController : Controller
     {
+        /// <summary>
+		/// Repository to interact with database
+		/// </summary>
+    	private readonly IRepository _repository;
+
+		public TimeSlotController() : this(new ConferencewareRepository())
+		{
+			// nothing more to do
+		}
+
+    	public TimeSlotController(IRepository repo)
+		{
+			_repository = repo;
+		}
+
+
         //
         // GET: /TimeSlot/
 
         public ActionResult Index()
         {
-            return View();
-        }
-
-        //
-        // GET: /TimeSlot/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
+            return View("Index", _repository.GetAllTimeSlots());
         }
 
         //
@@ -29,7 +38,7 @@ namespace Conferenceware.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            return View("Create", new Location());
         } 
 
         //
@@ -38,16 +47,17 @@ namespace Conferenceware.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            TimeSlot timeSlotToCreate = new TimeSlot();
 
+            TryUpdateModel(timeSlotToCreate);
+
+            if (ModelState.IsValid)
+            {
+                _repository.AddTimeSlot(timeSlotToCreate);
+                _repository.Save();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View("Create", timeSlotToCreate);
         }
 
         //
@@ -55,7 +65,12 @@ namespace Conferenceware.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            TimeSlot ts = _repository.GetTimeSlotById(id);
+            if (ts == null)
+            {
+                View("TimeSlotNotFound");
+            }
+            return View("Edit", ts);
         }
 
         //
@@ -64,16 +79,31 @@ namespace Conferenceware.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            TimeSlot ts = _repository.GetTimeSlotById(id);
             try
             {
-                // TODO: Add update logic here
- 
+                UpdateModel(ts);
+                _repository.Save();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Edit", ts);
             }
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            TimeSlot ts = _repository.GetTimeSlotById(id);
+            if (ts == null)
+            {
+                return View("TimeSlotNotFound");
+            }
+
+            _repository.DeleteTimeSlot(id);
+            _repository.Save();
+            return RedirectToAction("Index");
         }
     }
 }
