@@ -17,6 +17,12 @@ namespace Conferenceware.Tests.Models
 		/// </summary>
 		private int _locationMaxId = 0;
 
+        /// <summary>
+        /// Internal storage and reference max id for timeslots.
+        /// </summary>
+        private List<TimeSlot> _timeslots = new List<TimeSlot>();
+        private int _timeslotmaxId = 0;
+
 		public void AddEvent(Event ev)
 		{
 			throw new NotImplementedException();
@@ -105,32 +111,28 @@ namespace Conferenceware.Tests.Models
 
 		public void AddTimeSlot(TimeSlot timeslot)
 		{
-			throw new NotImplementedException();
+            timeslot.id = ++_timeslotmaxId;
+            _timeslots.Add(timeslot);
 		}
 
 		public void DeleteTimeSlot(TimeSlot timeslot)
 		{
-			throw new NotImplementedException();
+            _timeslots.Remove(timeslot);
 		}
 
 		public void DeleteTimeSlot(int id)
 		{
-			throw new NotImplementedException();
+            DeleteTimeSlot(GetTimeSlotById(id));
 		}
 
 		public TimeSlot GetTimeSlotById(int id)
 		{
-			throw new NotImplementedException();
-		}
-
-		IQueryable<TimeSlot> IRepository.GetAllTimeSlots()
-		{
-			throw new NotImplementedException();
+            return _timeslots.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<TimeSlot> GetAllTimeSlots()
 		{
-			throw new NotImplementedException();
+            return _timeslots.AsQueryable();
 		}
 
 		public void AddSpeaker(Speaker speaker)

@@ -94,27 +94,27 @@ namespace Conferenceware.Models
 
 		public void AddTimeSlot(TimeSlot timeslot)
 		{
-			throw new NotImplementedException();
+            _conferenceware.TimeSlots.InsertOnSubmit(timeslot);
 		}
 
 		public void DeleteTimeSlot(TimeSlot timeslot)
 		{
-			throw new NotImplementedException();
+            _conferenceware.TimeSlots.DeleteOnSubmit(timeslot);
 		}
 
 		public void DeleteTimeSlot(int id)
 		{
-			throw new NotImplementedException();
+            DeleteTimeSlot(GetTimeSlotById(id));
 		}
 
 		public TimeSlot GetTimeSlotById(int id)
 		{
-			throw new NotImplementedException();
+            return _conferenceware.TimeSlots.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<TimeSlot> GetAllTimeSlots()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.TimeSlots.AsQueryable();
 		}
 
 		public void AddSpeaker(Speaker speaker)
