@@ -5,17 +5,17 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Tests.Models
 {
-	class TestRepository : IRepository
-	{
-		/// <summary>
-		/// Internal storage for locations in memory
-		/// </summary>
-		private List<Location> _locations = new List<Location>();
+    class TestRepository : IRepository
+    {
+        /// <summary>
+        /// Internal storage for locations in memory
+        /// </summary>
+        private List<Location> _locations = new List<Location>();
 
-		/// <summary>
-		/// The last used Id for locations
-		/// </summary>
-		private int _locationMaxId = 0;
+        /// <summary>
+        /// The last used Id for locations
+        /// </summary>
+        private int _locationMaxId = 0;
 
         /// <summary>
         /// Internal storage and reference max id for timeslots.
@@ -23,162 +23,176 @@ namespace Conferenceware.Tests.Models
         private List<TimeSlot> _timeslots = new List<TimeSlot>();
         private int _timeslotmaxId = 0;
 
-		public void AddEvent(Event ev)
-		{
-			throw new NotImplementedException();
-		}
+        /// <summary>
+        /// Internal storage and reference max id for events.
+        /// </summary>
+        private List<Event> _events = new List<Event>();
+        private int _eventMaxId = 0;
 
-		public void DeleteEvent(Event ev)
-		{
-			throw new NotImplementedException();
-		}
+        /// <summary>
+        /// Internal storage and reference max id for attendees.
+        /// </summary>
+        private List<Attendee> _attendees = new List<Attendee>();
+        private int _attendeeMaxId = 0;
 
-		public void DeleteEvent(int id)
-		{
-			throw new NotImplementedException();
-		}
+        /// <summary>
+        /// Internal storage and reference max id for speakers.
+        /// </summary>
+        private List<Speaker> _speakers = new List<Speaker>();
+        private int _speakerMaxId = 0;
 
-		public Event GetEventById(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void AddEvent(Event ev)
+        {
+            ev.id = ++_eventMaxId;
+            _events.Add(ev);
+        }
 
-		IQueryable<Event> IRepository.GetAllEvents()
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteEvent(Event ev)
+        {
+            _events.Remove(ev);
+        }
 
-		public IQueryable<Event> GetAllEvents()
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteEvent(int id)
+        {
+            DeleteEvent(GetEventById(id));
+        }
 
-		public void AddAttendee(Attendee attendee)
-		{
-			throw new NotImplementedException();
-		}
+        public Event GetEventById(int id)
+        {
+            return _events.SingleOrDefault<Event>(x => x.id == id);
+        }
 
-		public void DeleteAttendee(Attendee attendee)
-		{
-			throw new NotImplementedException();
-		}
+        public IQueryable<Event> GetAllEvents()
+        {
+            return _events.AsQueryable();
+        }
 
-		public void DeleteAttendee(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void AddAttendee(Attendee attendee)
+        {
+            attendee.People.id = ++_attendeeMaxId;
+            _attendees.Add(attendee);
+        }
 
-		public Attendee GetAttendeeById(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteAttendee(Attendee attendee)
+        {
+            _attendees.Remove(attendee);
+        }
 
-		IQueryable<Attendee> IRepository.GetAllAttendees()
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteAttendee(int id)
+        {
+            DeleteAttendee(GetAttendeeById(id));
+        }
 
-		public IQueryable<Attendee> GetAllAttendees()
-		{
-			throw new NotImplementedException();
-		}
+        public Attendee GetAttendeeById(int id)
+        {
+            return _attendees.SingleOrDefault(x => id == x.People.id);
+        }
 
-		public void AddLocation(Location location)
-		{
-			location.id = ++_locationMaxId;
-			_locations.Add(location);
-		}
+        public IQueryable<Attendee> GetAllAttendees()
+        {
+            return _attendees.AsQueryable();
+        }
 
-		public void DeleteLocation(Location location)
-		{
-			_locations.Remove(location);
-		}
+        public void AddLocation(Location location)
+        {
+            location.id = ++_locationMaxId;
+            _locations.Add(location);
+        }
 
-		public void DeleteLocation(int id)
-		{
-			DeleteLocation(GetLocationById(id));
-		}
+        public void DeleteLocation(Location location)
+        {
+            _locations.Remove(location);
+        }
 
-		public Location GetLocationById(int id)
-		{
-			return _locations.SingleOrDefault(x => x.id == id);
-		}
+        public void DeleteLocation(int id)
+        {
+            DeleteLocation(GetLocationById(id));
+        }
 
-		public IQueryable<Location> GetAllLocations()
-		{
-			return _locations.AsQueryable();
-		}
+        public Location GetLocationById(int id)
+        {
+            return _locations.SingleOrDefault(x => x.id == id);
+        }
 
-		public void AddTimeSlot(TimeSlot timeslot)
-		{
+        public IQueryable<Location> GetAllLocations()
+        {
+            return _locations.AsQueryable();
+        }
+
+        public void AddTimeSlot(TimeSlot timeslot)
+        {
             timeslot.id = ++_timeslotmaxId;
             _timeslots.Add(timeslot);
-		}
+        }
 
-		public void DeleteTimeSlot(TimeSlot timeslot)
-		{
+        public void DeleteTimeSlot(TimeSlot timeslot)
+        {
             _timeslots.Remove(timeslot);
-		}
+        }
 
-		public void DeleteTimeSlot(int id)
-		{
+        public void DeleteTimeSlot(int id)
+        {
             DeleteTimeSlot(GetTimeSlotById(id));
-		}
+        }
 
-		public TimeSlot GetTimeSlotById(int id)
-		{
+        public TimeSlot GetTimeSlotById(int id)
+        {
             return _timeslots.SingleOrDefault(x => x.id == id);
-		}
+        }
 
-		public IQueryable<TimeSlot> GetAllTimeSlots()
-		{
+        public IQueryable<TimeSlot> GetAllTimeSlots()
+        {
             return _timeslots.AsQueryable();
-		}
+        }
 
-		public void AddSpeaker(Speaker speaker)
-		{
-			throw new NotImplementedException();
-		}
+        public void AddSpeaker(Speaker speaker)
+        {
+            speaker.People.id = ++_speakerMaxId;
+            _speakers.Add(speaker);
+        }
 
-		public void DeleteSpeaker(Speaker speaker)
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteSpeaker(Speaker speaker)
+        {
+            _speakers.Remove(speaker);
+        }
 
-		public void DeleteSpeaker(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteSpeaker(int id)
+        {
+            DeleteSpeaker(GetSpeakerById(id));
+        }
 
-		public Speaker GetSpeakerById(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public Speaker GetSpeakerById(int id)
+        {
+            return _speakers.SingleOrDefault(x => x.People.id == id);
+        }
 
-		IQueryable<Speaker> IRepository.GetAllSpeakers()
-		{
-			throw new NotImplementedException();
-		}
+        public IQueryable<Speaker> GetAllSpeakers()
+        {
+            return _speakers.AsQueryable();
+        }
 
-		public IQueryable<Speaker> GetAllSpeakers()
-		{
-			throw new NotImplementedException();
-		}
+        public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
+        {
+            var eva = new EventsAttendee();
+            eva.Attendee = attendee;
+            eva.Event = ev;
+            ev.EventsAttendees.Insert(eva);
+            attendee.EventsAttendees.Insert(eva);
+        }
 
-		public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
-		{
-			throw new NotImplementedException();
-		}
+        public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
+        {
+            var evs = new EventsSpeaker();
+            evs.Speaker = speaker;
+            evs.Event = ev;
+            ev.EventsSpeakers.Insert(evs);
+            speaker.EventsSpeakers.Insert(evs);
+        }
 
-		public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Save()
-		{
-			// we do that anyway. we might want to do something more interesting 
-			// with validation, etc.
-		}
-	}
+        public void Save()
+        {
+            // we do that anyway. we might want to do something more interesting 
+            // with validation, etc.
+        }
+    }
 }
