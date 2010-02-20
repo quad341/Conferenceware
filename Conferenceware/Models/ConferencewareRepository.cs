@@ -119,22 +119,23 @@ namespace Conferenceware.Models
 
 		public void AddSpeaker(Speaker speaker)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Speakers.InsertOnSubmit(speaker);
 		}
 
 		public void DeleteSpeaker(Speaker speaker)
 		{
-			throw new NotImplementedException();
+            DeletePerson(speaker.person_id);
+            _conferenceware.Speakers.DeleteOnSubmit(speaker);
 		}
 
 		public void DeleteSpeaker(int id)
 		{
-			throw new NotImplementedException();
+            DeleteSpeaker(GetSpeakerById(id));
 		}
 
 		public Speaker GetSpeakerById(int id)
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Speakers.SingleOrDefault(x => x.person_id == id);
 		}
 
 		public IQueryable<Speaker> GetAllSpeakers()
@@ -151,6 +152,21 @@ namespace Conferenceware.Models
 		{
 			throw new NotImplementedException();
 		}
+
+        public void DeletePerson(People person)
+        {
+            _conferenceware.Peoples.DeleteOnSubmit(person);
+        }
+
+        public void DeletePerson(int id)
+        {
+            DeletePerson(GetPersonById(id));
+        }
+
+        public People GetPersonById(int id)
+        {
+            return _conferenceware.Peoples.SingleOrDefault(x => x.id == id);
+        }
 
 		public void Save()
 		{
