@@ -24,7 +24,7 @@ namespace Conferenceware.Controllers
 
         public ActionResult Index()
         {
-            return View(_repository.GetAllLocations());
+            return View("Index",_repository.GetAllLocations());
         }
 
         //
@@ -32,22 +32,26 @@ namespace Conferenceware.Controllers
 
         public ActionResult Create()
         {
-            return View(new Location());
+            return View("Create",new Location());
         } 
 
         //
         // POST: /Location/Create
 
         [HttpPost]
-        public ActionResult Create(Location locationToCreate)
+        public ActionResult Create(FormCollection collection)
         {
+			var locationToCreate = new Location();
+
+        	TryUpdateModel(locationToCreate);
+
 			if (ModelState.IsValid)
 			{
 				_repository.AddLocation(locationToCreate);
 				_repository.Save();
 				return RedirectToAction("Index");
 			}
-        	return View(locationToCreate);
+        	return View("Create",locationToCreate);
         }
 
         //
@@ -60,7 +64,7 @@ namespace Conferenceware.Controllers
 			{
 				View("LocationNotFound");
 			}
-            return View(loc);
+            return View("Edit",loc);
         }
 
         //
@@ -78,7 +82,7 @@ namespace Conferenceware.Controllers
 			}
 			catch
 			{
-				return View(loc);
+				return View("Edit",loc);
 			}
         }
 

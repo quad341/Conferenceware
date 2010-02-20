@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Conferenceware.Models;
 
@@ -17,64 +16,80 @@ namespace Conferenceware.Tests.Models
         /// </summary>
         private int _locationMaxId = 0;
 
+        /// <summary>
+        /// Internal storage and reference max id for timeslots.
+        /// </summary>
+        private List<TimeSlot> _timeslots = new List<TimeSlot>();
+        private int _timeslotmaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for events.
+        /// </summary>
+        private List<Event> _events = new List<Event>();
+        private int _eventMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for attendees.
+        /// </summary>
+        private List<Attendee> _attendees = new List<Attendee>();
+        private int _attendeeMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for speakers.
+        /// </summary>
+        private List<Speaker> _speakers = new List<Speaker>();
+        private int _speakerMaxId = 0;
+
         public void AddEvent(Event ev)
         {
-            throw new NotImplementedException();
+            ev.id = ++_eventMaxId;
+            _events.Add(ev);
         }
 
         public void DeleteEvent(Event ev)
         {
-            throw new NotImplementedException();
+            _events.Remove(ev);
         }
 
         public void DeleteEvent(int id)
         {
-            throw new NotImplementedException();
+            DeleteEvent(GetEventById(id));
         }
 
         public Event GetEventById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        IQueryable<Event> IRepository.GetAllEvents()
-        {
-            throw new NotImplementedException();
+            return _events.SingleOrDefault<Event>(x => x.id == id);
         }
 
         public IQueryable<Event> GetAllEvents()
         {
-            throw new NotImplementedException();
+            return _events.AsQueryable();
         }
 
         public void AddAttendee(Attendee attendee)
         {
-            throw new NotImplementedException();
+            attendee.People.id = ++_attendeeMaxId;
+            _attendees.Add(attendee);
         }
 
         public void DeleteAttendee(Attendee attendee)
         {
-            throw new NotImplementedException();
+            _attendees.Remove(attendee);
         }
 
         public void DeleteAttendee(int id)
         {
-            throw new NotImplementedException();
+            DeleteAttendee(GetAttendeeById(id));
         }
 
         public Attendee GetAttendeeById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        IQueryable<Attendee> IRepository.GetAllAttendees()
-        {
-            throw new NotImplementedException();
+            return _attendees.SingleOrDefault(x => id == x.People.id);
         }
 
         public IQueryable<Attendee> GetAllAttendees()
         {
-            throw new NotImplementedException();
+            return _attendees.AsQueryable();
         }
 
         public void AddLocation(Location location)
@@ -105,72 +120,72 @@ namespace Conferenceware.Tests.Models
 
         public void AddTimeSlot(TimeSlot timeslot)
         {
-            throw new NotImplementedException();
+            timeslot.id = ++_timeslotmaxId;
+            _timeslots.Add(timeslot);
         }
 
         public void DeleteTimeSlot(TimeSlot timeslot)
         {
-            throw new NotImplementedException();
+            _timeslots.Remove(timeslot);
         }
 
         public void DeleteTimeSlot(int id)
         {
-            throw new NotImplementedException();
+            DeleteTimeSlot(GetTimeSlotById(id));
         }
 
         public TimeSlot GetTimeSlotById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        IQueryable<TimeSlot> IRepository.GetAllTimeSlots()
-        {
-            throw new NotImplementedException();
+            return _timeslots.SingleOrDefault(x => x.id == id);
         }
 
         public IQueryable<TimeSlot> GetAllTimeSlots()
         {
-            throw new NotImplementedException();
+            return _timeslots.AsQueryable();
         }
 
         public void AddSpeaker(Speaker speaker)
         {
-            throw new NotImplementedException();
+            speaker.People.id = ++_speakerMaxId;
+            _speakers.Add(speaker);
         }
 
         public void DeleteSpeaker(Speaker speaker)
         {
-            throw new NotImplementedException();
+            _speakers.Remove(speaker);
         }
 
         public void DeleteSpeaker(int id)
         {
-            throw new NotImplementedException();
+            DeleteSpeaker(GetSpeakerById(id));
         }
 
         public Speaker GetSpeakerById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        IQueryable<Speaker> IRepository.GetAllSpeakers()
-        {
-            throw new NotImplementedException();
+            return _speakers.SingleOrDefault(x => x.People.id == id);
         }
 
         public IQueryable<Speaker> GetAllSpeakers()
         {
-            throw new NotImplementedException();
+            return _speakers.AsQueryable();
         }
 
         public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
         {
-            throw new NotImplementedException();
+            var eva = new EventsAttendee();
+            eva.Attendee = attendee;
+            eva.Event = ev;
+            ev.EventsAttendees.Insert(0, eva);
+            attendee.EventsAttendees.Insert(0, eva);
         }
 
         public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
         {
-            throw new NotImplementedException();
+            var evs = new EventsSpeaker();
+            evs.Speaker = speaker;
+            evs.Event = ev;
+            ev.EventsSpeakers.Insert(0, evs);
+            speaker.EventsSpeakers.Insert(0, evs);
         }
 
         public void Save()
