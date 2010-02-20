@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Conferenceware.Models;
 
@@ -176,8 +175,8 @@ namespace Conferenceware.Tests.Models
             var eva = new EventsAttendee();
             eva.Attendee = attendee;
             eva.Event = ev;
-            ev.EventsAttendees.Insert(eva);
-            attendee.EventsAttendees.Insert(eva);
+        	ev.EventsAttendees.Insert(0, eva);
+            attendee.EventsAttendees.Insert(0,eva);
         }
 
         public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
@@ -185,8 +184,8 @@ namespace Conferenceware.Tests.Models
             var evs = new EventsSpeaker();
             evs.Speaker = speaker;
             evs.Event = ev;
-            ev.EventsSpeakers.Insert(evs);
-            speaker.EventsSpeakers.Insert(evs);
+            ev.EventsSpeakers.Insert(0,evs);
+            speaker.EventsSpeakers.Insert(0,evs);
         }
 
         public void Save()
