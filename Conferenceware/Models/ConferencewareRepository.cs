@@ -140,7 +140,7 @@ namespace Conferenceware.Models
 
 		public IQueryable<Speaker> GetAllSpeakers()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Speakers.AsQueryable();
 		}
 
 		public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
