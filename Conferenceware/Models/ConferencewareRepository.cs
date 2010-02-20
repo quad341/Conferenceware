@@ -19,52 +19,53 @@ namespace Conferenceware.Models
 
 		public void AddEvent(Event ev)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Events.InsertOnSubmit(ev);
 		}
 
 		public void DeleteEvent(Event ev)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Events.DeleteOnSubmit(ev);
 		}
 
 		public void DeleteEvent(int id)
 		{
-			throw new NotImplementedException();
+            DeleteEvent(GetEventById(id));
 		}
 
 		public Event GetEventById(int id)
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Events.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<Event> GetAllEvents()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Events.AsQueryable();
 		}
 
 		public void AddAttendee(Attendee attendee)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Attendees.InsertOnSubmit(attendee);
 		}
 
 		public void DeleteAttendee(Attendee attendee)
 		{
-			throw new NotImplementedException();
+            DeletePerson(attendee.person_id);
+            _conferenceware.Attendees.DeleteOnSubmit(attendee);
 		}
 
 		public void DeleteAttendee(int id)
 		{
-			throw new NotImplementedException();
+            DeleteAttendee(GetAttendeeById(id));
 		}
 
 		public Attendee GetAttendeeById(int id)
 		{
-			throw new NotImplementedException();
+           return _conferenceware.Attendees.SingleOrDefault(x => x.person_id == id);
 		}
 
 		public IQueryable<Attendee> GetAllAttendees()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Attendees.AsQueryable();
 		}
 
 		public void AddLocation(Location location)
@@ -145,12 +146,18 @@ namespace Conferenceware.Models
 
 		public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
 		{
-			throw new NotImplementedException();
+            EventsAttendee eva = new EventsAttendee();
+            eva.Attendee = attendee;
+            eva.Event = ev;
+            _conferenceware.EventsAttendees.InsertOnSubmit(eva);
 		}
 
 		public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
 		{
-			throw new NotImplementedException();
+            EventsSpeaker evs = new EventsSpeaker();
+            evs.Speaker = speaker;
+            evs.Event = ev;
+            _conferenceware.EventsSpeakers.InsertOnSubmit(evs);
 		}
 
         public void DeletePerson(People person)
