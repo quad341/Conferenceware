@@ -3,34 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
     public class EventController : Controller
     {
-        //
-        // GET: /Event/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        //
-        // GET: /Event/Details/5
+/// <summary>
+		/// Repository to interact with database
+		/// </summary>
+    	private readonly IRepository _repository;
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+		public EventController() : this(new ConferencewareRepository())
+		{
+			// nothing more to do
+		}
+
+    	public EventController(IRepository repo)
+		{
+			_repository = repo;
+		}
 
         //
         // GET: /Event/Create
 
         public ActionResult Create()
         {
-            return View();
-        } 
+            return View("Create", new Event());
+        }
 
         //
         // POST: /Event/Create
@@ -38,16 +40,38 @@ namespace Conferenceware.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            var eventToCreate = new Event();
 
+            TryUpdateModel(eventToCreate);
+
+            if (ModelState.IsValid)
+            {
+                _repository.AddEvent(eventToCreate);
+                _repository.Save();
                 return RedirectToAction("Index");
             }
-            catch
+            return View("Create", eventToCreate);
+        }
+
+        //
+        // GET: /Event/
+
+        public ActionResult Index()
+        {
+            return View("Index", _repository.GetAllEvents());
+        }
+
+        //
+        // GET: /Event/Details/5
+
+        public ActionResult Details(int id)
+        {
+            Event ev = _repository.GetEventById(id);
+            if (ev == null)
             {
-                return View();
+                View("EventNotFound");
             }
+            return View("Details",ev);
         }
 
         //
@@ -55,7 +79,12 @@ namespace Conferenceware.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View();
+            Event ev = _repository.GetEventById(id);
+            if (ev == null)
+            {
+                View("EventNotFound");
+            }
+            return View("Edit", ev);
         }
 
         //
@@ -64,16 +93,29 @@ namespace Conferenceware.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            Event ev = _repository.GetEventById(id);
             try
             {
-                // TODO: Add update logic here
- 
+                UpdateModel(ev);
+                _repository.Save();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Edit", ev);
             }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Event ev = _repository.GetEventById(id);
+            if (ev == null)
+            {
+                return View("EventNotFound");
+            }
+            _repository.DeleteEvent(ev);
+            _repository.Save();
+            return RedirectToAction("Index");
         }
     }
 }
