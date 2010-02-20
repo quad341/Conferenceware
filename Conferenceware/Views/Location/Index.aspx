@@ -12,16 +12,16 @@
         <tr>
             <th></th>
             <th>
-                max_capacity
+                Max Capacity
             </th>
             <th>
-                building_name
+                Building Name
             </th>
             <th>
-                room_number
+                Room Number
             </th>
             <th>
-                notes
+                Notes
             </th>
         </tr>
 

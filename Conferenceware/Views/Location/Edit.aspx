@@ -6,6 +6,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <% Html.EnableClientValidation(); %>
+    
     <h2>Edit</h2>
 
     <% using (Html.BeginForm()) {%>
@@ -13,9 +15,7 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-field">
-                <%= Html.HiddenFor(model => model.id) %>
-            </div>
+            <%= Html.HiddenFor(model => model.id) %>
             
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.max_capacity) %>

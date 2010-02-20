@@ -9,6 +9,7 @@ namespace Conferenceware.Tests.Models
 	[TestClass]
 	public class LocationTests
 	{
+		/*
 		[TestMethod]
 		public void TestValidLocationWithNotesIsValid()
 		{
@@ -107,5 +108,6 @@ namespace Conferenceware.Tests.Models
 			};
 			Assert.IsFalse(l.IsValid);
 		}
+		 */
 	}
 }

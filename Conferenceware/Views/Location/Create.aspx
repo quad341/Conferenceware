@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.Location>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	Create Location
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+<% Html.EnableClientValidation(); %>
     <h2>Create</h2>
 
     <% using (Html.BeginForm()) {%>
@@ -13,6 +14,7 @@
         <fieldset>
             <legend>Fields</legend>
             
+            <%= Html.HiddenFor(model => model.id, new {value="0"}) %>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.max_capacity) %>
             </div>

@@ -1,23 +1,24 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
     public class LocationController : Controller
     {
+		/// <summary>
+		/// Repository to interact with database
+		/// </summary>
     	private readonly IRepository _repository;
 
-		public LocationController(IRepository repo)
+		public LocationController() : this(new ConferencewareRepository())
+		{
+			// nothing more to do
+		}
+
+    	public LocationController(IRepository repo)
 		{
 			_repository = repo;
 		}
-
-		public LocationController () : this(new ConferencewareRepository())
-		{
-			// no other actions needed
-		}
-
         //
         // GET: /Location/
 
@@ -38,23 +39,15 @@ namespace Conferenceware.Controllers
         // POST: /Location/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Location locationToCreate)
         {
-			var loc = new Location();
-            try
-            {
-				// so the only reason we have to specify the fields is because there's a bug in the rc
-				// which causes null or empty fields, if they exist, to throw an exception
-				UpdateModel(loc, new[] {"building_name", "room_number", "notes"});
-				_repository.AddLocation(loc);
+			if (ModelState.IsValid)
+			{
+				_repository.AddLocation(locationToCreate);
 				_repository.Save();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-            	// add errors
-            	return View(loc);
-            }
+				return RedirectToAction("Index");
+			}
+        	return View(locationToCreate);
         }
 
         //
@@ -62,7 +55,12 @@ namespace Conferenceware.Controllers
  
         public ActionResult Edit(int id)
         {
-            return View(_repository.GetLocationById(id));
+        	var loc = _repository.GetLocationById(id);
+			if(loc==null)
+			{
+				View("LocationNotFound");
+			}
+            return View(loc);
         }
 
         //
@@ -72,31 +70,27 @@ namespace Conferenceware.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
         	var loc = _repository.GetLocationById(id);
-            try
-            {
-            	UpdateModel(loc);
+			try
+			{
+				UpdateModel(loc);
 				_repository.Save();
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-				// add errors
-                return View(loc);
-            }
+				return RedirectToAction("Index");
+			}
+			catch
+			{
+				return View(loc);
+			}
         }
 
 		public ActionResult Delete(int id)
 		{
-			try
+			var loc = _repository.GetLocationById(id);
+			if(loc == null)
 			{
-				_repository.DeleteLocation(id);
-				_repository.Save();
+				return View("LocationNotFound");
 			}
-			catch
-			{
-				// i guess it didn't work?
-			}
+			_repository.DeleteLocation(loc);
+			_repository.Save();
 			return RedirectToAction("Index");
 		}
     }
