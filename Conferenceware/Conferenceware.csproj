@@ -101,6 +101,7 @@
     <Content Include="Content\xVal.jquery.validate.js" />
     <Content Include="Libraries\xVal.dll" />
     <Content Include="Libraries\xVal.license.txt" />
+    <Content Include="Views\Attendee\Create.aspx" />
     <Content Include="Views\Event\Create.aspx" />
     <Content Include="Views\Event\Details.aspx" />
     <Content Include="Views\Event\Edit.aspx" />
