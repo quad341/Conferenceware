@@ -30,7 +30,7 @@ namespace Conferenceware.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /Speaker/Create
@@ -52,7 +52,7 @@ namespace Conferenceware.Controllers
 
         //
         // GET: /Speaker/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             return View();
@@ -67,7 +67,7 @@ namespace Conferenceware.Controllers
             try
             {
                 // TODO: Add update logic here
- 
+
                 return RedirectToAction("Index");
             }
             catch
