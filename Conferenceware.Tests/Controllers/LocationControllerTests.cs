@@ -173,28 +173,28 @@ namespace Conferenceware.Tests.Controllers
 		[TestMethod]
 		public void TestCreateWithValidLocationWithNotesAddsEntryToRepository()
 		{
-			_controller.Create(_location3);
+			_controller.Create(ConvertLocationToFormCollection(_location3));
 			Assert.AreEqual(3, _repository.GetAllLocations().Count(), "Should have added an entry");
 		}
 
 		[TestMethod]
 		public void TestCreateWithValidLocationWithNotesInsertsLocationIntoRepository()
 		{
-			_controller.Create(_location3);
+			_controller.Create(ConvertLocationToFormCollection(_location3));
 			Assert.IsTrue(_repository.GetAllLocations().Contains(_location3), "Location 3 should have been inserted");
 		}
 
 		[TestMethod]
 		public void TestCreateWithValidLocationWithNotesReturnsRedirectToAction()
 		{
-			var result = _controller.Create(_location3) as RedirectToRouteResult;
+			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
 			Assert.IsNotNull(result, "Should have given a redirect back");
 		}
 
 		[TestMethod]
 		public void TestCreateWithValidLocationWithNotesReturnsRedirectToIndex()
 		{
-			var result = _controller.Create(_location3) as RedirectToRouteResult;
+			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
 			Assert.AreEqual("Index",
 			                result.RouteValues["action"],
 			                "Should have redirected to index");
@@ -204,7 +204,7 @@ namespace Conferenceware.Tests.Controllers
 		public void TestCreateWithValidLocationWithoutNotesAddsEntryToRepository()
 		{
 			_location3.notes = null;
-			_controller.Create(_location3);
+			_controller.Create(ConvertLocationToFormCollection(_location3));
 			Assert.AreEqual(3, _repository.GetAllLocations().Count(), "Should have added an entry");
 		}
 
@@ -212,7 +212,7 @@ namespace Conferenceware.Tests.Controllers
 		public void TestCreateWithValidLocationWithoutNotesInsertsLocationIntoRepository()
 		{
 			_location3.notes = null;
-			_controller.Create(_location3);
+			_controller.Create(ConvertLocationToFormCollection(_location3));
 			Assert.IsTrue(_repository.GetAllLocations().Contains(_location3), "Location 3 should have been inserted");
 		}
 
@@ -220,7 +220,7 @@ namespace Conferenceware.Tests.Controllers
 		public void TestCreateWithValidLocationWithoutNotesReturnsRedirectToAction()
 		{
 			_location3.notes = null;
-			var result = _controller.Create(_location3) as RedirectToRouteResult;
+			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
 			Assert.IsNotNull(result, "Should have given a redirect back");
 		}
 
@@ -228,7 +228,7 @@ namespace Conferenceware.Tests.Controllers
 		public void TestCreateWithValidLocationWithoutNotesReturnsRedirectToIndex()
 		{
 			_location3.notes = null;
-			var result = _controller.Create(_location3) as RedirectToRouteResult;
+			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
 			Assert.AreEqual("Index",
 			                result.RouteValues["action"],
 			                "Should have redirected to index");
@@ -237,10 +237,11 @@ namespace Conferenceware.Tests.Controllers
 		[TestMethod]
 		public void TestCreateWithInvalidLocationNullBuildingNameReturnsViewResult()
 		{
-			FormCollection fc = new FormCollection();
-			fc["foo"] = "bar";
 			_location3.building_name = null;
-			var result = _controller.Create(_location3) as ViewResult;
+			var result =
+				_controller.Create(ConvertLocationToFormCollection(_location3)) as
+				ViewResult;
 			Assert.IsNotNull(result);
+		}
 	}
 }

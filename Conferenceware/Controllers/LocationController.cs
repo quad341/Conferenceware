@@ -43,7 +43,7 @@ namespace Conferenceware.Controllers
         {
 			var locationToCreate = new Location();
 
-        	TryUpdateModel(locationToCreate);
+        	TryUpdateModel(locationToCreate, collection.ToValueProvider());
 
 			if (ModelState.IsValid)
 			{
