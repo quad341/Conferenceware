@@ -19,52 +19,53 @@ namespace Conferenceware.Models
 
 		public void AddEvent(Event ev)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Events.InsertOnSubmit(ev);
 		}
 
 		public void DeleteEvent(Event ev)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Events.DeleteOnSubmit(ev);
 		}
 
 		public void DeleteEvent(int id)
 		{
-			throw new NotImplementedException();
+            DeleteEvent(GetEventById(id));
 		}
 
 		public Event GetEventById(int id)
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Events.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<Event> GetAllEvents()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Events.AsQueryable();
 		}
 
 		public void AddAttendee(Attendee attendee)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Attendees.InsertOnSubmit(attendee);
 		}
 
 		public void DeleteAttendee(Attendee attendee)
 		{
-			throw new NotImplementedException();
+            DeletePerson(attendee.person_id);
+            _conferenceware.Attendees.DeleteOnSubmit(attendee);
 		}
 
 		public void DeleteAttendee(int id)
 		{
-			throw new NotImplementedException();
+            DeleteAttendee(GetAttendeeById(id));
 		}
 
 		public Attendee GetAttendeeById(int id)
 		{
-			throw new NotImplementedException();
+           return _conferenceware.Attendees.SingleOrDefault(x => x.person_id == id);
 		}
 
 		public IQueryable<Attendee> GetAllAttendees()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Attendees.AsQueryable();
 		}
 
 		public void AddLocation(Location location)
@@ -94,63 +95,85 @@ namespace Conferenceware.Models
 
 		public void AddTimeSlot(TimeSlot timeslot)
 		{
-			throw new NotImplementedException();
+            _conferenceware.TimeSlots.InsertOnSubmit(timeslot);
 		}
 
 		public void DeleteTimeSlot(TimeSlot timeslot)
 		{
-			throw new NotImplementedException();
+            _conferenceware.TimeSlots.DeleteOnSubmit(timeslot);
 		}
 
 		public void DeleteTimeSlot(int id)
 		{
-			throw new NotImplementedException();
+            DeleteTimeSlot(GetTimeSlotById(id));
 		}
 
 		public TimeSlot GetTimeSlotById(int id)
 		{
-			throw new NotImplementedException();
+            return _conferenceware.TimeSlots.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<TimeSlot> GetAllTimeSlots()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.TimeSlots.AsQueryable();
 		}
 
 		public void AddSpeaker(Speaker speaker)
 		{
-			throw new NotImplementedException();
+            _conferenceware.Speakers.InsertOnSubmit(speaker);
 		}
 
 		public void DeleteSpeaker(Speaker speaker)
 		{
-			throw new NotImplementedException();
+            DeletePerson(speaker.person_id);
+            _conferenceware.Speakers.DeleteOnSubmit(speaker);
 		}
 
 		public void DeleteSpeaker(int id)
 		{
-			throw new NotImplementedException();
+            DeleteSpeaker(GetSpeakerById(id));
 		}
 
 		public Speaker GetSpeakerById(int id)
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Speakers.SingleOrDefault(x => x.person_id == id);
 		}
 
 		public IQueryable<Speaker> GetAllSpeakers()
 		{
-			throw new NotImplementedException();
+            return _conferenceware.Speakers.AsQueryable();
 		}
 
 		public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
 		{
-			throw new NotImplementedException();
+            EventsAttendee eva = new EventsAttendee();
+            eva.Attendee = attendee;
+            eva.Event = ev;
+            _conferenceware.EventsAttendees.InsertOnSubmit(eva);
 		}
 
 		public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
 		{
-			throw new NotImplementedException();
+            EventsSpeaker evs = new EventsSpeaker();
+            evs.Speaker = speaker;
+            evs.Event = ev;
+            _conferenceware.EventsSpeakers.InsertOnSubmit(evs);
 		}
+
+        public void DeletePerson(People person)
+        {
+            _conferenceware.Peoples.DeleteOnSubmit(person);
+        }
+
+        public void DeletePerson(int id)
+        {
+            DeletePerson(GetPersonById(id));
+        }
+
+        public People GetPersonById(int id)
+        {
+            return _conferenceware.Peoples.SingleOrDefault(x => x.id == id);
+        }
 
 		public void Save()
 		{

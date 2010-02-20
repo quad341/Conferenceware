@@ -5,178 +5,194 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Tests.Models
 {
-	class TestRepository : IRepository
-	{
-		/// <summary>
-		/// Internal storage for locations in memory
-		/// </summary>
-		private List<Location> _locations = new List<Location>();
+    class TestRepository : IRepository
+    {
+        /// <summary>
+        /// Internal storage for locations in memory
+        /// </summary>
+        private List<Location> _locations = new List<Location>();
 
-		/// <summary>
-		/// The last used Id for locations
-		/// </summary>
-		private int _locationMaxId = 0;
+        /// <summary>
+        /// The last used Id for locations
+        /// </summary>
+        private int _locationMaxId = 0;
 
-		public void AddEvent(Event ev)
-		{
-			throw new NotImplementedException();
-		}
+        /// <summary>
+        /// Internal storage and reference max id for timeslots.
+        /// </summary>
+        private List<TimeSlot> _timeslots = new List<TimeSlot>();
+        private int _timeslotmaxId = 0;
 
-		public void DeleteEvent(Event ev)
-		{
-			throw new NotImplementedException();
-		}
+        /// <summary>
+        /// Internal storage and reference max id for events.
+        /// </summary>
+        private List<Event> _events = new List<Event>();
+        private int _eventMaxId = 0;
 
-		public void DeleteEvent(int id)
-		{
-			throw new NotImplementedException();
-		}
+        /// <summary>
+        /// Internal storage and reference max id for attendees.
+        /// </summary>
+        private List<Attendee> _attendees = new List<Attendee>();
+        private int _attendeeMaxId = 0;
 
-		public Event GetEventById(int id)
-		{
-			throw new NotImplementedException();
-		}
+        /// <summary>
+        /// Internal storage and reference max id for speakers.
+        /// </summary>
+        private List<Speaker> _speakers = new List<Speaker>();
+        private int _speakerMaxId = 0;
 
-		IQueryable<Event> IRepository.GetAllEvents()
-		{
-			throw new NotImplementedException();
-		}
+        public void AddEvent(Event ev)
+        {
+            ev.id = ++_eventMaxId;
+            _events.Add(ev);
+        }
 
-		public IQueryable<Event> GetAllEvents()
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteEvent(Event ev)
+        {
+            _events.Remove(ev);
+        }
 
-		public void AddAttendee(Attendee attendee)
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteEvent(int id)
+        {
+            DeleteEvent(GetEventById(id));
+        }
 
-		public void DeleteAttendee(Attendee attendee)
-		{
-			throw new NotImplementedException();
-		}
+        public Event GetEventById(int id)
+        {
+            return _events.SingleOrDefault<Event>(x => x.id == id);
+        }
 
-		public void DeleteAttendee(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public IQueryable<Event> GetAllEvents()
+        {
+            return _events.AsQueryable();
+        }
 
-		public Attendee GetAttendeeById(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void AddAttendee(Attendee attendee)
+        {
+            attendee.People.id = ++_attendeeMaxId;
+            _attendees.Add(attendee);
+        }
 
-		IQueryable<Attendee> IRepository.GetAllAttendees()
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteAttendee(Attendee attendee)
+        {
+            _attendees.Remove(attendee);
+        }
 
-		public IQueryable<Attendee> GetAllAttendees()
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteAttendee(int id)
+        {
+            DeleteAttendee(GetAttendeeById(id));
+        }
 
-		public void AddLocation(Location location)
-		{
-			location.id = ++_locationMaxId;
-			_locations.Add(location);
-		}
+        public Attendee GetAttendeeById(int id)
+        {
+            return _attendees.SingleOrDefault(x => id == x.People.id);
+        }
 
-		public void DeleteLocation(Location location)
-		{
-			_locations.Remove(location);
-		}
+        public IQueryable<Attendee> GetAllAttendees()
+        {
+            return _attendees.AsQueryable();
+        }
 
-		public void DeleteLocation(int id)
-		{
-			DeleteLocation(GetLocationById(id));
-		}
+        public void AddLocation(Location location)
+        {
+            location.id = ++_locationMaxId;
+            _locations.Add(location);
+        }
 
-		public Location GetLocationById(int id)
-		{
-			return _locations.SingleOrDefault(x => x.id == id);
-		}
+        public void DeleteLocation(Location location)
+        {
+            _locations.Remove(location);
+        }
 
-		public IQueryable<Location> GetAllLocations()
-		{
-			return _locations.AsQueryable();
-		}
+        public void DeleteLocation(int id)
+        {
+            DeleteLocation(GetLocationById(id));
+        }
 
-		public void AddTimeSlot(TimeSlot timeslot)
-		{
-			throw new NotImplementedException();
-		}
+        public Location GetLocationById(int id)
+        {
+            return _locations.SingleOrDefault(x => x.id == id);
+        }
 
-		public void DeleteTimeSlot(TimeSlot timeslot)
-		{
-			throw new NotImplementedException();
-		}
+        public IQueryable<Location> GetAllLocations()
+        {
+            return _locations.AsQueryable();
+        }
 
-		public void DeleteTimeSlot(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void AddTimeSlot(TimeSlot timeslot)
+        {
+            timeslot.id = ++_timeslotmaxId;
+            _timeslots.Add(timeslot);
+        }
 
-		public TimeSlot GetTimeSlotById(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteTimeSlot(TimeSlot timeslot)
+        {
+            _timeslots.Remove(timeslot);
+        }
 
-		IQueryable<TimeSlot> IRepository.GetAllTimeSlots()
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteTimeSlot(int id)
+        {
+            DeleteTimeSlot(GetTimeSlotById(id));
+        }
 
-		public IQueryable<TimeSlot> GetAllTimeSlots()
-		{
-			throw new NotImplementedException();
-		}
+        public TimeSlot GetTimeSlotById(int id)
+        {
+            return _timeslots.SingleOrDefault(x => x.id == id);
+        }
 
-		public void AddSpeaker(Speaker speaker)
-		{
-			throw new NotImplementedException();
-		}
+        public IQueryable<TimeSlot> GetAllTimeSlots()
+        {
+            return _timeslots.AsQueryable();
+        }
 
-		public void DeleteSpeaker(Speaker speaker)
-		{
-			throw new NotImplementedException();
-		}
+        public void AddSpeaker(Speaker speaker)
+        {
+            speaker.People.id = ++_speakerMaxId;
+            _speakers.Add(speaker);
+        }
 
-		public void DeleteSpeaker(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteSpeaker(Speaker speaker)
+        {
+            _speakers.Remove(speaker);
+        }
 
-		public Speaker GetSpeakerById(int id)
-		{
-			throw new NotImplementedException();
-		}
+        public void DeleteSpeaker(int id)
+        {
+            DeleteSpeaker(GetSpeakerById(id));
+        }
 
-		IQueryable<Speaker> IRepository.GetAllSpeakers()
-		{
-			throw new NotImplementedException();
-		}
+        public Speaker GetSpeakerById(int id)
+        {
+            return _speakers.SingleOrDefault(x => x.People.id == id);
+        }
 
-		public IQueryable<Speaker> GetAllSpeakers()
-		{
-			throw new NotImplementedException();
-		}
+        public IQueryable<Speaker> GetAllSpeakers()
+        {
+            return _speakers.AsQueryable();
+        }
 
-		public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
-		{
-			throw new NotImplementedException();
-		}
+        public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
+        {
+            var eva = new EventsAttendee();
+            eva.Attendee = attendee;
+            eva.Event = ev;
+            ev.EventsAttendees.Insert(eva);
+            attendee.EventsAttendees.Insert(eva);
+        }
 
-		public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
-		{
-			throw new NotImplementedException();
-		}
+        public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
+        {
+            var evs = new EventsSpeaker();
+            evs.Speaker = speaker;
+            evs.Event = ev;
+            ev.EventsSpeakers.Insert(evs);
+            speaker.EventsSpeakers.Insert(evs);
+        }
 
-		public void Save()
-		{
-			// we do that anyway. we might want to do something more interesting 
-			// with validation, etc.
-		}
-	}
+        public void Save()
+        {
+            // we do that anyway. we might want to do something more interesting 
+            // with validation, etc.
+        }
+    }
 }
