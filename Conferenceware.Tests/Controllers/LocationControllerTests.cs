@@ -68,6 +68,17 @@ namespace Conferenceware.Tests.Controllers
 			_repository.Save();
 		}
 
+		private FormCollection ConvertLocationToFormCollection(Location loc)
+		{
+			var fc = new FormCollection();
+			fc["id"] = loc.id.ToString();
+			fc["building_name"] = loc.building_name;
+			fc["room_number"] = loc.room_number;
+			fc["max_capacity"] = loc.max_capacity.ToString();
+			fc["notes"] = loc.notes;
+			return fc;
+		}
+
 		/// <summary>
 		/// Checks if two locations are equivalent for data (less id)
 		/// </summary>
@@ -226,9 +237,10 @@ namespace Conferenceware.Tests.Controllers
 		[TestMethod]
 		public void TestCreateWithInvalidLocationNullBuildingNameReturnsViewResult()
 		{
+			FormCollection fc = new FormCollection();
+			fc["foo"] = "bar";
 			_location3.building_name = null;
 			var result = _controller.Create(_location3) as ViewResult;
 			Assert.IsNotNull(result);
-		}
 	}
 }

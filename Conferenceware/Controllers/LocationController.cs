@@ -39,8 +39,12 @@ namespace Conferenceware.Controllers
         // POST: /Location/Create
 
         [HttpPost]
-        public ActionResult Create(Location locationToCreate)
+        public ActionResult Create(FormCollection collection)
         {
+			var locationToCreate = new Location();
+
+        	TryUpdateModel(locationToCreate);
+
 			if (ModelState.IsValid)
 			{
 				_repository.AddLocation(locationToCreate);
