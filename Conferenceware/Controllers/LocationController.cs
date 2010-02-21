@@ -39,12 +39,8 @@ namespace Conferenceware.Controllers
         // POST: /Location/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Location locationToCreate)
         {
-			var locationToCreate = new Location();
-
-        	TryUpdateModel(locationToCreate, collection.ToValueProvider());
-
 			if (ModelState.IsValid)
 			{
 				_repository.AddLocation(locationToCreate);
@@ -62,7 +58,7 @@ namespace Conferenceware.Controllers
         	var loc = _repository.GetLocationById(id);
 			if(loc==null)
 			{
-				View("LocationNotFound");
+				return View("LocationNotFound");
 			}
             return View("Edit",loc);
         }
