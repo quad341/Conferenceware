@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Conferenceware.Controllers;
 using Conferenceware.Models;
 using Conferenceware.Tests.Models;
@@ -27,9 +26,6 @@ namespace Conferenceware.Tests.Controllers
 		private Location _location1;
 		private Location _location2;
 		private Location _location3;
-
-		private static string veryLongString =
-			"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
 		[TestInitialize]
 		public void Initialize()
@@ -237,21 +233,21 @@ namespace Conferenceware.Tests.Controllers
 		[TestMethod]
 		public void TestEditWithValidIdReturnsViewResult()
 		{
-			var result = _controller.Edit(1) as ViewResult;
+			var result = _controller.Edit(_location1.id) as ViewResult;
 			Assert.IsNotNull(result);
 		}
 
 		[TestMethod]
 		public void TestEditWithValidIdReturnsEditView()
 		{
-			var result = _controller.Edit(1) as ViewResult;
+			var result = _controller.Edit(_location1.id) as ViewResult;
 			Assert.AreEqual("Edit", result.ViewName);
 		}
 
 		[TestMethod]
 		public void TestEditWithValidIdHasLocationAsModel()
 		{
-			var result = _controller.Edit(1) as ViewResult;
+			var result = _controller.Edit(_location1.id) as ViewResult;
 			var model = result.ViewData.Model as Location;
 			Assert.IsNotNull(model);
 		}
@@ -259,8 +255,8 @@ namespace Conferenceware.Tests.Controllers
 		[TestMethod]
 		public void TestEditWithValidIdReturnsCorrectModel()
 		{
-			var result = _controller.Edit(1) as ViewResult;
-			var expected = _repository.GetLocationById(1);
+			var result = _controller.Edit(_location1.id) as ViewResult;
+			var expected = _repository.GetLocationById(_location1.id);
 			var model = result.ViewData.Model as Location;
 			Assert.IsTrue(LocationsAreEquivalent(expected, model));
 		}
@@ -276,6 +272,128 @@ namespace Conferenceware.Tests.Controllers
 		public void TestEditWithInvalidIdReturnsLocationNotFoundView()
 		{
 			var result = _controller.Edit(-1) as ViewResult;
+			Assert.AreEqual("LocationNotFound", result.ViewName);
+		}
+		
+		[TestMethod]
+		public void TestEditSubmitWithValidIDAndLocationUpdatesRepo()
+		{
+			_location1.building_name = "New name";
+			_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1));
+			var updated = _repository.GetLocationById(_location1.id);
+			Assert.AreEqual(_location1, updated);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithValidIDAndLocationDoesNotAddNewEntryToRepo()
+		{
+			_location1.building_name = "New name";
+			_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1));
+			Assert.AreEqual(2, _repository.GetAllLocations().Count());
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithValidIdAndLocationReturnsRedirectToAction()
+		{
+			_location1.building_name = "New name";
+			var fc = ConvertLocationToFormCollection(_location1);
+			_controller.ValueProvider = fc.ToValueProvider();
+			var result = _controller.Edit(_location1.id, fc) as RedirectToRouteResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithValidIdAndLocationReturnsRedirectToIndex()
+		{
+			var result = _controller.Edit(_location1.id,
+			                              ConvertLocationToFormCollection(_location1)) as
+			             RedirectToRouteResult;
+			Assert.AreEqual("Index",result.RouteValues["action"]);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidIdReturnsViewResult()
+		{
+			var result = _controller.Edit(-1, null) as ViewResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidIdReturnsLocationNotFoundView()
+		{
+			var result = _controller.Edit(-1, null) as ViewResult;
+			Assert.AreEqual("LocationNotFound",result.ViewName);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidLocationReturnsViewResult()
+		{
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result =
+				_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1)) as
+				ViewResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidLocationReturnsEditView()
+		{
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result =
+				_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1)) as
+				ViewResult;
+			Assert.AreEqual("Edit",result.ViewName);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidLocationReturnsViewWithSameModel()
+		{
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result =
+				_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1)) as
+				ViewResult;
+			Assert.AreEqual(_location1,result.ViewData.Model);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdRemovesEntryFromRepository()
+		{
+			_controller.Delete(_location1.id);
+			Assert.AreEqual(1, _repository.GetAllLocations().Count());
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdRemovesGivenLocationFromRepository()
+		{
+			_controller.Delete(_location1.id);
+			Assert.IsNull(_repository.GetLocationById(_location1.id));
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdReturnsRedirectAction()
+		{
+			var result = _controller.Delete(_location1.id) as RedirectToRouteResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdReturnsRedirectToIndex()
+		{
+			var result = _controller.Delete(_location1.id) as RedirectToRouteResult;
+			Assert.AreEqual("Index", result.RouteValues["action"]);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithInvalidIdReturnsViewResult()
+		{
+			var result = _controller.Delete(-1) as ViewResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithInvalidIdReturnsLocationNotFoundView()
+		{
+			var result = _controller.Delete(-1) as ViewResult;
 			Assert.AreEqual("LocationNotFound", result.ViewName);
 		}
 	}
