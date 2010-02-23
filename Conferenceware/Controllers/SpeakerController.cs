@@ -97,8 +97,16 @@ namespace Conferenceware.Controllers
 			{
 				return View("SpeakerNotFound");
 			}
-			_repository.DeleteSpeaker(speaker);
-			_repository.Save();
+			try
+			{
+				_repository.DeleteSpeaker(speaker);
+				TempData["Message"] = speaker.People.name + " was deleted";
+				_repository.Save();
+			}
+			catch
+			{
+				TempData["Message"] = "Cannot delete item. Remove all references";
+			}
 			return RedirectToAction("Index");
 		}
 	}
