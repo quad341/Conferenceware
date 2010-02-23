@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
@@ -38,26 +35,22 @@ namespace Conferenceware.Controllers
 
         public ActionResult Create()
         {
-            return View("Create", new Location());
+            return View("Create", new TimeSlot());
         } 
 
         //
         // POST: /TimeSlot/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TimeSlot tsToCreate)
         {
-            TimeSlot timeSlotToCreate = new TimeSlot();
-
-            TryUpdateModel(timeSlotToCreate);
-
             if (ModelState.IsValid)
             {
-                _repository.AddTimeSlot(timeSlotToCreate);
+                _repository.AddTimeSlot(tsToCreate);
                 _repository.Save();
                 return RedirectToAction("Index");
             }
-            return View("Create", timeSlotToCreate);
+            return View("Create", tsToCreate);
         }
 
         //
@@ -80,16 +73,29 @@ namespace Conferenceware.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
             TimeSlot ts = _repository.GetTimeSlotById(id);
-            try
+        	DateTime start_time, end_time;
+        	if(!DateTime.TryParse(collection["start_time"], out start_time))
+        	{
+        		ModelState.AddModelError("start_time","Date format invalid");
+        	}
+        	else
+        	{
+        		ts.start_time = start_time;
+        	}
+        	if(!DateTime.TryParse(collection["end_time"], out end_time))
+        	{
+        		ModelState.AddModelError("end_time","Date format invalid");
+        	}
+        	else
+        	{
+        		ts.end_time = end_time;
+        	}
+            if (ModelState.IsValid)
             {
-                UpdateModel(ts);
-                _repository.Save();
-                return RedirectToAction("Index");
+	                _repository.Save();
+	                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View("Edit", ts);
-            }
+            return View("Edit", ts);
         }
 
         [HttpGet]
@@ -101,7 +107,7 @@ namespace Conferenceware.Controllers
                 return View("TimeSlotNotFound");
             }
 
-            _repository.DeleteTimeSlot(id);
+            _repository.DeleteTimeSlot(ts);
             _repository.Save();
             return RedirectToAction("Index");
         }

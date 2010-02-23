@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -39,12 +40,8 @@ namespace Conferenceware.Controllers
         // POST: /Location/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Location locationToCreate)
         {
-			var locationToCreate = new Location();
-
-        	TryUpdateModel(locationToCreate, collection.ToValueProvider());
-
 			if (ModelState.IsValid)
 			{
 				_repository.AddLocation(locationToCreate);
@@ -62,7 +59,7 @@ namespace Conferenceware.Controllers
         	var loc = _repository.GetLocationById(id);
 			if(loc==null)
 			{
-				View("LocationNotFound");
+				return View("LocationNotFound");
 			}
             return View("Edit",loc);
         }
@@ -74,16 +71,22 @@ namespace Conferenceware.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
         	var loc = _repository.GetLocationById(id);
-			try
+			if(loc==null)
 			{
-				UpdateModel(loc);
+				return View("LocationNotFound");
+			}
+			if (ModelState.IsValid)
+			{
+				//UpdateModel(loc, new[] {"building_name","room_number","max_capacity","notes"});
+				// update model is broken; doing it by hand
+				loc.building_name = collection["building_name"];
+				loc.room_number = collection["room_number"];
+				loc.notes = collection["notes"];
+				loc.max_capacity = int.Parse(collection["max_capacity"]);
 				_repository.Save();
 				return RedirectToAction("Index");
 			}
-			catch
-			{
-				return View("Edit",loc);
-			}
+        	return View("Edit",loc);
         }
 
 		public ActionResult Delete(int id)

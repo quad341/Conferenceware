@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Conferenceware.Controllers;
 using Conferenceware.Models;
@@ -27,9 +26,6 @@ namespace Conferenceware.Tests.Controllers
 		private Location _location1;
 		private Location _location2;
 		private Location _location3;
-
-		private static string veryLongString =
-			"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
 		[TestInitialize]
 		public void Initialize()
@@ -71,11 +67,11 @@ namespace Conferenceware.Tests.Controllers
 		private FormCollection ConvertLocationToFormCollection(Location loc)
 		{
 			var fc = new FormCollection();
-			fc["id"] = loc.id.ToString();
-			fc["building_name"] = loc.building_name;
-			fc["room_number"] = loc.room_number;
-			fc["max_capacity"] = loc.max_capacity.ToString();
-			fc["notes"] = loc.notes;
+			fc.Add("id", loc.id.ToString());
+			fc.Add("building_name", loc.building_name);
+			fc.Add("room_number", loc.room_number);
+			fc.Add("max_capacity", loc.max_capacity.ToString());
+			fc.Add("notes", loc.notes);
 			return fc;
 		}
 
@@ -171,77 +167,234 @@ namespace Conferenceware.Tests.Controllers
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithNotesAddsEntryToRepository()
+		public void TestCreateWithValidLocationAddsEntryToRepository()
 		{
-			_controller.Create(ConvertLocationToFormCollection(_location3));
+			_controller.Create(_location3);
 			Assert.AreEqual(3, _repository.GetAllLocations().Count(), "Should have added an entry");
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithNotesInsertsLocationIntoRepository()
+		public void TestCreateWithValidLocationInsertsLocationIntoRepository()
 		{
-			_controller.Create(ConvertLocationToFormCollection(_location3));
+			_controller.Create((_location3));
 			Assert.IsTrue(_repository.GetAllLocations().Contains(_location3), "Location 3 should have been inserted");
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithNotesReturnsRedirectToAction()
+		public void TestCreateWithValidLocationReturnsRedirectToAction()
 		{
-			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
+			var result = _controller.Create((_location3)) as RedirectToRouteResult;
 			Assert.IsNotNull(result, "Should have given a redirect back");
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithNotesReturnsRedirectToIndex()
+		public void TestCreateWithValidLocationReturnsRedirectToIndex()
 		{
-			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
+			var result = _controller.Create((_location3)) as RedirectToRouteResult;
 			Assert.AreEqual("Index",
 			                result.RouteValues["action"],
 			                "Should have redirected to index");
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithoutNotesAddsEntryToRepository()
+		public void TestCreateWithInvalidLocationReturnsViewResult()
 		{
-			_location3.notes = null;
-			_controller.Create(ConvertLocationToFormCollection(_location3));
-			Assert.AreEqual(3, _repository.GetAllLocations().Count(), "Should have added an entry");
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result = _controller.Create((_location3)) as ViewResult;
+			Assert.IsNotNull(result, "Should have given a view result back");
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithoutNotesInsertsLocationIntoRepository()
+		public void TestCreateWithInvalidLocationReturnsEditView()
 		{
-			_location3.notes = null;
-			_controller.Create(ConvertLocationToFormCollection(_location3));
-			Assert.IsTrue(_repository.GetAllLocations().Contains(_location3), "Location 3 should have been inserted");
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result = _controller.Create((_location3)) as ViewResult;
+			Assert.AreEqual("Create", result.ViewName, "Should have given edit view back");
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithoutNotesReturnsRedirectToAction()
+		public void TestCreateWithInvalidLocationReturnsViewWithLocationAsModel()
 		{
-			_location3.notes = null;
-			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
-			Assert.IsNotNull(result, "Should have given a redirect back");
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result = _controller.Create((_location3)) as ViewResult;
+			var model = result.ViewData.Model as Location;
+			Assert.IsNotNull(model, "Should have gotten a location as the model");
 		}
 
 		[TestMethod]
-		public void TestCreateWithValidLocationWithoutNotesReturnsRedirectToIndex()
+		public void TestCreateWithInvalidLocationReturnsViewWithInitialModel()
 		{
-			_location3.notes = null;
-			var result = _controller.Create(ConvertLocationToFormCollection(_location3)) as RedirectToRouteResult;
-			Assert.AreEqual("Index",
-			                result.RouteValues["action"],
-			                "Should have redirected to index");
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result = _controller.Create((_location3)) as ViewResult;
+			var model = result.ViewData.Model as Location;
+			Assert.IsTrue(LocationsAreEquivalent(_location3, model));
 		}
 
 		[TestMethod]
-		public void TestCreateWithInvalidLocationNullBuildingNameReturnsViewResult()
+		public void TestEditWithValidIdReturnsViewResult()
 		{
-			_location3.building_name = null;
+			var result = _controller.Edit(_location1.id) as ViewResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditWithValidIdReturnsEditView()
+		{
+			var result = _controller.Edit(_location1.id) as ViewResult;
+			Assert.AreEqual("Edit", result.ViewName);
+		}
+
+		[TestMethod]
+		public void TestEditWithValidIdHasLocationAsModel()
+		{
+			var result = _controller.Edit(_location1.id) as ViewResult;
+			var model = result.ViewData.Model as Location;
+			Assert.IsNotNull(model);
+		}
+
+		[TestMethod]
+		public void TestEditWithValidIdReturnsCorrectModel()
+		{
+			var result = _controller.Edit(_location1.id) as ViewResult;
+			var expected = _repository.GetLocationById(_location1.id);
+			var model = result.ViewData.Model as Location;
+			Assert.IsTrue(LocationsAreEquivalent(expected, model));
+		}
+
+		[TestMethod]
+		public void TestEditWithInvalidIdReturnsViewResult()
+		{
+			var result = _controller.Edit(-1) as ViewResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditWithInvalidIdReturnsLocationNotFoundView()
+		{
+			var result = _controller.Edit(-1) as ViewResult;
+			Assert.AreEqual("LocationNotFound", result.ViewName);
+		}
+		
+		[TestMethod]
+		public void TestEditSubmitWithValidIDAndLocationUpdatesRepo()
+		{
+			_location1.building_name = "New name";
+			_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1));
+			var updated = _repository.GetLocationById(_location1.id);
+			Assert.AreEqual(_location1, updated);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithValidIDAndLocationDoesNotAddNewEntryToRepo()
+		{
+			_location1.building_name = "New name";
+			_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1));
+			Assert.AreEqual(2, _repository.GetAllLocations().Count());
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithValidIdAndLocationReturnsRedirectToAction()
+		{
+			_location1.building_name = "New name";
+			var fc = ConvertLocationToFormCollection(_location1);
+			_controller.ValueProvider = fc.ToValueProvider();
+			var result = _controller.Edit(_location1.id, fc) as RedirectToRouteResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithValidIdAndLocationReturnsRedirectToIndex()
+		{
+			var result = _controller.Edit(_location1.id,
+			                              ConvertLocationToFormCollection(_location1)) as
+			             RedirectToRouteResult;
+			Assert.AreEqual("Index",result.RouteValues["action"]);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidIdReturnsViewResult()
+		{
+			var result = _controller.Edit(-1, null) as ViewResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidIdReturnsLocationNotFoundView()
+		{
+			var result = _controller.Edit(-1, null) as ViewResult;
+			Assert.AreEqual("LocationNotFound",result.ViewName);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidLocationReturnsViewResult()
+		{
+			_controller.ModelState.AddModelError("*","Invalid Model State");
 			var result =
-				_controller.Create(ConvertLocationToFormCollection(_location3)) as
+				_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1)) as
 				ViewResult;
 			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidLocationReturnsEditView()
+		{
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result =
+				_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1)) as
+				ViewResult;
+			Assert.AreEqual("Edit",result.ViewName);
+		}
+
+		[TestMethod]
+		public void TestEditSubmitWithInvalidLocationReturnsViewWithSameModel()
+		{
+			_controller.ModelState.AddModelError("*","Invalid Model State");
+			var result =
+				_controller.Edit(_location1.id, ConvertLocationToFormCollection(_location1)) as
+				ViewResult;
+			Assert.AreEqual(_location1,result.ViewData.Model);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdRemovesEntryFromRepository()
+		{
+			_controller.Delete(_location1.id);
+			Assert.AreEqual(1, _repository.GetAllLocations().Count());
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdRemovesGivenLocationFromRepository()
+		{
+			_controller.Delete(_location1.id);
+			Assert.IsNull(_repository.GetLocationById(_location1.id));
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdReturnsRedirectAction()
+		{
+			var result = _controller.Delete(_location1.id) as RedirectToRouteResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithValidIdReturnsRedirectToIndex()
+		{
+			var result = _controller.Delete(_location1.id) as RedirectToRouteResult;
+			Assert.AreEqual("Index", result.RouteValues["action"]);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithInvalidIdReturnsViewResult()
+		{
+			var result = _controller.Delete(-1) as ViewResult;
+			Assert.IsNotNull(result);
+		}
+
+		[TestMethod]
+		public void TestDeleteWithInvalidIdReturnsLocationNotFoundView()
+		{
+			var result = _controller.Delete(-1) as ViewResult;
+			Assert.AreEqual("LocationNotFound", result.ViewName);
 		}
 	}
 }

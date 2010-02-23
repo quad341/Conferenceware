@@ -3,77 +3,103 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
-    public class SpeakerController : Controller
-    {
-        //
-        // GET: /Speaker/
+	public class SpeakerController : Controller
+	{
+		private readonly IRepository _repository;
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public SpeakerController()
+			: this(new ConferencewareRepository())
+		{
+			// nothing else to do
+		}
 
-        //
-        // GET: /Speaker/Details/5
+		public SpeakerController(IRepository repo)
+		{
+			_repository = repo;
+		}
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+		//
+		// GET: /Speaker/
 
-        //
-        // GET: /Speaker/Create
+		public ActionResult Index()
+		{
+			return View("Index", _repository.GetAllSpeakers());
+		}
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+		//
+		// GET: /Speaker/Create
 
-        //
-        // POST: /Speaker/Create
+		public ActionResult Create()
+		{
+			return View("Create", new Speaker());
+		}
 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+		//
+		// POST: /Speaker/Create
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		[HttpPost]
+		public ActionResult Create(Speaker speakerToCreate)
+		{
+			if (ModelState.IsValid)
+			{
+				_repository.AddSpeaker(speakerToCreate);
+				_repository.Save();
 
-        //
-        // GET: /Speaker/Edit/5
+				return RedirectToAction("Index");
+			}
+			return View("Create", speakerToCreate);
+		}
 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+		//
+		// GET: /Speaker/Edit/5
 
-        //
-        // POST: /Speaker/Edit/5
+		public ActionResult Edit(int id)
+		{
+			var speaker = _repository.GetSpeakerById(id);
+			if (speaker == null)
+			{
+				return View("SpeakerNotFound");
+			}
+			return View("Edit", speaker);
+		}
 
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+		//
+		// POST: /Speaker/Edit/5
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+		[HttpPost]
+		public ActionResult Edit(int id, FormCollection collection)
+		{
+			var speaker = _repository.GetSpeakerById(id);
+			if (speaker == null)
+			{
+				return View("SpeakerNotFound");
+			}
+			if (ModelState.IsValid)
+			{
+				speaker.People.name = collection["People.name"];
+				speaker.People.email = collection["People.email"];
+				speaker.People.phone_number = collection["People.phone_number"];
+				_repository.Save();
+
+				return RedirectToAction("Index");
+			}
+			return View("Edit", speaker);
+		}
+
+		public ActionResult Delete(int id)
+		{
+			var speaker = _repository.GetSpeakerById(id);
+			if (speaker == null)
+			{
+				return View("SpeakerNotFound");
+			}
+			_repository.DeleteSpeaker(speaker);
+			_repository.Save();
+			return RedirectToAction("Index");
+		}
+	}
 }

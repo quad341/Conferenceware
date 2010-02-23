@@ -1,4 +1,6 @@
-﻿using Conferenceware.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Conferenceware.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Conferenceware.Tests.Models
@@ -9,105 +11,103 @@ namespace Conferenceware.Tests.Models
 	[TestClass]
 	public class LocationTests
 	{
-		/*
 		[TestMethod]
-		public void TestValidLocationWithNotesIsValid()
+		public void TestBuildingNameIsRequired()
 		{
-			var l = new Location
-			        	{
-			        		BuildingName = "Siebel",
-			        		RoomNumber = "1404",
-			        		MaxCapacity = 100,
-			        		Notes = "notes"
-			        	};
-			Assert.IsTrue(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(
+					p => p.Name == "building_name");
+			var attribute = propertyInfo.Attributes.OfType<RequiredAttribute>().FirstOrDefault();
+			Assert.IsNotNull(attribute);
 		}
 
 		[TestMethod]
-		public void TestValidLocationWithoutNotesIsValid()
+		public void TestBuildingNameHasStringLengthLimit()
 		{
-			var l = new Location
-			        	{
-			        		BuildingName = "Siebel",
-			        		RoomNumber = "1404",
-			        		MaxCapacity = 100
-			        	};
-			Assert.IsTrue(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof(Location)).SingleOrDefault(
+					p => p.Name == "building_name");
+			var attribute =
+				propertyInfo.Attributes.OfType<StringLengthAttribute>().FirstOrDefault();
+			Assert.IsNotNull(attribute.MaximumLength);
+		}
+
+
+		[TestMethod]
+		public void TestBuildingNameMustBeLessThan255Characters()
+		{
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(
+					p => p.Name == "building_name");
+			var attribute =
+				propertyInfo.Attributes.OfType<StringLengthAttribute>().FirstOrDefault();
+			Assert.AreEqual(255, attribute.MaximumLength);
 		}
 
 		[TestMethod]
-		public void TestNullBuildingNameIsNotValid()
+		public void TestRoomNumberIsRequired()
 		{
-			var l = new Location
-			             	{
-			             		BuildingName = null,
-			             		MaxCapacity = 1,
-			             		RoomNumber = "room"
-			             	};
-			Assert.IsFalse(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(
+					p => p.Name == "room_number");
+			var attribute =
+				propertyInfo.Attributes.OfType<RequiredAttribute>().FirstOrDefault();
+			Assert.IsNotNull(attribute);
 		}
 
 		[TestMethod]
-		public void Test256CharacterBuildingNameIsNotValid()
+		public void TestRoomNumberHasStringLengthLimit()
 		{
-			var l = new Location
-			        	{
-			        		BuildingName =
-			        			"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-			        		RoomNumber = "room",
-			        		MaxCapacity = 1
-			        	};
-			Assert.IsFalse(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(
+					p => p.Name == "room_number");
+			var attribute =
+				propertyInfo.Attributes.OfType<StringLengthAttribute>().FirstOrDefault();
+			Assert.IsNotNull(attribute);
 		}
 
 		[TestMethod]
-		public void TestNullRoomNumberIsNotValid()
+		public void TestRoomNumberHasStringLengthLimitOf255()
 		{
-			var l = new Location
-						{
-							BuildingName = "building",
-							MaxCapacity = 1,
-							RoomNumber = null
-						};
-			Assert.IsFalse(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(
+					p => p.Name == "room_number");
+			var attribute =
+				propertyInfo.Attributes.OfType<StringLengthAttribute>().FirstOrDefault();
+			Assert.AreEqual(255, attribute.MaximumLength);
 		}
 
 		[TestMethod]
-		public void Test256CharacterRoomNumberIsNotValid()
+		public void TestMaxCapacityHasRangeRestriction()
 		{
-			var l = new Location
-			{
-				RoomNumber = 
-					"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-				BuildingName = "building",
-				MaxCapacity = 1
-			};
-			Assert.IsFalse(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(
+					p => p.Name == "max_capacity");
+			var attribute =
+				propertyInfo.Attributes.OfType<RangeAttribute>().FirstOrDefault();
+			Assert.IsNotNull(attribute);
 		}
 
 		[TestMethod]
-		public void TestZeroMaxCapacityIsNotValid()
+		public void TestMaxCapacityHasRangeRestrictionOf1ToMaxInt()
 		{
-			var l = new Location
-			{
-				RoomNumber = "room",
-				BuildingName = "building",
-				MaxCapacity = 0
-			};
-			Assert.IsFalse(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(
+					p => p.Name == "max_capacity");
+			var attribute =
+				propertyInfo.Attributes.OfType<RangeAttribute>().FirstOrDefault();
+			Assert.AreEqual(1, attribute.Minimum);
+			Assert.AreEqual(int.MaxValue, attribute.Maximum);
 		}
 
 		[TestMethod]
-		public void TestNegativeMaxCapacityIsNotValid()
+		public void TestNotesAreNotRequired()
 		{
-			var l = new Location
-			{
-				RoomNumber = "room",
-				BuildingName = "building",
-				MaxCapacity = -10
-			};
-			Assert.IsFalse(l.IsValid);
+			var propertyInfo =
+				PropertyDescriptorExtractor.GetPropertyInfo(typeof (Location)).SingleOrDefault(p => p.Name == "notes");
+			var attribute =
+				propertyInfo.Attributes.OfType<RequiredAttribute>().FirstOrDefault();
+			Assert.IsNull(attribute);
 		}
-		 */
 	}
 }
