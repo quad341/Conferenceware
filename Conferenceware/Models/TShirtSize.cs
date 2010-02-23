@@ -6,5 +6,9 @@ namespace Conferenceware.Models
 	public partial class TShirtSize
 	{
 		//linq takes care of the rest
+		public override string ToString()
+		{
+			return name;
+		}
 	}
 }

@@ -33,18 +33,18 @@
             <%= Html.ValidationMessageFor(model => model.Attendee.People.phone_number) %>
         </div>
         <div class="editor-label">
-            <%= Html.LabelFor(model => model.Attendee.TShirtSize) %>
+            <%= Html.LabelFor(model => model.Attendee.tshirt_id) %>
         </div>
         <div class="editor-field">
-            <%= Html.DropDownListFor(model => model.Attendee.TShirtSize, Model.TShirtSizes) %>
-            <%= Html.ValidationMessageFor(model => model.Attendee.TShirtSize) %>
+            <%= Html.DropDownListFor(model => model.Attendee.tshirt_id, Model.TShirtSizes) %>
+            <%= Html.ValidationMessageFor(model => model.Attendee.tshirt_id) %>
         </div>
         <div class="editor-label">
-            <%= Html.LabelFor(model => model.Attendee.Food) %>
+            <%= Html.LabelFor(model => model.Attendee.food_choice_id) %>
         </div>
         <div class="editor-field">
-            <%= Html.DropDownListFor(model => model.Attendee.Food, Model.Foods) %>
-            <%= Html.ValidationMessageFor(model => model.Attendee.Food) %>
+            <%= Html.DropDownListFor(model => model.Attendee.food_choice_id, Model.Foods) %>
+            <%= Html.ValidationMessageFor(model => model.Attendee.food_choice_id) %>
         </div>
         <p>
             <input type="submit" value="Save" />

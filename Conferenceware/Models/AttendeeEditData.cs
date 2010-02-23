@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Conferenceware.Models
 {
@@ -18,7 +19,7 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// A list of all the t shirt sizes
 		/// </summary>
-		public IEnumerable<TShirtSize> TShirtSizes
+		public SelectList TShirtSizes
 		{
 			get; set;
 		}
@@ -26,7 +27,7 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// A list of all the food choices
 		/// </summary>
-		public IEnumerable<Food> Foods
+		public SelectList Foods
 		{
 			get; set;
 		}

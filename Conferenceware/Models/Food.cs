@@ -6,5 +6,9 @@ namespace Conferenceware.Models
 	public partial class Food
 	{
 		//linq does the rest
+		public override string ToString()
+		{
+			return name;
+		}
 	}
 }
