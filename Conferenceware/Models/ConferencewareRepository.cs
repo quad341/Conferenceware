@@ -160,7 +160,57 @@ namespace Conferenceware.Models
             _conferenceware.EventsSpeakers.InsertOnSubmit(evs);
 		}
 
-        public void DeletePerson(People person)
+		public void AddFood(Food food)
+		{
+			_conferenceware.Foods.InsertOnSubmit(food);
+		}
+
+		public void DeleteFood(Food food)
+		{
+			_conferenceware.Foods.DeleteOnSubmit(food);
+		}
+
+		public void DeleteFood(int id)
+		{
+			DeleteFood(GetFoodById(id));
+		}
+
+		public Food GetFoodById(int id)
+		{
+			return _conferenceware.Foods.SingleOrDefault(f => f.id == id);
+		}
+
+		public IQueryable<Food> GetAllFoods()
+		{
+			return _conferenceware.Foods.AsQueryable();
+		}
+
+		public void AddTShirtSize(TShirtSize t)
+		{
+			_conferenceware.TShirtSizes.InsertOnSubmit(t);
+		}
+
+		public void DeleteTShirtSize(TShirtSize tshirtsize)
+		{
+			_conferenceware.TShirtSizes.DeleteOnSubmit(tshirtsize);
+		}
+
+		public void DeleteTShirtSize(int id)
+		{
+			DeleteTShirtSize(GetTShirtSizeById(id));
+		}
+
+		public TShirtSize GetTShirtSizeById(int id)
+		{
+			return _conferenceware.TShirtSizes.SingleOrDefault(t => t.id == id);
+		}
+
+		public IQueryable<TShirtSize> GetAllTShirtSizes()
+		{
+			return _conferenceware.TShirtSizes.AsQueryable();
+		}
+
+		public void DeletePerson(People person)
         {
             _conferenceware.Peoples.DeleteOnSubmit(person);
         }

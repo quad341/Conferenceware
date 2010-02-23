@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Conferenceware.Models;
 
@@ -186,6 +187,56 @@ namespace Conferenceware.Tests.Models
 			evs.Event = ev;
 			ev.EventsSpeakers.Insert(0, evs);
 			speaker.EventsSpeakers.Insert(0, evs);
+		}
+
+		public void AddFood(Food food)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteFood(Food food)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteFood(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Food GetFoodById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<Food> GetAllFoods()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddTShirtSize(TShirtSize t)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteTShirtSize(TShirtSize tshirtsize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteTShirtSize(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public TShirtSize GetTShirtSizeById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<TShirtSize> GetAllTShirtSizes()
+		{
+			throw new NotImplementedException();
 		}
 
 		public void Save()

@@ -197,6 +197,20 @@ namespace Conferenceware.Models
         /// <param name="ev">An Event object with a valid ID from the respository</param>
         void RegisterSpeakerForEvent(Speaker speaker, Event ev);
 
+		//Foods
+    	void AddFood(Food food);
+    	void DeleteFood(Food food);
+    	void DeleteFood(int id);
+    	Food GetFoodById(int id);
+    	IQueryable<Food> GetAllFoods();
+
+		//TShirt
+    	void AddTShirtSize(TShirtSize t);
+    	void DeleteTShirtSize(TShirtSize tshirtsize);
+    	void DeleteTShirtSize(int id);
+    	TShirtSize GetTShirtSizeById(int id);
+    	IQueryable<TShirtSize> GetAllTShirtSizes();
+
 		//General
 		/// <summary>
 		/// Causes the repository to commit its changes
