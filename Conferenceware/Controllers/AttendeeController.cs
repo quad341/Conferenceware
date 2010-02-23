@@ -3,77 +3,100 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
     public class AttendeeController : Controller
     {
+        /// <summary>
+        /// Repository to interact with database
+        /// </summary>
+        private readonly IRepository _repository;
+
+        public AttendeeController()
+            : this(new ConferencewareRepository())
+        {
+
+        }
+
+        public AttendeeController(IRepository repo)
+        {
+            _repository = repo;
+        }
         //
-        // GET: /Attendee/
+        // GET: /Speaker/
 
         public ActionResult Index()
         {
-            return View();
+            return View(_repository.GetAllAttendees());
         }
 
         //
-        // GET: /Attendee/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /Attendee/Create
+        // GET: /Speaker/Create
 
         public ActionResult Create()
         {
-            return View();
-        } 
+            return View(new AttendeeEditData());
+        }
 
         //
-        // POST: /Attendee/Create
+        // POST: /Speaker/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Attendee newAttendee)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                _repository.AddAttendee(newAttendee);
+                _repository.Save();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(newAttendee);
         }
 
         //
-        // GET: /Attendee/Edit/5
- 
+        // GET: /Speaker/Edit/5
+
         public ActionResult Edit(int id)
         {
-            return View();
+            var att = _repository.GetAttendeeById(id);
+            if (att == null)
+            {
+                View("AttendeeNotFound");
+            }
+            return View(att);
         }
 
         //
-        // POST: /Attendee/Edit/5
+        // POST: /Speaker/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            var att = _repository.GetAttendeeById(id);
             try
             {
-                // TODO: Add update logic here
- 
+                UpdateModel(att);
+                _repository.Save();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(att);
             }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var att = _repository.GetAttendeeById(id);
+            if (att == null)
+            {
+                return View("AttendeeNotFound");
+            }
+            _repository.DeleteAttendee(att);
+            _repository.Save();
+            return RedirectToAction("Index");
         }
     }
 }
