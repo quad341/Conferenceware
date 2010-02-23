@@ -10,7 +10,7 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// The attendee
 		/// </summary>
-		Attendee Attendee
+		public Attendee Attendee
 		{
 			get; set;
 		}
@@ -18,7 +18,7 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// A list of all the t shirt sizes
 		/// </summary>
-		IEnumerable<TShirtSize> TShirtSizes
+		public IEnumerable<TShirtSize> TShirtSizes
 		{
 			get; set;
 		}
@@ -26,7 +26,7 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// A list of all the food choices
 		/// </summary>
-		IEnumerable<Food> Foods
+		public IEnumerable<Food> Foods
 		{
 			get; set;
 		}
