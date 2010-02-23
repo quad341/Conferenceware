@@ -51,15 +51,15 @@ namespace Conferenceware.Models
     partial void InsertLocation(Location instance);
     partial void UpdateLocation(Location instance);
     partial void DeleteLocation(Location instance);
-    partial void InsertPeople(People instance);
-    partial void UpdatePeople(People instance);
-    partial void DeletePeople(People instance);
     partial void InsertSpeaker(Speaker instance);
     partial void UpdateSpeaker(Speaker instance);
     partial void DeleteSpeaker(Speaker instance);
     partial void InsertTimeSlot(TimeSlot instance);
     partial void UpdateTimeSlot(TimeSlot instance);
     partial void DeleteTimeSlot(TimeSlot instance);
+    partial void InsertPeople(People instance);
+    partial void UpdatePeople(People instance);
+    partial void DeletePeople(People instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -148,14 +148,6 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<People> Peoples
-		{
-			get
-			{
-				return this.GetTable<People>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Speaker> Speakers
 		{
 			get
@@ -169,6 +161,14 @@ namespace Conferenceware.Models
 			get
 			{
 				return this.GetTable<TimeSlot>();
+			}
+		}
+		
+		public System.Data.Linq.Table<People> Peoples
+		{
+			get
+			{
+				return this.GetTable<People>();
 			}
 		}
 	}
@@ -1504,204 +1504,6 @@ namespace Conferenceware.Models
 		}
 	}
 	
-	[Table(Name="dbo.People")]
-	public partial class People : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private string _email;
-		
-		private int _phone_number;
-		
-		private EntityRef<Attendee> _Attendee;
-		
-		private EntityRef<Speaker> _Speaker;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OnemailChanging(string value);
-    partial void OnemailChanged();
-    partial void Onphone_numberChanging(int value);
-    partial void Onphone_numberChanged();
-    #endregion
-		
-		public People()
-		{
-			this._Attendee = default(EntityRef<Attendee>);
-			this._Speaker = default(EntityRef<Speaker>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_email", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				if ((this._email != value))
-				{
-					this.OnemailChanging(value);
-					this.SendPropertyChanging();
-					this._email = value;
-					this.SendPropertyChanged("email");
-					this.OnemailChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_phone_number", DbType="Int NOT NULL")]
-		public int phone_number
-		{
-			get
-			{
-				return this._phone_number;
-			}
-			set
-			{
-				if ((this._phone_number != value))
-				{
-					this.Onphone_numberChanging(value);
-					this.SendPropertyChanging();
-					this._phone_number = value;
-					this.SendPropertyChanged("phone_number");
-					this.Onphone_numberChanged();
-				}
-			}
-		}
-		
-		[Association(Name="People_Attendee", Storage="_Attendee", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
-		public Attendee Attendee
-		{
-			get
-			{
-				return this._Attendee.Entity;
-			}
-			set
-			{
-				Attendee previousValue = this._Attendee.Entity;
-				if (((previousValue != value) 
-							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Attendee.Entity = null;
-						previousValue.People = null;
-					}
-					this._Attendee.Entity = value;
-					if ((value != null))
-					{
-						value.People = this;
-					}
-					this.SendPropertyChanged("Attendee");
-				}
-			}
-		}
-		
-		[Association(Name="People_Speaker", Storage="_Speaker", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
-		public Speaker Speaker
-		{
-			get
-			{
-				return this._Speaker.Entity;
-			}
-			set
-			{
-				Speaker previousValue = this._Speaker.Entity;
-				if (((previousValue != value) 
-							|| (this._Speaker.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Speaker.Entity = null;
-						previousValue.People = null;
-					}
-					this._Speaker.Entity = value;
-					if ((value != null))
-					{
-						value.People = this;
-					}
-					this.SendPropertyChanged("Speaker");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.Speakers")]
 	public partial class Speaker : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1968,6 +1770,204 @@ namespace Conferenceware.Models
 		{
 			this.SendPropertyChanging();
 			entity.TimeSlot = null;
+		}
+	}
+	
+	[Table(Name="dbo.People")]
+	public partial class People : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _email;
+		
+		private string _phone_number;
+		
+		private EntityRef<Attendee> _Attendee;
+		
+		private EntityRef<Speaker> _Speaker;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void Onphone_numberChanging(string value);
+    partial void Onphone_numberChanged();
+    #endregion
+		
+		public People()
+		{
+			this._Attendee = default(EntityRef<Attendee>);
+			this._Speaker = default(EntityRef<Speaker>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_email", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_phone_number", DbType="NChar(12) NOT NULL", CanBeNull=false)]
+		public string phone_number
+		{
+			get
+			{
+				return this._phone_number;
+			}
+			set
+			{
+				if ((this._phone_number != value))
+				{
+					this.Onphone_numberChanging(value);
+					this.SendPropertyChanging();
+					this._phone_number = value;
+					this.SendPropertyChanged("phone_number");
+					this.Onphone_numberChanged();
+				}
+			}
+		}
+		
+		[Association(Name="People_Attendee", Storage="_Attendee", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		public Attendee Attendee
+		{
+			get
+			{
+				return this._Attendee.Entity;
+			}
+			set
+			{
+				Attendee previousValue = this._Attendee.Entity;
+				if (((previousValue != value) 
+							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attendee.Entity = null;
+						previousValue.People = null;
+					}
+					this._Attendee.Entity = value;
+					if ((value != null))
+					{
+						value.People = this;
+					}
+					this.SendPropertyChanged("Attendee");
+				}
+			}
+		}
+		
+		[Association(Name="People_Speaker", Storage="_Speaker", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		public Speaker Speaker
+		{
+			get
+			{
+				return this._Speaker.Entity;
+			}
+			set
+			{
+				Speaker previousValue = this._Speaker.Entity;
+				if (((previousValue != value) 
+							|| (this._Speaker.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Speaker.Entity = null;
+						previousValue.People = null;
+					}
+					this._Speaker.Entity = value;
+					if ((value != null))
+					{
+						value.People = this;
+					}
+					this.SendPropertyChanged("Speaker");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

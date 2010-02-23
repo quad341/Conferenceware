@@ -93,6 +93,8 @@
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\LocationMetadata.cs" />
+    <Compile Include="Models\People.cs" />
+    <Compile Include="Models\PeopleMetadata.cs" />
     <Compile Include="Models\Speaker.cs" />
     <Compile Include="Models\TimeSlot.cs" />
     <Compile Include="Models\TimeSlotMetadata.cs" />
@@ -120,6 +122,9 @@
     <Content Include="Views\Location\Edit.aspx" />
     <Content Include="Views\Location\Index.aspx" />
     <Content Include="Views\Location\LocationNotFound.aspx" />
+    <Content Include="Views\Speaker\Create.aspx" />
+    <Content Include="Views\Speaker\Edit.aspx" />
+    <Content Include="Views\Speaker\Index.aspx" />
     <Content Include="Views\TimeSlot\Create.aspx" />
     <Content Include="Views\TimeSlot\Edit.aspx" />
     <Content Include="Views\TimeSlot\Index.aspx" />
