@@ -1,25 +1,20 @@
-<<<<<<< HEAD
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.AttendeeEditData>" %>
+<%@ Import Namespace="Conferenceware.Models"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Create
-=======
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create.aspx
->>>>>>> 6e4d8144b856647db18c3f7e484f774dd475cd74
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<<<<<<< HEAD
+    <% Html.EnableClientValidation(); %>
     <h2>Create</h2>
 
     <% using (Html.BeginForm()) {%>
 
         <fieldset>
             <legend>Fields</legend>
+            <%= Html.HiddenFor(model => model.Attendee.person_id, new {value=0}) %>
             
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Attendee.People.name) %>
@@ -28,22 +23,39 @@
                 <%= Html.TextBoxFor(model => model.Attendee.People.name) %>
                 <%= Html.ValidationMessageFor(model => model.Attendee.People.name) %>
             </div>
+             
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Attendee.People.email) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.Attendee.People.email) %>
+                <%= Html.ValidationMessageFor(model => model.Attendee.People.email) %>
+            </div>
             
-            <div class="editor-label>
+            <div class="editor-label">
                 <%= Html.LabelFor(model => model.Attendee.People.phone_number) %>
             </div>
             <div class="editor-field">
                 <%= Html.TextBoxFor(model => model.Attendee.People.phone_number) %>
                 <%= Html.ValidationMessageFor(model => model.Attendee.People.phone_number) %>
             </div>
-            
+             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.Attendee.TShirtSize) %>
+                <%= Html.LabelFor(model => model.Attendee.tshirt_id) %>
             </div>
             <div class="editor-field">
-                <!--<%= Html.DropDownListFor(model => model.Attendee.TShirtSize, Model.TShirtSizes) %>-->
+                <%= Html.DropDownListFor(model => model.Attendee.tshirt_id, Model.TShirtSizes) %>
+                <%= Html.ValidationMessageFor(model => model.Attendee.tshirt_id) %>
             </div>
-            
+           
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.Attendee.food_choice_id) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.DropDownListFor(model => model.Attendee.food_choice_id, Model.Foods) %>
+                <%= Html.ValidationMessageFor(model => model.Attendee.food_choice_id) %>
+            </div>
+          
             <p>
                 <input type="submit" value="Create" />
             </p>
@@ -57,8 +69,3 @@
 
 </asp:Content>
 
-=======
-    <h2>Create.aspx</h2>
-
-</asp:Content>
->>>>>>> 6e4d8144b856647db18c3f7e484f774dd475cd74

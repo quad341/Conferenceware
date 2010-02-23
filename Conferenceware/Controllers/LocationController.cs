@@ -44,6 +44,10 @@ namespace Conferenceware.Controllers
         {
 			if (ModelState.IsValid)
 			{
+				if (locationToCreate.notes == null)
+				{
+					locationToCreate.notes = "";
+				}
 				_repository.AddLocation(locationToCreate);
 				_repository.Save();
 				return RedirectToAction("Index");
