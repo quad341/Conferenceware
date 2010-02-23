@@ -68,10 +68,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
     <Compile Include="Controllers\TimeSlotController.cs" />
+    <Compile Include="Controllers\TShirtSizeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -86,11 +88,16 @@
     <Compile Include="Models\ConferencewareRepository.cs" />
     <Compile Include="Models\DataAnnotationsValidationRunner.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Food.cs" />
+    <Compile Include="Models\FoodMetadata.cs" />
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\LocationMetadata.cs" />
     <Compile Include="Models\Speaker.cs" />
     <Compile Include="Models\TimeSlot.cs" />
+    <Compile Include="Models\TimeSlotMetadata.cs" />
+    <Compile Include="Models\TShirtSize.cs" />
+    <Compile Include="Models\TShirtSizeMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +113,9 @@
     <Content Include="Views\Event\Details.aspx" />
     <Content Include="Views\Event\Edit.aspx" />
     <Content Include="Views\Event\Index.aspx" />
+    <Content Include="Views\Food\Create.aspx" />
+    <Content Include="Views\Food\Edit.aspx" />
+    <Content Include="Views\Food\Index.aspx" />
     <Content Include="Views\Location\Create.aspx" />
     <Content Include="Views\Location\Edit.aspx" />
     <Content Include="Views\Location\Index.aspx" />
@@ -114,6 +124,10 @@
     <Content Include="Views\TimeSlot\Edit.aspx" />
     <Content Include="Views\TimeSlot\Index.aspx" />
     <Content Include="Views\TimeSlot\TimeSlotNotFound.aspx" />
+    <Content Include="Views\TShirtSize\Create.aspx" />
+    <Content Include="Views\TShirtSize\Edit.aspx" />
+    <Content Include="Views\TShirtSize\Index.aspx" />
+    <Content Include="Views\TShirtSize\TShirtSizeNotFound.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

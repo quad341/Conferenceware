@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <% Html.EnableClientValidation(); %>
     <h2>Edit</h2>
 
     <% using (Html.BeginForm()) {%>
@@ -13,13 +14,7 @@
         <fieldset>
             <legend>Fields</legend>
             
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.id) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.id) %>
-                <%= Html.ValidationMessageFor(model => model.id) %>
-            </div>
+            <%= Html.HiddenFor(model => model.id) %>
             
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.start_time) %>

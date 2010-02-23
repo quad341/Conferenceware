@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Conferenceware.Models.TimeSlot>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Conferenceware.Models.TShirtSize>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -15,10 +15,7 @@
                 id
             </th>
             <th>
-                start_time
-            </th>
-            <th>
-                end_time
+                name
             </th>
         </tr>
 
@@ -33,10 +30,7 @@
                 <%= Html.Encode(item.id) %>
             </td>
             <td>
-                <%= Html.Encode(String.Format("{0:g}", item.start_time)) %>
-            </td>
-            <td>
-                <%= Html.Encode(String.Format("{0:g}", item.end_time)) %>
+                <%= Html.Encode(item.name) %>
             </td>
         </tr>
     
