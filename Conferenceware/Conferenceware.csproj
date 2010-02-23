@@ -111,6 +111,8 @@
     <Content Include="Libraries\xVal.dll" />
     <Content Include="Libraries\xVal.license.txt" />
     <Content Include="Views\Attendee\Create.aspx" />
+    <Content Include="Views\Attendee\Edit.aspx" />
+    <Content Include="Views\Attendee\Index.aspx" />
     <Content Include="Views\Event\Create.aspx" />
     <Content Include="Views\Event\Details.aspx" />
     <Content Include="Views\Event\Edit.aspx" />
