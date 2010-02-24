@@ -98,6 +98,7 @@ namespace Conferenceware.Controllers
 				return View("AttendeeNotFound");
 			}
 			_repository.DeleteAttendee(att);
+			TempData["Message"] = att.People.name + " was deleted";
 			_repository.Save();
 			return RedirectToAction("Index");
 		}
