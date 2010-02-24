@@ -29,5 +29,19 @@ namespace Conferenceware.Models
 			get;
 			set;
 		}
+
+		[DisplayName("Timeslot")]
+		public int timeslot_id
+		{
+			get;
+			set;
+		}
+
+		[DisplayName("Location")]
+		public int location_id
+		{
+			get;
+			set;
+		}
 	}
 }

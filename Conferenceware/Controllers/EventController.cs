@@ -121,8 +121,8 @@ namespace Conferenceware.Controllers
 			ev.name = collection["Event.name"];
 			ev.description = collection["Event.description"];
 			ev.max_attendees = int.Parse(collection["Event.max_attendees"]);
-			ev.timeslot_id = int.Parse(collection["timeslot_id"]);
-			ev.location_id = int.Parse(collection["location_id"]);
+			ev.timeslot_id = int.Parse(collection["Event.timeslot_id"]);
+			ev.location_id = int.Parse(collection["Event.location_id"]);
 		}
 
 		private EventEditData MakeEditDataFromEvent(Event e)
@@ -130,8 +130,8 @@ namespace Conferenceware.Controllers
 			return new EventEditData
 					{
 						Event = e,
-						Timeslots = new SelectList(_repository.GetAllTimeSlots(), "id"),
-						Locations = new SelectList(_repository.GetAllLocations(), "id")
+						Timeslots = new SelectList(_repository.GetAllTimeSlots(), "id", "StringValue"),
+						Locations = new SelectList(_repository.GetAllLocations(), "id", "StringValue")
 					};
 		}
 	}

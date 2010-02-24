@@ -89,6 +89,8 @@
     <Compile Include="Models\ConferencewareRepository.cs" />
     <Compile Include="Models\DataAnnotationsValidationRunner.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventEditData.cs" />
+    <Compile Include="Models\EventMetadata.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\FoodMetadata.cs" />
     <Compile Include="Models\IRepository.cs" />
@@ -115,8 +117,6 @@
     <Content Include="Views\Attendee\Edit.aspx" />
     <Content Include="Views\Attendee\Index.aspx" />
     <Content Include="Views\Event\Create.aspx" />
-    <Content Include="Views\Event\Details.aspx" />
-    <Content Include="Views\Event\Edit.aspx" />
     <Content Include="Views\Event\Index.aspx" />
     <Content Include="Views\Food\Create.aspx" />
     <Content Include="Views\Food\Edit.aspx" />
