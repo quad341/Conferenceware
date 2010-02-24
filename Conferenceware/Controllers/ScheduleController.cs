@@ -36,6 +36,5 @@ namespace Conferenceware.Controllers
         {
             return View(_repository.GetEventById(id));
         }
-
     }
 }
