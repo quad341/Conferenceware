@@ -80,6 +80,10 @@ namespace Conferenceware.Controllers
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			Event ev = _repository.GetEventById(id);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
 			BindEventData(ref ev, collection, ModelState);
 			if (ModelState.IsValid)
 			{
