@@ -6,36 +6,16 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Index</h2>
-
-    <table>
-        <tr>
-            <th>
-                Time
-            </th>
-            <th>
-                Events
-            </th>
-        </tr>
+    <h2>Conference Schedule</h2>
 
     <% foreach (var item in Model) { %>
     
-        <tr>
-            <td>
-                <%= item.TimeSlot.start_time %>
-            </td>
-            <td>
-                <%= Html.ActionLink(item.name, "Details", new { id=item.id })%>
-            </td>
-        </tr>
-    
+        <p>
+        <%= Html.ActionLink(item.name, "Details", new { id=item.id })%> at 
+        <%= item.TimeSlot.start_time %>  
+        (<%= item.Location.room_number %> <%= item.Location.building_name %>)
+        </p>
     <% } %>
-
-    </table>
-
-    <p>
-        <%= Html.ActionLink("Create New", "Create") %>
-    </p>
 
 </asp:Content>
 
