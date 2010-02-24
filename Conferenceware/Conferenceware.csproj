@@ -71,6 +71,7 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
     <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\TShirtSizeController.cs" />
@@ -125,6 +126,8 @@
     <Content Include="Views\Location\Edit.aspx" />
     <Content Include="Views\Location\Index.aspx" />
     <Content Include="Views\Location\LocationNotFound.aspx" />
+    <Content Include="Views\Schedule\Details.aspx" />
+    <Content Include="Views\Schedule\Index.aspx" />
     <Content Include="Views\Speaker\Create.aspx" />
     <Content Include="Views\Speaker\Edit.aspx" />
     <Content Include="Views\Speaker\Index.aspx" />
