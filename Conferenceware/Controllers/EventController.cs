@@ -1,121 +1,138 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections.Specialized;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
-    public class EventController : Controller
-    {
+	public class EventController : Controller
+	{
 
 
-/// <summary>
+		/// <summary>
 		/// Repository to interact with database
 		/// </summary>
-    	private readonly IRepository _repository;
+		private readonly IRepository _repository;
 
-		public EventController() : this(new ConferencewareRepository())
+		public EventController()
+			: this(new ConferencewareRepository())
 		{
 			// nothing more to do
 		}
 
-    	public EventController(IRepository repo)
+		public EventController(IRepository repo)
 		{
 			_repository = repo;
 		}
 
-        //
-        // GET: /Event/Create
+		//
+		// GET: /Event/Create
 
-        public ActionResult Create()
-        {
-            return View("Create", new Event());
-        }
+		public ActionResult Index()
+		{
+			return View("Index", _repository.GetAllEvents());
+		}
 
-        //
-        // POST: /Event/Create
+		public ActionResult Create()
+		{
+			return View("Create", MakeEditDataFromEvent(new Event()));
+		}
 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            var eventToCreate = new Event();
+		//
+		// POST: /Event/Create
 
-            TryUpdateModel(eventToCreate);
+		[HttpPost]
+		public ActionResult Create(FormCollection collection)
+		{
+			Event eventToCreate = null;
 
-            if (ModelState.IsValid)
-            {
-                _repository.AddEvent(eventToCreate);
-                _repository.Save();
-                return RedirectToAction("Index");
-            }
-            return View("Create", eventToCreate);
-        }
+			BindEventData(ref eventToCreate, collection, ModelState);
 
-        //
-        // GET: /Event/
+			if (ModelState.IsValid)
+			{
+				_repository.AddEvent(eventToCreate);
+				_repository.Save();
+				return RedirectToAction("Index");
+			}
+			return View("Create", MakeEditDataFromEvent(eventToCreate));
+		}
 
-        public ActionResult Index()
-        {
-            return View("Index", _repository.GetAllEvents());
-        }
+		//
+		// GET: /Event/
 
-        //
-        // GET: /Event/Details/5
+		//
+		// GET: /Event/Edit/5
 
-        public ActionResult Details(int id)
-        {
-            Event ev = _repository.GetEventById(id);
-            if (ev == null)
-            {
-                View("EventNotFound");
-            }
-            return View("Details",ev);
-        }
+		public ActionResult Edit(int id)
+		{
+			Event ev = _repository.GetEventById(id);
+			if (ev == null)
+			{
+				View("EventNotFound");
+			}
+			return View("Edit", MakeEditDataFromEvent(ev));
+		}
 
-        //
-        // GET: /Event/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            Event ev = _repository.GetEventById(id);
-            if (ev == null)
-            {
-                View("EventNotFound");
-            }
-            return View("Edit", ev);
-        }
+		//
+		// POST: /Event/Edit/5
 
-        //
-        // POST: /Event/Edit/5
+		[HttpPost]
+		public ActionResult Edit(int id, FormCollection collection)
+		{
+			Event ev = _repository.GetEventById(id);
+			BindEventData(ref ev, collection, ModelState);
+			if (ModelState.IsValid)
+			{
+				_repository.Save();
+				return RedirectToAction("Index");
+			}
+			return View("Edit", MakeEditDataFromEvent(ev));
+		}
 
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            Event ev = _repository.GetEventById(id);
-            try
-            {
-                UpdateModel(ev);
-                _repository.Save();
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View("Edit", ev);
-            }
-        }
+		public ActionResult Delete(int id)
+		{
+			Event ev = _repository.GetEventById(id);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			try
+			{
+				var name = ev.name;
+				_repository.DeleteEvent(ev);
+				_repository.Save();
+				TempData["Message"] = name + " was deleted";
+			}
+			catch
+			{
+				TempData["Message"] = "Could not delete event";
+			}
+			return RedirectToAction("Index");
+		}
 
-        public ActionResult Delete(int id)
-        {
-            Event ev = _repository.GetEventById(id);
-            if (ev == null)
-            {
-                return View("EventNotFound");
-            }
-            _repository.DeleteEvent(ev);
-            _repository.Save();
-            return RedirectToAction("Index");
-        }
-    }
+		private static void BindEventData(ref Event ev, NameValueCollection collection, ModelStateDictionary dictionary)
+		{
+			// TODO: Validate
+			if (ev == null)
+			{
+				ev = new Event();
+				ev.id = 0;
+			}
+			ev.name = collection["Event.name"];
+			ev.description = collection["Event.description"];
+			ev.max_attendees = int.Parse(collection["Event.max_attendees"]);
+			ev.timeslot_id = int.Parse(collection["timeslot_id"]);
+			ev.location_id = int.Parse(collection["location_id"]);
+		}
+
+		private EventEditData MakeEditDataFromEvent(Event e)
+		{
+			return new EventEditData
+					{
+						Event = e,
+						Timeslots = new SelectList(_repository.GetAllTimeSlots(), "id"),
+						Locations = new SelectList(_repository.GetAllLocations(), "id")
+					};
+		}
+	}
 }
