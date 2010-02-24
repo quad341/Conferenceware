@@ -6,19 +6,19 @@ using System.Web.Mvc;
 
 namespace Conferenceware.Controllers
 {
-    [HandleError]
-    public class HomeController : Controller
-    {
-        public ActionResult Index()
-        {
-            ViewData["Message"] = "Welcome to ASP.NET MVC! (Simo was here)";
+	[HandleError]
+	public class HomeController : Controller
+	{
+		public ActionResult Index()
+		{
+			ViewData["Message"] = "Welcome to ASP.NET MVC! (Simo was here)";
 
-            return View();
-        }
+			return View();
+		}
 
-        public ActionResult About()
-        {
-            return View();
-        }
-    }
+		public ActionResult About()
+		{
+			return View();
+		}
+	}
 }

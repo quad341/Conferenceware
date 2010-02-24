@@ -12,22 +12,19 @@
         <tr>
             <th></th>
             <th>
-                id
+                Name
             </th>
             <th>
-                name
+                Description
             </th>
             <th>
-                description
+                Max Attendees
             </th>
             <th>
-                max_attendees
+                Timeslot
             </th>
             <th>
-                timeslot_id
-            </th>
-            <th>
-                location_id
+                Location
             </th>
         </tr>
 
@@ -36,10 +33,8 @@
         <tr>
             <td>
                 <%= Html.ActionLink("Edit", "Edit", new { id=item.id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { id=item.id })%>
-            </td>
-            <td>
-                <%= Html.Encode(item.id) %>
+                <!--TODO:<%= Html.ActionLink("Details", "Details", new { id=item.id })%>-->
+                <%= Html.ActionLink("Delete", "Delete", new { id=item.id}) %>
             </td>
             <td>
                 <%= Html.Encode(item.name) %>
@@ -51,10 +46,10 @@
                 <%= Html.Encode(item.max_attendees) %>
             </td>
             <td>
-                <%= Html.Encode(item.timeslot_id) %>
+                <%= Html.Encode(item.TimeSlot.ToString()) %>
             </td>
             <td>
-                <%= Html.Encode(item.location_id) %>
+                <%= Html.Encode(item.Location.ToString()) %>
             </td>
         </tr>
     
