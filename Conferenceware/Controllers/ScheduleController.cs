@@ -32,10 +32,9 @@ namespace Conferenceware.Controllers
             return View("Index", events.OrderBy(e => e.TimeSlot.start_time));
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            return View();
+            return View(_repository.GetEventById(id));
         }
-
     }
 }
