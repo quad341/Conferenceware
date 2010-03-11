@@ -72,6 +72,9 @@ namespace Conferenceware.Models
     partial void InsertMechManiaTeam(MechManiaTeam instance);
     partial void UpdateMechManiaTeam(MechManiaTeam instance);
     partial void DeleteMechManiaTeam(MechManiaTeam instance);
+    partial void InsertPage(Page instance);
+    partial void UpdatePage(Page instance);
+    partial void DeletePage(Page instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -213,6 +216,14 @@ namespace Conferenceware.Models
 			get
 			{
 				return this.GetTable<MechManiaTeam>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Page> Pages
+		{
+			get
+			{
+				return this.GetTable<Page>();
 			}
 		}
 	}
@@ -3065,6 +3076,140 @@ namespace Conferenceware.Models
 						this._member3_id = default(int);
 					}
 					this.SendPropertyChanged("Attendee2");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Pages")]
+	public partial class Page : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _title;
+		
+		private string _page_content;
+		
+		private int _parent_id;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OntitleChanging(string value);
+    partial void OntitleChanged();
+    partial void Onpage_contentChanging(string value);
+    partial void Onpage_contentChanged();
+    partial void Onparent_idChanging(int value);
+    partial void Onparent_idChanged();
+    #endregion
+		
+		public Page()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string title
+		{
+			get
+			{
+				return this._title;
+			}
+			set
+			{
+				if ((this._title != value))
+				{
+					this.OntitleChanging(value);
+					this.SendPropertyChanging();
+					this._title = value;
+					this.SendPropertyChanged("title");
+					this.OntitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_page_content", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string page_content
+		{
+			get
+			{
+				return this._page_content;
+			}
+			set
+			{
+				if ((this._page_content != value))
+				{
+					this.Onpage_contentChanging(value);
+					this.SendPropertyChanging();
+					this._page_content = value;
+					this.SendPropertyChanged("page_content");
+					this.Onpage_contentChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_parent_id", DbType="Int NOT NULL")]
+		public int parent_id
+		{
+			get
+			{
+				return this._parent_id;
+			}
+			set
+			{
+				if ((this._parent_id != value))
+				{
+					this.Onparent_idChanging(value);
+					this.SendPropertyChanging();
+					this._parent_id = value;
+					this.SendPropertyChanged("parent_id");
+					this.Onparent_idChanged();
 				}
 			}
 		}
