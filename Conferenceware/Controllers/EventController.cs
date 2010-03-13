@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Specialized;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -46,9 +44,7 @@ namespace Conferenceware.Controllers
 		{
 			Event eventToCreate = null;
 
-			BindEventData(ref eventToCreate, collection, ModelState);
-
-			if (ModelState.IsValid)
+			if (TryUpdateModel(eventToCreate, "Event"))
 			{
 				_repository.AddEvent(eventToCreate);
 				_repository.Save();
@@ -84,8 +80,6 @@ namespace Conferenceware.Controllers
 			{
 				return View("EventNotFound");
 			}
-			//BindEventData(ref ev, collection, ModelState);
-			//if (ModelState.IsValid)
 			if (TryUpdateModel(ev, "Event"))
 			{
 				_repository.Save();
@@ -113,21 +107,6 @@ namespace Conferenceware.Controllers
 				TempData["Message"] = "Could not delete event";
 			}
 			return RedirectToAction("Index");
-		}
-
-		private static void BindEventData(ref Event ev, NameValueCollection collection, ModelStateDictionary dictionary)
-		{
-			// TODO: Validate
-			if (ev == null)
-			{
-				ev = new Event();
-				ev.id = 0;
-			}
-			ev.name = collection["Event.name"];
-			ev.description = collection["Event.description"];
-			ev.max_attendees = int.Parse(collection["Event.max_attendees"]);
-			ev.timeslot_id = int.Parse(collection["Event.timeslot_id"]);
-			ev.location_id = int.Parse(collection["Event.location_id"]);
 		}
 
 		private EventEditData MakeEditDataFromEvent(Event e)

@@ -114,6 +114,7 @@
     <Content Include="Content\xVal.jquery.validate.js" />
     <Content Include="Libraries\xVal.dll" />
     <Content Include="Libraries\xVal.license.txt" />
+    <Content Include="Views\Attendee\AttendeeNotFound.aspx" />
     <Content Include="Views\Attendee\Create.aspx" />
     <Content Include="Views\Attendee\Edit.aspx" />
     <Content Include="Views\Attendee\Index.aspx" />
@@ -133,6 +134,7 @@
     <Content Include="Views\Speaker\Create.aspx" />
     <Content Include="Views\Speaker\Edit.aspx" />
     <Content Include="Views\Speaker\Index.aspx" />
+    <Content Include="Views\Speaker\SpeakerNotFound.aspx" />
     <Content Include="Views\TimeSlot\Create.aspx" />
     <Content Include="Views\TimeSlot\Edit.aspx" />
     <Content Include="Views\TimeSlot\Index.aspx" />

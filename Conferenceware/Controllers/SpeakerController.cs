@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -78,11 +74,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("SpeakerNotFound");
 			}
-			if (ModelState.IsValid)
+			if (TryUpdateModel(speaker))
 			{
-				speaker.People.name = collection["People.name"];
-				speaker.People.email = collection["People.email"];
-				speaker.People.phone_number = collection["People.phone_number"];
 				_repository.Save();
 
 				return RedirectToAction("Index");

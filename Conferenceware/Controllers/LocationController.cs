@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -80,14 +79,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("LocationNotFound");
 			}
-			if (ModelState.IsValid)
+			if (TryUpdateModel(loc))
 			{
-				//UpdateModel(loc, new[] {"building_name","room_number","max_capacity","notes"});
-				// update model is broken; doing it by hand
-				loc.building_name = collection["building_name"];
-				loc.room_number = collection["room_number"];
-				loc.notes = collection["notes"];
-				loc.max_capacity = int.Parse(collection["max_capacity"]);
 				_repository.Save();
 				return RedirectToAction("Index");
 			}

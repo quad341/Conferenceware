@@ -74,24 +74,7 @@ namespace Conferenceware.Controllers
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			TimeSlot ts = _repository.GetTimeSlotById(id);
-			DateTime start_time, end_time;
-			if (!DateTime.TryParse(collection["start_time"], out start_time))
-			{
-				ModelState.AddModelError("start_time", "Date format invalid");
-			}
-			else
-			{
-				ts.start_time = start_time;
-			}
-			if (!DateTime.TryParse(collection["end_time"], out end_time))
-			{
-				ModelState.AddModelError("end_time", "Date format invalid");
-			}
-			else
-			{
-				ts.end_time = end_time;
-			}
-			if (ModelState.IsValid)
+			if (TryUpdateModel(ts))
 			{
 				_repository.Save();
 				return RedirectToAction("Index");
@@ -107,9 +90,17 @@ namespace Conferenceware.Controllers
 			{
 				return View("TimeSlotNotFound");
 			}
-			_repository.DeleteTimeSlot(ts);
-			_repository.Save();
-			TempData["Message"] = "Timeslot was deleted";
+			try
+			{
+				_repository.DeleteTimeSlot(ts);
+				_repository.Save();
+				TempData["Message"] = "Timeslot was deleted";
+			}
+			catch
+			{
+				TempData["Message"] =
+					"Delete anything depending on timeslot before deleting";
+			}
 			return RedirectToAction("Index");
 		}
 	}
