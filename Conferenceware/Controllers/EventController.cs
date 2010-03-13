@@ -68,7 +68,7 @@ namespace Conferenceware.Controllers
 			Event ev = _repository.GetEventById(id);
 			if (ev == null)
 			{
-				View("EventNotFound");
+				return View("EventNotFound");
 			}
 			return View("Edit", MakeEditDataFromEvent(ev));
 		}
@@ -84,8 +84,9 @@ namespace Conferenceware.Controllers
 			{
 				return View("EventNotFound");
 			}
-			BindEventData(ref ev, collection, ModelState);
-			if (ModelState.IsValid)
+			//BindEventData(ref ev, collection, ModelState);
+			//if (ModelState.IsValid)
+			if (TryUpdateModel(ev, "Event"))
 			{
 				_repository.Save();
 				return RedirectToAction("Index");

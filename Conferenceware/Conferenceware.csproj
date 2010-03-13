@@ -119,6 +119,7 @@
     <Content Include="Views\Attendee\Index.aspx" />
     <Content Include="Views\Event\Create.aspx" />
     <Content Include="Views\Event\Edit.aspx" />
+    <Content Include="Views\Event\EventNotFound.aspx" />
     <Content Include="Views\Event\Index.aspx" />
     <Content Include="Views\Food\Create.aspx" />
     <Content Include="Views\Food\Edit.aspx" />
