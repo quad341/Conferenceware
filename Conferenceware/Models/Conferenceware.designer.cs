@@ -57,9 +57,6 @@ namespace Conferenceware.Models
     partial void InsertPeople(People instance);
     partial void UpdatePeople(People instance);
     partial void DeletePeople(People instance);
-    partial void InsertVolunteerTimeSlot(VolunteerTimeSlot instance);
-    partial void UpdateVolunteerTimeSlot(VolunteerTimeSlot instance);
-    partial void DeleteVolunteerTimeSlot(VolunteerTimeSlot instance);
     partial void InsertVolunteer(Volunteer instance);
     partial void UpdateVolunteer(Volunteer instance);
     partial void DeleteVolunteer(Volunteer instance);
@@ -75,6 +72,12 @@ namespace Conferenceware.Models
     partial void InsertPage(Page instance);
     partial void UpdatePage(Page instance);
     partial void DeletePage(Page instance);
+    partial void InsertVolunteersVolunteerTimeSlot(VolunteersVolunteerTimeSlot instance);
+    partial void UpdateVolunteersVolunteerTimeSlot(VolunteersVolunteerTimeSlot instance);
+    partial void DeleteVolunteersVolunteerTimeSlot(VolunteersVolunteerTimeSlot instance);
+    partial void InsertVolunteerTimeSlot(VolunteerTimeSlot instance);
+    partial void UpdateVolunteerTimeSlot(VolunteerTimeSlot instance);
+    partial void DeleteVolunteerTimeSlot(VolunteerTimeSlot instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -179,14 +182,6 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<VolunteerTimeSlot> VolunteerTimeSlots
-		{
-			get
-			{
-				return this.GetTable<VolunteerTimeSlot>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Volunteer> Volunteers
 		{
 			get
@@ -224,6 +219,22 @@ namespace Conferenceware.Models
 			get
 			{
 				return this.GetTable<Page>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VolunteersVolunteerTimeSlot> VolunteersVolunteerTimeSlots
+		{
+			get
+			{
+				return this.GetTable<VolunteersVolunteerTimeSlot>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VolunteerTimeSlot> VolunteerTimeSlots
+		{
+			get
+			{
+				return this.GetTable<VolunteerTimeSlot>();
 			}
 		}
 	}
@@ -1466,9 +1477,9 @@ namespace Conferenceware.Models
 		
 		private System.DateTime _end_time;
 		
-		private EntitySet<VolunteerTimeSlot> _VolunteerTimeSlots;
-		
 		private EntitySet<Event> _Events;
+		
+		private EntityRef<VolunteerTimeSlot> _VolunteerTimeSlot;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1484,8 +1495,8 @@ namespace Conferenceware.Models
 		
 		public TimeSlot()
 		{
-			this._VolunteerTimeSlots = new EntitySet<VolunteerTimeSlot>(new Action<VolunteerTimeSlot>(this.attach_VolunteerTimeSlots), new Action<VolunteerTimeSlot>(this.detach_VolunteerTimeSlots));
 			this._Events = new EntitySet<Event>(new Action<Event>(this.attach_Events), new Action<Event>(this.detach_Events));
+			this._VolunteerTimeSlot = default(EntityRef<VolunteerTimeSlot>);
 			OnCreated();
 		}
 		
@@ -1549,19 +1560,6 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="TimeSlot_VolunteerTimeSlot", Storage="_VolunteerTimeSlots", ThisKey="id", OtherKey="timeslot_id")]
-		public EntitySet<VolunteerTimeSlot> VolunteerTimeSlots
-		{
-			get
-			{
-				return this._VolunteerTimeSlots;
-			}
-			set
-			{
-				this._VolunteerTimeSlots.Assign(value);
-			}
-		}
-		
 		[Association(Name="TimeSlot_Event", Storage="_Events", ThisKey="id", OtherKey="timeslot_id")]
 		public EntitySet<Event> Events
 		{
@@ -1572,6 +1570,35 @@ namespace Conferenceware.Models
 			set
 			{
 				this._Events.Assign(value);
+			}
+		}
+		
+		[Association(Name="TimeSlot_VolunteerTimeSlot", Storage="_VolunteerTimeSlot", ThisKey="id", OtherKey="timeslot_id", IsUnique=true, IsForeignKey=false)]
+		public VolunteerTimeSlot VolunteerTimeSlot
+		{
+			get
+			{
+				return this._VolunteerTimeSlot.Entity;
+			}
+			set
+			{
+				VolunteerTimeSlot previousValue = this._VolunteerTimeSlot.Entity;
+				if (((previousValue != value) 
+							|| (this._VolunteerTimeSlot.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VolunteerTimeSlot.Entity = null;
+						previousValue.TimeSlot = null;
+					}
+					this._VolunteerTimeSlot.Entity = value;
+					if ((value != null))
+					{
+						value.TimeSlot = this;
+					}
+					this.SendPropertyChanged("VolunteerTimeSlot");
+				}
 			}
 		}
 		
@@ -1593,18 +1620,6 @@ namespace Conferenceware.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_VolunteerTimeSlots(VolunteerTimeSlot entity)
-		{
-			this.SendPropertyChanging();
-			entity.TimeSlot = this;
-		}
-		
-		private void detach_VolunteerTimeSlots(VolunteerTimeSlot entity)
-		{
-			this.SendPropertyChanging();
-			entity.TimeSlot = null;
 		}
 		
 		private void attach_Events(Event entity)
@@ -1882,270 +1897,6 @@ namespace Conferenceware.Models
 		}
 	}
 	
-	[Table(Name="dbo.VolunteerTimeSlots")]
-	public partial class VolunteerTimeSlot : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private int _volunteer_id;
-		
-		private int _timeslot_id;
-		
-		private bool _is_video;
-		
-		private bool _is_scheduled;
-		
-		private bool _is_confirmed;
-		
-		private EntityRef<TimeSlot> _TimeSlot;
-		
-		private EntityRef<Volunteer> _Volunteer;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void Onvolunteer_idChanging(int value);
-    partial void Onvolunteer_idChanged();
-    partial void Ontimeslot_idChanging(int value);
-    partial void Ontimeslot_idChanged();
-    partial void Onis_videoChanging(bool value);
-    partial void Onis_videoChanged();
-    partial void Onis_scheduledChanging(bool value);
-    partial void Onis_scheduledChanged();
-    partial void Onis_confirmedChanging(bool value);
-    partial void Onis_confirmedChanged();
-    #endregion
-		
-		public VolunteerTimeSlot()
-		{
-			this._TimeSlot = default(EntityRef<TimeSlot>);
-			this._Volunteer = default(EntityRef<Volunteer>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_volunteer_id", DbType="Int NOT NULL")]
-		public int volunteer_id
-		{
-			get
-			{
-				return this._volunteer_id;
-			}
-			set
-			{
-				if ((this._volunteer_id != value))
-				{
-					if (this._Volunteer.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onvolunteer_idChanging(value);
-					this.SendPropertyChanging();
-					this._volunteer_id = value;
-					this.SendPropertyChanged("volunteer_id");
-					this.Onvolunteer_idChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_timeslot_id", DbType="Int NOT NULL")]
-		public int timeslot_id
-		{
-			get
-			{
-				return this._timeslot_id;
-			}
-			set
-			{
-				if ((this._timeslot_id != value))
-				{
-					if (this._TimeSlot.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Ontimeslot_idChanging(value);
-					this.SendPropertyChanging();
-					this._timeslot_id = value;
-					this.SendPropertyChanged("timeslot_id");
-					this.Ontimeslot_idChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_is_video", DbType="Bit NOT NULL")]
-		public bool is_video
-		{
-			get
-			{
-				return this._is_video;
-			}
-			set
-			{
-				if ((this._is_video != value))
-				{
-					this.Onis_videoChanging(value);
-					this.SendPropertyChanging();
-					this._is_video = value;
-					this.SendPropertyChanged("is_video");
-					this.Onis_videoChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_is_scheduled", DbType="Bit NOT NULL")]
-		public bool is_scheduled
-		{
-			get
-			{
-				return this._is_scheduled;
-			}
-			set
-			{
-				if ((this._is_scheduled != value))
-				{
-					this.Onis_scheduledChanging(value);
-					this.SendPropertyChanging();
-					this._is_scheduled = value;
-					this.SendPropertyChanged("is_scheduled");
-					this.Onis_scheduledChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_is_confirmed", DbType="Bit NOT NULL")]
-		public bool is_confirmed
-		{
-			get
-			{
-				return this._is_confirmed;
-			}
-			set
-			{
-				if ((this._is_confirmed != value))
-				{
-					this.Onis_confirmedChanging(value);
-					this.SendPropertyChanging();
-					this._is_confirmed = value;
-					this.SendPropertyChanged("is_confirmed");
-					this.Onis_confirmedChanged();
-				}
-			}
-		}
-		
-		[Association(Name="TimeSlot_VolunteerTimeSlot", Storage="_TimeSlot", ThisKey="timeslot_id", OtherKey="id", IsForeignKey=true)]
-		public TimeSlot TimeSlot
-		{
-			get
-			{
-				return this._TimeSlot.Entity;
-			}
-			set
-			{
-				TimeSlot previousValue = this._TimeSlot.Entity;
-				if (((previousValue != value) 
-							|| (this._TimeSlot.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TimeSlot.Entity = null;
-						previousValue.VolunteerTimeSlots.Remove(this);
-					}
-					this._TimeSlot.Entity = value;
-					if ((value != null))
-					{
-						value.VolunteerTimeSlots.Add(this);
-						this._timeslot_id = value.id;
-					}
-					else
-					{
-						this._timeslot_id = default(int);
-					}
-					this.SendPropertyChanged("TimeSlot");
-				}
-			}
-		}
-		
-		[Association(Name="Volunteer_VolunteerTimeSlot", Storage="_Volunteer", ThisKey="volunteer_id", OtherKey="person_id", IsForeignKey=true)]
-		public Volunteer Volunteer
-		{
-			get
-			{
-				return this._Volunteer.Entity;
-			}
-			set
-			{
-				Volunteer previousValue = this._Volunteer.Entity;
-				if (((previousValue != value) 
-							|| (this._Volunteer.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Volunteer.Entity = null;
-						previousValue.VolunteerTimeSlots.Remove(this);
-					}
-					this._Volunteer.Entity = value;
-					if ((value != null))
-					{
-						value.VolunteerTimeSlots.Add(this);
-						this._volunteer_id = value.person_id;
-					}
-					else
-					{
-						this._volunteer_id = default(int);
-					}
-					this.SendPropertyChanged("Volunteer");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.Volunteers")]
 	public partial class Volunteer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2156,7 +1907,7 @@ namespace Conferenceware.Models
 		
 		private bool _is_video_trained;
 		
-		private EntitySet<VolunteerTimeSlot> _VolunteerTimeSlots;
+		private EntitySet<VolunteersVolunteerTimeSlot> _VolunteersVolunteerTimeSlots;
 		
 		private EntityRef<People> _People;
 		
@@ -2172,7 +1923,7 @@ namespace Conferenceware.Models
 		
 		public Volunteer()
 		{
-			this._VolunteerTimeSlots = new EntitySet<VolunteerTimeSlot>(new Action<VolunteerTimeSlot>(this.attach_VolunteerTimeSlots), new Action<VolunteerTimeSlot>(this.detach_VolunteerTimeSlots));
+			this._VolunteersVolunteerTimeSlots = new EntitySet<VolunteersVolunteerTimeSlot>(new Action<VolunteersVolunteerTimeSlot>(this.attach_VolunteersVolunteerTimeSlots), new Action<VolunteersVolunteerTimeSlot>(this.detach_VolunteersVolunteerTimeSlots));
 			this._People = default(EntityRef<People>);
 			OnCreated();
 		}
@@ -2221,16 +1972,16 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="Volunteer_VolunteerTimeSlot", Storage="_VolunteerTimeSlots", ThisKey="person_id", OtherKey="volunteer_id")]
-		public EntitySet<VolunteerTimeSlot> VolunteerTimeSlots
+		[Association(Name="Volunteer_VolunteersVolunteerTimeSlot", Storage="_VolunteersVolunteerTimeSlots", ThisKey="person_id", OtherKey="volunteer_id")]
+		public EntitySet<VolunteersVolunteerTimeSlot> VolunteersVolunteerTimeSlots
 		{
 			get
 			{
-				return this._VolunteerTimeSlots;
+				return this._VolunteersVolunteerTimeSlots;
 			}
 			set
 			{
-				this._VolunteerTimeSlots.Assign(value);
+				this._VolunteersVolunteerTimeSlots.Assign(value);
 			}
 		}
 		
@@ -2288,13 +2039,13 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		private void attach_VolunteerTimeSlots(VolunteerTimeSlot entity)
+		private void attach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
 		{
 			this.SendPropertyChanging();
 			entity.Volunteer = this;
 		}
 		
-		private void detach_VolunteerTimeSlots(VolunteerTimeSlot entity)
+		private void detach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
 		{
 			this.SendPropertyChanging();
 			entity.Volunteer = null;
@@ -3232,6 +2983,401 @@ namespace Conferenceware.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.VolunteersVolunteerTimeSlots")]
+	public partial class VolunteersVolunteerTimeSlot : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _volunteer_timeslot_id;
+		
+		private int _volunteer_id;
+		
+		private bool _is_scheduled;
+		
+		private bool _is_confirmed;
+		
+		private EntityRef<Volunteer> _Volunteer;
+		
+		private EntityRef<VolunteerTimeSlot> _VolunteerTimeSlot;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onvolunteer_timeslot_idChanging(int value);
+    partial void Onvolunteer_timeslot_idChanged();
+    partial void Onvolunteer_idChanging(int value);
+    partial void Onvolunteer_idChanged();
+    partial void Onis_scheduledChanging(bool value);
+    partial void Onis_scheduledChanged();
+    partial void Onis_confirmedChanging(bool value);
+    partial void Onis_confirmedChanged();
+    #endregion
+		
+		public VolunteersVolunteerTimeSlot()
+		{
+			this._Volunteer = default(EntityRef<Volunteer>);
+			this._VolunteerTimeSlot = default(EntityRef<VolunteerTimeSlot>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_volunteer_timeslot_id", DbType="Int NOT NULL")]
+		public int volunteer_timeslot_id
+		{
+			get
+			{
+				return this._volunteer_timeslot_id;
+			}
+			set
+			{
+				if ((this._volunteer_timeslot_id != value))
+				{
+					if (this._VolunteerTimeSlot.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onvolunteer_timeslot_idChanging(value);
+					this.SendPropertyChanging();
+					this._volunteer_timeslot_id = value;
+					this.SendPropertyChanged("volunteer_timeslot_id");
+					this.Onvolunteer_timeslot_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_volunteer_id", DbType="Int NOT NULL")]
+		public int volunteer_id
+		{
+			get
+			{
+				return this._volunteer_id;
+			}
+			set
+			{
+				if ((this._volunteer_id != value))
+				{
+					if (this._Volunteer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onvolunteer_idChanging(value);
+					this.SendPropertyChanging();
+					this._volunteer_id = value;
+					this.SendPropertyChanged("volunteer_id");
+					this.Onvolunteer_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_is_scheduled", DbType="Bit NOT NULL")]
+		public bool is_scheduled
+		{
+			get
+			{
+				return this._is_scheduled;
+			}
+			set
+			{
+				if ((this._is_scheduled != value))
+				{
+					this.Onis_scheduledChanging(value);
+					this.SendPropertyChanging();
+					this._is_scheduled = value;
+					this.SendPropertyChanged("is_scheduled");
+					this.Onis_scheduledChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_is_confirmed", DbType="Bit NOT NULL")]
+		public bool is_confirmed
+		{
+			get
+			{
+				return this._is_confirmed;
+			}
+			set
+			{
+				if ((this._is_confirmed != value))
+				{
+					this.Onis_confirmedChanging(value);
+					this.SendPropertyChanging();
+					this._is_confirmed = value;
+					this.SendPropertyChanged("is_confirmed");
+					this.Onis_confirmedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Volunteer_VolunteersVolunteerTimeSlot", Storage="_Volunteer", ThisKey="volunteer_id", OtherKey="person_id", IsForeignKey=true)]
+		public Volunteer Volunteer
+		{
+			get
+			{
+				return this._Volunteer.Entity;
+			}
+			set
+			{
+				Volunteer previousValue = this._Volunteer.Entity;
+				if (((previousValue != value) 
+							|| (this._Volunteer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Volunteer.Entity = null;
+						previousValue.VolunteersVolunteerTimeSlots.Remove(this);
+					}
+					this._Volunteer.Entity = value;
+					if ((value != null))
+					{
+						value.VolunteersVolunteerTimeSlots.Add(this);
+						this._volunteer_id = value.person_id;
+					}
+					else
+					{
+						this._volunteer_id = default(int);
+					}
+					this.SendPropertyChanged("Volunteer");
+				}
+			}
+		}
+		
+		[Association(Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot", Storage="_VolunteerTimeSlot", ThisKey="volunteer_timeslot_id", OtherKey="timeslot_id", IsForeignKey=true)]
+		public VolunteerTimeSlot VolunteerTimeSlot
+		{
+			get
+			{
+				return this._VolunteerTimeSlot.Entity;
+			}
+			set
+			{
+				VolunteerTimeSlot previousValue = this._VolunteerTimeSlot.Entity;
+				if (((previousValue != value) 
+							|| (this._VolunteerTimeSlot.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._VolunteerTimeSlot.Entity = null;
+						previousValue.VolunteersVolunteerTimeSlots.Remove(this);
+					}
+					this._VolunteerTimeSlot.Entity = value;
+					if ((value != null))
+					{
+						value.VolunteersVolunteerTimeSlots.Add(this);
+						this._volunteer_timeslot_id = value.timeslot_id;
+					}
+					else
+					{
+						this._volunteer_timeslot_id = default(int);
+					}
+					this.SendPropertyChanged("VolunteerTimeSlot");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.VolunteerTimeSlots")]
+	public partial class VolunteerTimeSlot : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _timeslot_id;
+		
+		private bool _is_video;
+		
+		private EntitySet<VolunteersVolunteerTimeSlot> _VolunteersVolunteerTimeSlots;
+		
+		private EntityRef<TimeSlot> _TimeSlot;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ontimeslot_idChanging(int value);
+    partial void Ontimeslot_idChanged();
+    partial void Onis_videoChanging(bool value);
+    partial void Onis_videoChanged();
+    #endregion
+		
+		public VolunteerTimeSlot()
+		{
+			this._VolunteersVolunteerTimeSlots = new EntitySet<VolunteersVolunteerTimeSlot>(new Action<VolunteersVolunteerTimeSlot>(this.attach_VolunteersVolunteerTimeSlots), new Action<VolunteersVolunteerTimeSlot>(this.detach_VolunteersVolunteerTimeSlots));
+			this._TimeSlot = default(EntityRef<TimeSlot>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_timeslot_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int timeslot_id
+		{
+			get
+			{
+				return this._timeslot_id;
+			}
+			set
+			{
+				if ((this._timeslot_id != value))
+				{
+					if (this._TimeSlot.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Ontimeslot_idChanging(value);
+					this.SendPropertyChanging();
+					this._timeslot_id = value;
+					this.SendPropertyChanged("timeslot_id");
+					this.Ontimeslot_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_is_video", DbType="Bit NOT NULL")]
+		public bool is_video
+		{
+			get
+			{
+				return this._is_video;
+			}
+			set
+			{
+				if ((this._is_video != value))
+				{
+					this.Onis_videoChanging(value);
+					this.SendPropertyChanging();
+					this._is_video = value;
+					this.SendPropertyChanged("is_video");
+					this.Onis_videoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot", Storage="_VolunteersVolunteerTimeSlots", ThisKey="timeslot_id", OtherKey="volunteer_timeslot_id")]
+		public EntitySet<VolunteersVolunteerTimeSlot> VolunteersVolunteerTimeSlots
+		{
+			get
+			{
+				return this._VolunteersVolunteerTimeSlots;
+			}
+			set
+			{
+				this._VolunteersVolunteerTimeSlots.Assign(value);
+			}
+		}
+		
+		[Association(Name="TimeSlot_VolunteerTimeSlot", Storage="_TimeSlot", ThisKey="timeslot_id", OtherKey="id", IsForeignKey=true)]
+		public TimeSlot TimeSlot
+		{
+			get
+			{
+				return this._TimeSlot.Entity;
+			}
+			set
+			{
+				TimeSlot previousValue = this._TimeSlot.Entity;
+				if (((previousValue != value) 
+							|| (this._TimeSlot.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TimeSlot.Entity = null;
+						previousValue.VolunteerTimeSlot = null;
+					}
+					this._TimeSlot.Entity = value;
+					if ((value != null))
+					{
+						value.VolunteerTimeSlot = this;
+						this._timeslot_id = value.id;
+					}
+					else
+					{
+						this._timeslot_id = default(int);
+					}
+					this.SendPropertyChanged("TimeSlot");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
+		{
+			this.SendPropertyChanging();
+			entity.VolunteerTimeSlot = this;
+		}
+		
+		private void detach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
+		{
+			this.SendPropertyChanging();
+			entity.VolunteerTimeSlot = null;
 		}
 	}
 }
