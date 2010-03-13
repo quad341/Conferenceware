@@ -72,6 +72,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
     <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\TShirtSizeController.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Models\LocationMetadata.cs" />
     <Compile Include="Models\People.cs" />
     <Compile Include="Models\PeopleMetadata.cs" />
+    <Compile Include="Models\SettingsData.cs" />
     <Compile Include="Models\Speaker.cs" />
     <Compile Include="Models\TimeSlot.cs" />
     <Compile Include="Models\TimeSlotMetadata.cs" />
@@ -139,6 +141,7 @@
     <Content Include="Views\Location\LocationNotFound.aspx" />
     <Content Include="Views\Schedule\Details.aspx" />
     <Content Include="Views\Schedule\Index.aspx" />
+    <Content Include="Views\Settings\Index.aspx" />
     <Content Include="Views\Speaker\Create.aspx" />
     <Content Include="Views\Speaker\Edit.aspx" />
     <Content Include="Views\Speaker\Index.aspx" />

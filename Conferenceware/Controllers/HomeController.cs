@@ -11,8 +11,8 @@ namespace Conferenceware.Controllers
 			var frontPageSettings =
 				new FrontpageSettings
 					{
-						Title = Settings.FrontpageTitle,
-						Content = Settings.FrontpageContent
+						Title = SettingsData.FromCurrent(Server.MapPath(SettingsData.RESOURCE_FILE_NAME)).FrontpageTitle,
+						Content = SettingsData.FromCurrent(Server.MapPath(SettingsData.RESOURCE_FILE_NAME)).FrontpageContent
 					};
 			return View("Index", frontPageSettings);
 		}
