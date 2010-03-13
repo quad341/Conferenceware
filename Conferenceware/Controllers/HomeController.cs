@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
@@ -11,9 +8,18 @@ namespace Conferenceware.Controllers
 	{
 		public ActionResult Index()
 		{
-			ViewData["Message"] = "Welcome to ASP.NET MVC! (Simo was here)";
+			var frontPageSettings =
+				new FrontpageSettings
+					{
+						Title = Settings.FrontpageTitle,
+						Content = Settings.FrontpageContent
+					};
+			return View("Index", frontPageSettings);
+		}
 
-			return View();
+		public ActionResult Admin()
+		{
+			return View("Admin");
 		}
 
 		public ActionResult About()
