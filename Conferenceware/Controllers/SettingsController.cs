@@ -27,7 +27,7 @@ namespace Conferenceware.Controllers
 					settingsData.Save(Server.MapPath(SettingsData.RESOURCE_FILE_NAME));
 					TempData["Message"] = "Settings saved";
 				}
-				catch (Exception e)
+				catch
 				{
 					TempData["Message"] = "Unable to write file";
 				}

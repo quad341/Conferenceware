@@ -32,9 +32,9 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.id }) %> |
-                <!--TODO:<%= Html.ActionLink("Details", "Details", new { id=item.id })%>-->
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.id}) %>
+                <%= Html.ActionLink("Edit", "Edit", new { item.id }) %> |
+                <%= Html.ActionLink("Details", "Details", new { item.id })%>
+                <%= Html.ActionLink("Delete", "Delete", new { item.id}) %>
             </td>
             <td>
                 <%= Html.Encode(item.name) %>

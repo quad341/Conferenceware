@@ -1,4 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -31,6 +34,16 @@ namespace Conferenceware.Controllers
 			return View("Index", _repository.GetAllEvents());
 		}
 
+		public ActionResult Details(int id)
+		{
+			Event ev = _repository.GetEventById(id);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			return View("Details", ev);
+		}
+
 		public ActionResult Create()
 		{
 			return View("Create", MakeEditDataFromEvent(new Event()));
@@ -42,7 +55,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Create(FormCollection collection)
 		{
-			Event eventToCreate = null;
+			var eventToCreate = new Event();
 
 			if (TryUpdateModel(eventToCreate, "Event"))
 			{
@@ -111,12 +124,53 @@ namespace Conferenceware.Controllers
 
 		private EventEditData MakeEditDataFromEvent(Event e)
 		{
+			var allSpeakers = _repository.GetAllSpeakers().ToList();
+			foreach (var listedSpeaker in e.Speakers)
+			{
+				allSpeakers.Remove(listedSpeaker);
+			}
+			var allAttendees = _repository.GetAllAttendees().ToList();
+			foreach (var listedAttendee in e.Attendees)
+			{
+				allAttendees.Remove(listedAttendee);
+			}
 			return new EventEditData
 					{
 						Event = e,
-						Timeslots = new SelectList(_repository.GetAllTimeSlots(), "id", "StringValue"),
-						Locations = new SelectList(_repository.GetAllLocations(), "id", "StringValue")
+						Timeslots =
+							new SelectList(_repository.GetAllTimeSlots(), "id", "StringValue"),
+						Locations =
+							new SelectList(_repository.GetAllLocations(), "id", "StringValue"),
+						Attendees =
+							new SelectList(
+							allAttendees.OrderBy(
+								x => x.People.name),
+							"person_id",
+							"People.name"),
+						Speakers =
+							new SelectList(
+							allSpeakers.OrderBy(x => x.People.name),
+							"person_id",
+							"People.name")
 					};
+		}
+
+		[HttpPost]
+		public ActionResult AddSpeaker(int eventId, int speakerId)
+		{
+			var speaker = _repository.GetSpeakerById(speakerId);
+			if (speaker == null)
+			{
+				return RedirectToAction("Edit", new { id = eventId });
+			}
+			Event ev = _repository.GetEventById(eventId);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			_repository.RegisterSpeakerForEvent(speaker, ev);
+			_repository.Save();
+			return RedirectToAction("Edit", new { id = eventId });
 		}
 	}
 }

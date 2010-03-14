@@ -61,7 +61,7 @@ namespace Conferenceware {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This is the frontpage data. What used to be here is now at &lt;a href=&quot;Home/Admin&quot;&gt;/Admin&lt;/a&gt;.
+        ///   Looks up a localized string similar to This is the default frontpage data. What used to be here is now at &lt;a href=&quot;Home/Admin&quot;&gt;/Admin&lt;/a&gt;.
         /// </summary>
         internal static string FrontpageContent {
             get {

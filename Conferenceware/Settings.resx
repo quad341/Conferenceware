@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FrontpageContent" xml:space="preserve">
-    <value>This is the frontpage data. What used to be here is now at &lt;a href="Home/Admin"&gt;/Admin&lt;/a&gt;</value>
+    <value>This is the default frontpage data. What used to be here is now at &lt;a href="Home/Admin"&gt;/Admin&lt;/a&gt;</value>
     <comment>HTML string containing what will apprear on the front page; should eventually support {{ title }} for getting to "pages"</comment>
   </data>
   <data name="FrontpageTitle" xml:space="preserve">

@@ -5,6 +5,11 @@ body
 	background: url("./img/top.gif") repeat-x scroll center top #F0F7ED;
 }
 
+.display-label
+{
+    font-weight: bold;
+}
+
 #navigation 
 {
 	width: 814px;

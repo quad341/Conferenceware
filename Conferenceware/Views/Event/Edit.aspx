@@ -60,7 +60,40 @@
         </fieldset>
 
     <% } %>
-
+    <div class="display-label">
+        Speaker(s)</div>
+    <div class="display-field">
+        <ul>
+            <% foreach (var speaker in Model.Event.Speakers) {%>
+            <li>
+                <!-- remove button -->
+                <%= speaker.People.name %></li>
+            <% }%>
+        </ul>
+        <% using (Html.BeginForm("AddSpeaker", "Event")) {%>
+            <%= Html.Hidden("eventId", Model.Event.id) %>
+            <div class="editor-label">
+                Add Speaker
+            </div>
+            <div class="editor-field">
+                <%=  Html.DropDownList("speakerId", Model.Speakers) %>
+            </div>
+           
+            <p>
+                <input type="submit" value="Add" />
+            </p>
+        
+         <% }%>
+    <div class="display-label">Registered Attendee(s)</div>
+    <div class="display-field">
+        <ul>
+            <% foreach (var attendee in Model.Event.Attendees) {%>
+            <li>
+                <!-- remove button -->
+                <%= attendee.People.name %></li>
+            <% }%>
+        </ul>
+    </div>
     <div>
         <%=Html.ActionLink("Back to List", "Index") %>
     </div>

@@ -103,6 +103,7 @@
     <Compile Include="Models\PeopleMetadata.cs" />
     <Compile Include="Models\SettingsData.cs" />
     <Compile Include="Models\Speaker.cs" />
+    <Compile Include="Models\SpeakerComparitor.cs" />
     <Compile Include="Models\TimeSlot.cs" />
     <Compile Include="Models\TimeSlotMetadata.cs" />
     <Compile Include="Models\TShirtSize.cs" />
@@ -127,6 +128,7 @@
     <Content Include="Views\Attendee\Edit.aspx" />
     <Content Include="Views\Attendee\Index.aspx" />
     <Content Include="Views\Event\Create.aspx" />
+    <Content Include="Views\Event\Details.aspx" />
     <Content Include="Views\Event\Edit.aspx" />
     <Content Include="Views\Event\EventNotFound.aspx" />
     <Content Include="Views\Event\Index.aspx" />
