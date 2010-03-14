@@ -19,7 +19,7 @@
                 <ul id="menu">
                         <li><%= Html.ActionLink("Home", "Index", "Home")%></li>
                         <li>|</li>
-                        <li><%= Html.ActionLink("About", "About", "Home")%></li>
+                        <li><%= Html.ActionLink("Admin", "Admin", "Home")%></li>
                         <li>|</li>
                         <li><%= Html.ActionLink("Schedule", "Index", "Schedule") %></li>
                         <li>|</li>
@@ -28,6 +28,8 @@
                         <li><%= Html.ActionLink("Events", "Index", "Event") %></li>
                         <li>|</li>
                         <li><%= Html.ActionLink("Attendees", "Index", "Attendee") %></li>                      
+                        <li>|</li>
+                        <li><%= Html.ActionLink("Settings", "Index", "Settings")%></li>
                 </ul>
             </div>
             
