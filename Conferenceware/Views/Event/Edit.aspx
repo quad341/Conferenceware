@@ -92,7 +92,7 @@
     <div class="display-field">
         <ul>
             <% foreach (var attendee in Model.Event.Attendees) {%>
-            <li>
+            <li class="entry-with-inline-form">
                 <% using (Html.BeginForm("RemoveAttendee", "Event")) {%>
                     <%= Html.Hidden("eventId", Model.Event.id) %>
                     <%= Html.Hidden("attendeeID", attendee.person_id) %>

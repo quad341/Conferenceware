@@ -10,6 +10,11 @@ body
     font-weight: bold;
 }
 
+.entry-with-inline-form form
+{
+    display: inline;
+}
+
 #navigation 
 {
 	width: 814px;
