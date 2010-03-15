@@ -27,7 +27,6 @@ namespace Conferenceware.Controllers
 		public ActionResult Index()
 		{
 			var events = _repository.GetAllEvents();
-			var timeslots = _repository.GetAllTimeSlots();
 			return View("Index", events.OrderBy(e => e.TimeSlot.start_time));
 		}
 
