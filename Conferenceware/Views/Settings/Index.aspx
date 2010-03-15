@@ -16,6 +16,14 @@
             <legend>Fields</legend>
             
             <div class="editor-label">
+                <%= Html.LabelFor(model => model.EmailFrom) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.EmailFrom) %>
+                <%= Html.ValidationMessageFor(model => model.EmailFrom) %>
+            </div>
+            
+            <div class="editor-label">
                 <%= Html.LabelFor(model => model.FrontpageTitle) %>
             </div>
             <div class="editor-field">
@@ -31,6 +39,22 @@
                 <%= Html.ValidationMessageFor(model => model.FrontpageContent) %>
             </div>
             
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.EventRegistrationConfirmationSubjectFormat) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.EventRegistrationConfirmationSubjectFormat) %>
+                <%= Html.ValidationMessageFor(model => model.EventRegistrationConfirmationSubjectFormat) %>
+            </div>
+             
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.EventRegistrationConfirmationBodyFormat) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextAreaFor(model => model.EventRegistrationConfirmationBodyFormat, 15, 80, null) %>
+                <%= Html.ValidationMessageFor(model => model.EventRegistrationConfirmationBodyFormat) %>
+            </div>
+           
             <p>
                 <input type="submit" value="Save" />
             </p>

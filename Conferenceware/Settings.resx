@@ -117,6 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailFrom" xml:space="preserve">
+    <value>conference@acm.illinois.edu</value>
+    <comment>From email address for outgoing messages</comment>
+  </data>
+  <data name="EventRegistrationConfirmationBodyFormat" xml:space="preserve">
+    <value>This is a confirmation that you have registered to attend {0} at {1} in {2}. If you have any questions or would like to no longer be registered, please email conference@acm.illinois.edu.</value>
+    <comment>Body of email format for event registration confirmations. It will take parameters for name, then time, then location</comment>
+  </data>
+  <data name="EventRegistrationConfirmationSubjectFormat" xml:space="preserve">
+    <value>Event Registration Confirmation for {0}</value>
+  </data>
   <data name="FrontpageContent" xml:space="preserve">
     <value>This is the default frontpage data. What used to be here is now at &lt;a href="Home/Admin"&gt;/Admin&lt;/a&gt;</value>
     <comment>HTML string containing what will apprear on the front page; should eventually support {{ title }} for getting to "pages"</comment>

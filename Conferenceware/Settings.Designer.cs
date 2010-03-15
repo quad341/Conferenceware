@@ -61,6 +61,33 @@ namespace Conferenceware {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to conference@acm.illinois.edu.
+        /// </summary>
+        internal static string EmailFrom {
+            get {
+                return ResourceManager.GetString("EmailFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a confirmation that you have registered to attend {0} at {1} in {2}. If you have any questions or would like to no longer be registered, please email conference@acm.illinois.edu..
+        /// </summary>
+        internal static string EventRegistrationConfirmationBodyFormat {
+            get {
+                return ResourceManager.GetString("EventRegistrationConfirmationBodyFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event Registration Confirmation for {0}.
+        /// </summary>
+        internal static string EventRegistrationConfirmationSubjectFormat {
+            get {
+                return ResourceManager.GetString("EventRegistrationConfirmationSubjectFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the default frontpage data. What used to be here is now at &lt;a href=&quot;Home/Admin&quot;&gt;/Admin&lt;/a&gt;.
         /// </summary>
         internal static string FrontpageContent {
