@@ -142,6 +142,7 @@
     <Content Include="Views\Location\Index.aspx" />
     <Content Include="Views\Location\LocationNotFound.aspx" />
     <Content Include="Views\Schedule\Details.aspx" />
+    <Content Include="Views\Schedule\EventNotFound.aspx" />
     <Content Include="Views\Schedule\Index.aspx" />
     <Content Include="Views\Settings\Index.aspx" />
     <Content Include="Views\Speaker\Create.aspx" />

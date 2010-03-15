@@ -78,6 +78,21 @@ namespace Conferenceware.Models
     partial void InsertVolunteerTimeSlot(VolunteerTimeSlot instance);
     partial void UpdateVolunteerTimeSlot(VolunteerTimeSlot instance);
     partial void DeleteVolunteerTimeSlot(VolunteerTimeSlot instance);
+    partial void InsertCompany(Company instance);
+    partial void UpdateCompany(Company instance);
+    partial void DeleteCompany(Company instance);
+    partial void InsertCompanyPeople(CompanyPeople instance);
+    partial void UpdateCompanyPeople(CompanyPeople instance);
+    partial void DeleteCompanyPeople(CompanyPeople instance);
+    partial void InsertCompanyInvoiceItem(CompanyInvoiceItem instance);
+    partial void UpdateCompanyInvoiceItem(CompanyInvoiceItem instance);
+    partial void DeleteCompanyInvoiceItem(CompanyInvoiceItem instance);
+    partial void InsertCompanyInvoice(CompanyInvoice instance);
+    partial void UpdateCompanyInvoice(CompanyInvoice instance);
+    partial void DeleteCompanyInvoice(CompanyInvoice instance);
+    partial void InsertCompanyPayment(CompanyPayment instance);
+    partial void UpdateCompanyPayment(CompanyPayment instance);
+    partial void DeleteCompanyPayment(CompanyPayment instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -235,6 +250,46 @@ namespace Conferenceware.Models
 			get
 			{
 				return this.GetTable<VolunteerTimeSlot>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Company> Companies
+		{
+			get
+			{
+				return this.GetTable<Company>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompanyPeople> CompanyPeoples
+		{
+			get
+			{
+				return this.GetTable<CompanyPeople>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompanyInvoiceItem> CompanyInvoiceItems
+		{
+			get
+			{
+				return this.GetTable<CompanyInvoiceItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompanyInvoice> CompanyInvoices
+		{
+			get
+			{
+				return this.GetTable<CompanyInvoice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompanyPayment> CompanyPayments
+		{
+			get
+			{
+				return this.GetTable<CompanyPayment>();
 			}
 		}
 	}
@@ -1657,6 +1712,8 @@ namespace Conferenceware.Models
 		
 		private EntityRef<Staff> _Staff;
 		
+		private EntityRef<CompanyPeople> _CompanyPeople;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1677,6 +1734,7 @@ namespace Conferenceware.Models
 			this._Speaker = default(EntityRef<Speaker>);
 			this._Volunteer = default(EntityRef<Volunteer>);
 			this._Staff = default(EntityRef<Staff>);
+			this._CompanyPeople = default(EntityRef<CompanyPeople>);
 			OnCreated();
 		}
 		
@@ -1872,6 +1930,35 @@ namespace Conferenceware.Models
 						value.People = this;
 					}
 					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		[Association(Name="People_CompanyPeople", Storage="_CompanyPeople", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		public CompanyPeople CompanyPeople
+		{
+			get
+			{
+				return this._CompanyPeople.Entity;
+			}
+			set
+			{
+				CompanyPeople previousValue = this._CompanyPeople.Entity;
+				if (((previousValue != value) 
+							|| (this._CompanyPeople.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CompanyPeople.Entity = null;
+						previousValue.People = null;
+					}
+					this._CompanyPeople.Entity = value;
+					if ((value != null))
+					{
+						value.People = this;
+					}
+					this.SendPropertyChanged("CompanyPeople");
 				}
 			}
 		}
@@ -3378,6 +3465,1209 @@ namespace Conferenceware.Models
 		{
 			this.SendPropertyChanging();
 			entity.VolunteerTimeSlot = null;
+		}
+	}
+	
+	[Table(Name="dbo.Companies")]
+	public partial class Company : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _address_line1;
+		
+		private string _address_line2;
+		
+		private string _city;
+		
+		private string _state;
+		
+		private string _zip;
+		
+		private bool _needs_power;
+		
+		private bool _priority_shipping;
+		
+		private EntitySet<CompanyPeople> _CompanyPeoples;
+		
+		private EntitySet<CompanyInvoice> _CompanyInvoices;
+		
+		private EntitySet<CompanyPayment> _CompanyPayments;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void Onaddress_line1Changing(string value);
+    partial void Onaddress_line1Changed();
+    partial void Onaddress_line2Changing(string value);
+    partial void Onaddress_line2Changed();
+    partial void OncityChanging(string value);
+    partial void OncityChanged();
+    partial void OnstateChanging(string value);
+    partial void OnstateChanged();
+    partial void OnzipChanging(string value);
+    partial void OnzipChanged();
+    partial void Onneeds_powerChanging(bool value);
+    partial void Onneeds_powerChanged();
+    partial void Onpriority_shippingChanging(bool value);
+    partial void Onpriority_shippingChanged();
+    #endregion
+		
+		public Company()
+		{
+			this._CompanyPeoples = new EntitySet<CompanyPeople>(new Action<CompanyPeople>(this.attach_CompanyPeoples), new Action<CompanyPeople>(this.detach_CompanyPeoples));
+			this._CompanyInvoices = new EntitySet<CompanyInvoice>(new Action<CompanyInvoice>(this.attach_CompanyInvoices), new Action<CompanyInvoice>(this.detach_CompanyInvoices));
+			this._CompanyPayments = new EntitySet<CompanyPayment>(new Action<CompanyPayment>(this.attach_CompanyPayments), new Action<CompanyPayment>(this.detach_CompanyPayments));
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_address_line1", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string address_line1
+		{
+			get
+			{
+				return this._address_line1;
+			}
+			set
+			{
+				if ((this._address_line1 != value))
+				{
+					this.Onaddress_line1Changing(value);
+					this.SendPropertyChanging();
+					this._address_line1 = value;
+					this.SendPropertyChanged("address_line1");
+					this.Onaddress_line1Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_address_line2", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string address_line2
+		{
+			get
+			{
+				return this._address_line2;
+			}
+			set
+			{
+				if ((this._address_line2 != value))
+				{
+					this.Onaddress_line2Changing(value);
+					this.SendPropertyChanging();
+					this._address_line2 = value;
+					this.SendPropertyChanged("address_line2");
+					this.Onaddress_line2Changed();
+				}
+			}
+		}
+		
+		[Column(Storage="_city", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this.OncityChanging(value);
+					this.SendPropertyChanging();
+					this._city = value;
+					this.SendPropertyChanged("city");
+					this.OncityChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_state", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this.OnstateChanging(value);
+					this.SendPropertyChanging();
+					this._state = value;
+					this.SendPropertyChanged("state");
+					this.OnstateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_zip", DbType="Char(5) NOT NULL", CanBeNull=false)]
+		public string zip
+		{
+			get
+			{
+				return this._zip;
+			}
+			set
+			{
+				if ((this._zip != value))
+				{
+					this.OnzipChanging(value);
+					this.SendPropertyChanging();
+					this._zip = value;
+					this.SendPropertyChanged("zip");
+					this.OnzipChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_needs_power", DbType="Bit NOT NULL")]
+		public bool needs_power
+		{
+			get
+			{
+				return this._needs_power;
+			}
+			set
+			{
+				if ((this._needs_power != value))
+				{
+					this.Onneeds_powerChanging(value);
+					this.SendPropertyChanging();
+					this._needs_power = value;
+					this.SendPropertyChanged("needs_power");
+					this.Onneeds_powerChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_priority_shipping", DbType="Bit NOT NULL")]
+		public bool priority_shipping
+		{
+			get
+			{
+				return this._priority_shipping;
+			}
+			set
+			{
+				if ((this._priority_shipping != value))
+				{
+					this.Onpriority_shippingChanging(value);
+					this.SendPropertyChanging();
+					this._priority_shipping = value;
+					this.SendPropertyChanged("priority_shipping");
+					this.Onpriority_shippingChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Company_CompanyPeople", Storage="_CompanyPeoples", ThisKey="id", OtherKey="company_id")]
+		public EntitySet<CompanyPeople> CompanyPeoples
+		{
+			get
+			{
+				return this._CompanyPeoples;
+			}
+			set
+			{
+				this._CompanyPeoples.Assign(value);
+			}
+		}
+		
+		[Association(Name="Company_CompanyInvoice", Storage="_CompanyInvoices", ThisKey="id", OtherKey="company_id")]
+		public EntitySet<CompanyInvoice> CompanyInvoices
+		{
+			get
+			{
+				return this._CompanyInvoices;
+			}
+			set
+			{
+				this._CompanyInvoices.Assign(value);
+			}
+		}
+		
+		[Association(Name="Company_CompanyPayment", Storage="_CompanyPayments", ThisKey="id", OtherKey="company_id")]
+		public EntitySet<CompanyPayment> CompanyPayments
+		{
+			get
+			{
+				return this._CompanyPayments;
+			}
+			set
+			{
+				this._CompanyPayments.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CompanyPeoples(CompanyPeople entity)
+		{
+			this.SendPropertyChanging();
+			entity.Company = this;
+		}
+		
+		private void detach_CompanyPeoples(CompanyPeople entity)
+		{
+			this.SendPropertyChanging();
+			entity.Company = null;
+		}
+		
+		private void attach_CompanyInvoices(CompanyInvoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Company = this;
+		}
+		
+		private void detach_CompanyInvoices(CompanyInvoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Company = null;
+		}
+		
+		private void attach_CompanyPayments(CompanyPayment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Company = this;
+		}
+		
+		private void detach_CompanyPayments(CompanyPayment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Company = null;
+		}
+	}
+	
+	[Table(Name="dbo.CompanyPeople")]
+	public partial class CompanyPeople : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _person_id;
+		
+		private int _company_id;
+		
+		private bool _is_contact;
+		
+		private bool _is_attending;
+		
+		private EntityRef<Company> _Company;
+		
+		private EntityRef<People> _People;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onperson_idChanging(int value);
+    partial void Onperson_idChanged();
+    partial void Oncompany_idChanging(int value);
+    partial void Oncompany_idChanged();
+    partial void Onis_contactChanging(bool value);
+    partial void Onis_contactChanged();
+    partial void Onis_attendingChanging(bool value);
+    partial void Onis_attendingChanged();
+    #endregion
+		
+		public CompanyPeople()
+		{
+			this._Company = default(EntityRef<Company>);
+			this._People = default(EntityRef<People>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int person_id
+		{
+			get
+			{
+				return this._person_id;
+			}
+			set
+			{
+				if ((this._person_id != value))
+				{
+					if (this._People.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperson_idChanging(value);
+					this.SendPropertyChanging();
+					this._person_id = value;
+					this.SendPropertyChanged("person_id");
+					this.Onperson_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_company_id", DbType="Int NOT NULL")]
+		public int company_id
+		{
+			get
+			{
+				return this._company_id;
+			}
+			set
+			{
+				if ((this._company_id != value))
+				{
+					if (this._Company.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncompany_idChanging(value);
+					this.SendPropertyChanging();
+					this._company_id = value;
+					this.SendPropertyChanged("company_id");
+					this.Oncompany_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_is_contact", DbType="Bit NOT NULL")]
+		public bool is_contact
+		{
+			get
+			{
+				return this._is_contact;
+			}
+			set
+			{
+				if ((this._is_contact != value))
+				{
+					this.Onis_contactChanging(value);
+					this.SendPropertyChanging();
+					this._is_contact = value;
+					this.SendPropertyChanged("is_contact");
+					this.Onis_contactChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_is_attending", DbType="Bit NOT NULL")]
+		public bool is_attending
+		{
+			get
+			{
+				return this._is_attending;
+			}
+			set
+			{
+				if ((this._is_attending != value))
+				{
+					this.Onis_attendingChanging(value);
+					this.SendPropertyChanging();
+					this._is_attending = value;
+					this.SendPropertyChanged("is_attending");
+					this.Onis_attendingChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Company_CompanyPeople", Storage="_Company", ThisKey="company_id", OtherKey="id", IsForeignKey=true)]
+		public Company Company
+		{
+			get
+			{
+				return this._Company.Entity;
+			}
+			set
+			{
+				Company previousValue = this._Company.Entity;
+				if (((previousValue != value) 
+							|| (this._Company.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Company.Entity = null;
+						previousValue.CompanyPeoples.Remove(this);
+					}
+					this._Company.Entity = value;
+					if ((value != null))
+					{
+						value.CompanyPeoples.Add(this);
+						this._company_id = value.id;
+					}
+					else
+					{
+						this._company_id = default(int);
+					}
+					this.SendPropertyChanged("Company");
+				}
+			}
+		}
+		
+		[Association(Name="People_CompanyPeople", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		public People People
+		{
+			get
+			{
+				return this._People.Entity;
+			}
+			set
+			{
+				People previousValue = this._People.Entity;
+				if (((previousValue != value) 
+							|| (this._People.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._People.Entity = null;
+						previousValue.CompanyPeople = null;
+					}
+					this._People.Entity = value;
+					if ((value != null))
+					{
+						value.CompanyPeople = this;
+						this._person_id = value.id;
+					}
+					else
+					{
+						this._person_id = default(int);
+					}
+					this.SendPropertyChanged("People");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.CompanyInvoiceItems")]
+	public partial class CompanyInvoiceItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _invoice_id;
+		
+		private string _name;
+		
+		private string _description;
+		
+		private decimal _cost;
+		
+		private EntityRef<CompanyInvoice> _CompanyInvoice;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Oninvoice_idChanging(int value);
+    partial void Oninvoice_idChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void OncostChanging(decimal value);
+    partial void OncostChanged();
+    #endregion
+		
+		public CompanyInvoiceItem()
+		{
+			this._CompanyInvoice = default(EntityRef<CompanyInvoice>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_invoice_id", DbType="Int NOT NULL")]
+		public int invoice_id
+		{
+			get
+			{
+				return this._invoice_id;
+			}
+			set
+			{
+				if ((this._invoice_id != value))
+				{
+					if (this._CompanyInvoice.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oninvoice_idChanging(value);
+					this.SendPropertyChanging();
+					this._invoice_id = value;
+					this.SendPropertyChanged("invoice_id");
+					this.Oninvoice_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_cost", DbType="Money NOT NULL")]
+		public decimal cost
+		{
+			get
+			{
+				return this._cost;
+			}
+			set
+			{
+				if ((this._cost != value))
+				{
+					this.OncostChanging(value);
+					this.SendPropertyChanging();
+					this._cost = value;
+					this.SendPropertyChanged("cost");
+					this.OncostChanged();
+				}
+			}
+		}
+		
+		[Association(Name="CompanyInvoice_CompanyInvoiceItem", Storage="_CompanyInvoice", ThisKey="invoice_id", OtherKey="id", IsForeignKey=true)]
+		public CompanyInvoice CompanyInvoice
+		{
+			get
+			{
+				return this._CompanyInvoice.Entity;
+			}
+			set
+			{
+				CompanyInvoice previousValue = this._CompanyInvoice.Entity;
+				if (((previousValue != value) 
+							|| (this._CompanyInvoice.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CompanyInvoice.Entity = null;
+						previousValue.CompanyInvoiceItems.Remove(this);
+					}
+					this._CompanyInvoice.Entity = value;
+					if ((value != null))
+					{
+						value.CompanyInvoiceItems.Add(this);
+						this._invoice_id = value.id;
+					}
+					else
+					{
+						this._invoice_id = default(int);
+					}
+					this.SendPropertyChanged("CompanyInvoice");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.CompanyInvoices")]
+	public partial class CompanyInvoice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _company_id;
+		
+		private System.DateTime _created;
+		
+		private System.DateTime _last_sent;
+		
+		private bool _paid;
+		
+		private System.DateTime _marked_paid_date;
+		
+		private EntitySet<CompanyInvoiceItem> _CompanyInvoiceItems;
+		
+		private EntityRef<Company> _Company;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Oncompany_idChanging(int value);
+    partial void Oncompany_idChanged();
+    partial void OncreatedChanging(System.DateTime value);
+    partial void OncreatedChanged();
+    partial void Onlast_sentChanging(System.DateTime value);
+    partial void Onlast_sentChanged();
+    partial void OnpaidChanging(bool value);
+    partial void OnpaidChanged();
+    partial void Onmarked_paid_dateChanging(System.DateTime value);
+    partial void Onmarked_paid_dateChanged();
+    #endregion
+		
+		public CompanyInvoice()
+		{
+			this._CompanyInvoiceItems = new EntitySet<CompanyInvoiceItem>(new Action<CompanyInvoiceItem>(this.attach_CompanyInvoiceItems), new Action<CompanyInvoiceItem>(this.detach_CompanyInvoiceItems));
+			this._Company = default(EntityRef<Company>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_company_id", DbType="Int NOT NULL")]
+		public int company_id
+		{
+			get
+			{
+				return this._company_id;
+			}
+			set
+			{
+				if ((this._company_id != value))
+				{
+					if (this._Company.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncompany_idChanging(value);
+					this.SendPropertyChanging();
+					this._company_id = value;
+					this.SendPropertyChanged("company_id");
+					this.Oncompany_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_created", DbType="DateTime NOT NULL")]
+		public System.DateTime created
+		{
+			get
+			{
+				return this._created;
+			}
+			set
+			{
+				if ((this._created != value))
+				{
+					this.OncreatedChanging(value);
+					this.SendPropertyChanging();
+					this._created = value;
+					this.SendPropertyChanged("created");
+					this.OncreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_last_sent", DbType="DateTime NOT NULL")]
+		public System.DateTime last_sent
+		{
+			get
+			{
+				return this._last_sent;
+			}
+			set
+			{
+				if ((this._last_sent != value))
+				{
+					this.Onlast_sentChanging(value);
+					this.SendPropertyChanging();
+					this._last_sent = value;
+					this.SendPropertyChanged("last_sent");
+					this.Onlast_sentChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_paid", DbType="Bit NOT NULL")]
+		public bool paid
+		{
+			get
+			{
+				return this._paid;
+			}
+			set
+			{
+				if ((this._paid != value))
+				{
+					this.OnpaidChanging(value);
+					this.SendPropertyChanging();
+					this._paid = value;
+					this.SendPropertyChanged("paid");
+					this.OnpaidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_marked_paid_date", DbType="DateTime NOT NULL")]
+		public System.DateTime marked_paid_date
+		{
+			get
+			{
+				return this._marked_paid_date;
+			}
+			set
+			{
+				if ((this._marked_paid_date != value))
+				{
+					this.Onmarked_paid_dateChanging(value);
+					this.SendPropertyChanging();
+					this._marked_paid_date = value;
+					this.SendPropertyChanged("marked_paid_date");
+					this.Onmarked_paid_dateChanged();
+				}
+			}
+		}
+		
+		[Association(Name="CompanyInvoice_CompanyInvoiceItem", Storage="_CompanyInvoiceItems", ThisKey="id", OtherKey="invoice_id")]
+		public EntitySet<CompanyInvoiceItem> CompanyInvoiceItems
+		{
+			get
+			{
+				return this._CompanyInvoiceItems;
+			}
+			set
+			{
+				this._CompanyInvoiceItems.Assign(value);
+			}
+		}
+		
+		[Association(Name="Company_CompanyInvoice", Storage="_Company", ThisKey="company_id", OtherKey="id", IsForeignKey=true)]
+		public Company Company
+		{
+			get
+			{
+				return this._Company.Entity;
+			}
+			set
+			{
+				Company previousValue = this._Company.Entity;
+				if (((previousValue != value) 
+							|| (this._Company.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Company.Entity = null;
+						previousValue.CompanyInvoices.Remove(this);
+					}
+					this._Company.Entity = value;
+					if ((value != null))
+					{
+						value.CompanyInvoices.Add(this);
+						this._company_id = value.id;
+					}
+					else
+					{
+						this._company_id = default(int);
+					}
+					this.SendPropertyChanged("Company");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CompanyInvoiceItems(CompanyInvoiceItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.CompanyInvoice = this;
+		}
+		
+		private void detach_CompanyInvoiceItems(CompanyInvoiceItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.CompanyInvoice = null;
+		}
+	}
+	
+	[Table(Name="dbo.CompanyPayments")]
+	public partial class CompanyPayment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _company_id;
+		
+		private System.DateTime _received_date;
+		
+		private decimal _amount;
+		
+		private string _comments;
+		
+		private EntityRef<Company> _Company;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Oncompany_idChanging(int value);
+    partial void Oncompany_idChanged();
+    partial void Onreceived_dateChanging(System.DateTime value);
+    partial void Onreceived_dateChanged();
+    partial void OnamountChanging(decimal value);
+    partial void OnamountChanged();
+    partial void OncommentsChanging(string value);
+    partial void OncommentsChanged();
+    #endregion
+		
+		public CompanyPayment()
+		{
+			this._Company = default(EntityRef<Company>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_company_id", DbType="Int NOT NULL")]
+		public int company_id
+		{
+			get
+			{
+				return this._company_id;
+			}
+			set
+			{
+				if ((this._company_id != value))
+				{
+					if (this._Company.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncompany_idChanging(value);
+					this.SendPropertyChanging();
+					this._company_id = value;
+					this.SendPropertyChanged("company_id");
+					this.Oncompany_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_received_date", DbType="Date NOT NULL")]
+		public System.DateTime received_date
+		{
+			get
+			{
+				return this._received_date;
+			}
+			set
+			{
+				if ((this._received_date != value))
+				{
+					this.Onreceived_dateChanging(value);
+					this.SendPropertyChanging();
+					this._received_date = value;
+					this.SendPropertyChanged("received_date");
+					this.Onreceived_dateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_amount", DbType="Money NOT NULL")]
+		public decimal amount
+		{
+			get
+			{
+				return this._amount;
+			}
+			set
+			{
+				if ((this._amount != value))
+				{
+					this.OnamountChanging(value);
+					this.SendPropertyChanging();
+					this._amount = value;
+					this.SendPropertyChanged("amount");
+					this.OnamountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_comments", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string comments
+		{
+			get
+			{
+				return this._comments;
+			}
+			set
+			{
+				if ((this._comments != value))
+				{
+					this.OncommentsChanging(value);
+					this.SendPropertyChanging();
+					this._comments = value;
+					this.SendPropertyChanged("comments");
+					this.OncommentsChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Company_CompanyPayment", Storage="_Company", ThisKey="company_id", OtherKey="id", IsForeignKey=true)]
+		public Company Company
+		{
+			get
+			{
+				return this._Company.Entity;
+			}
+			set
+			{
+				Company previousValue = this._Company.Entity;
+				if (((previousValue != value) 
+							|| (this._Company.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Company.Entity = null;
+						previousValue.CompanyPayments.Remove(this);
+					}
+					this._Company.Entity = value;
+					if ((value != null))
+					{
+						value.CompanyPayments.Add(this);
+						this._company_id = value.id;
+					}
+					else
+					{
+						this._company_id = default(int);
+					}
+					this.SendPropertyChanged("Company");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

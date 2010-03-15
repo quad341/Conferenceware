@@ -81,6 +81,7 @@
       <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
       <Association Name="People_Volunteer" Member="Volunteer" ThisKey="id" OtherKey="person_id" Type="Volunteer" Cardinality="One" />
       <Association Name="People_Staff" Member="Staff" ThisKey="id" OtherKey="person_id" Type="Staff" Cardinality="One" />
+      <Association Name="People_CompanyPeople" Member="CompanyPeople" ThisKey="id" OtherKey="person_id" Type="CompanyPeople" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.Volunteers" Member="Volunteers">
@@ -152,6 +153,64 @@
       <Column Name="is_video" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot" Member="VolunteersVolunteerTimeSlots" ThisKey="timeslot_id" OtherKey="volunteer_timeslot_id" Type="VolunteersVolunteerTimeSlot" />
       <Association Name="TimeSlot_VolunteerTimeSlot" Member="TimeSlot" ThisKey="timeslot_id" OtherKey="id" Type="TimeSlot" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Companies" Member="Companies">
+    <Type Name="Company">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="address_line1" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="address_line2" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="city" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="state" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="zip" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="needs_power" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="priority_shipping" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Company_CompanyPeople" Member="CompanyPeoples" ThisKey="id" OtherKey="company_id" Type="CompanyPeople" />
+      <Association Name="Company_CompanyInvoice" Member="CompanyInvoices" ThisKey="id" OtherKey="company_id" Type="CompanyInvoice" />
+      <Association Name="Company_CompanyPayment" Member="CompanyPayments" ThisKey="id" OtherKey="company_id" Type="CompanyPayment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyPeople" Member="CompanyPeoples">
+    <Type Name="CompanyPeople">
+      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="company_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="is_contact" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="is_attending" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Company_CompanyPeople" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
+      <Association Name="People_CompanyPeople" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyInvoiceItems" Member="CompanyInvoiceItems">
+    <Type Name="CompanyInvoiceItem">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="invoice_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="cost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Association Name="CompanyInvoice_CompanyInvoiceItem" Member="CompanyInvoice" ThisKey="invoice_id" OtherKey="id" Type="CompanyInvoice" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyInvoices" Member="CompanyInvoices">
+    <Type Name="CompanyInvoice">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="company_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="created" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_sent" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="paid" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="marked_paid_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="CompanyInvoice_CompanyInvoiceItem" Member="CompanyInvoiceItems" ThisKey="id" OtherKey="invoice_id" Type="CompanyInvoiceItem" />
+      <Association Name="Company_CompanyInvoice" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyPayments" Member="CompanyPayments">
+    <Type Name="CompanyPayment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="company_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="received_date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="amount" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="comments" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Company_CompanyPayment" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
