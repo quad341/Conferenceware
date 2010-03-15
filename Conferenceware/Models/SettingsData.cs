@@ -82,10 +82,15 @@ namespace Conferenceware.Models
 		{
 			ResourceReader reader = null;
 			var sd = new SettingsData
-					{
-						FrontpageContent = Settings.FrontpageContent,
-						FrontpageTitle = Settings.FrontpageTitle
-					};
+						{
+							FrontpageContent = Settings.FrontpageContent,
+							FrontpageTitle = Settings.FrontpageTitle,
+							EmailFrom = Settings.EmailFrom,
+							EventRegistrationConfirmationSubjectFormat =
+								Settings.EventRegistrationConfirmationSubjectFormat,
+							EventRegistrationConfirmationBodyFormat =
+								Settings.EventRegistrationConfirmationBodyFormat
+						};
 			try
 			{
 				reader = new ResourceReader(path);
