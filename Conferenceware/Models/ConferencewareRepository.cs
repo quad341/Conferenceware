@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Conferenceware.Models
 {
@@ -6,7 +7,8 @@ namespace Conferenceware.Models
 	{
 		private readonly ConferencewareDataContext _conferenceware;
 
-		public ConferencewareRepository() : this(new ConferencewareDataContext())
+		public ConferencewareRepository()
+			: this(new ConferencewareDataContext())
 		{
 			// no additional actions needed
 		}
@@ -18,53 +20,53 @@ namespace Conferenceware.Models
 
 		public void AddEvent(Event ev)
 		{
-            _conferenceware.Events.InsertOnSubmit(ev);
+			_conferenceware.Events.InsertOnSubmit(ev);
 		}
 
 		public void DeleteEvent(Event ev)
 		{
-            _conferenceware.Events.DeleteOnSubmit(ev);
+			_conferenceware.Events.DeleteOnSubmit(ev);
 		}
 
 		public void DeleteEvent(int id)
 		{
-            DeleteEvent(GetEventById(id));
+			DeleteEvent(GetEventById(id));
 		}
 
 		public Event GetEventById(int id)
 		{
-            return _conferenceware.Events.SingleOrDefault(x => x.id == id);
+			return _conferenceware.Events.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<Event> GetAllEvents()
 		{
-            return _conferenceware.Events.AsQueryable();
+			return _conferenceware.Events.AsQueryable();
 		}
 
 		public void AddAttendee(Attendee attendee)
 		{
-            _conferenceware.Attendees.InsertOnSubmit(attendee);
+			_conferenceware.Attendees.InsertOnSubmit(attendee);
 		}
 
 		public void DeleteAttendee(Attendee attendee)
 		{
-            DeletePerson(attendee.person_id);
-            _conferenceware.Attendees.DeleteOnSubmit(attendee);
+			DeletePerson(attendee.person_id);
+			_conferenceware.Attendees.DeleteOnSubmit(attendee);
 		}
 
 		public void DeleteAttendee(int id)
 		{
-            DeleteAttendee(GetAttendeeById(id));
+			DeleteAttendee(GetAttendeeById(id));
 		}
 
 		public Attendee GetAttendeeById(int id)
 		{
-           return _conferenceware.Attendees.SingleOrDefault(x => x.person_id == id);
+			return _conferenceware.Attendees.SingleOrDefault(x => x.person_id == id);
 		}
 
 		public IQueryable<Attendee> GetAllAttendees()
 		{
-            return _conferenceware.Attendees.AsQueryable();
+			return _conferenceware.Attendees.AsQueryable();
 		}
 
 		public void AddLocation(Location location)
@@ -94,69 +96,93 @@ namespace Conferenceware.Models
 
 		public void AddTimeSlot(TimeSlot timeslot)
 		{
-            _conferenceware.TimeSlots.InsertOnSubmit(timeslot);
+			_conferenceware.TimeSlots.InsertOnSubmit(timeslot);
 		}
 
 		public void DeleteTimeSlot(TimeSlot timeslot)
 		{
-            _conferenceware.TimeSlots.DeleteOnSubmit(timeslot);
+			_conferenceware.TimeSlots.DeleteOnSubmit(timeslot);
 		}
 
 		public void DeleteTimeSlot(int id)
 		{
-            DeleteTimeSlot(GetTimeSlotById(id));
+			DeleteTimeSlot(GetTimeSlotById(id));
 		}
 
 		public TimeSlot GetTimeSlotById(int id)
 		{
-            return _conferenceware.TimeSlots.SingleOrDefault(x => x.id == id);
+			return _conferenceware.TimeSlots.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<TimeSlot> GetAllTimeSlots()
 		{
-            return _conferenceware.TimeSlots.AsQueryable();
+			return _conferenceware.TimeSlots.AsQueryable();
 		}
 
 		public void AddSpeaker(Speaker speaker)
 		{
-            _conferenceware.Speakers.InsertOnSubmit(speaker);
+			_conferenceware.Speakers.InsertOnSubmit(speaker);
 		}
 
 		public void DeleteSpeaker(Speaker speaker)
 		{
-            DeletePerson(speaker.person_id);
-            _conferenceware.Speakers.DeleteOnSubmit(speaker);
+			DeletePerson(speaker.person_id);
+			_conferenceware.Speakers.DeleteOnSubmit(speaker);
 		}
 
 		public void DeleteSpeaker(int id)
 		{
-            DeleteSpeaker(GetSpeakerById(id));
+			DeleteSpeaker(GetSpeakerById(id));
 		}
 
 		public Speaker GetSpeakerById(int id)
 		{
-            return _conferenceware.Speakers.SingleOrDefault(x => x.person_id == id);
+			return _conferenceware.Speakers.SingleOrDefault(x => x.person_id == id);
 		}
 
 		public IQueryable<Speaker> GetAllSpeakers()
 		{
-            return _conferenceware.Speakers.AsQueryable();
+			return _conferenceware.Speakers.AsQueryable();
 		}
 
 		public void RegisterAttendeeForEvent(Attendee attendee, Event ev)
 		{
-            EventsAttendee eva = new EventsAttendee();
-            eva.Attendee = attendee;
-            eva.Event = ev;
-            _conferenceware.EventsAttendees.InsertOnSubmit(eva);
+			var eva =
+				_conferenceware.EventsAttendees.SingleOrDefault(
+					x => x.Attendee == attendee && x.Event == ev);
+			if (eva == null)
+			{
+				eva = new EventsAttendee { Attendee = attendee, Event = ev };
+				_conferenceware.EventsAttendees.InsertOnSubmit(eva);
+			}
+		}
+
+		public void UnRegisterAttendeeForEvent(Attendee attendee, Event ev)
+		{
+			var eva =
+				_conferenceware.EventsAttendees.SingleOrDefault(
+					x => x.Attendee == attendee && x.Event == ev);
+			_conferenceware.EventsAttendees.DeleteOnSubmit(eva);
 		}
 
 		public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
 		{
-            EventsSpeaker evs = new EventsSpeaker();
-            evs.Speaker = speaker;
-            evs.Event = ev;
-            _conferenceware.EventsSpeakers.InsertOnSubmit(evs);
+			var evs =
+				_conferenceware.EventsSpeakers.SingleOrDefault(
+					x => x.Speaker == speaker && x.Event == ev);
+			if (evs == null)
+			{
+				evs = new EventsSpeaker { Speaker = speaker, Event = ev };
+				_conferenceware.EventsSpeakers.InsertOnSubmit(evs);
+			}
+		}
+
+		public void UnRegisterSpeakerForEvent(Speaker speaker, Event ev)
+		{
+			var evs =
+				_conferenceware.EventsSpeakers.SingleOrDefault(
+					x => x.Speaker == speaker && x.Event == ev);
+			_conferenceware.EventsSpeakers.DeleteOnSubmit(evs);
 		}
 
 		public void AddFood(Food food)
@@ -210,19 +236,19 @@ namespace Conferenceware.Models
 		}
 
 		public void DeletePerson(People person)
-        {
-            _conferenceware.Peoples.DeleteOnSubmit(person);
-        }
+		{
+			_conferenceware.Peoples.DeleteOnSubmit(person);
+		}
 
-        public void DeletePerson(int id)
-        {
-            DeletePerson(GetPersonById(id));
-        }
+		public void DeletePerson(int id)
+		{
+			DeletePerson(GetPersonById(id));
+		}
 
-        public People GetPersonById(int id)
-        {
-            return _conferenceware.Peoples.SingleOrDefault(x => x.id == id);
-        }
+		public People GetPersonById(int id)
+		{
+			return _conferenceware.Peoples.SingleOrDefault(x => x.id == id);
+		}
 
 		public void Save()
 		{

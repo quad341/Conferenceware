@@ -65,8 +65,12 @@
     <div class="display-field">
         <ul>
             <% foreach (var speaker in Model.Event.Speakers) {%>
-            <li>
-                <!-- remove button -->
+            <li class="entry-with-inline-form">
+                <% using (Html.BeginForm("RemoveSpeaker", "Event")) {%>
+                    <%= Html.Hidden("eventId", Model.Event.id) %>
+                    <%= Html.Hidden("speakerID", speaker.person_id) %>
+                    <input type="submit" value="Remove" />
+                <% }%>
                 <%= speaker.People.name %></li>
             <% }%>
         </ul>
@@ -89,10 +93,30 @@
         <ul>
             <% foreach (var attendee in Model.Event.Attendees) {%>
             <li>
+                <% using (Html.BeginForm("RemoveAttendee", "Event")) {%>
+                    <%= Html.Hidden("eventId", Model.Event.id) %>
+                    <%= Html.Hidden("attendeeID", attendee.person_id) %>
+                    <input type="submit" value="Remove" />
+                <% }%>
                 <!-- remove button -->
                 <%= attendee.People.name %></li>
             <% }%>
         </ul>
+        <!-- Administrators should be able to do this always even exceeding maximums -->
+        <% using (Html.BeginForm("AddAttendee", "Event")) {%>
+            <%= Html.Hidden("eventId", Model.Event.id) %>
+            <div class="editor-label">
+                Add Attendee
+            </div>
+            <div class="editor-field">
+                <%=  Html.DropDownList("attendeeId", Model.Attendees) %>
+            </div>
+           
+            <p>
+                <input type="submit" value="Add" />
+            </p>
+        
+         <% }%>
     </div>
     <div>
         <%=Html.ActionLink("Back to List", "Index") %>

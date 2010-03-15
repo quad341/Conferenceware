@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Conferenceware.Models;
@@ -169,6 +168,60 @@ namespace Conferenceware.Controllers
 				return View("EventNotFound");
 			}
 			_repository.RegisterSpeakerForEvent(speaker, ev);
+			_repository.Save();
+			return RedirectToAction("Edit", new { id = eventId });
+		}
+
+		[HttpPost]
+		public ActionResult RemoveSpeaker(int eventId, int speakerId)
+		{
+			var speaker = _repository.GetSpeakerById(speakerId);
+			if (speaker == null)
+			{
+				return RedirectToAction("Edit", new { id = eventId });
+			}
+			Event ev = _repository.GetEventById(eventId);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			_repository.UnRegisterSpeakerForEvent(speaker, ev);
+			_repository.Save();
+			return RedirectToAction("Edit", new { id = eventId });
+		}
+
+		[HttpPost]
+		public ActionResult AddAttendee(int eventId, int attendeeId)
+		{
+			var attendee = _repository.GetAttendeeById(attendeeId);
+			if (attendee == null)
+			{
+				return RedirectToAction("Edit", new { id = eventId });
+			}
+			Event ev = _repository.GetEventById(eventId);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			_repository.RegisterAttendeeForEvent(attendee, ev);
+			_repository.Save();
+			return RedirectToAction("Edit", new { id = eventId });
+		}
+
+		[HttpPost]
+		public ActionResult RemoveAttendee(int eventId, int attendeeId)
+		{
+			var attendee = _repository.GetAttendeeById(attendeeId);
+			if (attendee == null)
+			{
+				return RedirectToAction("Edit", new { id = eventId });
+			}
+			Event ev = _repository.GetEventById(eventId);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			_repository.UnRegisterAttendeeForEvent(attendee, ev);
 			_repository.Save();
 			return RedirectToAction("Edit", new { id = eventId });
 		}

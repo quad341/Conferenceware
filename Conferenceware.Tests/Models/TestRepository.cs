@@ -180,6 +180,11 @@ namespace Conferenceware.Tests.Models
 			attendee.EventsAttendees.Insert(0, eva);
 		}
 
+		public void UnRegisterAttendeeForEvent(Attendee attendee, Event ev)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void RegisterSpeakerForEvent(Speaker speaker, Event ev)
 		{
 			var evs = new EventsSpeaker();
@@ -187,6 +192,11 @@ namespace Conferenceware.Tests.Models
 			evs.Event = ev;
 			ev.EventsSpeakers.Insert(0, evs);
 			speaker.EventsSpeakers.Insert(0, evs);
+		}
+
+		public void UnRegisterSpeakerForEvent(Speaker speaker, Event ev)
+		{
+			throw new NotImplementedException();
 		}
 
 		public void AddFood(Food food)
