@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Conferenceware.Controllers.AccountController" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAAAAAAhQAAAAAAAAAAAAABAAAEAAAAAAQAIAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.AttendeeController" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAQAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AttendeeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.EventController" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBAAAKCAAAAAAAAAEAAEAGAAEAAEAAAAA=</HashCode>
+      <FileName>Controllers\EventController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.FoodController" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\FoodController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.HomeController" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.LocationController" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\LocationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.ScheduleController" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBAAAAAAAAAAAAAAAAAAAAAAEAAgAAAAA=</HashCode>
+      <FileName>Controllers\ScheduleController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.SettingsController" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\SettingsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.SpeakerController" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\SpeakerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.TimeSlotController" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TimeSlotController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Controllers.TShirtSizeController" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\TShirtSizeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.MvcApplication" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAIAAAAAAAAAAA=</HashCode>
+      <FileName>Global.asax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Settings" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAACAAAAAFEAAAAQAAAAAAEAAAEAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.AccountMembershipService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAgAAAAQAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.FormsAuthenticationService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.ValidationUtil" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.ChangePasswordModel" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.LogOnModel" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAQAAAAAgAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.RegisterModel" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAQAAAAAAIAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.PropertiesMustMatchAttribute" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAoAAAAAAAAAAgAAAAAAAAIQAAgAAAAAAAAAAg=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.ValidatePasswordLengthAttribute" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAgAAAAAAABAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.Attendee" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYgsAIBQIAAABIAQIEEAQEBiCCAAqAJxAACAgADAAE=</HashCode>
+      <FileName>Models\Attendee.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.AttendeeEditData" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AttendeeEditData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.AttendeeMetadata" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\AttendeeMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.ConferencewareDataContext" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJIGEBAAwKpAqAkQYIRBIFKCyIQcCEgoEkAQhCADEQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.TShirtSize" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiIAABAABAAAgFQAFABAABjCAEQAAAAAAAAAAQAgA=</HashCode>
+      <FileName>Models\TShirtSize.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.EventsAttendee" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAABAEAIAAAAYAFABAEBiiAAAAAAAABAIAQAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.EventsSpeaker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEogAABAAEAAAAAYAFAAAEBiigAAAAAAAAAIAQAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.Food" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiIAABAABAAAgFQAFABAABjCAEQAAAAAAAAAAQAgA=</HashCode>
+      <FileName>Models\Food.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.Location" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAwAQAhgAABACQERAFGEAABjiACBAAgAAAkAAAQIgQ=</HashCode>
+      <FileName>Models\Location.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.Speaker" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAJBAIIAAAAAwAEAAACBiCCAAoABAAAAAAACAAA=</HashCode>
+      <FileName>Models\Speaker.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.TimeSlot" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAABhAAAAAQUQIFDAAAFniAAAAAgAAEAAAQQAgA=</HashCode>
+      <FileName>Models\TimeSlot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.People" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAArIQABAEAgAAAgRAlABAIBjCkEQAAAAAACAAAQAgE=</HashCode>
+      <FileName>Models\People.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.Volunteer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAgCAIBAIEAAAAAQAEgQAABiCCAggBBBAAAAAACAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.Staff" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgBAIBAIAAAAAAQAEAAAABiiCAAgQBAAAAAAACAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.Event" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAiYAJhBgMJIEEEYANAZADBjCCEQIAAwAQEEgBQIgU=</HashCode>
+      <FileName>Models\Event.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.MechManiaTeam" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAgAAJBBECIACCAQgNAJAgB3mACAAABAAAEAAAQAgI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.Page" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAgAAABQIAAAAAAQAFBABQBjCACAAAAAAIEBAAQAqA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.VolunteersVolunteerTimeSlot" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAIBAAABgAAAQhFAEAMFjSBAIAAAGAEIAAQQAwA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.VolunteerTimeSlot" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAEgSAABAAAIAEEAUAUiQABBiCAAAAAABAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.ConferencewareRepository" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAhIAAAkgoAeBYIACAQMABCAASgAAEICAAABgEFBA=</HashCode>
+      <FileName>Models\ConferencewareRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.DataAnnotationsValidationRunner" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataAnnotationsValidationRunner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.EventEditData" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAEAIABAAAAgAAAAAAAAAEAAAAAAQ=</HashCode>
+      <FileName>Models\EventEditData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.EventMetadata" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAIIAAAIAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.FoodMetadata" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FoodMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.FrontpageSettings" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\FrontpageSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.LocationMetadata" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAEAEAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>Models\LocationMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.PeopleMetadata" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Models\PeopleMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.SettingsData" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAAADAAAAAFAAAAAAAAAAAAEAAAEAAAAAA=</HashCode>
+      <FileName>Models\SettingsData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.SpeakerComparitor" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SpeakerComparitor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Conferenceware.Models.TimeSlotMetadata" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TimeSlotMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Conferenceware.Models.TShirtSizeMetadata" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TShirtSizeMetadata.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Conferenceware.Models.IMembershipService" Collapsed="true">
+    <Position X="2.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAgAAAAQAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Conferenceware.Models.IFormsAuthenticationService" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AccountModels.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Conferenceware.Models.IRepository" Collapsed="true">
+    <Position X="4" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgIAAAkgoAeBYIACAAMABCAASgAAEICAAABAEFBA=</HashCode>
+      <FileName>Models\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

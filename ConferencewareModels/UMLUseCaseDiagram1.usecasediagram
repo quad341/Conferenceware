@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="f97aa79c-c4fa-43fe-a5b5-66bb9f00769b" name="UMLUseCaseDiagram1" linkedPackageId="629153c8-448c-40f2-a2fb-eda95eb31966" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="bdfeb977-01a7-4aac-aa8f-724be6159f6d">
+      <profileInstance Id="5412ad91-365e-4374-b47f-140aca2016b7" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="c9f443f5-d1bf-46b5-94af-9399c63431c6">
+      <profileInstance Id="890adf1a-cad3-47b4-914b-36a654cb9cac" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="8620809c-78b4-44a6-af52-fa94646d1021" name="Admin" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c661af1d-c77e-4ab0-97be-beb9f0f69549" />
+        <targetEnds>
+          <association Id="14e19acb-a765-425e-b9f3-19bfa9a08309" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="Add Tshirt Size" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="94a0eccf-a151-4e36-b56d-2e3fd7af3254" LastKnownName="Add Tshirt Size" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e612591d-b5a9-4f19-a07c-6723fa7cefdc" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="087049ae-4eb2-4385-8420-40f30d21680d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a8792cdc-ecbf-40d7-af36-b1580e7c025a" name="Add Tshirt Size" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="634c0a0d-1635-4b77-b335-e7aaaca6b55a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="32857a18-d90a-4293-80e0-e07a1bb692fd" />
+          </association>
+          <association Id="6dc80a3d-030c-4278-8b3b-738dbdb41cc2" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="ManageEvent" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="99fd590f-b49a-4484-bff9-1208d99e3d86" LastKnownName="ManageEvent" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ea41c19b-7d2a-4f89-bf62-d1591cdb3a8c" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ded340d2-b5f5-404f-b3ff-1ba47f25dc89" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7911bd0b-4fc9-49fa-83c6-bef4d3401194" name="ManageEvent" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="fe7ebf71-671e-4a77-90eb-3c1eddf57fe5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d1f4e5e8-a187-45fe-8f5c-8160d7b221b1" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="94a0eccf-a151-4e36-b56d-2e3fd7af3254" name="Add Tshirt Size" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="541944a0-f002-4777-a586-50279cb696d9" />
+        <targetEnds>
+          <association Id="1edb5e6f-2c91-4e1c-a1d6-67d5513067bd" isDerived="false" sourceEndRoleName="Add Tshirt Size" targetEndRoleName="Update Repository" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="46fddf95-f9c2-4e0a-b431-6eb5f47b23b3" LastKnownName="Update Repository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="122d163f-21ce-4dc7-a4bb-c8749f831aea" name="Add Tshirt Size" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b2d73fb0-1202-4872-bb76-6919ddb78616" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0e564b31-cb24-4db8-bd2a-550564a6a8ef" name="Update Repository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d11fa65a-ba6a-4f87-9ee5-fccee72e38c7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="993acff1-3b3d-43a5-8e51-993bf5f81306" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="cc1d410a-3d45-41ae-9945-4b74b920105f" LastKnownName="TShirtSizeController" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="cc1d410a-3d45-41ae-9945-4b74b920105f" name="TShirtSizeController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="56f1f552-a86b-4706-b47a-04e32592b0df" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="46fddf95-f9c2-4e0a-b431-6eb5f47b23b3" name="Update Repository" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="01d07678-4447-43fc-a4b2-e7357d6e56ef" />
+        <subjects>
+          <subsystemMoniker Id="cc1d410a-3d45-41ae-9945-4b74b920105f" LastKnownName="TShirtSizeController" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="75c568f7-fee2-4fa7-9311-d0944eed71da" name="EventContoller" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="4dcf3bc8-9baf-4adb-abf8-544eaf94d13c" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="99fd590f-b49a-4484-bff9-1208d99e3d86" name="ManageEvent" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="22d838cf-f0a6-4e4b-a10c-57aab549b3c4" />
+        <targetEnds>
+          <association Id="f1455129-c7af-450d-a717-177d15722369" isDerived="false" sourceEndRoleName="ManageEvent" targetEndRoleName="GetSpeaker" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="69c6b286-afd3-4aa9-a916-f7bcc8a234e5" LastKnownName="GetSpeaker" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f3f326b1-364e-4db1-a906-b600db9ddebc" name="ManageEvent" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3ce9a6bb-733f-46c6-86ff-1bf16b516708" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9084f234-9880-441b-b038-adefceaf3ab8" name="GetSpeaker" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f925c2dc-e44e-453f-9c45-33fac2d87207" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c2a3d90f-4afb-4d57-a77a-527e3f89a1c1" />
+          </association>
+          <association Id="1fb669f7-8b88-4fac-b165-845be4062296" isDerived="false" sourceEndRoleName="ManageEvent" targetEndRoleName="GetLocation" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="143a9c58-a6aa-45f3-a2e4-9dd53e3e3000" LastKnownName="GetLocation" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d7223f1f-2752-4dd4-9702-422094eecd75" name="ManageEvent" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="92ac69ee-c0b0-42f1-94a7-cbd31c0aef72" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="24a54358-8482-4851-9c85-0050314c40d9" name="GetLocation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="1dfc4d64-e749-4c60-aad3-63d4b8ccaecb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b8171b21-a207-4d60-96cb-f71e08e7528a" />
+          </association>
+          <association Id="87da8f68-b157-4d34-8428-5ccca5ac2045" isDerived="false" sourceEndRoleName="ManageEvent" targetEndRoleName="GetAttendees" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="8e020ad2-ab90-4fad-abcb-b3c4ce74ff49" LastKnownName="GetAttendees" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8f195547-77f4-4d5a-804e-071909a927f3" name="ManageEvent" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1f1f883f-9fc7-4a05-8685-82cccf99db63" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2e8202af-38d3-41e5-a1cb-3a93d6ddc1af" name="GetAttendees" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8ac0989d-339c-47bf-a1c2-6b915eb8e1d5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="01be4c36-b505-46a9-9873-89c5ef232027" />
+          </association>
+          <association Id="4dee0f13-80be-4331-93c5-92c5bd31bb31" isDerived="false" sourceEndRoleName="ManageEvent" targetEndRoleName="GetTimeSlots" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="cc3b4b72-ae21-4104-b25a-73d896d97db6" LastKnownName="GetTimeSlots" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9d4d0743-bff8-4823-8aac-2d2993a2291b" name="ManageEvent" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5afdae5c-eb1b-48f3-bed9-744faf7ad412" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cc42b05f-45f1-421d-84e7-02541bc6f92c" name="GetTimeSlots" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d1e343e8-d558-47f1-89b0-b05c188058cf" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a8b6ffa2-919a-4d46-9416-82dd410eb606" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="75c568f7-fee2-4fa7-9311-d0944eed71da" LastKnownName="EventContoller" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="69c6b286-afd3-4aa9-a916-f7bcc8a234e5" name="GetSpeaker" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="1a2a53ba-c179-4601-a38c-96f08f845fd0" />
+        <targetEnds>
+          <association Id="d6b6e897-171f-454a-8c0b-131cfad351f4" isDerived="false" sourceEndRoleName="GetSpeaker" targetEndRoleName="Update Repository" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e5998d3c-2174-4d50-90d9-59b12c10874e" LastKnownName="Update Repository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="badcef57-871d-484b-98d9-60a584d1de4a" name="GetSpeaker" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="eb16e42d-20bd-447c-831c-092914b0f50c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ec5e535a-da1a-4559-be50-3bca6f40c556" name="Update Repository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c466548b-cbe2-4fbe-90ab-0c4388d01adb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="192ebca7-d0b2-41ee-b84b-81c5d24047f9" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="75c568f7-fee2-4fa7-9311-d0944eed71da" LastKnownName="EventContoller" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="143a9c58-a6aa-45f3-a2e4-9dd53e3e3000" name="GetLocation" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bcf6837c-2766-4c2a-9f53-99df911868e6" />
+        <targetEnds>
+          <association Id="1862e043-f041-4fd2-83de-68a054bb4708" isDerived="false" sourceEndRoleName="GetLocation" targetEndRoleName="Update Repository" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e5998d3c-2174-4d50-90d9-59b12c10874e" LastKnownName="Update Repository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9aefff5b-b929-48b7-be98-e95e1b494232" name="GetLocation" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f1ee4693-6681-42ce-a4b7-426375ac4a21" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="263c43a7-8720-47dc-9388-3cf0211e0940" name="Update Repository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="eb3076c4-0c7f-4f0b-aaab-f85c5ae0d092" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e8c4bf1f-6405-497f-8a02-ec8b31b7a218" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="75c568f7-fee2-4fa7-9311-d0944eed71da" LastKnownName="EventContoller" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="8e020ad2-ab90-4fad-abcb-b3c4ce74ff49" name="GetAttendees" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="23bd1968-63db-468d-ad37-f1d33bd54482" />
+        <targetEnds>
+          <association Id="c3eaa5de-d8ca-4098-9bdb-19f34e0626b8" isDerived="false" sourceEndRoleName="GetAttendees" targetEndRoleName="Update Repository" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e5998d3c-2174-4d50-90d9-59b12c10874e" LastKnownName="Update Repository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3182f756-0430-4b43-a7d0-2a59240a17e7" name="GetAttendees" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="8130eadd-d8ed-4a8a-87ac-bfa0c746f685" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8c6dd741-6619-4ea3-9396-c963002b1956" name="Update Repository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="15340cd8-c75d-499d-9b5f-2bc67c039a06" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5bf19919-e9c6-47e1-a7b0-9596d578aad9" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="75c568f7-fee2-4fa7-9311-d0944eed71da" LastKnownName="EventContoller" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="cc3b4b72-ae21-4104-b25a-73d896d97db6" name="GetTimeSlots" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fa562316-242c-4bf3-ac3e-3b0f752fe601" />
+        <targetEnds>
+          <association Id="7e48f623-c523-4b67-a0c9-c1fd934e3573" isDerived="false" sourceEndRoleName="GetTimeSlots" targetEndRoleName="Update Repository" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="e5998d3c-2174-4d50-90d9-59b12c10874e" LastKnownName="Update Repository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d84a4f8b-1fb4-42f7-bd5e-18a87bf33063" name="GetTimeSlots" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bef8fd28-a017-453c-b828-5532af35e82a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4d150665-7642-4d61-8ab8-7ca882ba0c04" name="Update Repository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="98fc1e64-8352-4ed6-90b1-663ffd6c8bea" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4f9f2f20-8804-46f1-a0ad-4ebd21d4454a" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="75c568f7-fee2-4fa7-9311-d0944eed71da" LastKnownName="EventContoller" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="e5998d3c-2174-4d50-90d9-59b12c10874e" name="Update Repository" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ad1cd05d-cb35-4b0a-ad1a-f530fc131c67" />
+        <subjects>
+          <subsystemMoniker Id="75c568f7-fee2-4fa7-9311-d0944eed71da" LastKnownName="EventContoller" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="7ec3b995-e909-412e-a577-f3847ddd1e0f" name="ScheduleController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f1e43036-e567-4420-9d70-8abb0e91e103" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="a5b0ee1a-475b-4749-b67a-dde02e688fcd" name="RegisterAttendee" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="137afca1-9e31-4a1b-993a-cec796d0bb16" />
+        <targetEnds>
+          <association Id="c3d7f0a4-ef52-4999-b5c5-3b3a5ba37adf" isDerived="false" sourceEndRoleName="RegisterAttendee" targetEndRoleName="Grab Event from Repository" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a7872786-7555-466a-b586-d4920afad190" LastKnownName="Grab Event from Repository" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="99e19d7d-05b4-497b-ad2f-805fd2d74945" name="RegisterAttendee" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bd87ba6a-6f65-4929-bb1f-4bd6cfed7ad5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="755e46a1-ccd1-4960-858d-9453eedd73f4" name="Grab Event from Repository" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="19363336-4a67-461f-ad88-ac2d4a8a7e90" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="bb792056-b196-4490-a3bd-8bf00051732c" />
+          </association>
+          <association Id="6ad5ca6c-ba5b-4275-ab80-c5c159d677fb" isDerived="false" sourceEndRoleName="RegisterAttendee" targetEndRoleName="Add Attendee to event" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="074e0fdf-7528-4dd5-99a0-a399bb09c944" LastKnownName="Add Attendee to event" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c3b84292-d89e-4d12-8eee-77e6b52dc4e6" name="RegisterAttendee" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="09389ee8-5686-4da0-a384-2bd8a53d6397" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8faf1aea-d8d9-4f92-9659-d8185890c0a3" name="Add Attendee to event" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d977ac46-28c4-4a6a-8fe0-b77d8c6247bd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a84fe895-2a6c-4fc7-ba9c-fca3d8604651" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="7ec3b995-e909-412e-a577-f3847ddd1e0f" LastKnownName="ScheduleController" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <useCaseModelRootHasTypes>
+      <actor Id="c1af12a3-0c1f-439c-b699-a267775bbb93" name="Admin" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4a06ff06-332c-4300-b6d1-e0121e109470" />
+        <targetEnds>
+          <association Id="49cba1e7-5a31-4ccf-bc2e-1029e2559795" isDerived="false" sourceEndRoleName="Admin" targetEndRoleName="RegisterAttendee" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a5b0ee1a-475b-4749-b67a-dde02e688fcd" LastKnownName="RegisterAttendee" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4e5a4065-340d-404f-94aa-34df58035858" name="Admin" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6492c7cc-ee2a-4d3e-900b-47e28c853aa4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="53928ce3-9045-4abe-a435-1533fe712737" name="RegisterAttendee" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e6f4c665-2d9a-453c-b3b5-3f03befc065c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7cb38115-bd63-40ca-84c5-37db6ddeef6a" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="a7872786-7555-466a-b586-d4920afad190" name="Grab Event from Repository" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5b6b2ce4-94f0-4755-b548-1797e10464a0" />
+        <subjects>
+          <subsystemMoniker Id="7ec3b995-e909-412e-a577-f3847ddd1e0f" LastKnownName="ScheduleController" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="074e0fdf-7528-4dd5-99a0-a399bb09c944" name="Add Attendee to event" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f957747c-b7f1-49a1-9218-2545f5fc4f96" />
+        <subjects>
+          <subsystemMoniker Id="7ec3b995-e909-412e-a577-f3847ddd1e0f" LastKnownName="ScheduleController" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="c70d1198-64e1-47e1-9ff6-efde79d5f610" name="CreateEvent" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d3a8aeb7-a200-4d35-bf56-932cc2b6951b" />
+        <subjects>
+          <subsystemMoniker Id="75c568f7-fee2-4fa7-9311-d0944eed71da" LastKnownName="EventContoller" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="629153c8-448c-40f2-a2fb-eda95eb31966" name="ConferencewareModels">
+    <elementDefinition Id="72eceb18-669e-456a-af7a-f66b7fd8d1f5" />
+  </package>
+</useCaseModelRoot>
