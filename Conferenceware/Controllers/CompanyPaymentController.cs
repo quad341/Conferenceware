@@ -1,105 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
-    public class CompanyPaymentController : Controller
-    {
-        //
-        // GET: /CompanyPayment/
+	public class CompanyPaymentController : Controller
+	{
+		private readonly IRepository _repository;
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public CompanyPaymentController()
+			: this(new ConferencewareRepository())
+		{
+			// all good
+		}
 
-        //
-        // GET: /CompanyPayment/Details/5
+		public CompanyPaymentController(IRepository repository)
+		{
+			_repository = repository;
+		}
+		//
+		// GET: /CompanyPayment/
 
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+		public ActionResult Index()
+		{
+			return RedirectToAction("Index", "Company");
+		}
 
-        //
-        // GET: /CompanyPayment/Create
+		//
+		// GET: /CompanyPayment/Create
 
-        public ActionResult Create()
-        {
-            return View();
-        } 
+		public ActionResult Create(int id)
+		{
+			var company = _repository.GetCompanyById(id);
+			if (company == null)
+			{
+				return View("CompanyNotFound");
+			}
+			var payment = new CompanyPayment { Company = company };
+			return View("Create", payment);
+		}
 
-        //
-        // POST: /CompanyPayment/Create
+		//
+		// POST: /CompanyPayment/Create
 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+		[HttpPost]
+		public ActionResult Create(CompanyPayment cp)
+		{
+			if (ModelState.IsValid)
+			{
+				_repository.AddCompanyPayment(cp);
+				_repository.Save();
+				TempData["Message"] = "Payment added";
+				return RedirectToAction("Details", "Company", new { id = cp.company_id });
+			}
+			return View("Create", cp);
+		}
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        
-        //
-        // GET: /CompanyPayment/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+		//
+		// GET: /CompanyPayment/Edit/5
 
-        //
-        // POST: /CompanyPayment/Edit/5
+		public ActionResult Edit(int id)
+		{
+			var cp = _repository.GetCompanyPaymentById(id);
+			if (cp == null)
+			{
+				return View("CompanyPaymentNotFound");
+			}
+			return View("Edit", cp);
+		}
 
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+		//
+		// POST: /CompanyPayment/Edit/5
 
-        //
-        // GET: /CompanyPayment/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+		[HttpPost]
+		public ActionResult Edit(int id, FormCollection collection)
+		{
+			var cp = _repository.GetCompanyPaymentById(id);
+			if (cp == null)
+			{
+				return View("CompanyPaymentNotFound");
+			}
+			if (TryUpdateModel(cp))
+			{
+				_repository.Save();
+				TempData["Message"] = "Payment Updated";
+				return RedirectToAction("Details", "Company", new { id = cp.company_id });
+			}
+			return View("Edit", cp);
+		}
 
-        //
-        // POST: /CompanyPayment/Delete/5
+		//
+		// POST: /CompanyPayment/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-    }
+		[HttpPost]
+		public ActionResult Delete(int id)
+		{
+			var cp = _repository.GetCompanyPaymentById(id);
+			if (cp == null)
+			{
+				return View("CompanyPaymentNotFound");
+			}
+			_repository.DeleteCompanyPayment(cp);
+			_repository.Save();
+			TempData["Message"] = "Payment Deleted";
+			return RedirectToAction("Details", "Company", new { id = cp.company_id });
+		}
+	}
 }
