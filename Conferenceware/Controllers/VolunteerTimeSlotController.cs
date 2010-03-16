@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -22,15 +24,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Index()
 		{
-			return View("Index");
-		}
-
-		//
-		// GET: /VolunteerTimeSlot/Details/5
-
-		public ActionResult Details(int id)
-		{
-			return View();
+			return View("Index", _repository.GetAllVolunteerTimeSlots());
 		}
 
 		//
@@ -38,7 +32,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Create()
 		{
-			return View();
+			return View("Create", MakeEditDataFromVolunteerTimeSlot(new VolunteerTimeSlot()));
 		}
 
 		//
@@ -47,68 +41,47 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Create(FormCollection collection)
 		{
-			try
+			var vts = new VolunteerTimeSlot();
+			//TODO: all these parses might fail. fix it
+			var timeslot =
+				_repository.GetTimeSlotById(int.Parse(collection["VolunteerTimeSlot.timeslot_id"]));
+			if (timeslot != null)
 			{
-				// TODO: Add insert logic here
-
+				vts.TimeSlot = timeslot;
+				vts.is_video = collection["VolunteerTimeSlot.is_video"].Contains("true");
+				_repository.AddVolunteerTimeSlot(vts);
+				_repository.Save();
 				return RedirectToAction("Index");
 			}
-			catch
-			{
-				return View();
-			}
+			return View("Create", MakeEditDataFromVolunteerTimeSlot(vts));
 		}
-
-		//
-		// GET: /VolunteerTimeSlot/Edit/5
-
-		public ActionResult Edit(int id)
-		{
-			return View();
-		}
-
-		//
-		// POST: /VolunteerTimeSlot/Edit/5
-
-		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add update logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
-		}
-
 		//
 		// GET: /VolunteerTimeSlot/Delete/5
 
 		public ActionResult Delete(int id)
 		{
-			return View();
+			var vts = _repository.GetVolunteerTimeSlotById(id);
+			if (vts == null)
+			{
+				return View("VolunteerTimeSlotNotFound");
+			}
+			_repository.DeleteVolunteerTimeSlot(vts);
+			_repository.Save();
+			return RedirectToAction("Index");
 		}
 
-		//
-		// POST: /VolunteerTimeSlot/Delete/5
-
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
+		private VolunteerTimeSlotEditData MakeEditDataFromVolunteerTimeSlot(VolunteerTimeSlot volunteerTimeSlot)
 		{
-			try
+			var timeslots = _repository.GetAllTimeSlots().ToList();
+			foreach (var vts in _repository.GetAllVolunteerTimeSlots())
 			{
-				// TODO: Add delete logic here
-
-				return RedirectToAction("Index");
+				timeslots.Remove(vts.TimeSlot);
 			}
-			catch
-			{
-				return View();
-			}
+			return new VolunteerTimeSlotEditData
+					{
+						VolunteerTimeSlot = volunteerTimeSlot,
+						Timeslots = new SelectList(timeslots, "id", "StringValue")
+					};
 		}
 	}
 }
