@@ -123,7 +123,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Delete(int id, FormCollection collection)
 		{
-			var ci = _repository.GetCompanyInvoiceById(invoice_id);
+			var ci = _repository.GetCompanyInvoiceById(id);
 			if (ci == null)
 			{
 				return View("CompanyInvoiceNotFound");
