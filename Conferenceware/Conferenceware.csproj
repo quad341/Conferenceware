@@ -69,6 +69,7 @@
     <Compile Include="Controllers\AttendeeController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CompanyInvoiceController.cs" />
+    <Compile Include="Controllers\CompanyInvoiceItemController.cs" />
     <Compile Include="Controllers\CompanyPaymentController.cs" />
     <Compile Include="Controllers\CompanyPersonController.cs" />
     <Compile Include="Controllers\EventController.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyInvoice.cs" />
     <Compile Include="Models\CompanyInvoiceItem.cs" />
+    <Compile Include="Models\CompanyInvoiceItemMetadata.cs" />
     <Compile Include="Models\CompanyInvoiceMetadata.cs" />
     <Compile Include="Models\CompanyMetadata.cs" />
     <Compile Include="Models\CompanyPayment.cs" />
@@ -140,7 +142,9 @@
     <Content Include="Views\Attendee\Create.aspx" />
     <Content Include="Views\Attendee\Edit.aspx" />
     <Content Include="Views\Attendee\Index.aspx" />
-    <Content Include="Views\CompanyInvoice\CompanyInvoiceNotFound.aspx" />
+    <Content Include="Views\CompanyInvoiceItem\CompanyInvoiceItemNotFound.aspx" />
+    <Content Include="Views\CompanyInvoiceItem\Create.aspx" />
+    <Content Include="Views\Shared\CompanyInvoiceNotFound.aspx" />
     <Content Include="Views\CompanyInvoice\Delete.aspx" />
     <Content Include="Views\CompanyInvoice\Edit.aspx" />
     <Content Include="Views\CompanyPayment\CompanyPaymentNotFound.aspx" />

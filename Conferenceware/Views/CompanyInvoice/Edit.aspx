@@ -88,7 +88,7 @@
     </div>
 
     <div>
-        <%= Html.ActionLink("Back to Company", "Details", new {id=Model.company_id}, null) %>
+        <%= Html.ActionLink("Back to Company", "Details", "Company", new {id=Model.company_id}, null) %>
     </div>
 
 </asp:Content>
