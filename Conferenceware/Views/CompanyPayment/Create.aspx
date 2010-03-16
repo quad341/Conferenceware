@@ -6,7 +6,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <% Html.EnableClientValidation(); %>
     <h2>Create</h2>
 
     <% using (Html.BeginForm()) {%>

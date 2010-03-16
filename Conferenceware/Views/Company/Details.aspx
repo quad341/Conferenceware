@@ -71,7 +71,7 @@
                     <%
   	using (Html.BeginForm("Delete", "CompanyInvoice"))
   	{%>
-                    <%=Html.Hidden("id", invoice.id) %>
+                    <%=Html.Hidden("id", invoice) %>
                     <input type="submit" value="Delete" />
                     <%
   	}%>
@@ -97,7 +97,7 @@
                     <%
   	using (Html.BeginForm("Delete", "CompanyPayment"))
   	{%>
-                    <%=Html.Hidden("id", payment.id) %>
+                    <%=Html.Hidden("payment_id", payment.payment_id) %>
                     <input type="submit" value="Delete" />
                     <%
   	}%>

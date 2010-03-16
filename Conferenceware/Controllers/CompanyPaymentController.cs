@@ -43,15 +43,29 @@ namespace Conferenceware.Controllers
 		// POST: /CompanyPayment/Create
 
 		[HttpPost]
-		public ActionResult Create(CompanyPayment cp)
+		public ActionResult Create(FormCollection collection)
 		{
-			if (ModelState.IsValid)
+			var cp = new CompanyPayment();
+			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }))
 			{
+				if (cp.comments == null)
+				{
+					cp.comments = "";
+				}
 				_repository.AddCompanyPayment(cp);
 				_repository.Save();
 				TempData["Message"] = "Payment added";
 				return RedirectToAction("Details", "Company", new { id = cp.company_id });
 			}
+			// if it errors on submit; it only has the id, not the linq object
+			var company = _repository.GetCompanyById(cp.company_id);
+			if (company == null)
+			{
+				// this has happened; not sure why
+				TempData["Message"] = "An error has occurred. Please try again";
+				RedirectToAction("Index", "Company");
+			}
+			cp.Company = company;
 			return View("Create", cp);
 		}
 
@@ -79,8 +93,12 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyPaymentNotFound");
 			}
-			if (TryUpdateModel(cp))
+			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }))
 			{
+				if (cp.comments == null)
+				{
+					cp.comments = "";
+				}
 				_repository.Save();
 				TempData["Message"] = "Payment Updated";
 				return RedirectToAction("Details", "Company", new { id = cp.company_id });
@@ -92,9 +110,9 @@ namespace Conferenceware.Controllers
 		// POST: /CompanyPayment/Delete/5
 
 		[HttpPost]
-		public ActionResult Delete(int id)
+		public ActionResult Delete(int payment_id)
 		{
-			var cp = _repository.GetCompanyPaymentById(id);
+			var cp = _repository.GetCompanyPaymentById(payment_id);
 			if (cp == null)
 			{
 				return View("CompanyPaymentNotFound");
