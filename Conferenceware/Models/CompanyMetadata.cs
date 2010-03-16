@@ -43,6 +43,7 @@ namespace Conferenceware.Models
 		[Required]
 		[StringLength(2)]
 		[RegularExpression(@"[A-Z]{2}", ErrorMessage = "State must be two capital letters (ex. IL)")]
+		[DisplayName("State")]
 		public string state
 		{
 			get;
@@ -52,6 +53,7 @@ namespace Conferenceware.Models
 		[Required]
 		[StringLength(5)]
 		[RegularExpression(@"[0-9]{5}", ErrorMessage = "Zip code must be 5 numeric digits")]
+		[DisplayName("Zip code")]
 		public string zip
 		{
 			get;

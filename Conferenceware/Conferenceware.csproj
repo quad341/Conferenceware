@@ -132,6 +132,10 @@
     <Content Include="Views\Attendee\Edit.aspx" />
     <Content Include="Views\Attendee\Index.aspx" />
     <Content Include="Views\Company\CompanyNotFound.aspx" />
+    <Content Include="Views\Company\Create.aspx" />
+    <Content Include="Views\Company\Details.aspx" />
+    <Content Include="Views\Company\Edit.aspx" />
+    <Content Include="Views\Company\Index.aspx" />
     <Content Include="Views\Event\Create.aspx" />
     <Content Include="Views\Event\Details.aspx" />
     <Content Include="Views\Event\Edit.aspx" />

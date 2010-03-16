@@ -1,29 +1,28 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
 	public class CompanyController : Controller
 	{
-		private readonly IRepository _repo;
+		private readonly IRepository _repoository;
 
-		CompanyController()
+		public CompanyController()
 			: this(new ConferencewareRepository())
 		{
 			// no more work
 		}
 
-		CompanyController(IRepository repo)
+		public CompanyController(IRepository repoository)
 		{
-			_repo = repo;
+			_repoository = repoository;
 		}
 		//
 		// GET: /Company/
 
 		public ActionResult Index()
 		{
-			return View("Index", _repo.GetAllCompanies());
+			return View("Index", _repoository.GetAllCompanies());
 		}
 
 		//
@@ -31,7 +30,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Details(int id)
 		{
-			var company = _repo.GetCompanyById(id);
+			var company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
@@ -51,12 +50,27 @@ namespace Conferenceware.Controllers
 		// POST: /Company/Create
 
 		[HttpPost]
-		public ActionResult Create(Company companyToCreate)
+		public ActionResult Create(FormCollection collection)
 		{
-			if (ModelState.IsValid)
+			var companyToCreate = new Company();
+			if (TryUpdateModel(companyToCreate, new[]
+			                                    	{
+			                                    		"name", 
+														"address_line1", 
+														"address_line2", 
+														"city", 
+														"state", 
+														"zip", 
+														"needs_power", 
+														"priority_shipping"
+			                                    	}))
 			{
-				_repo.AddCompany(companyToCreate);
-				_repo.Save();
+				if (companyToCreate.address_line2 == null)
+				{
+					companyToCreate.address_line2 = "";
+				}
+				_repoository.AddCompany(companyToCreate);
+				_repoository.Save();
 
 				TempData["Message"] = "Company Created";
 				return RedirectToAction("Index");
@@ -70,7 +84,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var company = _repo.GetCompanyById(id);
+			var company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
@@ -84,15 +98,15 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var company = _repo.GetCompanyById(id);
+			var company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
 			}
 			if (TryUpdateModel(company))
 			{
-				_repo.Save();
-				return RedirectToAction("Index");
+				_repoository.Save();
+				return RedirectToAction("Details", new { id });
 			}
 			return View("Edit", company);
 		}
@@ -102,15 +116,15 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var company = _repo.GetCompanyById(id);
+			var company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
 			}
 			try
 			{
-				_repo.DeleteCompany(company);
-				_repo.Save();
+				_repoository.DeleteCompany(company);
+				_repoository.Save();
 				TempData["Message"] = "Company deleted";
 			}
 			catch

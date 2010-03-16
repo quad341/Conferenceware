@@ -30,6 +30,8 @@
                         <li><%= Html.ActionLink("Attendees", "Index", "Attendee") %></li>                      
                         <li>|</li>
                         <li><%= Html.ActionLink("Settings", "Index", "Settings")%></li>
+                        <li>|</li>
+                        <li><%= Html.ActionLink("Companies", "Index", "Company")%></li>
                 </ul>
             </div>
             
