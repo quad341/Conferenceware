@@ -76,13 +76,14 @@
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\MechmaniaRegistrationController.cs" />
+    <Compile Include="Controllers\MechmaniaTeamController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
     <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\TShirtSizeController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
-    <Compile Include="Controllers\VolunteerTimeSlotController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -116,6 +117,9 @@
     <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\LocationMetadata.cs" />
+    <Compile Include="Models\MechmaniaTeam.cs" />
+    <Compile Include="Models\MechmaniaTeamEditData.cs" />
+    <Compile Include="Models\MechmaniaTeamMetadata.cs" />
     <Compile Include="Models\People.cs" />
     <Compile Include="Models\PeopleMetadata.cs" />
     <Compile Include="Models\SettingsData.cs" />
@@ -128,9 +132,6 @@
     <Compile Include="Models\Volunteer.cs" />
     <Compile Include="Models\VolunteerEditData.cs" />
     <Compile Include="Models\VolunteerMetadata.cs" />
-    <Compile Include="Models\VolunteerTimeSlot.cs" />
-    <Compile Include="Models\VolunteerTimeSlotEditData.cs" />
-    <Compile Include="Models\VolunteerTimeSlotMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -152,6 +153,8 @@
     <Content Include="Views\Attendee\Index.aspx" />
     <Content Include="Views\CompanyInvoiceItem\CompanyInvoiceItemNotFound.aspx" />
     <Content Include="Views\CompanyInvoiceItem\Create.aspx" />
+    <Content Include="Views\MechmaniaRegistration\Index.aspx" />
+    <Content Include="Views\MechmaniaRegistration\Success.aspx" />
     <Content Include="Views\Shared\CompanyInvoiceNotFound.aspx" />
     <Content Include="Views\CompanyInvoice\Delete.aspx" />
     <Content Include="Views\CompanyInvoice\Edit.aspx" />
@@ -196,9 +199,6 @@
     <Content Include="Views\TShirtSize\Edit.aspx" />
     <Content Include="Views\TShirtSize\Index.aspx" />
     <Content Include="Views\TShirtSize\TShirtSizeNotFound.aspx" />
-    <Content Include="Views\VolunteerTimeSlot\Create.aspx" />
-    <Content Include="Views\VolunteerTimeSlot\Index.aspx" />
-    <Content Include="Views\VolunteerTimeSlot\VolunteerTimeSlotNotFound.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
