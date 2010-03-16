@@ -1,0 +1,681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="ca7f8334-2443-48aa-8b16-c20e0eed1d96" name="TShirtSizeController_Create" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="c2a69f1f-5a76-4e49-b4e4-1fe625e18259" name="TShirtSizeController_Create" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="b70d7e4c-b8fa-469e-8d25-233be972b4c6" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="71611d65-0c6f-4ce5-95c3-30f8757b5aa6" LastKnownName="this : TShirtSizeController" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="66be72e7-7d7f-4cea-a25c-a5ce0f8b30ba" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="5bc5a0f8-8375-4eee-a490-903d4837baab" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="4ff4438a-dec5-464b-a531-9f3a12c31d9e" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="911cbb2c-ef1c-4ecc-bd5e-a510d6b4c82a" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="86035f35-43ca-46a7-81d4-4882e6cccea9" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="5bc5a0f8-8375-4eee-a490-903d4837baab" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="66a87075-53b2-4ab7-a2b0-a672292f0776" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="71611d65-0c6f-4ce5-95c3-30f8757b5aa6" LastKnownName="this : TShirtSizeController" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4ff4438a-dec5-464b-a531-9f3a12c31d9e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="71611d65-0c6f-4ce5-95c3-30f8757b5aa6" LastKnownName="this : TShirtSizeController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <lostFoundTarget Id="7cfbfaa1-c055-4914-8ead-f2c8387b7a62" name="LostFoundTarget" />
+          <behaviorExecutionSpecification Id="ab94693f-8afe-4ddd-9d50-cad1abcc1af4" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="933f9a58-bb04-43fd-9389-9068eb7837a2" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="6e389c50-7644-409f-bc95-9b8c2b8f9585" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="91f01d6d-32da-4b8e-8453-7abc2df39020" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="59e9cb09-766e-49c5-a058-32ce9f028f2e" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="0f7a1123-ef74-462c-9348-22f4f4f6a3e2" LastKnownName="OperandOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="f1c8932b-96ca-4ba8-8a1b-f4b39e05ea6e" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="cb97ee9d-ca98-4de3-afff-5f4ee98a0b66" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="40747c46-942a-4207-bbbe-f15d60dc4334" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="fa5b9ef1-9ab0-4d8c-a4a7-f2d7c28eb15f" LastKnownName="ExecutionOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="8df5f4ff-2f03-4246-b972-02a6cc46028c" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="5d7c28b8-ad57-4156-8288-4c24f5f02805" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="e1cf2480-714b-4d71-908a-6f1e1919ad46" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="13220dd0-9622-4b3e-96a2-0eddb918e4bc" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="9ab93f00-efe0-4a57-920f-840de05e16e7" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="9eac44ce-dc69-41be-b624-5a574aba13f8" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="6e389c50-7644-409f-bc95-9b8c2b8f9585" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="05340601-98bc-4c42-bdd9-7ec1bef4b6a2" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="911cbb2c-ef1c-4ecc-bd5e-a510d6b4c82a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="71611d65-0c6f-4ce5-95c3-30f8757b5aa6" LastKnownName="this : TShirtSizeController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="91f01d6d-32da-4b8e-8453-7abc2df39020" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="b7e23e78-cd09-4fee-8260-c85a810b1f60" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="26074b69-0c42-440c-a09e-c7a5d36df220" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="041e0762-616b-4b6b-bcaf-07749cae9359" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="ac17bd59-104d-4242-bab7-225fdd341dfe" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="5ce1d849-cf77-4db5-930f-8f966ff11e8e" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="9e1ed978-7a88-4aee-8926-57c016c56aaa" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b18babca-1ceb-45ab-8c65-b9696d9b4a8a" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="8960c10a-90dc-483e-ad7b-d63e87653d9c" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="b9291bc2-926d-4c4b-a2e4-3cb55240f1e6" LastKnownName="MessageOccurrenceSpecification" />
+              <operandOccurrenceSpecificationMoniker Id="5b02b323-1727-4ba4-b949-220c941df03e" LastKnownName="OperandOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="f580a267-8c53-4551-b139-92c5c4d0f6f0" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="041e0762-616b-4b6b-bcaf-07749cae9359" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="af0a0dc1-421a-415b-a331-76f3f4bc98cf" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="ac17bd59-104d-4242-bab7-225fdd341dfe" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="59e9cb09-766e-49c5-a058-32ce9f028f2e" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <combinedFragment Id="96c2797c-7840-4c72-a7f8-5a9d1666bbac" name="CombinedFragment1" interactionOperator="Opt" customInteractionOperator="Deferred Call">
+            <coveredLifelines>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </coveredLifelines>
+            <operands>
+              <interactionOperand Id="e822569a-6588-4aa1-8d0d-529eb7e05dcd" name="InteractionOperand1">
+                <coveredLifelines>
+                  <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+                  <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+                </coveredLifelines>
+                <guard>
+                  <interactionConstraint Id="9bfa4513-02a3-4fae-b4e3-a0ca071f15c4" />
+                </guard>
+                <operandOccurrenceSpecifications>
+                  <operandOccurrenceSpecificationMoniker Id="5ce1d849-cf77-4db5-930f-8f966ff11e8e" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="5b02b323-1727-4ba4-b949-220c941df03e" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="0f7a1123-ef74-462c-9348-22f4f4f6a3e2" LastKnownName="OperandOccurrenceSpecification" />
+                  <operandOccurrenceSpecificationMoniker Id="8df5f4ff-2f03-4246-b972-02a6cc46028c" LastKnownName="OperandOccurrenceSpecification" />
+                </operandOccurrenceSpecifications>
+              </interactionOperand>
+            </operands>
+          </combinedFragment>
+          <operandOccurrenceSpecification Id="0f7a1123-ef74-462c-9348-22f4f4f6a3e2" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="5ce1d849-cf77-4db5-930f-8f966ff11e8e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="49c42b1b-d696-4236-ae23-abd3c0e19611" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="cb97ee9d-ca98-4de3-afff-5f4ee98a0b66" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="f1c8932b-96ca-4ba8-8a1b-f4b39e05ea6e" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="2d0a2c9e-da46-4580-a198-f7713a821210" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a44de84f-da38-4cc7-bf74-64fe57f763ea" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="f76e0a3a-29c2-47dc-99fa-13fda52a48e3" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="3ba5e140-32ca-408f-8194-57a9a0bc1ced" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2216c45c-a0af-4119-823c-1c56af4f684c" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="f1c8932b-96ca-4ba8-8a1b-f4b39e05ea6e" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="5604dfcb-eb00-4e60-988c-47e2214e94e0" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="9e1ed978-7a88-4aee-8926-57c016c56aaa" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2d0a2c9e-da46-4580-a198-f7713a821210" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a44de84f-da38-4cc7-bf74-64fe57f763ea" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="fd53a55a-a354-4b02-8f67-6a0ef9c47b63" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="3ba5e140-32ca-408f-8194-57a9a0bc1ced" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="f76e0a3a-29c2-47dc-99fa-13fda52a48e3" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="fd86510b-b613-4f34-86de-dfc68b2f4155" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="f76e0a3a-29c2-47dc-99fa-13fda52a48e3" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="def9ac4e-b87d-47c2-91b1-8858c4df2573" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="fd86510b-b613-4f34-86de-dfc68b2f4155" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="3ba5e140-32ca-408f-8194-57a9a0bc1ced" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="a22fafea-3a34-4415-84f0-608601659a1a" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2216c45c-a0af-4119-823c-1c56af4f684c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b18babca-1ceb-45ab-8c65-b9696d9b4a8a" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="cb97ee9d-ca98-4de3-afff-5f4ee98a0b66" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="6eb21818-55aa-418f-ae77-94a1f9fe5727" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="c9076fa4-96b4-42bd-87cf-26d6783e531a" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="fa5b9ef1-9ab0-4d8c-a4a7-f2d7c28eb15f" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="40747c46-942a-4207-bbbe-f15d60dc4334" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="3eb3ce6f-825b-4645-8141-c855c138e2d0" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="6bf9f48e-7da5-4fb9-a87e-6f806769ed18" LastKnownName="MessageOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="72e1ac0f-2277-453f-9f5b-2c704295b316" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="9332247d-29f7-43bf-9226-ee8ac526a757" LastKnownName="ExecutionOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="2851cbf1-02dc-406a-9d1d-d841e551cfc9" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="40747c46-942a-4207-bbbe-f15d60dc4334" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="94384722-d952-49ab-98a2-f2d8600360fb" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="3eb3ce6f-825b-4645-8141-c855c138e2d0" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="8960c10a-90dc-483e-ad7b-d63e87653d9c" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="6bf9f48e-7da5-4fb9-a87e-6f806769ed18" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="69e5253b-984b-4262-bbe7-6b09e941a7ee" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="9332247d-29f7-43bf-9226-ee8ac526a757" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="72e1ac0f-2277-453f-9f5b-2c704295b316" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="dbf45f6c-d113-4774-bbe3-604a22b3cea2" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="72e1ac0f-2277-453f-9f5b-2c704295b316" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="eb724a42-0f79-499a-8e5e-6297810d07ed" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="dbf45f6c-d113-4774-bbe3-604a22b3cea2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="9332247d-29f7-43bf-9226-ee8ac526a757" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="1ff95ac0-425f-4d21-b2ce-7a3425464f65" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="b9291bc2-926d-4c4b-a2e4-3cb55240f1e6" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="2851cbf1-02dc-406a-9d1d-d841e551cfc9" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="fa5b9ef1-9ab0-4d8c-a4a7-f2d7c28eb15f" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="91b919f2-09ac-4c6c-9e59-3a53ffa98c0c" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="5b02b323-1727-4ba4-b949-220c941df03e" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <operandOccurrenceSpecification Id="8df5f4ff-2f03-4246-b972-02a6cc46028c" name="OperandOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </operandOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="5d7c28b8-ad57-4156-8288-4c24f5f02805" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="f580a267-8c53-4551-b139-92c5c4d0f6f0" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="26074b69-0c42-440c-a09e-c7a5d36df220" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="a8c7892d-92d6-4967-a291-239e406169c9" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="22863753-7965-49bf-9d41-39076b48e14c" LastKnownName="sender._Attendees : EntitySet&lt;Attendee&gt;" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="e1cf2480-714b-4d71-908a-6f1e1919ad46" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <behaviorExecutionSpecification Id="13b519a1-33df-474b-b7bb-c72315bf58c1" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="9ab93f00-efe0-4a57-920f-840de05e16e7" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="13220dd0-9622-4b3e-96a2-0eddb918e4bc" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="361a22ac-750f-4165-be9a-dbae20fd47ba" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="13220dd0-9622-4b3e-96a2-0eddb918e4bc" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="14d8b862-6aca-469d-888d-a3f860c8ed64" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="361a22ac-750f-4165-be9a-dbae20fd47ba" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="9ab93f00-efe0-4a57-920f-840de05e16e7" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="974fb0b5-eeb8-4df9-acd2-60b8a4f88193" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="86035f35-43ca-46a7-81d4-4882e6cccea9" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="71611d65-0c6f-4ce5-95c3-30f8757b5aa6" LastKnownName="this : TShirtSizeController" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="9eac44ce-dc69-41be-b624-5a574aba13f8" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="933f9a58-bb04-43fd-9389-9068eb7837a2" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="2fb93869-0b5f-447e-ad85-72a68946dfb2" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="fd5f024a-b908-4968-ad48-8a55455f89d0" LastKnownName="sender : TShirtSize" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="66be72e7-7d7f-4cea-a25c-a5ce0f8b30ba" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="5ad1c7e8-fd8d-47f2-877e-5099ff9af052" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="71611d65-0c6f-4ce5-95c3-30f8757b5aa6" LastKnownName="this : TShirtSizeController" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="71611d65-0c6f-4ce5-95c3-30f8757b5aa6" name="this : TShirtSizeController" isActor="false" lifelineDisplayName="this : TShirtSizeController" referencedInstance="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Controllers Type=TShirtSizeController ObjectInstance=&quot;Object instance 1&quot;)" referencedType="Conferenceware.Controllers.TShirtSizeController">
+            <referencesInternal>
+              <reference Id="c003cc44-4721-48c7-a768-d522c0beeb4b" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Controllers)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Controllers Type=TShirtSizeController)&quot;)" tag="DGQL" />
+              <reference Id="fcb948c5-b66d-4389-96b1-bd140d1f8d25" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Controllers Type=TShirtSizeController)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="5bc5a0f8-8375-4eee-a490-903d4837baab" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="66be72e7-7d7f-4cea-a25c-a5ce0f8b30ba" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="fd5f024a-b908-4968-ad48-8a55455f89d0" name="sender : TShirtSize" isActor="false" lifelineDisplayName="sender : TShirtSize" referencedInstance="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize ObjectInstance=&quot;Object instance 3&quot;)" referencedType="Conferenceware.Models.TShirtSize">
+            <referencesInternal>
+              <reference Id="1c96b2bd-7863-4c7b-8fb2-2ec61999538a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize)&quot;)" tag="DGQL" />
+              <reference Id="86af3dd1-fce7-4ca1-87d4-40cfbe7e3d74" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize)" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="6e389c50-7644-409f-bc95-9b8c2b8f9585" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="933f9a58-bb04-43fd-9389-9068eb7837a2" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="22863753-7965-49bf-9d41-39076b48e14c" name="sender._Attendees : EntitySet&lt;Attendee&gt;" isActor="false" lifelineDisplayName="sender._Attendees : EntitySet&lt;Attendee&gt;" referencedInstance="(Assembly=&quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=Attendee)]) ObjectInstance=&quot;Object instance 9&quot;)" referencedType="System.Data.Linq.EntitySet&lt;Attendee&gt;">
+            <referencesInternal>
+              <reference Id="7aad009d-8801-4d68-b0f2-76d34cd9c56a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Data.Linq)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&amp;quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1))&quot;)" tag="DGQL" />
+              <reference Id="7ae56757-7091-4f90-9235-f701b512516e" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1))" tag="DGML" />
+            </referencesInternal>
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="041e0762-616b-4b6b-bcaf-07749cae9359" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="26074b69-0c42-440c-a09e-c7a5d36df220" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="963a7732-32a4-4750-9ab7-34e530ec541d" name="Create" messageKind="Found" messageSort="AsynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="7c11c872-7198-41df-9616-b3908346b09c" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Controllers)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Controllers Type=TShirtSizeController)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Controllers Type=TShirtSizeController Member=Create)&quot;)" tag="DGQL" />
+              <reference Id="82871836-ce39-4b49-85cb-886e1661a1e5" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Controllers Type=TShirtSizeController Member=Create)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <lostFoundTargetMoniker Id="7cfbfaa1-c055-4914-8ead-f2c8387b7a62" LastKnownName="LostFoundTarget" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="4ff4438a-dec5-464b-a531-9f3a12c31d9e" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="0d7912c4-a753-4687-8c02-ddd4c5febcff" name="Create TShirtSize" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new TShirtSize()">
+            <referencesInternal>
+              <reference Id="4586230a-27ef-4ed9-88eb-540ad5999903" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize Member=.ctor)&quot;)" tag="DGQL" />
+              <reference Id="876c0bcc-5869-4c09-aa99-9b70cf3d8db4" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize Member=.ctor)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="911cbb2c-ef1c-4ecc-bd5e-a510d6b4c82a" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="91f01d6d-32da-4b8e-8453-7abc2df39020" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="79e50d73-295e-46b5-8bc7-bce383ae137d" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="9eac44ce-dc69-41be-b624-5a574aba13f8" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="86035f35-43ca-46a7-81d4-4882e6cccea9" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="fa0cf306-3377-4e8c-90a0-89a888f5d49c" name="Create EntitySet&lt;Attendee&gt;" messageKind="Complete" messageSort="CreateMessage" createSelfMessage="false" signatureText="new EntitySet&lt;Attendee&gt;(new Action&lt;Attendee&gt;(this.attach_Attendees), new Action&lt;Attendee&gt;(this.detach_Attendees))">
+            <referencesInternal>
+              <reference Id="4c8bcad0-54f3-4e5f-b7be-ad84fbb1227a" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=System.Data.Linq)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&amp;quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1))&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&amp;quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1) Member=(Name=.ctor OverloadingParameters=[(Assembly=&amp;quot;$(FxRootUri)/v2.0.50727/mscorlib.dll&amp;quot; Namespace=System Type=(Name=Action GenericParameterCount=1 GenericArguments=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&amp;quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1) ParameterIdentifier=0)])),(Assembly=&amp;quot;$(FxRootUri)/v2.0.50727/mscorlib.dll&amp;quot; Namespace=System Type=(Name=Action GenericParameterCount=1 GenericArguments=[(Assembly=&amp;quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&amp;quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1) ParameterIdentifier=0)]))]))&quot;)" tag="DGQL" />
+              <reference Id="5a64733e-8f52-4435-aa67-a6d5c11b7359" handle="(Assembly=&quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1) Member=(Name=.ctor OverloadingParameters=[(Assembly=&quot;$(FxRootUri)/v2.0.50727/mscorlib.dll&quot; Namespace=System Type=(Name=Action GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1) ParameterIdentifier=0)])),(Assembly=&quot;$(FxRootUri)/v2.0.50727/mscorlib.dll&quot; Namespace=System Type=(Name=Action GenericParameterCount=1 GenericArguments=[(Assembly=&quot;$(FxReferenceAssembliesUri)/v3.5/System.Data.Linq.dll&quot; Namespace=System.Data.Linq Type=(Name=EntitySet GenericParameterCount=1) ParameterIdentifier=0)]))]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="59e9cb09-766e-49c5-a058-32ce9f028f2e" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="ac17bd59-104d-4242-bab7-225fdd341dfe" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="98d95711-ce8e-4d5c-bd2f-430d447246a5" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="f580a267-8c53-4551-b139-92c5c4d0f6f0" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="5d7c28b8-ad57-4156-8288-4c24f5f02805" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="cbd7df6a-940a-406b-855c-0cf4e23c79ba" name="attach_Attendees" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="4cb624ae-a896-4d33-a61c-56f33d83f334" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize Member=(Name=attach_Attendees OverloadingParameters=[(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=Attendee)]))&quot;)" tag="DGQL" />
+              <reference Id="19bcdab3-03f3-4a02-ab9f-29d9ed978477" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize Member=(Name=attach_Attendees OverloadingParameters=[(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=Attendee)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="9e1ed978-7a88-4aee-8926-57c016c56aaa" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="2d0a2c9e-da46-4580-a198-f7713a821210" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="be7f4d2b-333e-4bcf-9842-a4e7afae927e" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2216c45c-a0af-4119-823c-1c56af4f684c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b18babca-1ceb-45ab-8c65-b9696d9b4a8a" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="a014613d-4bad-4992-855c-1e3264d131ae" name="SendPropertyChanging" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="this.SendPropertyChanging()">
+            <referencesInternal>
+              <reference Id="d819c573-7ca5-4b85-aee1-679dc8d3fd87" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize Member=SendPropertyChanging)&quot;)" tag="DGQL" />
+              <reference Id="b1bd79ea-db89-4873-b6c0-06fdc9905ff2" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize Member=SendPropertyChanging)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a44de84f-da38-4cc7-bf74-64fe57f763ea" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="fd86510b-b613-4f34-86de-dfc68b2f4155" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="9e536dbb-6fb4-48fc-9038-fee0b39bd9e1" name="detach_Attendees" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <referencesInternal>
+              <reference Id="551d242e-2840-4905-971d-67cf064018db" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize Member=(Name=detach_Attendees OverloadingParameters=[(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=Attendee)]))&quot;)" tag="DGQL" />
+              <reference Id="20acaafb-85de-4f12-845f-7a281ce67fe8" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize Member=(Name=detach_Attendees OverloadingParameters=[(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=Attendee)]))" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="8960c10a-90dc-483e-ad7b-d63e87653d9c" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="3eb3ce6f-825b-4645-8141-c855c138e2d0" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="1cd8ead9-c8c2-4f32-bec6-8b1a47346600" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="2851cbf1-02dc-406a-9d1d-d841e551cfc9" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="b9291bc2-926d-4c4b-a2e4-3cb55240f1e6" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="5b174ba9-2dde-43c5-be9c-128971a8a3f7" name="SendPropertyChanging" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="this.SendPropertyChanging()">
+            <referencesInternal>
+              <reference Id="6feca9ef-b94f-4ec7-9222-8cbfe0944e5c" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize Member=SendPropertyChanging)&quot;)" tag="DGQL" />
+              <reference Id="453663ae-7cff-4083-b36f-2d3ddfdd58c0" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize Member=SendPropertyChanging)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="6bf9f48e-7da5-4fb9-a87e-6f806769ed18" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="dbf45f6c-d113-4774-bbe3-604a22b3cea2" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="9cdca83b-d882-4665-91d5-a919e1eafa0f" name="OnCreated" messageKind="Complete" messageSort="SynchCall" createSelfMessage="true" signatureText="OnCreated()">
+            <referencesInternal>
+              <reference Id="737230cd-f078-42c8-b3d1-a559f6d3b8f4" handle="+ Id.Equals(&quot;Microsoft.Solution.ClassView&quot;) /&#xD;&#xA;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Namespace=Conferenceware.Models)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize)&quot;)/&#xD;&#xA;&quot;Microsoft.Contains&quot;/&#xD;&#xA;+ Id.EqualsIgnoreCase(&quot;(Assembly=&amp;quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&amp;quot; Namespace=Conferenceware.Models Type=TShirtSize Member=OnCreated)&quot;)" tag="DGQL" />
+              <reference Id="2e945749-ad36-4b55-8b32-09d4b4d37064" handle="(Assembly=&quot;$(2cbe9479-caaa-4a28-828f-180e876d53cc.OutputPathUri)&quot; Namespace=Conferenceware.Models Type=TShirtSize Member=OnCreated)" tag="DGML" />
+            </referencesInternal>
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="e1cf2480-714b-4d71-908a-6f1e1919ad46" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="361a22ac-750f-4165-be9a-dbae20fd47ba" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="66a87075-53b2-4ab7-a2b0-a672292f0776" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="5ad1c7e8-fd8d-47f2-877e-5099ff9af052" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="05340601-98bc-4c42-bdd9-7ec1bef4b6a2" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="2fb93869-0b5f-447e-ad85-72a68946dfb2" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="af0a0dc1-421a-415b-a331-76f3f4bc98cf" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="a8c7892d-92d6-4967-a291-239e406169c9" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="5604dfcb-eb00-4e60-988c-47e2214e94e0" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="6eb21818-55aa-418f-ae77-94a1f9fe5727" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="def9ac4e-b87d-47c2-91b1-8858c4df2573" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="a22fafea-3a34-4415-84f0-608601659a1a" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="94384722-d952-49ab-98a2-f2d8600360fb" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="91b919f2-09ac-4c6c-9e59-3a53ffa98c0c" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="eb724a42-0f79-499a-8e5e-6297810d07ed" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="1ff95ac0-425f-4d21-b2ce-7a3425464f65" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="14d8b862-6aca-469d-888d-a3f860c8ed64" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="974fb0b5-eeb8-4df9-acd2-60b8a4f88193" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>
