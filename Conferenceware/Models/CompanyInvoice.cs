@@ -16,5 +16,16 @@ namespace Conferenceware.Models
 			}
 		}
 
+		/// <summary>
+		/// For the bug with Html.Hidden
+		/// </summary>
+		public int InvoiceId
+		{
+			get
+			{
+				return id;
+			}
+		}
+
 	}
 }
