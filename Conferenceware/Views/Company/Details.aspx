@@ -69,13 +69,13 @@
   {%>
                 <li class="entry-with-inline-form">
                     <%
-  	using (Html.BeginForm("Delete", "CompanyInvoice"))
+  	using (Html.BeginForm("Delete", "CompanyInvoice", FormMethod.Get))
   	{%>
-                    <%=Html.Hidden("id", invoice) %>
+                    <%=Html.Hidden("InvoiceId", invoice.InvoiceId) %>
                     <input type="submit" value="Delete" />
                     <%
   	}%>
-                    <%=Html.ActionLink(String.Format("{0} (Last Sent {1})",invoice.id, invoice.last_sent),
+                    <%=Html.ActionLink(String.Format("{0} (Last Sent {1})",invoice.id, invoice.last_sent <= invoice.created ? "Never" : invoice.last_sent.ToString()),
   	                                  "Edit",
   	                                  "CompanyInvoice",
   	                                  new {invoice.id}, null)%>

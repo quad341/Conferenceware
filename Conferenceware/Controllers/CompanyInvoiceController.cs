@@ -107,9 +107,9 @@ namespace Conferenceware.Controllers
 		//
 		// GET: /CompanyInvoice/Delete/5
 
-		public ActionResult Delete(int invoice_id)
+		public ActionResult Delete(int InvoiceId)
 		{
-			var ci = _repository.GetCompanyInvoiceById(invoice_id);
+			var ci = _repository.GetCompanyInvoiceById(InvoiceId);
 			if (ci == null)
 			{
 				return View("CompanyInvoiceNotFound");

@@ -141,6 +141,7 @@
     <Content Include="Views\Attendee\Edit.aspx" />
     <Content Include="Views\Attendee\Index.aspx" />
     <Content Include="Views\CompanyInvoice\CompanyInvoiceNotFound.aspx" />
+    <Content Include="Views\CompanyInvoice\Delete.aspx" />
     <Content Include="Views\CompanyInvoice\Edit.aspx" />
     <Content Include="Views\CompanyPayment\CompanyPaymentNotFound.aspx" />
     <Content Include="Views\CompanyPayment\Create.aspx" />
