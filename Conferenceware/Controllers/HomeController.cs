@@ -6,6 +6,7 @@ namespace Conferenceware.Controllers
 	[HandleError]
 	public class HomeController : Controller
 	{
+		[OutputCache]
 		public ActionResult Index()
 		{
 			var frontPageSettings =
