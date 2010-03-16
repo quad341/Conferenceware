@@ -47,19 +47,19 @@
                     <%
   	using (Html.BeginForm("Delete", "CompanyPerson"))
   	{%>
-                    <%=Html.Hidden("id", cp.person_id)%>
+                    <%=Html.Hidden("person_id", cp.person_id) %>
                     <input type="submit" value="Delete" />
                     <%
   	}%>
                     <%=Html.ActionLink(cp.People.name,
   	                                  "Edit",
   	                                  "CompanyPerson",
-  	                                  new {cp.person_id})%>
+  	                                  new {id=cp.person_id}, null)%>
                 </li>
                 <%
   }%>
             </ul>
-            <%= Html.ActionLink("Create Company Person", "Create", "CompanyPerson", new {Model.id}) %>
+            <%= Html.ActionLink("Create Company Person", "Create", "CompanyPerson", new {Model.id}, null) %>
         </div>
          
         <div class="display-label">Invoices</div>
@@ -78,14 +78,14 @@
                     <%=Html.ActionLink(String.Format("{0} (Last Sent {1})",invoice.id, invoice.last_sent),
   	                                  "Edit",
   	                                  "CompanyInvoice",
-  	                                  new {invoice.id})%>
+  	                                  new {invoice.id}, null)%>
                 </li>
                 <%
   }%>
             </ul>
             <div class="display-label"><%= Html.LabelFor(x => x.InvoiceTotal) %></div>
             <div class="display-field"><%= Html.Encode(String.Format("{0:C}",Model.InvoiceTotal)) %></div>
-            <%= Html.ActionLink("Create Invoice", "Create", "CompanyInvoice", new {Model.id}) %>
+            <%= Html.ActionLink("Create Invoice", "Create", "CompanyInvoice", new {Model.id}, null) %>
         </div>
         
         <div class="display-label">Payments</div>
@@ -104,14 +104,14 @@
                     <%=Html.ActionLink(String.Format("{0} (Received {1})", payment.id, payment.received_date),
   	                                  "Edit",
   	                                  "CompanyPayment",
-  	                                  new {payment.id})%>
+  	                                  new {payment.id}, null)%>
                 </li>
                 <%
   }%>
             </ul>
             <div class="display-label"><%= Html.LabelFor(x => x.PaymentsTotal) %></div>
             <div class="display-field"><%= Html.Encode(String.Format("{0:C}",Model.PaymentsTotal)) %></div>
-            <%= Html.ActionLink("Create Payment", "Create", "CompanyPayment", new {Model.id}) %>
+            <%= Html.ActionLink("Create Payment", "Create", "CompanyPayment", new {Model.id}, null) %>
         </div>
        
     </fieldset>
