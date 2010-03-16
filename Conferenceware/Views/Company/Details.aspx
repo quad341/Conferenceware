@@ -59,7 +59,7 @@
                 <%
   }%>
             </ul>
-            <%= Html.ActionLink("Create Company Person", "Create", "CompanyPerson") %>
+            <%= Html.ActionLink("Create Company Person", "Create", "CompanyPerson", new {Model.id}) %>
         </div>
          
         <div class="display-label">Invoices</div>
