@@ -15,5 +15,6 @@
         <li><%= Html.ActionLink("Speakers", "Index", "Speaker") %></li>
         <li><%= Html.ActionLink("Attendees", "Index", "Attendee") %></li>
         <li><%= Html.ActionLink("Events", "Index", "Event") %></li>
+        <li><%= Html.ActionLink("Volunteer Time Slots", "Index", "VolunteerTimeSlot") %></li>
     </ul>
 </asp:Content>

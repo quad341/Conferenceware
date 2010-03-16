@@ -374,6 +374,91 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
+		public void AddVolunteerTimeSlot(VolunteerTimeSlot vts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteVolunteerTimeSlot(VolunteerTimeSlot vts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteVolunteerTimeSlot(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public VolunteerTimeSlot GetVolunteerTimeSlotById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<VolunteerTimeSlot> GetAllVolunteerTimeSlots()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddVolunteer(Volunteer v)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteVolunteer(Volunteer v)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteVolunteer(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Volunteer GetVolunteerById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<Volunteer> GetAllVolunteers()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void RegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void UnRegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddMechManiaTeam(MechManiaTeam mmt)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteMechManiaTeam(MechManiaTeam mmt)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteMechManiaTeam(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public MechManiaTeam GetMechManiaTeamById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<MechManiaTeam> GetAllMechManiaTeams()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Save()
 		{
 			// we do that anyway. we might want to do something more interesting 

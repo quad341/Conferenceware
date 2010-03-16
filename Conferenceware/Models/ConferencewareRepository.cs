@@ -359,6 +359,106 @@ namespace Conferenceware.Models
 			return _conferenceware.CompanyPayments.AsQueryable();
 		}
 
+		public void AddVolunteerTimeSlot(VolunteerTimeSlot vts)
+		{
+			_conferenceware.VolunteerTimeSlots.InsertOnSubmit(vts);
+		}
+
+		public void DeleteVolunteerTimeSlot(VolunteerTimeSlot vts)
+		{
+			_conferenceware.VolunteerTimeSlots.DeleteOnSubmit(vts);
+		}
+
+		public void DeleteVolunteerTimeSlot(int id)
+		{
+			_conferenceware.VolunteerTimeSlots.DeleteOnSubmit(GetVolunteerTimeSlotById(id));
+		}
+
+		public VolunteerTimeSlot GetVolunteerTimeSlotById(int id)
+		{
+			return
+				_conferenceware.VolunteerTimeSlots.SingleOrDefault(x => x.timeslot_id == id);
+		}
+
+		public IQueryable<VolunteerTimeSlot> GetAllVolunteerTimeSlots()
+		{
+			return _conferenceware.VolunteerTimeSlots.AsQueryable();
+		}
+
+		public void AddVolunteer(Volunteer v)
+		{
+			_conferenceware.Volunteers.InsertOnSubmit(v);
+		}
+
+		public void DeleteVolunteer(Volunteer v)
+		{
+			_conferenceware.Volunteers.DeleteOnSubmit(v);
+		}
+
+		public void DeleteVolunteer(int id)
+		{
+			_conferenceware.Volunteers.DeleteOnSubmit(GetVolunteerById(id));
+		}
+
+		public Volunteer GetVolunteerById(int id)
+		{
+			return _conferenceware.Volunteers.SingleOrDefault(x => x.person_id == id);
+		}
+
+		public IQueryable<Volunteer> GetAllVolunteers()
+		{
+			return _conferenceware.Volunteers.AsQueryable();
+		}
+
+		public void RegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts)
+		{
+			if (_conferenceware.VolunteersVolunteerTimeSlots.SingleOrDefault(x =>
+				x.Volunteer == v && x.VolunteerTimeSlot == vts) == null)
+			{
+				var vvts = new VolunteersVolunteerTimeSlot
+							{
+								Volunteer = v,
+								VolunteerTimeSlot = vts
+							};
+				_conferenceware.VolunteersVolunteerTimeSlots.InsertOnSubmit(vvts);
+			}
+
+		}
+
+		public void UnRegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts)
+		{
+			var vvts =
+				_conferenceware.VolunteersVolunteerTimeSlots.SingleOrDefault(
+					x => x.Volunteer == v && x.VolunteerTimeSlot == vts);
+			_conferenceware.VolunteersVolunteerTimeSlots.DeleteOnSubmit(vvts);
+
+		}
+
+		public void AddMechManiaTeam(MechManiaTeam mmt)
+		{
+			_conferenceware.MechManiaTeams.InsertOnSubmit(mmt);
+		}
+
+		public void DeleteMechManiaTeam(MechManiaTeam mmt)
+		{
+			_conferenceware.MechManiaTeams.DeleteOnSubmit(mmt);
+		}
+
+		public void DeleteMechManiaTeam(int id)
+		{
+			_conferenceware.MechManiaTeams.DeleteOnSubmit(GetMechManiaTeamById(id));
+		}
+
+		public MechManiaTeam GetMechManiaTeamById(int id)
+		{
+			return _conferenceware.MechManiaTeams.SingleOrDefault(x => x.id == id);
+		}
+
+		public IQueryable<MechManiaTeam> GetAllMechManiaTeams()
+		{
+			return _conferenceware.MechManiaTeams.AsQueryable();
+		}
+
 		public void DeletePerson(People person)
 		{
 			_conferenceware.Peoples.DeleteOnSubmit(person);

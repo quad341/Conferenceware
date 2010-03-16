@@ -265,6 +265,33 @@ namespace Conferenceware.Models
 		CompanyPayment GetCompanyPaymentById(int id);
 		IQueryable<CompanyPayment> GetAllCompanyPayments();
 
+		//VolunteerTimeSot
+		void AddVolunteerTimeSlot(VolunteerTimeSlot vts);
+		void DeleteVolunteerTimeSlot(VolunteerTimeSlot vts);
+		void DeleteVolunteerTimeSlot(int id);
+		VolunteerTimeSlot GetVolunteerTimeSlotById(int id);
+		IQueryable<VolunteerTimeSlot> GetAllVolunteerTimeSlots();
+
+		//Volunteer
+		void AddVolunteer(Volunteer v);
+		void DeleteVolunteer(Volunteer v);
+		void DeleteVolunteer(int id);
+		Volunteer GetVolunteerById(int id);
+		IQueryable<Volunteer> GetAllVolunteers();
+
+		//Register volunteers for timeslots
+		void RegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts);
+
+		void UnRegisterVolunteerForVolunteerTimeSlot(Volunteer v,
+													 VolunteerTimeSlot vts);
+
+		//MechManiaTeam
+		void AddMechManiaTeam(MechManiaTeam mmt);
+		void DeleteMechManiaTeam(MechManiaTeam mmt);
+		void DeleteMechManiaTeam(int id);
+		MechManiaTeam GetMechManiaTeamById(int id);
+		IQueryable<MechManiaTeam> GetAllMechManiaTeams();
+
 		//General
 		/// <summary>
 		/// Causes the repository to commit its changes
