@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -83,6 +84,9 @@
     <Compile Include="Models\Attendee.cs" />
     <Compile Include="Models\AttendeeEditData.cs" />
     <Compile Include="Models\AttendeeMetadata.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\CompanyInvoice.cs" />
+    <Compile Include="Models\CompanyMetadata.cs" />
     <Compile Include="Models\Conferenceware.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,6 +131,7 @@
     <Content Include="Views\Attendee\Create.aspx" />
     <Content Include="Views\Attendee\Edit.aspx" />
     <Content Include="Views\Attendee\Index.aspx" />
+    <Content Include="Views\Company\CompanyNotFound.aspx" />
     <Content Include="Views\Event\Create.aspx" />
     <Content Include="Views\Event\Details.aspx" />
     <Content Include="Views\Event\Edit.aspx" />

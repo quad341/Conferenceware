@@ -6,6 +6,5 @@ namespace Conferenceware.Models
 	public partial class Company
 	{
 		// yay linq
-
 	}
 }

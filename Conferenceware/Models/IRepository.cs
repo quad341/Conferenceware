@@ -230,6 +230,41 @@ namespace Conferenceware.Models
 		TShirtSize GetTShirtSizeById(int id);
 		IQueryable<TShirtSize> GetAllTShirtSizes();
 
+		//Company
+		void AddCompany(Company c);
+		void DeleteCompany(Company c);
+		void DeleteCompany(int id);
+		Company GetCompanyById(int id);
+		IQueryable<Company> GetAllCompanies();
+
+		//CompanyPerson
+		void AddCompanyPerson(CompanyPerson cp);
+		void DeleteCompanyPerson(CompanyPerson cp);
+		void DeleteCompanyPerson(int id);
+		CompanyPerson GetCompanyPersonById(int id);
+		IQueryable<CompanyPerson> GetAllCompanyPersons();
+
+		//CompanyInvoice
+		void AddCompanyInvoice(CompanyInvoice ci);
+		void DeleteCompanyInvoice(CompanyInvoice ci);
+		void DeleteCompanyInvoice(int id);
+		CompanyInvoice GetCompanyInvoiceById(int id);
+		IQueryable<CompanyInvoice> GetAllCompanyInvoices();
+
+		//CompanyInvoiceItem
+		void AddCompanyInvoiceItem(CompanyInvoiceItem cii);
+		void DeleteCompanyInvoiceItem(CompanyInvoiceItem cii);
+		void DeleteCompanyInvoiceItem(int id);
+		CompanyInvoiceItem GetCompanyInvoiceItemById(int id);
+		IQueryable<CompanyInvoiceItem> GetAllCompanyInvoiceItems();
+
+		//CompanyPayment
+		void AddCompanyPayment(CompanyPayment cp);
+		void DeleteCompanyPayment(CompanyPayment cp);
+		void DeleteCompanyPayment(int id);
+		CompanyPayment GetCompanyPaymentById(int id);
+		IQueryable<CompanyPayment> GetAllCompanyPayments();
+
 		//General
 		/// <summary>
 		/// Causes the repository to commit its changes

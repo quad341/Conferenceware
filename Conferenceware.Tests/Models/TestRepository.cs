@@ -249,6 +249,131 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
+		public void AddCompany(Company c)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompany(Company c)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompany(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Company GetCompanyById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<Company> GetAllCompanies()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddCompanyPerson(CompanyPerson cp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyPerson(CompanyPerson cp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyPerson(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public CompanyPerson GetCompanyPersonById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<CompanyPerson> GetAllCompanyPersons()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddCompanyInvoice(CompanyInvoice ci)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyInvoice(CompanyInvoice ci)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyInvoice(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public CompanyInvoice GetCompanyInvoiceById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<CompanyInvoice> GetAllCompanyInvoices()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddCompanyInvoiceItem(CompanyInvoiceItem cii)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyInvoiceItem(CompanyInvoiceItem cii)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyInvoiceItem(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public CompanyInvoiceItem GetCompanyInvoiceItemById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<CompanyInvoiceItem> GetAllCompanyInvoiceItems()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddCompanyPayment(CompanyPayment cp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyPayment(CompanyPayment cp)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteCompanyPayment(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public CompanyPayment GetCompanyPaymentById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<CompanyPayment> GetAllCompanyPayments()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Save()
 		{
 			// we do that anyway. we might want to do something more interesting 

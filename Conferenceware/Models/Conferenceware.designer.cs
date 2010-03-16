@@ -81,9 +81,9 @@ namespace Conferenceware.Models
     partial void InsertCompany(Company instance);
     partial void UpdateCompany(Company instance);
     partial void DeleteCompany(Company instance);
-    partial void InsertCompanyPeople(CompanyPeople instance);
-    partial void UpdateCompanyPeople(CompanyPeople instance);
-    partial void DeleteCompanyPeople(CompanyPeople instance);
+    partial void InsertCompanyPerson(CompanyPerson instance);
+    partial void UpdateCompanyPerson(CompanyPerson instance);
+    partial void DeleteCompanyPerson(CompanyPerson instance);
     partial void InsertCompanyInvoiceItem(CompanyInvoiceItem instance);
     partial void UpdateCompanyInvoiceItem(CompanyInvoiceItem instance);
     partial void DeleteCompanyInvoiceItem(CompanyInvoiceItem instance);
@@ -261,11 +261,11 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<CompanyPeople> CompanyPeoples
+		public System.Data.Linq.Table<CompanyPerson> CompanyPersons
 		{
 			get
 			{
-				return this.GetTable<CompanyPeople>();
+				return this.GetTable<CompanyPerson>();
 			}
 		}
 		
@@ -1712,7 +1712,7 @@ namespace Conferenceware.Models
 		
 		private EntityRef<Staff> _Staff;
 		
-		private EntityRef<CompanyPeople> _CompanyPeople;
+		private EntityRef<CompanyPerson> _CompanyPeople;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1734,7 +1734,7 @@ namespace Conferenceware.Models
 			this._Speaker = default(EntityRef<Speaker>);
 			this._Volunteer = default(EntityRef<Volunteer>);
 			this._Staff = default(EntityRef<Staff>);
-			this._CompanyPeople = default(EntityRef<CompanyPeople>);
+			this._CompanyPeople = default(EntityRef<CompanyPerson>);
 			OnCreated();
 		}
 		
@@ -1935,7 +1935,7 @@ namespace Conferenceware.Models
 		}
 		
 		[Association(Name="People_CompanyPeople", Storage="_CompanyPeople", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
-		public CompanyPeople CompanyPeople
+		public CompanyPerson CompanyPeople
 		{
 			get
 			{
@@ -1943,7 +1943,7 @@ namespace Conferenceware.Models
 			}
 			set
 			{
-				CompanyPeople previousValue = this._CompanyPeople.Entity;
+				CompanyPerson previousValue = this._CompanyPeople.Entity;
 				if (((previousValue != value) 
 							|| (this._CompanyPeople.HasLoadedOrAssignedValue == false)))
 				{
@@ -3492,7 +3492,7 @@ namespace Conferenceware.Models
 		
 		private bool _priority_shipping;
 		
-		private EntitySet<CompanyPeople> _CompanyPeoples;
+		private EntitySet<CompanyPerson> _CompanyPeoples;
 		
 		private EntitySet<CompanyInvoice> _CompanyInvoices;
 		
@@ -3524,7 +3524,7 @@ namespace Conferenceware.Models
 		
 		public Company()
 		{
-			this._CompanyPeoples = new EntitySet<CompanyPeople>(new Action<CompanyPeople>(this.attach_CompanyPeoples), new Action<CompanyPeople>(this.detach_CompanyPeoples));
+			this._CompanyPeoples = new EntitySet<CompanyPerson>(new Action<CompanyPerson>(this.attach_CompanyPeoples), new Action<CompanyPerson>(this.detach_CompanyPeoples));
 			this._CompanyInvoices = new EntitySet<CompanyInvoice>(new Action<CompanyInvoice>(this.attach_CompanyInvoices), new Action<CompanyInvoice>(this.detach_CompanyInvoices));
 			this._CompanyPayments = new EntitySet<CompanyPayment>(new Action<CompanyPayment>(this.attach_CompanyPayments), new Action<CompanyPayment>(this.detach_CompanyPayments));
 			OnCreated();
@@ -3711,7 +3711,7 @@ namespace Conferenceware.Models
 		}
 		
 		[Association(Name="Company_CompanyPeople", Storage="_CompanyPeoples", ThisKey="id", OtherKey="company_id")]
-		public EntitySet<CompanyPeople> CompanyPeoples
+		public EntitySet<CompanyPerson> CompanyPersons
 		{
 			get
 			{
@@ -3769,13 +3769,13 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		private void attach_CompanyPeoples(CompanyPeople entity)
+		private void attach_CompanyPeoples(CompanyPerson entity)
 		{
 			this.SendPropertyChanging();
 			entity.Company = this;
 		}
 		
-		private void detach_CompanyPeoples(CompanyPeople entity)
+		private void detach_CompanyPeoples(CompanyPerson entity)
 		{
 			this.SendPropertyChanging();
 			entity.Company = null;
@@ -3807,7 +3807,7 @@ namespace Conferenceware.Models
 	}
 	
 	[Table(Name="dbo.CompanyPeople")]
-	public partial class CompanyPeople : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class CompanyPerson : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -3838,7 +3838,7 @@ namespace Conferenceware.Models
     partial void Onis_attendingChanged();
     #endregion
 		
-		public CompanyPeople()
+		public CompanyPerson()
 		{
 			this._Company = default(EntityRef<Company>);
 			this._People = default(EntityRef<People>);
@@ -3950,12 +3950,12 @@ namespace Conferenceware.Models
 					if ((previousValue != null))
 					{
 						this._Company.Entity = null;
-						previousValue.CompanyPeoples.Remove(this);
+						previousValue.CompanyPersons.Remove(this);
 					}
 					this._Company.Entity = value;
 					if ((value != null))
 					{
-						value.CompanyPeoples.Add(this);
+						value.CompanyPersons.Add(this);
 						this._company_id = value.id;
 					}
 					else

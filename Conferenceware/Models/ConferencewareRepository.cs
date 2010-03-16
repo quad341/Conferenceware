@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Conferenceware.Models
 {
@@ -233,6 +232,131 @@ namespace Conferenceware.Models
 		public IQueryable<TShirtSize> GetAllTShirtSizes()
 		{
 			return _conferenceware.TShirtSizes.AsQueryable();
+		}
+
+		public void AddCompany(Company c)
+		{
+			_conferenceware.Companies.InsertOnSubmit(c);
+		}
+
+		public void DeleteCompany(Company c)
+		{
+			_conferenceware.Companies.DeleteOnSubmit(c);
+		}
+
+		public void DeleteCompany(int id)
+		{
+			_conferenceware.Companies.DeleteOnSubmit(GetCompanyById(id));
+		}
+
+		public Company GetCompanyById(int id)
+		{
+			return _conferenceware.Companies.SingleOrDefault(x => x.id == id);
+		}
+
+		public IQueryable<Company> GetAllCompanies()
+		{
+			return _conferenceware.Companies.AsQueryable();
+		}
+
+		public void AddCompanyPerson(CompanyPerson cp)
+		{
+			_conferenceware.CompanyPersons.InsertOnSubmit(cp);
+		}
+
+		public void DeleteCompanyPerson(CompanyPerson cp)
+		{
+			_conferenceware.CompanyPersons.DeleteOnSubmit(cp);
+		}
+
+		public void DeleteCompanyPerson(int id)
+		{
+			_conferenceware.CompanyPersons.DeleteOnSubmit(GetCompanyPersonById(id));
+		}
+
+		public CompanyPerson GetCompanyPersonById(int id)
+		{
+			return _conferenceware.CompanyPersons.SingleOrDefault(x => x.person_id == id);
+		}
+
+		public IQueryable<CompanyPerson> GetAllCompanyPersons()
+		{
+			return _conferenceware.CompanyPersons.AsQueryable();
+		}
+
+		public void AddCompanyInvoice(CompanyInvoice ci)
+		{
+			_conferenceware.CompanyInvoices.InsertOnSubmit(ci);
+		}
+
+		public void DeleteCompanyInvoice(CompanyInvoice ci)
+		{
+			_conferenceware.CompanyInvoices.DeleteOnSubmit(ci);
+		}
+
+		public void DeleteCompanyInvoice(int id)
+		{
+			_conferenceware.CompanyInvoices.DeleteOnSubmit(GetCompanyInvoiceById(id));
+		}
+
+		public CompanyInvoice GetCompanyInvoiceById(int id)
+		{
+			return _conferenceware.CompanyInvoices.SingleOrDefault(x => x.id == id);
+		}
+
+		public IQueryable<CompanyInvoice> GetAllCompanyInvoices()
+		{
+			return _conferenceware.CompanyInvoices.AsQueryable();
+		}
+
+		public void AddCompanyInvoiceItem(CompanyInvoiceItem cii)
+		{
+			_conferenceware.CompanyInvoiceItems.InsertOnSubmit(cii);
+		}
+
+		public void DeleteCompanyInvoiceItem(CompanyInvoiceItem cii)
+		{
+			_conferenceware.CompanyInvoiceItems.DeleteOnSubmit(cii);
+		}
+
+		public void DeleteCompanyInvoiceItem(int id)
+		{
+			_conferenceware.CompanyInvoiceItems.DeleteOnSubmit(GetCompanyInvoiceItemById(id));
+		}
+
+		public CompanyInvoiceItem GetCompanyInvoiceItemById(int id)
+		{
+			return _conferenceware.CompanyInvoiceItems.SingleOrDefault(x => x.id == id);
+		}
+
+		public IQueryable<CompanyInvoiceItem> GetAllCompanyInvoiceItems()
+		{
+			return _conferenceware.CompanyInvoiceItems.AsQueryable();
+		}
+
+		public void AddCompanyPayment(CompanyPayment cp)
+		{
+			_conferenceware.CompanyPayments.InsertOnSubmit(cp);
+		}
+
+		public void DeleteCompanyPayment(CompanyPayment cp)
+		{
+			_conferenceware.CompanyPayments.DeleteOnSubmit(cp);
+		}
+
+		public void DeleteCompanyPayment(int id)
+		{
+			_conferenceware.CompanyPayments.DeleteOnSubmit(GetCompanyPaymentById(id));
+		}
+
+		public CompanyPayment GetCompanyPaymentById(int id)
+		{
+			return _conferenceware.CompanyPayments.SingleOrDefault(x => x.id == id);
+		}
+
+		public IQueryable<CompanyPayment> GetAllCompanyPayments()
+		{
+			return _conferenceware.CompanyPayments.AsQueryable();
 		}
 
 		public void DeletePerson(People person)
