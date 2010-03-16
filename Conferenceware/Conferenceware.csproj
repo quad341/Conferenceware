@@ -81,6 +81,7 @@
     <Compile Include="Controllers\SpeakerController.cs" />
     <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\TShirtSizeController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Controllers\VolunteerTimeSlotController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -124,6 +125,9 @@
     <Compile Include="Models\TimeSlotMetadata.cs" />
     <Compile Include="Models\TShirtSize.cs" />
     <Compile Include="Models\TShirtSizeMetadata.cs" />
+    <Compile Include="Models\Volunteer.cs" />
+    <Compile Include="Models\VolunteerEditData.cs" />
+    <Compile Include="Models\VolunteerMetadata.cs" />
     <Compile Include="Models\VolunteerTimeSlot.cs" />
     <Compile Include="Models\VolunteerTimeSlotEditData.cs" />
     <Compile Include="Models\VolunteerTimeSlotMetadata.cs" />
