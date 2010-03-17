@@ -32,6 +32,8 @@
                         <li><%= Html.ActionLink("Settings", "Index", "Settings")%></li>
                         <li>|</li>
                         <li><%= Html.ActionLink("Companies", "Index", "Company")%></li>
+                        <li>|</li>
+                        <li><%= Html.ActionLink("Mechmania Registration", "Index", "MechmaniaRegistration")%></li>
                 </ul>
             </div>
             
