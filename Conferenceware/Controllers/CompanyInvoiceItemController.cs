@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -47,6 +48,7 @@ namespace Conferenceware.Controllers
 			{
 
 				_repository.AddCompanyInvoiceItem(cii);
+				cii.CompanyInvoice.created = DateTime.Now;
 				_repository.Save();
 				return RedirectToAction("Edit", "CompanyInvoice", new { id = cii.invoice_id });
 			}
