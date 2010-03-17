@@ -51,7 +51,7 @@
                 <%= Html.LabelFor(model => model.marked_paid_date) %>
             </div>
             <div class="editor-field">
-                <%= String.Format("{0:g}", Model.marked_paid_date) %>
+                <%= Model.created >= Model.marked_paid_date ? "N/A" : String.Format("{0:g}", Model.marked_paid_date) %>
             </div>
             
             <div class="display-label">

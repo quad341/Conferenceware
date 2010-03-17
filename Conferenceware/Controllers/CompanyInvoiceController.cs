@@ -87,16 +87,17 @@ namespace Conferenceware.Controllers
 			{
 				ModelState.AddModelError("last_sent", "Invalid date/time provided");
 			}
-			bool paid, wasPaid = ci.paid;
-			if (bool.TryParse(collection["paid"], out paid))
-			{
-				ci.paid = paid;
-			}
+			bool wasPaid = ci.paid;
+			ci.paid = collection["paid"] != null && collection["paid"].Contains("true");
 			if (ModelState.IsValid)
 			{
-				if (!wasPaid)
+				if (!wasPaid && ci.paid)
 				{
 					ci.marked_paid_date = DateTime.Now;
+				}
+				else if (wasPaid && !ci.paid)
+				{
+					ci.marked_paid_date = ci.created;
 				}
 				_repository.Save();
 				return RedirectToAction("Details", "Company", new { id = ci.company_id });

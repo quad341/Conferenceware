@@ -46,9 +46,13 @@ namespace Conferenceware.Controllers
 			var cii = new CompanyInvoiceItem();
 			if (TryUpdateModel(cii, new[] { "name", "description", "cost", "invoice_id" }))
 			{
-
+				if (cii.description == null)
+				{
+					cii.description = "";
+				}
 				_repository.AddCompanyInvoiceItem(cii);
-				cii.CompanyInvoice.created = DateTime.Now;
+				var invoice = _repository.GetCompanyInvoiceById(cii.invoice_id);
+				invoice.created = DateTime.Now;
 				_repository.Save();
 				return RedirectToAction("Edit", "CompanyInvoice", new { id = cii.invoice_id });
 			}
@@ -66,6 +70,8 @@ namespace Conferenceware.Controllers
 				return View("CompanyInvoiceItemNotFound");
 			}
 			int invoiceId = cii.invoice_id;
+			var invoice = _repository.GetCompanyInvoiceById(cii.invoice_id);
+			invoice.created = DateTime.Now;
 			_repository.DeleteCompanyInvoiceItem(cii);
 			_repository.Save();
 			return RedirectToAction("Edit", "CompanyInvoice", new { id = invoiceId });
