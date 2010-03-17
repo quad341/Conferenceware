@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />
+    <Compile Include="Controllers\AttendeeRegistrationController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CompanyInvoiceController.cs" />
     <Compile Include="Controllers\CompanyInvoiceItemController.cs" />
@@ -147,6 +148,8 @@
     <Content Include="Content\xVal.jquery.validate.js" />
     <Content Include="Libraries\xVal.dll" />
     <Content Include="Libraries\xVal.license.txt" />
+    <Content Include="Views\AttendeeRegistration\Index.aspx" />
+    <Content Include="Views\AttendeeRegistration\Success.aspx" />
     <Content Include="Views\Attendee\AttendeeNotFound.aspx" />
     <Content Include="Views\Attendee\Create.aspx" />
     <Content Include="Views\Attendee\Edit.aspx" />
