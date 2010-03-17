@@ -78,7 +78,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\MechmaniaRegistrationController.cs" />
-    <Compile Include="Controllers\MechmaniaTeamController.cs" />
+    <Compile Include="Controllers\MechManiaTeamController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
@@ -119,6 +119,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\LocationMetadata.cs" />
     <Compile Include="Models\MechmaniaTeam.cs" />
+    <Compile Include="Models\MechManiaTeamAdminEditData.cs" />
     <Compile Include="Models\MechmaniaTeamEditData.cs" />
     <Compile Include="Models\MechmaniaTeamMetadata.cs" />
     <Compile Include="Models\People.cs" />
