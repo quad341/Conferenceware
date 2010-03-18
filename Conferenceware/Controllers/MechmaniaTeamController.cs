@@ -1,33 +1,38 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
 	public class MechManiaTeamController : Controller
 	{
+		private readonly IRepository _repository;
+
+		public MechManiaTeamController()
+			: this(new ConferencewareRepository())
+		{
+			// done
+		}
+
+		public MechManiaTeamController(IRepository repo)
+		{
+			_repository = repo;
+		}
 		//
 		// GET: /MechmaniaTeam/
 
 		public ActionResult Index()
 		{
-			return View();
+			return View("Index", _repository.GetAllMechManiaTeams());
 		}
-
-		//
-		// GET: /MechmaniaTeam/Details/5
-
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
-
 		//
 		// GET: /MechmaniaTeam/Create
 
 		public ActionResult Create()
 		{
-			return View();
+			return View("Create", MakeAdminEditDataFromTeam(new MechManiaTeam()));
 		}
+
 
 		//
 		// POST: /MechmaniaTeam/Create
@@ -35,16 +40,15 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Create(FormCollection collection)
 		{
-			try
+			var mmt = new MechManiaTeam();
+			if (TryUpdateModel(mmt, "MechManiaTeam"))
 			{
-				// TODO: Add insert logic here
-
+				_repository.AddMechManiaTeam(mmt);
+				_repository.Save();
+				TempData["Message"] = "Team Created";
 				return RedirectToAction("Index");
 			}
-			catch
-			{
-				return View();
-			}
+			return View("Create", MakeAdminEditDataFromTeam(mmt));
 		}
 
 		//
@@ -52,7 +56,12 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			return View();
+			var mmt = _repository.GetMechManiaTeamById(id);
+			if (mmt == null)
+			{
+				return View("MechManiaTeamNotFound");
+			}
+			return View("Edit", MakeAdminEditDataFromTeam(mmt));
 		}
 
 		//
@@ -61,16 +70,20 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			try
+			var mmt = _repository.GetMechManiaTeamById(id);
+			if (mmt == null)
 			{
-				// TODO: Add update logic here
+				return View("MechManiaTeamNotFound");
+			}
+			if (TryUpdateModel(mmt, "MechManiaTeam"))
+			{
+				_repository.Save();
+
+				TempData["Message"] = "Team Updated";
 
 				return RedirectToAction("Index");
 			}
-			catch
-			{
-				return View();
-			}
+			return View("Edit", MakeAdminEditDataFromTeam(mmt));
 		}
 
 		//
@@ -78,25 +91,25 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			return View();
+			var mmt = _repository.GetMechManiaTeamById(id);
+			if (mmt == null)
+			{
+				return View("MechManiaTeamNotFound");
+			}
+			TempData["Message"] = String.Format("MechMania Team {0} deleted",
+												mmt.team_name);
+			_repository.DeleteMechManiaTeam(mmt);
+			_repository.Save();
+			return RedirectToAction("Index");
 		}
 
-		//
-		// POST: /MechmaniaTeam/Delete/5
-
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
+		private MechManiaTeamAdminEditData MakeAdminEditDataFromTeam(MechManiaTeam mechManiaTeam)
 		{
-			try
-			{
-				// TODO: Add delete logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
+			return new MechManiaTeamAdminEditData
+					{
+						MechManiaTeam = mechManiaTeam,
+						Attendees = new SelectList(_repository.GetAllAttendees())
+					};
 		}
 	}
 }
