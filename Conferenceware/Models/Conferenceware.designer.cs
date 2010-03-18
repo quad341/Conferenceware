@@ -66,9 +66,6 @@ namespace Conferenceware.Models
     partial void InsertEvent(Event instance);
     partial void UpdateEvent(Event instance);
     partial void DeleteEvent(Event instance);
-    partial void InsertMechManiaTeam(MechManiaTeam instance);
-    partial void UpdateMechManiaTeam(MechManiaTeam instance);
-    partial void DeleteMechManiaTeam(MechManiaTeam instance);
     partial void InsertPage(Page instance);
     partial void UpdatePage(Page instance);
     partial void DeletePage(Page instance);
@@ -93,6 +90,9 @@ namespace Conferenceware.Models
     partial void InsertCompanyPerson(CompanyPerson instance);
     partial void UpdateCompanyPerson(CompanyPerson instance);
     partial void DeleteCompanyPerson(CompanyPerson instance);
+    partial void InsertMechManiaTeam(MechManiaTeam instance);
+    partial void UpdateMechManiaTeam(MechManiaTeam instance);
+    partial void DeleteMechManiaTeam(MechManiaTeam instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -221,14 +221,6 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<MechManiaTeam> MechManiaTeams
-		{
-			get
-			{
-				return this.GetTable<MechManiaTeam>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Page> Pages
 		{
 			get
@@ -290,6 +282,14 @@ namespace Conferenceware.Models
 			get
 			{
 				return this.GetTable<CompanyPerson>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MechManiaTeam> MechManiaTeams
+		{
+			get
+			{
+				return this.GetTable<MechManiaTeam>();
 			}
 		}
 	}
@@ -1934,7 +1934,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="People_CompanyPeople", Storage="_CompanyPerson", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		[Association(Name="People_CompanyPerson", Storage="_CompanyPerson", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
 		public CompanyPerson CompanyPerson
 		{
 			get
@@ -2607,335 +2607,6 @@ namespace Conferenceware.Models
 		{
 			this.SendPropertyChanging();
 			entity.Event = null;
-		}
-	}
-	
-	[Table(Name="dbo.MechManiaTeams")]
-	public partial class MechManiaTeam : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _team_name;
-		
-		private int _member1_id;
-		
-		private int _member2_id;
-		
-		private int _member3_id;
-		
-		private string _account_name;
-		
-		private string _account_password;
-		
-		private EntityRef<Attendee> _Attendee;
-		
-		private EntityRef<Attendee> _Attendee1;
-		
-		private EntityRef<Attendee> _Attendee2;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void Onteam_nameChanging(string value);
-    partial void Onteam_nameChanged();
-    partial void Onmember1_idChanging(int value);
-    partial void Onmember1_idChanged();
-    partial void Onmember2_idChanging(int value);
-    partial void Onmember2_idChanged();
-    partial void Onmember3_idChanging(int value);
-    partial void Onmember3_idChanged();
-    partial void Onaccount_nameChanging(string value);
-    partial void Onaccount_nameChanged();
-    partial void Onaccount_passwordChanging(string value);
-    partial void Onaccount_passwordChanged();
-    #endregion
-		
-		public MechManiaTeam()
-		{
-			this._Attendee = default(EntityRef<Attendee>);
-			this._Attendee1 = default(EntityRef<Attendee>);
-			this._Attendee2 = default(EntityRef<Attendee>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_team_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string team_name
-		{
-			get
-			{
-				return this._team_name;
-			}
-			set
-			{
-				if ((this._team_name != value))
-				{
-					this.Onteam_nameChanging(value);
-					this.SendPropertyChanging();
-					this._team_name = value;
-					this.SendPropertyChanged("team_name");
-					this.Onteam_nameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_member1_id", DbType="Int NOT NULL")]
-		public int member1_id
-		{
-			get
-			{
-				return this._member1_id;
-			}
-			set
-			{
-				if ((this._member1_id != value))
-				{
-					if (this._Attendee.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onmember1_idChanging(value);
-					this.SendPropertyChanging();
-					this._member1_id = value;
-					this.SendPropertyChanged("member1_id");
-					this.Onmember1_idChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_member2_id", DbType="Int NOT NULL")]
-		public int member2_id
-		{
-			get
-			{
-				return this._member2_id;
-			}
-			set
-			{
-				if ((this._member2_id != value))
-				{
-					if (this._Attendee1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onmember2_idChanging(value);
-					this.SendPropertyChanging();
-					this._member2_id = value;
-					this.SendPropertyChanged("member2_id");
-					this.Onmember2_idChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_member3_id", DbType="Int NOT NULL")]
-		public int member3_id
-		{
-			get
-			{
-				return this._member3_id;
-			}
-			set
-			{
-				if ((this._member3_id != value))
-				{
-					if (this._Attendee2.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onmember3_idChanging(value);
-					this.SendPropertyChanging();
-					this._member3_id = value;
-					this.SendPropertyChanged("member3_id");
-					this.Onmember3_idChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_account_name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string account_name
-		{
-			get
-			{
-				return this._account_name;
-			}
-			set
-			{
-				if ((this._account_name != value))
-				{
-					this.Onaccount_nameChanging(value);
-					this.SendPropertyChanging();
-					this._account_name = value;
-					this.SendPropertyChanged("account_name");
-					this.Onaccount_nameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_account_password", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string account_password
-		{
-			get
-			{
-				return this._account_password;
-			}
-			set
-			{
-				if ((this._account_password != value))
-				{
-					this.Onaccount_passwordChanging(value);
-					this.SendPropertyChanging();
-					this._account_password = value;
-					this.SendPropertyChanged("account_password");
-					this.Onaccount_passwordChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Attendee_MechManiaTeam", Storage="_Attendee", ThisKey="member1_id", OtherKey="person_id", IsForeignKey=true)]
-		public Attendee Attendee
-		{
-			get
-			{
-				return this._Attendee.Entity;
-			}
-			set
-			{
-				Attendee previousValue = this._Attendee.Entity;
-				if (((previousValue != value) 
-							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Attendee.Entity = null;
-						previousValue.MechManiaTeams.Remove(this);
-					}
-					this._Attendee.Entity = value;
-					if ((value != null))
-					{
-						value.MechManiaTeams.Add(this);
-						this._member1_id = value.person_id;
-					}
-					else
-					{
-						this._member1_id = default(int);
-					}
-					this.SendPropertyChanged("Attendee");
-				}
-			}
-		}
-		
-		[Association(Name="Attendee_MechManiaTeam1", Storage="_Attendee1", ThisKey="member2_id", OtherKey="person_id", IsForeignKey=true)]
-		public Attendee Attendee1
-		{
-			get
-			{
-				return this._Attendee1.Entity;
-			}
-			set
-			{
-				Attendee previousValue = this._Attendee1.Entity;
-				if (((previousValue != value) 
-							|| (this._Attendee1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Attendee1.Entity = null;
-						previousValue.MechManiaTeams1.Remove(this);
-					}
-					this._Attendee1.Entity = value;
-					if ((value != null))
-					{
-						value.MechManiaTeams1.Add(this);
-						this._member2_id = value.person_id;
-					}
-					else
-					{
-						this._member2_id = default(int);
-					}
-					this.SendPropertyChanged("Attendee1");
-				}
-			}
-		}
-		
-		[Association(Name="Attendee_MechManiaTeam2", Storage="_Attendee2", ThisKey="member3_id", OtherKey="person_id", IsForeignKey=true)]
-		public Attendee Attendee2
-		{
-			get
-			{
-				return this._Attendee2.Entity;
-			}
-			set
-			{
-				Attendee previousValue = this._Attendee2.Entity;
-				if (((previousValue != value) 
-							|| (this._Attendee2.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Attendee2.Entity = null;
-						previousValue.MechManiaTeams2.Remove(this);
-					}
-					this._Attendee2.Entity = value;
-					if ((value != null))
-					{
-						value.MechManiaTeams2.Add(this);
-						this._member3_id = value.person_id;
-					}
-					else
-					{
-						this._member3_id = default(int);
-					}
-					this.SendPropertyChanged("Attendee2");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -3736,7 +3407,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="Company_CompanyPeople", Storage="_CompanyPersons", ThisKey="id", OtherKey="company_id")]
+		[Association(Name="Company_CompanyPerson", Storage="_CompanyPersons", ThisKey="id", OtherKey="company_id")]
 		public EntitySet<CompanyPerson> CompanyPersons
 		{
 			get
@@ -4606,7 +4277,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="Company_CompanyPeople", Storage="_Company", ThisKey="company_id", OtherKey="id", IsForeignKey=true)]
+		[Association(Name="Company_CompanyPerson", Storage="_Company", ThisKey="company_id", OtherKey="id", IsForeignKey=true)]
 		public Company Company
 		{
 			get
@@ -4640,7 +4311,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="People_CompanyPeople", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		[Association(Name="People_CompanyPerson", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
 		public People People
 		{
 			get
@@ -4670,6 +4341,335 @@ namespace Conferenceware.Models
 						this._person_id = default(int);
 					}
 					this.SendPropertyChanged("People");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.MechManiaTeams")]
+	public partial class MechManiaTeam : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _team_name;
+		
+		private int _member1_id;
+		
+		private int _member2_id;
+		
+		private int _member3_id;
+		
+		private string _account_name;
+		
+		private string _account_password;
+		
+		private EntityRef<Attendee> _Attendee;
+		
+		private EntityRef<Attendee> _Attendee1;
+		
+		private EntityRef<Attendee> _Attendee2;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onteam_nameChanging(string value);
+    partial void Onteam_nameChanged();
+    partial void Onmember1_idChanging(int value);
+    partial void Onmember1_idChanged();
+    partial void Onmember2_idChanging(int value);
+    partial void Onmember2_idChanged();
+    partial void Onmember3_idChanging(int value);
+    partial void Onmember3_idChanged();
+    partial void Onaccount_nameChanging(string value);
+    partial void Onaccount_nameChanged();
+    partial void Onaccount_passwordChanging(string value);
+    partial void Onaccount_passwordChanged();
+    #endregion
+		
+		public MechManiaTeam()
+		{
+			this._Attendee = default(EntityRef<Attendee>);
+			this._Attendee1 = default(EntityRef<Attendee>);
+			this._Attendee2 = default(EntityRef<Attendee>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_team_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string team_name
+		{
+			get
+			{
+				return this._team_name;
+			}
+			set
+			{
+				if ((this._team_name != value))
+				{
+					this.Onteam_nameChanging(value);
+					this.SendPropertyChanging();
+					this._team_name = value;
+					this.SendPropertyChanged("team_name");
+					this.Onteam_nameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_member1_id", DbType="Int NOT NULL")]
+		public int member1_id
+		{
+			get
+			{
+				return this._member1_id;
+			}
+			set
+			{
+				if ((this._member1_id != value))
+				{
+					if (this._Attendee.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onmember1_idChanging(value);
+					this.SendPropertyChanging();
+					this._member1_id = value;
+					this.SendPropertyChanged("member1_id");
+					this.Onmember1_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_member2_id", DbType="Int NOT NULL")]
+		public int member2_id
+		{
+			get
+			{
+				return this._member2_id;
+			}
+			set
+			{
+				if ((this._member2_id != value))
+				{
+					if (this._Attendee1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onmember2_idChanging(value);
+					this.SendPropertyChanging();
+					this._member2_id = value;
+					this.SendPropertyChanged("member2_id");
+					this.Onmember2_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_member3_id", DbType="Int NOT NULL")]
+		public int member3_id
+		{
+			get
+			{
+				return this._member3_id;
+			}
+			set
+			{
+				if ((this._member3_id != value))
+				{
+					if (this._Attendee2.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onmember3_idChanging(value);
+					this.SendPropertyChanging();
+					this._member3_id = value;
+					this.SendPropertyChanged("member3_id");
+					this.Onmember3_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_account_name", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string account_name
+		{
+			get
+			{
+				return this._account_name;
+			}
+			set
+			{
+				if ((this._account_name != value))
+				{
+					this.Onaccount_nameChanging(value);
+					this.SendPropertyChanging();
+					this._account_name = value;
+					this.SendPropertyChanged("account_name");
+					this.Onaccount_nameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_account_password", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
+		public string account_password
+		{
+			get
+			{
+				return this._account_password;
+			}
+			set
+			{
+				if ((this._account_password != value))
+				{
+					this.Onaccount_passwordChanging(value);
+					this.SendPropertyChanging();
+					this._account_password = value;
+					this.SendPropertyChanged("account_password");
+					this.Onaccount_passwordChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Attendee_MechManiaTeam", Storage="_Attendee", ThisKey="member1_id", OtherKey="person_id", IsForeignKey=true)]
+		public Attendee Attendee
+		{
+			get
+			{
+				return this._Attendee.Entity;
+			}
+			set
+			{
+				Attendee previousValue = this._Attendee.Entity;
+				if (((previousValue != value) 
+							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attendee.Entity = null;
+						previousValue.MechManiaTeams.Remove(this);
+					}
+					this._Attendee.Entity = value;
+					if ((value != null))
+					{
+						value.MechManiaTeams.Add(this);
+						this._member1_id = value.person_id;
+					}
+					else
+					{
+						this._member1_id = default(int);
+					}
+					this.SendPropertyChanged("Attendee");
+				}
+			}
+		}
+		
+		[Association(Name="Attendee_MechManiaTeam1", Storage="_Attendee1", ThisKey="member2_id", OtherKey="person_id", IsForeignKey=true)]
+		public Attendee Attendee1
+		{
+			get
+			{
+				return this._Attendee1.Entity;
+			}
+			set
+			{
+				Attendee previousValue = this._Attendee1.Entity;
+				if (((previousValue != value) 
+							|| (this._Attendee1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attendee1.Entity = null;
+						previousValue.MechManiaTeams1.Remove(this);
+					}
+					this._Attendee1.Entity = value;
+					if ((value != null))
+					{
+						value.MechManiaTeams1.Add(this);
+						this._member2_id = value.person_id;
+					}
+					else
+					{
+						this._member2_id = default(int);
+					}
+					this.SendPropertyChanged("Attendee1");
+				}
+			}
+		}
+		
+		[Association(Name="Attendee_MechManiaTeam2", Storage="_Attendee2", ThisKey="member3_id", OtherKey="person_id", IsForeignKey=true)]
+		public Attendee Attendee2
+		{
+			get
+			{
+				return this._Attendee2.Entity;
+			}
+			set
+			{
+				Attendee previousValue = this._Attendee2.Entity;
+				if (((previousValue != value) 
+							|| (this._Attendee2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attendee2.Entity = null;
+						previousValue.MechManiaTeams2.Remove(this);
+					}
+					this._Attendee2.Entity = value;
+					if ((value != null))
+					{
+						value.MechManiaTeams2.Add(this);
+						this._member3_id = value.person_id;
+					}
+					else
+					{
+						this._member3_id = default(int);
+					}
+					this.SendPropertyChanged("Attendee2");
 				}
 			}
 		}

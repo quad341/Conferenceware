@@ -81,7 +81,7 @@
       <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
       <Association Name="People_Volunteer" Member="Volunteer" ThisKey="id" OtherKey="person_id" Type="Volunteer" Cardinality="One" />
       <Association Name="People_Staff" Member="Staff" ThisKey="id" OtherKey="person_id" Type="Staff" Cardinality="One" />
-      <Association Name="People_CompanyPeople" Member="CompanyPerson" ThisKey="id" OtherKey="person_id" Type="CompanyPerson" Cardinality="One" />
+      <Association Name="People_CompanyPerson" Member="CompanyPerson" ThisKey="id" OtherKey="person_id" Type="CompanyPerson" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.Volunteers" Member="Volunteers">
@@ -112,20 +112,6 @@
       <Association Name="Event_EventsSpeaker" Member="EventsSpeakers" ThisKey="id" OtherKey="event_id" Type="EventsSpeaker" />
       <Association Name="Location_Event" Member="Location" ThisKey="location_id" OtherKey="id" Type="Location" IsForeignKey="true" />
       <Association Name="TimeSlot_Event" Member="TimeSlot" ThisKey="timeslot_id" OtherKey="id" Type="TimeSlot" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.MechManiaTeams" Member="MechManiaTeams">
-    <Type Name="MechManiaTeam">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="team_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="member1_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="member2_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="member3_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="account_name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="account_password" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="Attendee_MechManiaTeam" Member="Attendee" ThisKey="member1_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
-      <Association Name="Attendee_MechManiaTeam1" Member="Attendee1" ThisKey="member2_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
-      <Association Name="Attendee_MechManiaTeam2" Member="Attendee2" ThisKey="member3_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Pages" Member="Pages">
@@ -168,7 +154,7 @@
       <Column Name="priority_shipping" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Company_CompanyInvoice" Member="CompanyInvoices" ThisKey="id" OtherKey="company_id" Type="CompanyInvoice" />
       <Association Name="Company_CompanyPayment" Member="CompanyPayments" ThisKey="id" OtherKey="company_id" Type="CompanyPayment" />
-      <Association Name="Company_CompanyPeople" Member="CompanyPersons" ThisKey="id" OtherKey="company_id" Type="CompanyPerson" />
+      <Association Name="Company_CompanyPerson" Member="CompanyPersons" ThisKey="id" OtherKey="company_id" Type="CompanyPerson" />
     </Type>
   </Table>
   <Table Name="dbo.CompanyInvoiceItems" Member="CompanyInvoiceItems">
@@ -210,8 +196,22 @@
       <Column Name="is_contact" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="is_attending" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="is_alum" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Company_CompanyPeople" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
-      <Association Name="People_CompanyPeople" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+      <Association Name="Company_CompanyPerson" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
+      <Association Name="People_CompanyPerson" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MechManiaTeams" Member="MechManiaTeams">
+    <Type Name="MechManiaTeam">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="team_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="member1_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="member2_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="member3_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="account_name" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="account_password" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Attendee_MechManiaTeam" Member="Attendee" ThisKey="member1_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
+      <Association Name="Attendee_MechManiaTeam1" Member="Attendee1" ThisKey="member2_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
+      <Association Name="Attendee_MechManiaTeam2" Member="Attendee2" ThisKey="member3_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

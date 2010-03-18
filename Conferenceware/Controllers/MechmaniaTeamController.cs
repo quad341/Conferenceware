@@ -43,6 +43,14 @@ namespace Conferenceware.Controllers
 			var mmt = new MechManiaTeam();
 			if (TryUpdateModel(mmt, "MechManiaTeam"))
 			{
+				if (mmt.account_name == null)
+				{
+					mmt.account_name = "";
+				}
+				if (mmt.account_password == null)
+				{
+					mmt.account_password = "";
+				}
 				_repository.AddMechManiaTeam(mmt);
 				_repository.Save();
 				TempData["Message"] = "Team Created";
@@ -108,7 +116,7 @@ namespace Conferenceware.Controllers
 			return new MechManiaTeamAdminEditData
 					{
 						MechManiaTeam = mechManiaTeam,
-						Attendees = new SelectList(_repository.GetAllAttendees())
+						Attendees = new SelectList(_repository.GetAllAttendees(), "person_id", "People.name")
 					};
 		}
 	}

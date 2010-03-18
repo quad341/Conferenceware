@@ -71,7 +71,7 @@
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.90582026402244); (6.15625 : 6.24957026402244); (6.15625 : 4.03774251302083); (6.25 : 3.94399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 6.90582026402244); (5.81607443490112 : 6.58974582912132 : JumpStart); (5.93392556509888 : 6.47189469892356 : JumpEnd); (6.15625 : 6.24957026402244); (6.15625 : 4.03774251302083); (6.25 : 3.94399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Speaker/Speaker_EventsSpeaker" />
       <nodes>
         <classShapeMoniker Id="7489df15-bad7-4a3f-9c44-f7f240ff247a" />
@@ -137,14 +137,14 @@
         <classShapeMoniker Id="7c18ab02-0eed-4a33-aaf3-2def70e6ab7a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 5.125); (11 : 3.34699625651042); (10.5520813333333 : 3.34699625651042 : JumpStart); (10.3854146666667 : 3.34699625651042 : JumpEnd); (8.25 : 3.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(11 : 5.125); (11 : 3.34699625651042); (8.25 : 3.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Event/Event_EventsSpeaker" />
       <nodes>
         <classShapeMoniker Id="b9c23dd9-4181-480a-8103-b97f2bc6a24e" />
         <classShapeMoniker Id="26e52121-9884-4c0f-86ca-f3cf717647bf" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.65625); (5.66623693068911 : 6.65625 : JumpStart); (5.95833333333333 : 6.65625 : JumpEnd); (7.16666666666667 : 6.65625 : JumpStart); (7.33333333333333 : 6.65625 : JumpEnd); (10 : 6.65625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 6.65625); (10 : 6.65625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Location/Location_Event" />
       <nodes>
         <classShapeMoniker Id="46dc3092-adcf-4634-9230-c54b3123b04e" />
@@ -156,33 +156,6 @@
       <nodes>
         <classShapeMoniker Id="b25e0ad1-89c9-4eee-b522-dbb1c4b5a3dc" />
         <classShapeMoniker Id="b9c23dd9-4181-480a-8103-b97f2bc6a24e" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="f227059c-8da7-4c3e-a1f4-25cbe419c1d5" absoluteBounds="8.875, 11.875, 2, 2.1554996744791666">
-      <DataClassMoniker Name="/ConferencewareDataContext/MechManiaTeam" />
-      <nestedChildShapes>
-        <elementListCompartment Id="fb67c130-9df5-464b-ba8a-a867bf9e8b61" absoluteBounds="8.89, 12.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(5.5 : 13.2243994726562); (8.875 : 13.2243994726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam" />
-      <nodes>
-        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
-        <classShapeMoniker Id="f227059c-8da7-4c3e-a1f4-25cbe419c1d5" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 12.8309522363281); (8.875 : 12.8309522363281)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam1" />
-      <nodes>
-        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
-        <classShapeMoniker Id="f227059c-8da7-4c3e-a1f4-25cbe419c1d5" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 13.6178467089844); (8.875 : 13.6178467089844)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam2" />
-      <nodes>
-        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
-        <classShapeMoniker Id="f227059c-8da7-4c3e-a1f4-25cbe419c1d5" />
       </nodes>
     </associationConnector>
     <classShape Id="dc56dcf4-3fea-44f5-bdb4-42b8ddd30a14" absoluteBounds="3.625, 1.5, 2, 1.5785953776041666">
@@ -210,7 +183,7 @@
         <classShapeMoniker Id="6e65d169-bbc9-46d0-aaed-26946939ec9a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.34699625651042); (7.25 : 5.34699625651042); (7.25 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 5.34699625651042); (5.79166666666667 : 5.34699625651042 : JumpStart); (5.95833333333333 : 5.34699625651042 : JumpEnd); (6.07291666666667 : 5.34699625651042 : JumpStart); (6.23958333333333 : 5.34699625651042 : JumpEnd); (7.25 : 5.34699625651042); (7.25 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/VolunteerTimeSlot/VolunteerTimeSlot_VolunteersVolunteerTimeSlot" />
       <nodes>
         <classShapeMoniker Id="0701ec78-c47b-4158-ab23-bcad4a3e987e" />
@@ -276,17 +249,44 @@
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(13.375 : 13.6354484049479); (15 : 13.6354484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ConferencewareDataContext/Company/Company_CompanyPeople" />
+      <AssociationMoniker Name="/ConferencewareDataContext/Company/Company_CompanyPerson" />
       <nodes>
         <classShapeMoniker Id="26bf9d63-0c12-4073-bea8-777094a40094" />
         <classShapeMoniker Id="eb620f9a-7540-42ba-8bf6-da66ee902039" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 11.6422506282552); (4.41666666666667 : 11.6422506282552 : JumpStart); (4.58333333333333 : 11.6422506282552 : JumpEnd); (16 : 11.6422506282552); (16 : 12.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ConferencewareDataContext/People/People_CompanyPeople" />
+    <associationConnector edgePoints="[(2.75 : 11.7440458170573); (4.41666666666667 : 11.7440458170573 : JumpStart); (4.58333333333333 : 11.7440458170573 : JumpEnd); (16 : 11.7440458170573); (16 : 12.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/People/People_CompanyPerson" />
       <nodes>
         <classShapeMoniker Id="d5ad302e-35a2-426b-98f9-eea3aea2b375" />
         <classShapeMoniker Id="eb620f9a-7540-42ba-8bf6-da66ee902039" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6e24eddb-8d70-4d52-9a09-44842f784d83" absoluteBounds="7.625, 12.75, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ConferencewareDataContext/MechManiaTeam" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7edcf0bd-e99b-4852-ac9f-3bb0daf9f9ed" absoluteBounds="7.64, 13.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 13.3181469726562); (7.625 : 13.3181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam" />
+      <nodes>
+        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
+        <classShapeMoniker Id="6e24eddb-8d70-4d52-9a09-44842f784d83" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 12.9715734863281); (7.625 : 12.9715734863281)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam1" />
+      <nodes>
+        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
+        <classShapeMoniker Id="6e24eddb-8d70-4d52-9a09-44842f784d83" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 13.6647204589844); (7.625 : 13.6647204589844)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam2" />
+      <nodes>
+        <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
+        <classShapeMoniker Id="6e24eddb-8d70-4d52-9a09-44842f784d83" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
