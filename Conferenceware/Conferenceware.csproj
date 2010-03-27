@@ -214,6 +214,9 @@
     <Content Include="Views\TShirtSize\Edit.aspx" />
     <Content Include="Views\TShirtSize\Index.aspx" />
     <Content Include="Views\TShirtSize\TShirtSizeNotFound.aspx" />
+    <Content Include="Views\Volunteer\Create.aspx" />
+    <Content Include="Views\Volunteer\Index.aspx" />
+    <Content Include="Views\Volunteer\VolunteerNotFound.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />

@@ -138,7 +138,8 @@ namespace Conferenceware.Controllers
 			return new VolunteerEditData
 					{
 						Volunteer = volunteer,
-						VolunteerTimeSlots = _repository.GetAllVolunteerTimeSlots()
+						VolunteerTimeSlots = _repository.GetAllVolunteerTimeSlots(),
+						ChosenTimeSlots = new int[0]
 					};
 		}
 	}
