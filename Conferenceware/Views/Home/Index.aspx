@@ -5,5 +5,5 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<%= Model.Content %>
+<%= Model.ConvertedContent(Html) %>
 </asp:Content>

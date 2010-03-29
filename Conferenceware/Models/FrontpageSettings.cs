@@ -1,3 +1,5 @@
+using System.Web.Mvc;
+
 namespace Conferenceware.Models
 {
 	/// <summary>
@@ -21,6 +23,11 @@ namespace Conferenceware.Models
 		{
 			get;
 			set;
+		}
+
+		public string ConvertedContent(HtmlHelper html)
+		{
+			return Page.ConvertMarkupToHtml(Content, html);
 		}
 	}
 }
