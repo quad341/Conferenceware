@@ -19,6 +19,12 @@ namespace Conferenceware
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			routes.MapRoute(
+				"Page",
+				"Page/{name}",
+				new { controller = "Page", action = "View" }
+			);
+
+			routes.MapRoute(
 				"Default",                                              // Route name
 				"{controller}/{action}/{id}",                           // URL with parameters
 				new { controller = "Home", action = "Index", id = "" }  // Parameter defaults
