@@ -79,6 +79,8 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\MechmaniaRegistrationController.cs" />
     <Compile Include="Controllers\MechManiaTeamController.cs" />
+    <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\PageManagerController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
@@ -124,6 +126,9 @@
     <Compile Include="Models\MechManiaTeamAdminEditData.cs" />
     <Compile Include="Models\MechmaniaTeamEditData.cs" />
     <Compile Include="Models\MechManiaTeamMetadata.cs" />
+    <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\PageEditData.cs" />
+    <Compile Include="Models\PageMetadata.cs" />
     <Compile Include="Models\People.cs" />
     <Compile Include="Models\PeopleMetadata.cs" />
     <Compile Include="Models\SettingsData.cs" />
@@ -147,6 +152,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\PageManager\Delete.aspx" />
+    <Content Include="Views\PageManager\Details.aspx" />
+    <Content Include="Views\PageManager\Index.aspx" />
+    <Content Include="Views\Page\Display.aspx" />
+    <Content Include="Views\Shared\PageNotFound.aspx" />
     <Content Include="Views\VolunteerRegistration\Index.aspx" />
     <Content Include="Views\VolunteerRegistration\Success.aspx" />
     <Content Include="Views\VolunteerTimeSlot\Create.aspx" />
