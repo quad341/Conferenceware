@@ -45,6 +45,7 @@ namespace Conferenceware.Controllers
 		// POST: /PageManager/Create
 
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult Create(FormCollection collection)
 		{
 			var page = new Page();
@@ -76,6 +77,7 @@ namespace Conferenceware.Controllers
 		// POST: /PageManager/Edit/5
 
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			var page = _repository.GetPageById(id);
