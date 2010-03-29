@@ -152,8 +152,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\PageManager\Create.aspx" />
     <Content Include="Views\PageManager\Delete.aspx" />
     <Content Include="Views\PageManager\Details.aspx" />
+    <Content Include="Views\PageManager\Edit.aspx" />
     <Content Include="Views\PageManager\Index.aspx" />
     <Content Include="Views\Page\Display.aspx" />
     <Content Include="Views\Shared\PageNotFound.aspx" />

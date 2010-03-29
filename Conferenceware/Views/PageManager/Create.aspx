@@ -37,7 +37,7 @@
                 <%= Html.LabelFor(model => model.Page.parent_id) %>
             </div>
             <div class="editor-field">
-                <select name="parent_id">
+                <select id="Page_parent_id" name="Page.parent_id">
                     <option value="0" <%= Model.Page.parent_id==0?"selected=\"selected\"":"" %>>None</option>
                     <% foreach (var page in Model.ExistingPages)
 {%>
