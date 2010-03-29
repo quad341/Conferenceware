@@ -10,7 +10,7 @@ namespace Conferenceware.Models
 	{
 		private static HtmlHelper _html;
 		private const string PAGE_LINK_REGEX =
-			@"{\s*{\s*([^{}|])(?:|([^{}]))?\s*}\s*}";
+			@"{\s*{\s*([^{}|]+)(?:\|([^{}]+))?\s*}\s*}";
 		// linq to my lou
 
 		public string ConvertedContent(HtmlHelper html)
@@ -29,16 +29,16 @@ namespace Conferenceware.Models
 
 		public static string FixPageLink(Match match)
 		{
-			var title = match.Captures[0].Value;
-			if (match.Captures.Count == 2)
+			var title = match.Groups[1].Value.Trim();
+			if (match.Groups[2].Value != "")
 			{
-				title = match.Captures[1].Value;
+				title = match.Groups[2].Value.Trim();
 			}
 			return
 				_html.ActionLink(title,
 								 "Display",
 								 "Page",
-								 new { name = match.Captures[0].Value.Trim() },
+								 new { name = match.Groups[1].Value.Trim() },
 								 null).ToString();
 		}
 	}

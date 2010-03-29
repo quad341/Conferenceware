@@ -8,7 +8,7 @@ namespace Conferenceware.Models
 		[Required]
 		[StringLength(255)]
 		[RegularExpression(@"^[^{}|]+$", ErrorMessage = "Cannot contain a pipe or brace")]
-		[DisplayName("Title (whitespace will be trimmed")]
+		[DisplayName("Title (whitespace will be trimmed)")]
 		public string title
 		{
 			get;
