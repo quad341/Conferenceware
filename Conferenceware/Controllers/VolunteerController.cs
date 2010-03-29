@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
@@ -55,6 +52,7 @@ namespace Conferenceware.Controllers
 						_repository.RegisterVolunteerForVolunteerTimeSlot(ved.Volunteer, vts);
 					}
 				}
+				_repository.Save();
 				return RedirectToAction("Index");
 			}
 			ved.VolunteerTimeSlots = _repository.GetAllVolunteerTimeSlots();
@@ -105,6 +103,7 @@ namespace Conferenceware.Controllers
 						_repository.RegisterVolunteerForVolunteerTimeSlot(ved.Volunteer, vts);
 					}
 				}
+				_repository.Save();
 				return RedirectToAction("Index");
 			}
 			return View("Edit", ved);
@@ -135,12 +134,18 @@ namespace Conferenceware.Controllers
 
 		private VolunteerEditData CreateEditDataFromVolunteer(Volunteer volunteer)
 		{
-			return new VolunteerEditData
+			var ved = new VolunteerEditData
 					{
 						Volunteer = volunteer,
 						VolunteerTimeSlots = _repository.GetAllVolunteerTimeSlots(),
-						ChosenTimeSlots = new int[0]
+						ChosenTimeSlots = new int[volunteer.VolunteersVolunteerTimeSlots.Count]
 					};
+			for (int i = 0; i < volunteer.VolunteersVolunteerTimeSlots.Count; i++)
+			{
+				ved.ChosenTimeSlots[i] =
+					volunteer.VolunteersVolunteerTimeSlots.ElementAt(i).volunteer_timeslot_id;
+			}
+			return ved;
 		}
 	}
 }

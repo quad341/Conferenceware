@@ -1,21 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.VolunteerEditData>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Create
+	Edit
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <% Html.EnableClientValidation(); %>
-    <h2>Create</h2>
+    <h2>Edit</h2>
 
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
-
+        
         <fieldset>
             <legend>Fields</legend>
             
-            <%= Html.HiddenFor(model => model.Volunteer.person_id, new {value = 0}) %>
+            <%= Html.HiddenFor(model => model.Volunteer.person_id) %>
             
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Volunteer.People.name) %>
@@ -63,7 +63,7 @@
 }%>
             </div>
             <p>
-                <input type="submit" value="Create" />
+                <input type="submit" value="Save" />
             </p>
         </fieldset>
 
