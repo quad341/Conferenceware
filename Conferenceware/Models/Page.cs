@@ -16,7 +16,9 @@ namespace Conferenceware.Models
 		public static string ConvertMarkupToHtml(string markupString, HtmlHelper htmlHelper)
 		{
 			_html = htmlHelper;
-			var linkFixedString = Regex.Replace(markupString, PAGE_LINK_REGEX, new MatchEvaluator(FixPageLink));
+			var linkFixedString = Regex.Replace(markupString,
+												PAGE_LINK_REGEX,
+												new MatchEvaluator(FixPageLink));
 			return Regex.Replace(linkFixedString, @"\\{", "{");
 		}
 
