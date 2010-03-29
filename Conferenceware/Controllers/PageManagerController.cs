@@ -50,6 +50,7 @@ namespace Conferenceware.Controllers
 			var page = new Page();
 			if (TryUpdateModel(page, "Page"))
 			{
+				page.title = page.title.Trim();
 				_repository.AddPage(page);
 				_repository.Save();
 				TempData["Message"] = "Page added";
@@ -84,6 +85,7 @@ namespace Conferenceware.Controllers
 			}
 			if (TryUpdateModel(page, "Page"))
 			{
+				page.title = page.title.Trim();
 				_repository.Save();
 				TempData["Message"] = "Page updated";
 				return RedirectToAction("Index");
