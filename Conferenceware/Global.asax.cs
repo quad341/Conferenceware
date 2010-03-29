@@ -21,7 +21,7 @@ namespace Conferenceware
 			routes.MapRoute(
 				"Page",
 				"Page/{name}",
-				new { controller = "Page", action = "View" }
+				new { controller = "Page", action = "Display" }
 			);
 
 			routes.MapRoute(

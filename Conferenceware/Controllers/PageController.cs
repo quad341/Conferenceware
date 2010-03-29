@@ -20,9 +20,14 @@ namespace Conferenceware.Controllers
 		//
 		// GET: /Page/Title
 
-		public ActionResult View(string name)
+		public ActionResult Display(string name)
 		{
-			return View("View", _repository.GetPageByTitle(name));
+			var page = _repository.GetPageByTitle(name);
+			if (page == null)
+			{
+				return Display("PageNotFound");
+			}
+			return View("Display", page);
 		}
 
 	}

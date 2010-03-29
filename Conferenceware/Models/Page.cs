@@ -36,7 +36,7 @@ namespace Conferenceware.Models
 			}
 			return
 				_html.ActionLink(title,
-								 "View",
+								 "Display",
 								 "Page",
 								 new { name = match.Captures[0].Value.Trim() },
 								 null).ToString();
