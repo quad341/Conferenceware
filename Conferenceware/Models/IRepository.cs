@@ -292,6 +292,14 @@ namespace Conferenceware.Models
 		MechManiaTeam GetMechManiaTeamById(int id);
 		IQueryable<MechManiaTeam> GetAllMechManiaTeams();
 
+		//Page
+		void AddPage(Page page);
+		void DeletePage(Page page);
+		void DeletePage(int id);
+		Page GetPageById(int id);
+		Page GetPageByTitle(string title);
+		IQueryable<Page> GetAllPages();
+
 		//General
 		/// <summary>
 		/// Causes the repository to commit its changes

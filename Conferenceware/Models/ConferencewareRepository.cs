@@ -459,6 +459,36 @@ namespace Conferenceware.Models
 			return _conferenceware.MechManiaTeams.AsQueryable();
 		}
 
+		public void AddPage(Page page)
+		{
+			_conferenceware.Pages.InsertOnSubmit(page);
+		}
+
+		public void DeletePage(Page page)
+		{
+			_conferenceware.Pages.DeleteOnSubmit(page);
+		}
+
+		public void DeletePage(int id)
+		{
+			_conferenceware.Pages.DeleteOnSubmit(GetPageById(id));
+		}
+
+		public Page GetPageById(int id)
+		{
+			return _conferenceware.Pages.SingleOrDefault(x => x.id == id);
+		}
+
+		public Page GetPageByTitle(string title)
+		{
+			return _conferenceware.Pages.SingleOrDefault(x => x.title == title);
+		}
+
+		public IQueryable<Page> GetAllPages()
+		{
+			return _conferenceware.Pages.AsQueryable();
+		}
+
 		public void DeletePerson(People person)
 		{
 			_conferenceware.Peoples.DeleteOnSubmit(person);

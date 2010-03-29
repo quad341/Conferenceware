@@ -459,6 +459,36 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
+		public void AddPage(Page page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeletePage(Page page)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeletePage(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Page GetPageById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Page GetPageByTitle(string title)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<Page> GetAllPages()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Save()
 		{
 			// we do that anyway. we might want to do something more interesting 
