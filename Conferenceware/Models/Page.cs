@@ -31,7 +31,7 @@ namespace Conferenceware.Models
 											 title,
 											 "View",
 											 "Page",
-											 new { name = match.Captures[0].Value },
+											 new { name = match.Captures[0].Value.Trim() },
 											 null);
 		}
 	}
