@@ -13,6 +13,11 @@ namespace Conferenceware.Models
 			@"{\s*{\s*([^{}|])(?:|([^{}]))?\s*}\s*}";
 		// linq to my lou
 
+		public string ConvertedContent(HtmlHelper html)
+		{
+			return ConvertMarkupToHtml(page_content, html);
+		}
+
 		public static string ConvertMarkupToHtml(string markupString, HtmlHelper htmlHelper)
 		{
 			_html = htmlHelper;
@@ -29,12 +34,12 @@ namespace Conferenceware.Models
 			{
 				title = match.Captures[1].Value;
 			}
-			return LinkExtensions.ActionLink(_html,
-											 title,
-											 "View",
-											 "Page",
-											 new { name = match.Captures[0].Value.Trim() },
-											 null);
+			return
+				_html.ActionLink(title,
+								 "View",
+								 "Page",
+								 new { name = match.Captures[0].Value.Trim() },
+								 null).ToString();
 		}
 	}
 }
