@@ -31,7 +31,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Create()
 		{
-			return View("Create", CreateEditDataFromVolunteer(new Volunteer()));
+			return View("Create", CreateEditDataFromVolunteer(new Volunteer(), _repository));
 		}
 
 		//
@@ -69,7 +69,7 @@ namespace Conferenceware.Controllers
 			{
 				return View("VolunteerNotFound");
 			}
-			return View("Edit", CreateEditDataFromVolunteer(vol));
+			return View("Edit", CreateEditDataFromVolunteer(vol, _repository));
 		}
 
 		//
@@ -132,12 +132,12 @@ namespace Conferenceware.Controllers
 			return RedirectToAction("Index");
 		}
 
-		private VolunteerEditData CreateEditDataFromVolunteer(Volunteer volunteer)
+		public static VolunteerEditData CreateEditDataFromVolunteer(Volunteer volunteer, IRepository repo)
 		{
 			var ved = new VolunteerEditData
 					{
 						Volunteer = volunteer,
-						VolunteerTimeSlots = _repository.GetAllVolunteerTimeSlots(),
+						VolunteerTimeSlots = repo.GetAllVolunteerTimeSlots(),
 						ChosenTimeSlots = new int[volunteer.VolunteersVolunteerTimeSlots.Count]
 					};
 			for (int i = 0; i < volunteer.VolunteersVolunteerTimeSlots.Count; i++)

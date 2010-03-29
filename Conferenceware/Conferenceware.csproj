@@ -85,6 +85,7 @@
     <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\TShirtSizeController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
+    <Compile Include="Controllers\VolunteerRegistrationController.cs" />
     <Compile Include="Controllers\VolunteerTimeSlotController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -146,6 +147,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\VolunteerRegistration\Index.aspx" />
+    <Content Include="Views\VolunteerRegistration\Success.aspx" />
     <Content Include="Views\VolunteerTimeSlot\Create.aspx" />
     <Content Include="Views\VolunteerTimeSlot\VolunteerTimeSlotNotFound.aspx" />
     <Content Include="Views\VolunteerTimeSlot\Index.aspx" />
