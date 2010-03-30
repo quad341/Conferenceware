@@ -160,6 +160,18 @@ namespace Conferenceware.Models
 					rm.GetString("EventRegistrationConfirmationBodyFormat");
 				sd.EventRegistrationConfirmationSubjectFormat =
 					rm.GetString("EventRegistrationConfirmationSubjectFormat");
+				sd.AttendeeBadgeBackground =
+					rm.GetObject("AttendeeBadgeBackground") as Bitmap;
+				sd.MechmaniaBadgeBackground =
+					rm.GetObject("MechmaniaBadgeBackground") as Bitmap;
+				sd.SpeakerBadgeBackground =
+					rm.GetObject("SpeakerBadgeBackground") as Bitmap;
+				sd.SponsorBadgeBackground =
+					rm.GetObject("SponsorBadgeBackground") as Bitmap;
+				sd.StaffBadgeBackground =
+					rm.GetObject("StaffBadgeBackground") as Bitmap;
+				sd.VolunteerBadgeBackground =
+					rm.GetObject("VolunteerBadgeBackground") as Bitmap;
 				rm.ReleaseAllResources();
 			}
 			catch
@@ -181,14 +193,12 @@ namespace Conferenceware.Models
 			writer.AddResource("EmailFrom", EmailFrom);
 			writer.AddResource("EventRegistrationConfirmationBodyFormat", EventRegistrationConfirmationBodyFormat);
 			writer.AddResource("EventRegistrationConfirmationSubjectFormat", EventRegistrationConfirmationSubjectFormat);
-			/*
 			writer.AddResource("AttendeeBadgeBackground", AttendeeBadgeBackground);
 			writer.AddResource("MechmaniaBadgeBackground", MechmaniaBadgeBackground);
 			writer.AddResource("SpeakerBadgeBackground", SpeakerBadgeBackground);
 			writer.AddResource("SponsorBadgeBackground", SponsorBadgeBackground);
 			writer.AddResource("StaffBadgeBackground", StaffBadgeBackground);
 			writer.AddResource("VolunteerBadgeBackground", VolunteerBadgeBackground);
-			 */
 			writer.Generate();
 			writer.Close();
 		}
