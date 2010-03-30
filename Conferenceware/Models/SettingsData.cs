@@ -2,7 +2,9 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
+using System.Drawing;
 using System.Net.Mail;
+using System.Reflection;
 using System.Resources;
 using System.Text;
 
@@ -16,7 +18,19 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// The file the the updated settings will come from
 		/// </summary>
-		public const string RESOURCE_FILE_NAME = "~/App_Data/Settings.resource";
+		public const string RESOURCE_FILE_NAME = "CurrentSettings";
+
+		/// <summary>
+		/// The directory from the program base to store the settings file
+		/// </summary>
+		public const string RESOURCE_FILE_DIR = "App_Data";
+
+		private static readonly string _baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+		/// <summary>
+		/// The file extention to use for the file
+		/// </summary>
+		public const string RESOURCE_FILE_EXT = ".resources";
 		/// <summary>
 		/// The Front page title string
 		/// </summary>
@@ -78,9 +92,48 @@ namespace Conferenceware.Models
 			set;
 		}
 
-		public static SettingsData FromCurrent(string path)
+		#region Badge Backgrounds
+		// Images can't exactly be validated since they are uploaded though Request.Files
+		public Bitmap AttendeeBadgeBackground
 		{
-			ResourceReader reader = null;
+			get;
+			set;
+		}
+
+		public Bitmap MechmaniaBadgeBackground
+		{
+			get;
+			set;
+		}
+
+		public Bitmap SpeakerBadgeBackground
+		{
+			get;
+			set;
+		}
+
+		public Bitmap SponsorBadgeBackground
+		{
+			get;
+			set;
+		}
+
+		public Bitmap StaffBadgeBackground
+		{
+			get;
+			set;
+		}
+
+		public Bitmap VolunteerBadgeBackground
+		{
+			get;
+			set;
+		}
+		#endregion
+
+		public static SettingsData FromCurrent(string fileBase, string dirName)
+		{
+			ResourceManager rm = null;
 			var sd = new SettingsData
 						{
 							FrontpageContent = Settings.FrontpageContent,
@@ -89,31 +142,31 @@ namespace Conferenceware.Models
 							EventRegistrationConfirmationSubjectFormat =
 								Settings.EventRegistrationConfirmationSubjectFormat,
 							EventRegistrationConfirmationBodyFormat =
-								Settings.EventRegistrationConfirmationBodyFormat
+								Settings.EventRegistrationConfirmationBodyFormat,
+							AttendeeBadgeBackground = Settings.AttendeeBadgeBackground,
+							MechmaniaBadgeBackground = Settings.MechmaniaBadgeBackground,
+							SpeakerBadgeBackground = Settings.SpeakerBadgeBackground,
+							SponsorBadgeBackground = Settings.SponsorBadgeBackground,
+							StaffBadgeBackground = Settings.StaffBadgeBackground,
+							VolunteerBadgeBackground = Settings.VolunteerBadgeBackground
 						};
 			try
 			{
-				reader = new ResourceReader(path);
-				String outType;
-				byte[] buffer;
-				var encoding = new UTF8Encoding();
-				reader.GetResourceData("FrontpageContent", out outType, out buffer);
-				sd.FrontpageContent = encoding.GetString(buffer).Substring(1); // first character is length
-				reader.GetResourceData("FrontpageTitle", out outType, out buffer);
-				sd.FrontpageTitle = encoding.GetString(buffer).Substring(1);
-				reader.GetResourceData("EmailFrom", out outType, out buffer);
-				sd.EmailFrom = encoding.GetString(buffer).Substring(1);
-				reader.GetResourceData("EventRegistrationConfirmationBodyFormat", out outType, out buffer);
-				sd.EventRegistrationConfirmationBodyFormat = encoding.GetString(buffer).Substring(1);
-				reader.GetResourceData("EventRegistrationConfirmationSubjectFormat", out outType, out buffer);
-				sd.EventRegistrationConfirmationSubjectFormat = encoding.GetString(buffer).Substring(1);
-				reader.Close();
+				rm = ResourceManager.CreateFileBasedResourceManager(fileBase, _baseDir + dirName, null);
+				sd.FrontpageContent = rm.GetString("FrontpageContent");
+				sd.FrontpageTitle = rm.GetString("FrontpageTitle");
+				sd.EmailFrom = rm.GetString("EmailFrom");
+				sd.EventRegistrationConfirmationBodyFormat =
+					rm.GetString("EventRegistrationConfirmationBodyFormat");
+				sd.EventRegistrationConfirmationSubjectFormat =
+					rm.GetString("EventRegistrationConfirmationSubjectFormat");
+				rm.ReleaseAllResources();
 			}
 			catch
 			{
-				if (null != reader)
+				if (rm != null)
 				{
-					reader.Close();
+					rm.ReleaseAllResources();
 				}
 				// something went wrong; probably the file doesn't exist yet
 			}
@@ -122,12 +175,20 @@ namespace Conferenceware.Models
 
 		public void Save(string path)
 		{
-			var writer = new ResourceWriter(path);
+			var writer = new ResourceWriter(_baseDir + path);
 			writer.AddResource("FrontpageContent", FrontpageContent);
 			writer.AddResource("FrontpageTitle", FrontpageTitle);
 			writer.AddResource("EmailFrom", EmailFrom);
 			writer.AddResource("EventRegistrationConfirmationBodyFormat", EventRegistrationConfirmationBodyFormat);
 			writer.AddResource("EventRegistrationConfirmationSubjectFormat", EventRegistrationConfirmationSubjectFormat);
+			/*
+			writer.AddResource("AttendeeBadgeBackground", AttendeeBadgeBackground);
+			writer.AddResource("MechmaniaBadgeBackground", MechmaniaBadgeBackground);
+			writer.AddResource("SpeakerBadgeBackground", SpeakerBadgeBackground);
+			writer.AddResource("SponsorBadgeBackground", SponsorBadgeBackground);
+			writer.AddResource("StaffBadgeBackground", StaffBadgeBackground);
+			writer.AddResource("VolunteerBadgeBackground", VolunteerBadgeBackground);
+			 */
 			writer.Generate();
 			writer.Close();
 		}

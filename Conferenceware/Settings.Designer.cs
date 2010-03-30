@@ -60,6 +60,13 @@ namespace Conferenceware {
             }
         }
         
+        internal static System.Drawing.Bitmap AttendeeBadgeBackground {
+            get {
+                object obj = ResourceManager.GetObject("AttendeeBadgeBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to conference@acm.illinois.edu.
         /// </summary>
@@ -102,6 +109,41 @@ namespace Conferenceware {
         internal static string FrontpageTitle {
             get {
                 return ResourceManager.GetString("FrontpageTitle", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap MechmaniaBadgeBackground {
+            get {
+                object obj = ResourceManager.GetObject("MechmaniaBadgeBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap SpeakerBadgeBackground {
+            get {
+                object obj = ResourceManager.GetObject("SpeakerBadgeBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap SponsorBadgeBackground {
+            get {
+                object obj = ResourceManager.GetObject("SponsorBadgeBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap StaffBadgeBackground {
+            get {
+                object obj = ResourceManager.GetObject("StaffBadgeBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap VolunteerBadgeBackground {
+            get {
+                object obj = ResourceManager.GetObject("VolunteerBadgeBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

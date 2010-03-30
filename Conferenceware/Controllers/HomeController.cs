@@ -9,11 +9,13 @@ namespace Conferenceware.Controllers
 		[OutputCache(Duration = 3600, VaryByParam = "none", VaryByCustom = "settings")]
 		public ActionResult Index()
 		{
+			var sd = SettingsData.FromCurrent(SettingsData.RESOURCE_FILE_NAME,
+											  SettingsData.RESOURCE_FILE_DIR);
 			var frontPageSettings =
 				new FrontpageSettings
 					{
-						Title = SettingsData.FromCurrent(Server.MapPath(SettingsData.RESOURCE_FILE_NAME)).FrontpageTitle,
-						Content = SettingsData.FromCurrent(Server.MapPath(SettingsData.RESOURCE_FILE_NAME)).FrontpageContent
+						Title = sd.FrontpageTitle,
+						Content = sd.FrontpageContent
 					};
 			return View("Index", frontPageSettings);
 		}

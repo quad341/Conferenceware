@@ -152,6 +152,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\attendee.png" />
+    <None Include="Resources\mechmania.png" />
+    <None Include="Resources\speaker.png" />
+    <None Include="Resources\sponsor.png" />
+    <None Include="Resources\staff.png" />
+    <None Include="Resources\volunteer.png" />
     <Content Include="Views\PageManager\Create.aspx" />
     <Content Include="Views\PageManager\Delete.aspx" />
     <Content Include="Views\PageManager\Details.aspx" />
@@ -276,6 +282,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CurrentSettings.resources" />
     <EmbeddedResource Include="Settings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

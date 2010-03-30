@@ -12,7 +12,7 @@ namespace Conferenceware.Controllers
 		{
 			return View("Index",
 						SettingsData.FromCurrent(
-							Server.MapPath(SettingsData.RESOURCE_FILE_NAME)));
+							SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR));
 		}
 
 		[HttpPost]
@@ -23,7 +23,10 @@ namespace Conferenceware.Controllers
 			{
 				try
 				{
-					settingsData.Save(Server.MapPath(SettingsData.RESOURCE_FILE_NAME));
+					settingsData.Save(
+						SettingsData.RESOURCE_FILE_DIR + "\\" +
+						SettingsData.RESOURCE_FILE_NAME +
+						SettingsData.RESOURCE_FILE_EXT);
 					TempData["Message"] = "Settings saved";
 				}
 				catch

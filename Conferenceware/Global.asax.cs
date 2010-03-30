@@ -44,7 +44,10 @@ namespace Conferenceware
 			if (custom == "settings")
 			{
 				return
-					File.GetLastWriteTime(Server.MapPath(SettingsData.RESOURCE_FILE_NAME)).
+					File.GetLastWriteTime(AppDomain.CurrentDomain.BaseDirectory +
+										  SettingsData.RESOURCE_FILE_DIR + "\\" +
+										  SettingsData.RESOURCE_FILE_NAME +
+										  SettingsData.RESOURCE_FILE_EXT).
 						ToString();
 			}
 			return base.GetVaryByCustomString(context, custom);
