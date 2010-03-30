@@ -31,6 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MigraDoc.DocumentObjectModel, Version=1.31.3066.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL" />
+    <Reference Include="MigraDoc.Rendering, Version=1.31.3066.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL" />
+    <Reference Include="MigraDoc.RtfRendering, Version=1.31.3066.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL" />
+    <Reference Include="PdfSharp, Version=1.31.1789.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL" />
+    <Reference Include="PdfSharp.Charting, Version=1.31.1789.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -150,8 +155,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Badge.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Libraries\MigraDoc.DocumentObjectModel.dll" />
+    <Content Include="Libraries\MigraDoc.Rendering.dll" />
+    <Content Include="Libraries\MigraDoc.RtfRendering.dll" />
+    <Content Include="Libraries\PdfSharp.Charting.dll" />
+    <Content Include="Libraries\PdfSharp.dll" />
     <Content Include="Views\PageManager\Create.aspx" />
     <Content Include="Views\PageManager\Delete.aspx" />
     <Content Include="Views\PageManager\Details.aspx" />
