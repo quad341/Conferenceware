@@ -49,6 +49,10 @@ namespace Conferenceware.Controllers
 		public ActionResult Create(FormCollection collection)
 		{
 			var page = new Page();
+			if (_repository.GetPageByTitle(collection["Page.title"]) != null)
+			{
+				ModelState.AddModelError("Page.title", "Page title must be unique");
+			}
 			if (TryUpdateModel(page, "Page"))
 			{
 				page.title = page.title.Trim();
@@ -84,6 +88,10 @@ namespace Conferenceware.Controllers
 			if (page == null)
 			{
 				return View("PageNotFound");
+			}
+			if (_repository.GetPageByTitle(collection["Page.title"]) != null)
+			{
+				ModelState.AddModelError("Page.title", "Page title must be unique");
 			}
 			if (TryUpdateModel(page, "Page"))
 			{
