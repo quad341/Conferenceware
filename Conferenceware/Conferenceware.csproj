@@ -86,6 +86,7 @@
     <Compile Include="Controllers\MechManiaTeamController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PageManagerController.cs" />
+    <Compile Include="Controllers\PngResult.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
@@ -156,6 +157,7 @@
       <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Badge.cs" />
+    <Compile Include="Utils\ImageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\MigraDoc.DocumentObjectModel.dll" />
