@@ -300,6 +300,13 @@ namespace Conferenceware.Models
 		Page GetPageByTitle(string title);
 		IQueryable<Page> GetAllPages();
 
+		//StaffMember
+		void AddStaffMember(StaffMember sm);
+		void DeleteStaffMember(StaffMember sm);
+		void DeleteStaffMember(int id);
+		StaffMember GetStaffMemberById(int id);
+		IQueryable<StaffMember> GetAllStaffMembers();
+
 		//General
 		/// <summary>
 		/// Causes the repository to commit its changes

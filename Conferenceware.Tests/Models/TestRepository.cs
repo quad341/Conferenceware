@@ -489,6 +489,31 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
+		public void AddStaffMember(StaffMember sm)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteStaffMember(StaffMember sm)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteStaffMember(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public StaffMember GetStaffMemberById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<StaffMember> GetAllStaffMembers()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Save()
 		{
 			// we do that anyway. we might want to do something more interesting 

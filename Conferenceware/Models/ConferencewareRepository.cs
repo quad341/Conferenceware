@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Conferenceware.Models
 {
@@ -487,6 +488,31 @@ namespace Conferenceware.Models
 		public IQueryable<Page> GetAllPages()
 		{
 			return _conferenceware.Pages.AsQueryable();
+		}
+
+		public void AddStaffMember(StaffMember sm)
+		{
+			_conferenceware.StaffMembers.InsertOnSubmit(sm);
+		}
+
+		public void DeleteStaffMember(StaffMember sm)
+		{
+			_conferenceware.StaffMembers.DeleteOnSubmit(sm);
+		}
+
+		public void DeleteStaffMember(int id)
+		{
+			_conferenceware.StaffMembers.DeleteOnSubmit(GetStaffMemberById(id));
+		}
+
+		public StaffMember GetStaffMemberById(int id)
+		{
+			return _conferenceware.StaffMembers.SingleOrDefault(x => x.person_id == id);
+		}
+
+		public IQueryable<StaffMember> GetAllStaffMembers()
+		{
+			return _conferenceware.StaffMembers.AsQueryable();
 		}
 
 		public void DeletePerson(People person)

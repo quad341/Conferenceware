@@ -57,9 +57,6 @@ namespace Conferenceware.Models
     partial void InsertVolunteer(Volunteer instance);
     partial void UpdateVolunteer(Volunteer instance);
     partial void DeleteVolunteer(Volunteer instance);
-    partial void InsertStaff(Staff instance);
-    partial void UpdateStaff(Staff instance);
-    partial void DeleteStaff(Staff instance);
     partial void InsertEvent(Event instance);
     partial void UpdateEvent(Event instance);
     partial void DeleteEvent(Event instance);
@@ -93,6 +90,9 @@ namespace Conferenceware.Models
     partial void InsertPeople(People instance);
     partial void UpdatePeople(People instance);
     partial void DeletePeople(People instance);
+    partial void InsertStaffMember(StaffMember instance);
+    partial void UpdateStaffMember(StaffMember instance);
+    partial void DeleteStaffMember(StaffMember instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -197,14 +197,6 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Staff> Staffs
-		{
-			get
-			{
-				return this.GetTable<Staff>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Event> Events
 		{
 			get
@@ -290,6 +282,14 @@ namespace Conferenceware.Models
 			get
 			{
 				return this.GetTable<People>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StaffMember> StaffMembers
+		{
+			get
+			{
+				return this.GetTable<StaffMember>();
 			}
 		}
 	}
@@ -1845,133 +1845,6 @@ namespace Conferenceware.Models
 		}
 	}
 	
-	[Table(Name="dbo.Staff")]
-	public partial class Staff : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _person_id;
-		
-		private string _auth_name;
-		
-		private EntityRef<People> _People;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onperson_idChanging(int value);
-    partial void Onperson_idChanged();
-    partial void Onauth_nameChanging(string value);
-    partial void Onauth_nameChanged();
-    #endregion
-		
-		public Staff()
-		{
-			this._People = default(EntityRef<People>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int person_id
-		{
-			get
-			{
-				return this._person_id;
-			}
-			set
-			{
-				if ((this._person_id != value))
-				{
-					if (this._People.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onperson_idChanging(value);
-					this.SendPropertyChanging();
-					this._person_id = value;
-					this.SendPropertyChanged("person_id");
-					this.Onperson_idChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_auth_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string auth_name
-		{
-			get
-			{
-				return this._auth_name;
-			}
-			set
-			{
-				if ((this._auth_name != value))
-				{
-					this.Onauth_nameChanging(value);
-					this.SendPropertyChanging();
-					this._auth_name = value;
-					this.SendPropertyChanged("auth_name");
-					this.Onauth_nameChanged();
-				}
-			}
-		}
-		
-		[Association(Name="People_Staff", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
-		public People People
-		{
-			get
-			{
-				return this._People.Entity;
-			}
-			set
-			{
-				People previousValue = this._People.Entity;
-				if (((previousValue != value) 
-							|| (this._People.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._People.Entity = null;
-						previousValue.Staff = null;
-					}
-					this._People.Entity = value;
-					if ((value != null))
-					{
-						value.Staff = this;
-						this._person_id = value.id;
-					}
-					else
-					{
-						this._person_id = default(int);
-					}
-					this.SendPropertyChanged("People");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[Table(Name="dbo.Events")]
 	public partial class Event : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2979,7 +2852,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="Company_CompanyPeople", Storage="_CompanyPersons", ThisKey="id", OtherKey="company_id")]
+		[Association(Name="Company_CompanyPerson", Storage="_CompanyPersons", ThisKey="id", OtherKey="company_id")]
 		public EntitySet<CompanyPerson> CompanyPersons
 		{
 			get
@@ -4288,7 +4161,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="Company_CompanyPeople", Storage="_Company", ThisKey="company_id", OtherKey="id", IsForeignKey=true)]
+		[Association(Name="Company_CompanyPerson", Storage="_Company", ThisKey="company_id", OtherKey="id", IsForeignKey=true)]
 		public Company Company
 		{
 			get
@@ -4322,7 +4195,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="People_CompanyPeople", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		[Association(Name="People_CompanyPerson", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
 		public People People
 		{
 			get
@@ -4399,9 +4272,9 @@ namespace Conferenceware.Models
 		
 		private EntityRef<Volunteer> _Volunteer;
 		
-		private EntityRef<Staff> _Staff;
-		
 		private EntityRef<CompanyPerson> _CompanyPerson;
+		
+		private EntityRef<StaffMember> _StaffMember;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4424,8 +4297,8 @@ namespace Conferenceware.Models
 			this._Attendee = default(EntityRef<Attendee>);
 			this._Speaker = default(EntityRef<Speaker>);
 			this._Volunteer = default(EntityRef<Volunteer>);
-			this._Staff = default(EntityRef<Staff>);
 			this._CompanyPerson = default(EntityRef<CompanyPerson>);
+			this._StaffMember = default(EntityRef<StaffMember>);
 			OnCreated();
 		}
 		
@@ -4616,36 +4489,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[Association(Name="People_Staff", Storage="_Staff", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
-		public Staff Staff
-		{
-			get
-			{
-				return this._Staff.Entity;
-			}
-			set
-			{
-				Staff previousValue = this._Staff.Entity;
-				if (((previousValue != value) 
-							|| (this._Staff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Staff.Entity = null;
-						previousValue.People = null;
-					}
-					this._Staff.Entity = value;
-					if ((value != null))
-					{
-						value.People = this;
-					}
-					this.SendPropertyChanged("Staff");
-				}
-			}
-		}
-		
-		[Association(Name="People_CompanyPeople", Storage="_CompanyPerson", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		[Association(Name="People_CompanyPerson", Storage="_CompanyPerson", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
 		public CompanyPerson CompanyPerson
 		{
 			get
@@ -4670,6 +4514,162 @@ namespace Conferenceware.Models
 						value.People = this;
 					}
 					this.SendPropertyChanged("CompanyPerson");
+				}
+			}
+		}
+		
+		[Association(Name="People_StaffMember", Storage="_StaffMember", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		public StaffMember StaffMember
+		{
+			get
+			{
+				return this._StaffMember.Entity;
+			}
+			set
+			{
+				StaffMember previousValue = this._StaffMember.Entity;
+				if (((previousValue != value) 
+							|| (this._StaffMember.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._StaffMember.Entity = null;
+						previousValue.People = null;
+					}
+					this._StaffMember.Entity = value;
+					if ((value != null))
+					{
+						value.People = this;
+					}
+					this.SendPropertyChanged("StaffMember");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.StaffMembers")]
+	public partial class StaffMember : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _person_id;
+		
+		private string _auth_name;
+		
+		private EntityRef<People> _People;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onperson_idChanging(int value);
+    partial void Onperson_idChanged();
+    partial void Onauth_nameChanging(string value);
+    partial void Onauth_nameChanged();
+    #endregion
+		
+		public StaffMember()
+		{
+			this._People = default(EntityRef<People>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int person_id
+		{
+			get
+			{
+				return this._person_id;
+			}
+			set
+			{
+				if ((this._person_id != value))
+				{
+					if (this._People.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperson_idChanging(value);
+					this.SendPropertyChanging();
+					this._person_id = value;
+					this.SendPropertyChanged("person_id");
+					this.Onperson_idChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_auth_name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string auth_name
+		{
+			get
+			{
+				return this._auth_name;
+			}
+			set
+			{
+				if ((this._auth_name != value))
+				{
+					this.Onauth_nameChanging(value);
+					this.SendPropertyChanging();
+					this._auth_name = value;
+					this.SendPropertyChanged("auth_name");
+					this.Onauth_nameChanged();
+				}
+			}
+		}
+		
+		[Association(Name="People_StaffMember", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		public People People
+		{
+			get
+			{
+				return this._People.Entity;
+			}
+			set
+			{
+				People previousValue = this._People.Entity;
+				if (((previousValue != value) 
+							|| (this._People.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._People.Entity = null;
+						previousValue.StaffMember = null;
+					}
+					this._People.Entity = value;
+					if ((value != null))
+					{
+						value.StaffMember = this;
+						this._person_id = value.id;
+					}
+					else
+					{
+						this._person_id = default(int);
+					}
+					this.SendPropertyChanged("People");
 				}
 			}
 		}
