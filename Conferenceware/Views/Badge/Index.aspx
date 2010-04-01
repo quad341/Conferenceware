@@ -10,7 +10,11 @@
     
     <ul>
         <li><%= Html.ActionLink("Attendee badges", "AttendeeBadges") %></li>
+        <li><%= Html.ActionLink("Sponsor badges", "MechmaniaBadges") %></li>
+        <li><%= Html.ActionLink("Sponsor badges", "SpeakerBadges") %></li>
         <li><%= Html.ActionLink("Sponsor badges", "SponsorBadges") %></li>
+        <li><%= Html.ActionLink("Sponsor badges", "StaffBadges") %></li>
+        <li><%= Html.ActionLink("Sponsor badges", "VolunteerBadges") %></li>
     </ul>
 
 </asp:Content>
