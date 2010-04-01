@@ -16,22 +16,41 @@ namespace Conferenceware.Utils
 		/// <returns>PDF MemoryStream for returning to web user.</returns>
 		public static MemoryStream MakeBadge(IEnumerable<Models.People> people, System.Drawing.Image background)
 		{
+			// settings for Avery 5392 cardstock with badges printed vertically (taller than wide)
+			// offsets used to layout the text
+			const double baseXOffset = 1.0;
+			const double baseYOffset = .25;
+			const double imageXOffset = .1;
+			const double imageYOffset = .1;
+			const double textWidth = 2.5;
+			const double nameTextXOffset = .25;
+			const double nameTextYOffset = 2.3;
+			const double nameTextHeight = .3;
+			const double titleTextXOffset = .25;
+			const double titleTextYOffset = 2.7;
+			const double titleTextHeight = .4;
 			//make a new document
 			var doc = new PdfDocument();
-			// badge is about 4 inches wide and 3 inches tall
-			var badge = new XForm(doc, XUnit.FromInch(3.0), XUnit.FromInch(4.0));
+			// badge is 4 inches wide and 3 inches tall
+			// it's smaller here so we can leave some spacing around the edges so they print right
+			var badge = new XForm(doc, XUnit.FromInch(2.8), XUnit.FromInch(3.8));
 			// graphic for form
 			var formGfx = XGraphics.FromForm(badge);
 			// add background image to template
 			formGfx.DrawImage(background, 0, 0);
 			// Save the template to clone out with people's names
-			var template = formGfx.Save();
-			var font = new XFont("Verdana", 20, XFontStyle.Bold);
+			//var template = formGfx.Save();
 			var counter = 0;
 			PdfPage page;
 			XGraphics pageGfx = null;
 			foreach (var person in people)
 			{
+				// make long names smaller
+				var fontSize = person.name.Length > 17 ? 16 : 20;
+				var nameFont = new XFont("Helvetica", fontSize, XFontStyle.Regular);
+				var titleFont = new XFont("Helvetica", 14, XFontStyle.Regular);
+				var columnOffset = ((counter % 6) / 2) * 3.0;
+				var rowOffset = (counter % 2) * 4.0;
 				if (counter % 6 == 0)
 				{
 					// add a new page
@@ -41,10 +60,42 @@ namespace Conferenceware.Utils
 					// make a graphic on the page
 					pageGfx = XGraphics.FromPdfPage(page);
 				}
+				// one liner placement of badges
+				pageGfx.DrawImage(badge,
+								  XUnit.FromInch(baseXOffset + columnOffset + imageXOffset),
+								  XUnit.FromInch(baseYOffset + rowOffset + imageYOffset));
 				// draw their name
-				formGfx.DrawString(person.name, font, XBrushes.Black, new XRect(0, 0, XUnit.FromInch(3.0), XUnit.FromInch(4.0)), XStringFormats.Center);
-				// one liner placement of badges on Avery 5392 cardstock
-				pageGfx.DrawImage(badge, XUnit.FromInch(1 + (((counter % 6) / 3) * XUnit.FromInch(3.0))), XUnit.FromInch(0.25 + ((counter % 2) * XUnit.FromInch(4.0))));
+				pageGfx.DrawString(person.name,
+								   nameFont,
+								   XBrushes.Black,
+								   new XRect(
+									XUnit.FromInch(baseXOffset + columnOffset + nameTextXOffset),
+									XUnit.FromInch(baseYOffset + rowOffset + nameTextYOffset),
+									XUnit.FromInch(textWidth),
+									XUnit.FromInch(nameTextHeight)),
+								   XStringFormats.Center);
+				// draw their title (company, alum)
+				var title = "";
+				if (person.CompanyPerson != null)
+				{
+					title = person.CompanyPerson.Company.name;
+				}
+				/*
+				if (person.is_aum)
+				{
+					title += "\nAlum";
+				}
+				 */
+				pageGfx.DrawString(title,
+								   titleFont,
+								   XBrushes.Black,
+								   new XRect(
+									XUnit.FromInch(baseXOffset + columnOffset + titleTextXOffset),
+									XUnit.FromInch(baseYOffset + rowOffset + titleTextYOffset),
+									XUnit.FromInch(textWidth),
+									XUnit.FromInch(titleTextHeight)),
+								   XStringFormats.Center);
+
 				// reset template
 				//formGfx.Restore(template);
 				counter += 1;
