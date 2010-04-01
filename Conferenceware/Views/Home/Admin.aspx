@@ -20,5 +20,6 @@
         <li><%= Html.ActionLink("Volunteers", "Index", "Volunteer") %></li>
         <li><%= Html.ActionLink("Pages", "Index", "PageManager") %></li>
         <li><%= Html.ActionLink("Badges", "Index", "Badge") %></li>
+        <li><%= Html.ActionLink("Staff", "Index", "StaffMember") %></li>
     </ul>
 </asp:Content>

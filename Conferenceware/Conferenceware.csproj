@@ -92,6 +92,7 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
+    <Compile Include="Controllers\StaffMemberController.cs" />
     <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\TShirtSizeController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="Models\SettingsData.cs" />
     <Compile Include="Models\Speaker.cs" />
     <Compile Include="Models\SpeakerComparitor.cs" />
+    <Compile Include="Models\StaffMember.cs" />
+    <Compile Include="Models\StaffMemberMetadata.cs" />
     <Compile Include="Models\TimeSlot.cs" />
     <Compile Include="Models\TimeSlotMetadata.cs" />
     <Compile Include="Models\TShirtSize.cs" />
@@ -181,6 +184,10 @@
     <Content Include="Views\PageManager\Index.aspx" />
     <Content Include="Views\Page\Display.aspx" />
     <Content Include="Views\Shared\PageNotFound.aspx" />
+    <Content Include="Views\StaffMember\Create.aspx" />
+    <Content Include="Views\StaffMember\Edit.aspx" />
+    <Content Include="Views\StaffMember\Index.aspx" />
+    <Content Include="Views\StaffMember\StaffMemberNotFound.aspx" />
     <Content Include="Views\VolunteerRegistration\Index.aspx" />
     <Content Include="Views\VolunteerRegistration\Success.aspx" />
     <Content Include="Views\VolunteerTimeSlot\Create.aspx" />
