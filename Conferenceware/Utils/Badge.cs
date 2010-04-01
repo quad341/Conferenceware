@@ -26,9 +26,12 @@ namespace Conferenceware.Utils
 			const double nameTextXOffset = .25;
 			const double nameTextYOffset = 2.3;
 			const double nameTextHeight = .3;
-			const double titleTextXOffset = .25;
-			const double titleTextYOffset = 2.7;
-			const double titleTextHeight = .4;
+			const double companyTextXOffset = .25;
+			const double companyTextYOffset = 2.7;
+			const double companyTextHeight = .2;
+			const double alumTextXOffset = .25;
+			const double alumTextYOffset = 2.9;
+			const double alumTextHeight = .2;
 			//make a new document
 			var doc = new PdfDocument();
 			// badge is 4 inches wide and 3 inches tall
@@ -69,7 +72,8 @@ namespace Conferenceware.Utils
 								   nameFont,
 								   XBrushes.Black,
 								   new XRect(
-									XUnit.FromInch(baseXOffset + columnOffset + nameTextXOffset),
+									XUnit.FromInch(baseXOffset + columnOffset +
+												   nameTextXOffset),
 									XUnit.FromInch(baseYOffset + rowOffset + nameTextYOffset),
 									XUnit.FromInch(textWidth),
 									XUnit.FromInch(nameTextHeight)),
@@ -78,21 +82,32 @@ namespace Conferenceware.Utils
 				var title = "";
 				if (person.CompanyPerson != null)
 				{
-					title = person.CompanyPerson.Company.name;
+					pageGfx.DrawString(person.CompanyPerson.Company.name,
+									   titleFont,
+									   XBrushes.Black,
+									   new XRect(
+										XUnit.FromInch(baseXOffset + columnOffset +
+													   companyTextXOffset),
+										XUnit.FromInch(baseYOffset + rowOffset +
+													   companyTextYOffset),
+										XUnit.FromInch(textWidth),
+										XUnit.FromInch(companyTextHeight)),
+									   XStringFormats.Center);
 				}
 				if (person.is_alum)
 				{
-					title += "\nAlum";
+					pageGfx.DrawString("Alum",
+									   titleFont,
+									   XBrushes.Black,
+									   new XRect(
+										XUnit.FromInch(baseXOffset + columnOffset +
+													   alumTextXOffset),
+										XUnit.FromInch(baseYOffset + rowOffset +
+													   alumTextYOffset),
+										XUnit.FromInch(textWidth),
+										XUnit.FromInch(alumTextHeight)),
+									   XStringFormats.Center);
 				}
-				pageGfx.DrawString(title,
-								   titleFont,
-								   XBrushes.Black,
-								   new XRect(
-									XUnit.FromInch(baseXOffset + columnOffset + titleTextXOffset),
-									XUnit.FromInch(baseYOffset + rowOffset + titleTextYOffset),
-									XUnit.FromInch(textWidth),
-									XUnit.FromInch(titleTextHeight)),
-								   XStringFormats.Center);
 
 				// reset template
 				//formGfx.Restore(template);
