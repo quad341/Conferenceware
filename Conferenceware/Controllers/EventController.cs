@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Conferenceware.Models;
@@ -224,6 +225,63 @@ namespace Conferenceware.Controllers
 			_repository.UnRegisterAttendeeForEvent(attendee, ev);
 			_repository.Save();
 			return RedirectToAction("Edit", new { id = eventId });
+		}
+
+		public ActionResult UploadContent(int id)
+		{
+			Event ev = _repository.GetEventById(id);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			var ecl = new EventContentLink
+						{
+							Event = ev
+						};
+			return View("UploadContent", ecl);
+		}
+
+		[HttpPost]
+		public ActionResult UploadContent(EventContentLink ecl)
+		{
+			Event ev = _repository.GetEventById(ecl.event_id);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			var hpf = Request.Files["link_location"];
+			if (hpf == null || hpf.ContentLength == 0)
+			{
+				ModelState.AddModelError("link_location", "File required");
+			}
+			var dir = AppDomain.CurrentDomain.BaseDirectory + "\\Content\\" +
+					  ecl.event_id + "\\";
+			var filename = hpf.FileName;
+			if (System.IO.File.Exists(dir + filename))
+			{
+				var i = 0;
+				while (System.IO.File.Exists(dir + i + filename))
+				{
+					i++;
+				}
+				filename = i + filename;
+			}
+			try
+			{
+				hpf.SaveAs(dir + filename);
+			}
+			catch (Exception)
+			{
+				TempData["Message"] = "Unable to write file";
+				ModelState.AddModelError("link_location", "File could not be saved");
+			}
+			if (ModelState.IsValid)
+			{
+				// add link
+				ecl.link_location = "/Content/" + ecl.event_id + "/" + filename;
+				TempData["Message"] = "Content added";
+			}
+			return View("UploadContent", ecl);
 		}
 	}
 }

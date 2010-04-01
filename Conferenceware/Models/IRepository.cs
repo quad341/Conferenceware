@@ -307,6 +307,13 @@ namespace Conferenceware.Models
 		StaffMember GetStaffMemberById(int id);
 		IQueryable<StaffMember> GetAllStaffMembers();
 
+		//EventContentLink
+		void AddEventContentLink(EventContentLink ecl);
+		void DeleteEventContentLink(EventContentLink ecl);
+		void DeleteEventContentLink(int id);
+		EventContentLink GetEventContentLinkById(int id);
+		IQueryable<EventContentLink> GetAllEventContentLinks();
+
 		//General
 		/// <summary>
 		/// Causes the repository to commit its changes

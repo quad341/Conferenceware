@@ -515,6 +515,31 @@ namespace Conferenceware.Models
 			return _conferenceware.StaffMembers.AsQueryable();
 		}
 
+		public void AddEventContentLink(EventContentLink ecl)
+		{
+			_conferenceware.EventContentLinks.InsertOnSubmit(ecl);
+		}
+
+		public void DeleteEventContentLink(EventContentLink ecl)
+		{
+			_conferenceware.EventContentLinks.DeleteOnSubmit(ecl);
+		}
+
+		public void DeleteEventContentLink(int id)
+		{
+			_conferenceware.EventContentLinks.DeleteOnSubmit(GetEventContentLinkById(id));
+		}
+
+		public EventContentLink GetEventContentLinkById(int id)
+		{
+			return _conferenceware.EventContentLinks.SingleOrDefault(x => x.id == id);
+		}
+
+		public IQueryable<EventContentLink> GetAllEventContentLinks()
+		{
+			return _conferenceware.EventContentLinks.AsQueryable();
+		}
+
 		public void DeletePerson(People person)
 		{
 			_conferenceware.Peoples.DeleteOnSubmit(person);

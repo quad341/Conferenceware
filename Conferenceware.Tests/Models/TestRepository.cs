@@ -514,6 +514,31 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
+		public void AddEventContentLink(EventContentLink ecl)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteEventContentLink(EventContentLink ecl)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteEventContentLink(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public EventContentLink GetEventContentLinkById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<EventContentLink> GetAllEventContentLinks()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Save()
 		{
 			// we do that anyway. we might want to do something more interesting 
