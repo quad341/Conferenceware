@@ -123,6 +123,8 @@
     <Compile Include="Models\ConferencewareRepository.cs" />
     <Compile Include="Models\DataAnnotationsValidationRunner.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\EventContentLink.cs" />
+    <Compile Include="Models\EventContentLinkMetadata.cs" />
     <Compile Include="Models\EventEditData.cs" />
     <Compile Include="Models\EventMetadata.cs" />
     <Compile Include="Models\Food.cs" />
