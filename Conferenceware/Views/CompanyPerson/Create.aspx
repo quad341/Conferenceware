@@ -64,6 +64,15 @@
                 <%= Html.CheckBoxFor(model => model.is_attending) %>
                 <%= Html.ValidationMessageFor(model => model.is_attending) %>
             </div>
+                
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.People.is_alum) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.CheckBoxFor(model => model.People.is_alum) %>
+                <%= Html.ValidationMessageFor(model => model.People.is_alum) %>
+            </div>
+         
             
             <p>
                 <input type="submit" value="Create" />

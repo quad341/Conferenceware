@@ -80,12 +80,10 @@ namespace Conferenceware.Utils
 				{
 					title = person.CompanyPerson.Company.name;
 				}
-				/*
-				if (person.is_aum)
+				if (person.is_alum)
 				{
 					title += "\nAlum";
 				}
-				 */
 				pageGfx.DrawString(title,
 								   titleFont,
 								   XBrushes.Black,

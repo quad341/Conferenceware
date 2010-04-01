@@ -10,7 +10,8 @@ namespace Conferenceware.Models
 		[DisplayName("Name")]
 		public string name
 		{
-			get; set;
+			get;
+			set;
 		}
 
 		[Required]
@@ -20,16 +21,25 @@ namespace Conferenceware.Models
 		[DisplayName("EMail Address")]
 		public string email
 		{
-			get; set;
+			get;
+			set;
 		}
 
 		[Required]
-		[RegularExpression(@"[0-9]{3}-[0-9]{3}-[0-9]{4}", 
+		[RegularExpression(@"[0-9]{3}-[0-9]{3}-[0-9]{4}",
 			ErrorMessage = "Invalid phone number. Ex. 123-456-7890")]
 		[DisplayName("Phone Number")]
 		public string phone_number
 		{
-			get; set;
+			get;
+			set;
+		}
+
+		[DisplayName("University alum?")]
+		public bool is_alum
+		{
+			get;
+			set;
 		}
 	}
 }

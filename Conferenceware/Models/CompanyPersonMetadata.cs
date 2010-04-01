@@ -18,12 +18,5 @@ namespace Conferenceware.Models
 			set;
 		}
 
-		[DisplayName("Are you an alum?")]
-		public bool is_alum
-		{
-			get;
-			set;
-		}
-
 	}
 }

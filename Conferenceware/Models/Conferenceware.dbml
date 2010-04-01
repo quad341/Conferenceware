@@ -71,19 +71,6 @@
       <Association Name="TimeSlot_VolunteerTimeSlot" Member="VolunteerTimeSlot" ThisKey="id" OtherKey="timeslot_id" Type="VolunteerTimeSlot" Cardinality="One" />
     </Type>
   </Table>
-  <Table Name="dbo.People" Member="Peoples">
-    <Type Name="People">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="phone_number" Type="System.String" DbType="NChar(12) NOT NULL" CanBeNull="false" />
-      <Association Name="People_Attendee" Member="Attendee" ThisKey="id" OtherKey="person_id" Type="Attendee" Cardinality="One" />
-      <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
-      <Association Name="People_Volunteer" Member="Volunteer" ThisKey="id" OtherKey="person_id" Type="Volunteer" Cardinality="One" />
-      <Association Name="People_Staff" Member="Staff" ThisKey="id" OtherKey="person_id" Type="Staff" Cardinality="One" />
-      <Association Name="People_CompanyPerson" Member="CompanyPerson" ThisKey="id" OtherKey="person_id" Type="CompanyPerson" Cardinality="One" />
-    </Type>
-  </Table>
   <Table Name="dbo.Volunteers" Member="Volunteers">
     <Type Name="Volunteer">
       <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -146,7 +133,7 @@
       <Column Name="priority_shipping" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Company_CompanyInvoice" Member="CompanyInvoices" ThisKey="id" OtherKey="company_id" Type="CompanyInvoice" />
       <Association Name="Company_CompanyPayment" Member="CompanyPayments" ThisKey="id" OtherKey="company_id" Type="CompanyPayment" />
-      <Association Name="Company_CompanyPerson" Member="CompanyPersons" ThisKey="id" OtherKey="company_id" Type="CompanyPerson" />
+      <Association Name="Company_CompanyPeople" Member="CompanyPersons" ThisKey="id" OtherKey="company_id" Type="CompanyPerson" />
     </Type>
   </Table>
   <Table Name="dbo.CompanyInvoiceItems" Member="CompanyInvoiceItems">
@@ -181,17 +168,6 @@
       <Association Name="Company_CompanyPayment" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.CompanyPeople" Member="CompanyPersons">
-    <Type Name="CompanyPerson">
-      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="company_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="is_contact" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="is_attending" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="is_alum" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Company_CompanyPerson" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
-      <Association Name="People_CompanyPerson" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.MechManiaTeams" Member="MechManiaTeams">
     <Type Name="MechManiaTeam">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -212,6 +188,30 @@
       <Column Name="title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="page_content" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="parent_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyPeople" Member="CompanyPersons">
+    <Type Name="CompanyPerson">
+      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="company_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="is_contact" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="is_attending" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Company_CompanyPeople" Member="Company" ThisKey="company_id" OtherKey="id" Type="Company" IsForeignKey="true" />
+      <Association Name="People_CompanyPeople" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.People" Member="Peoples">
+    <Type Name="People">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="phone_number" Type="System.String" DbType="NChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="is_alum" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="People_Attendee" Member="Attendee" ThisKey="id" OtherKey="person_id" Type="Attendee" Cardinality="One" />
+      <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
+      <Association Name="People_Volunteer" Member="Volunteer" ThisKey="id" OtherKey="person_id" Type="Volunteer" Cardinality="One" />
+      <Association Name="People_Staff" Member="Staff" ThisKey="id" OtherKey="person_id" Type="Staff" Cardinality="One" />
+      <Association Name="People_CompanyPeople" Member="CompanyPerson" ThisKey="id" OtherKey="person_id" Type="CompanyPerson" Cardinality="One" />
     </Type>
   </Table>
 </Database>

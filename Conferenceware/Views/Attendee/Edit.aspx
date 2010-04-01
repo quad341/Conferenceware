@@ -46,6 +46,15 @@
             <%= Html.DropDownListFor(model => model.Attendee.food_choice_id, Model.Foods) %>
             <%= Html.ValidationMessageFor(model => model.Attendee.food_choice_id) %>
         </div>
+        
+        <div class="editor-label">
+            <%= Html.LabelFor(model => model.Attendee.People.is_alum) %>
+        </div>
+        <div class="editor-field">
+            <%= Html.CheckBoxFor(model => model.Attendee.People.is_alum) %>
+            <%= Html.ValidationMessageFor(model => model.Attendee.People.is_alum) %>
+        </div>
+     
         <p>
             <input type="submit" value="Save" />
         </p>
