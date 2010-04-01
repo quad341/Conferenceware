@@ -37,5 +37,12 @@ namespace Conferenceware.Controllers
 				"AttendeeBadges.pdf");
 		}
 
+		public ActionResult SponsorBadges()
+		{
+			return new BadgePdfResult(
+				_repository.GetAllCompanyPersons().Select(x => x.People),
+				_sd.SponsorBadgeBackground,
+				"SponsorBadges.pdf");
+		}
 	}
 }
