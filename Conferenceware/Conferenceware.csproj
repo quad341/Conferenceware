@@ -73,6 +73,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />
     <Compile Include="Controllers\AttendeeRegistrationController.cs" />
+    <Compile Include="Controllers\BadgeController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CompanyInvoiceController.cs" />
     <Compile Include="Controllers\CompanyInvoiceItemController.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Controllers\MechManiaTeamController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PageManagerController.cs" />
+    <Compile Include="Controllers\BadgePdfResult.cs" />
     <Compile Include="Controllers\PngResult.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
@@ -171,6 +173,7 @@
     <None Include="Resources\sponsor.png" />
     <None Include="Resources\staff.png" />
     <None Include="Resources\volunteer.png" />
+    <Content Include="Views\Badge\Index.aspx" />
     <Content Include="Views\PageManager\Create.aspx" />
     <Content Include="Views\PageManager\Delete.aspx" />
     <Content Include="Views\PageManager\Details.aspx" />
