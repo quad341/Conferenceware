@@ -21,7 +21,10 @@ namespace Conferenceware.Controllers
 		{
 			context.HttpContext.Response.Clear();
 			context.HttpContext.Response.ContentType = "image/png";
-			Image.Save(context.HttpContext.Response.OutputStream, ImageFormat.Png);
+			if (Image != null)
+			{
+				Image.Save(context.HttpContext.Response.OutputStream, ImageFormat.Png);
+			}
 		}
 	}
 }

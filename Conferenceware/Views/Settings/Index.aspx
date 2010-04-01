@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.SettingsData>" %>
-<%@ Import Namespace="Conferenceware.Utils" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	View and Edit Settings
@@ -63,7 +62,46 @@
             <div class="editor-field">
                 <input type="file" name="AttendeeBadgeBackground" id="AttendeeBadgeBackground" />
             </div>
-           
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.MechmaniaBadgeBackground) %><br />
+                <img src="<%= Url.Action("GetImage", new {filename="MechmaniaBadgeBackground"})%>" class="badge-background-image" alt="Mechmania Badge Background" />
+            </div>
+            <div class="editor-field">
+                <input type="file" name="MechmaniaBadgeBackground" id="MechmaniaBadgeBackground" />
+            </div>
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SpeakerBadgeBackground) %><br />
+                <img src="<%= Url.Action("GetImage", new {filename="SpeakerBadgeBackground"})%>" class="badge-background-image" alt="Speaker Badge Background" />
+            </div>
+            <div class="editor-field">
+                <input type="file" name="SpeakerBadgeBackground" id="SpeakerBadgeBackground" />
+            </div>
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SponsorBadgeBackground) %><br />
+                <img src="<%= Url.Action("GetImage", new {filename="SponsorBadgeBackground"})%>" class="badge-background-image" alt="Sponsor Badge Background" />
+            </div>
+            <div class="editor-field">
+                <input type="file" name="SponsorBadgeBackground" id="SponsorBadgeBackground" />
+            </div>
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.StaffBadgeBackground) %><br />
+                <img src="<%= Url.Action("GetImage", new {filename="StaffBadgeBackground"})%>" class="badge-background-image" alt="Staff Badge Background" />
+            </div>
+            <div class="editor-field">
+                <input type="file" name="StaffBadgeBackground" id="StaffBadgeBackground" />
+            </div>
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.VolunteerBadgeBackground) %><br />
+                <img src="<%= Url.Action("GetImage", new {filename="VolunteerBadgeBackground"})%>" class="badge-background-image" alt="Volunteer Badge Background" />
+            </div>
+            <div class="editor-field">
+                <input type="file" name="VolunteerBadgeBackground" id="VolunteerBadgeBackground" />
+            </div>
             <p>
                 <input type="submit" value="Save" />
             </p>
