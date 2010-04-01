@@ -13,9 +13,8 @@ namespace Conferenceware.Utils
 		/// </summary>
 		/// <param name="people">People to print badges for.</param>
 		/// <param name="background">Background image of badge.</param>
-		/// <param name="stream"></param>
 		/// <returns>PDF MemoryStream for returning to web user.</returns>
-		public static void MakeBadge(IEnumerable<Models.People> people, System.Drawing.Image background, Stream stream)
+		public static MemoryStream MakeBadge(IEnumerable<Models.People> people, System.Drawing.Image background)
 		{
 			//make a new document
 			var doc = new PdfDocument();
@@ -47,10 +46,12 @@ namespace Conferenceware.Utils
 				// one liner placement of badges on Avery 5392 cardstock
 				pageGfx.DrawImage(badge, XUnit.FromInch(1 + (((counter % 6) / 3) * XUnit.FromInch(3.0))), XUnit.FromInch(0.25 + ((counter % 2) * XUnit.FromInch(4.0))));
 				// reset template
-				formGfx.Restore(template);
+				//formGfx.Restore(template);
 				counter += 1;
 			}
-			doc.Save(stream, false);
+			var ms = new MemoryStream();
+			doc.Save(ms, false);
+			return ms;
 		}
 	}
 }

@@ -33,7 +33,8 @@ namespace Conferenceware.Controllers
 		{
 			return new BadgePdfResult(
 				_repository.GetAllAttendees().Select(x => x.People),
-				_sd.AttendeeBadgeBackground);
+				_sd.AttendeeBadgeBackground,
+				"AttendeeBadges.pdf");
 		}
 
 	}
