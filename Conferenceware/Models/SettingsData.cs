@@ -94,36 +94,42 @@ namespace Conferenceware.Models
 
 		#region Badge Backgrounds
 		// Images can't exactly be validated since they are uploaded though Request.Files
+		[DisplayName("Attendee Badge Background Image (png)")]
 		public Bitmap AttendeeBadgeBackground
 		{
 			get;
 			set;
 		}
 
+		[DisplayName("Mechmania Badge Background Image (png)")]
 		public Bitmap MechmaniaBadgeBackground
 		{
 			get;
 			set;
 		}
 
+		[DisplayName("Speaker Badge Background Image (png)")]
 		public Bitmap SpeakerBadgeBackground
 		{
 			get;
 			set;
 		}
 
+		[DisplayName("Sponsor Badge Background Image (png)")]
 		public Bitmap SponsorBadgeBackground
 		{
 			get;
 			set;
 		}
 
+		[DisplayName("Staff Badge Background Image (png)")]
 		public Bitmap StaffBadgeBackground
 		{
 			get;
 			set;
 		}
 
+		[DisplayName("Volunteer Badge Background Image (png)")]
 		public Bitmap VolunteerBadgeBackground
 		{
 			get;
