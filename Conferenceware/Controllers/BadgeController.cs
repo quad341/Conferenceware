@@ -71,9 +71,8 @@ namespace Conferenceware.Controllers
 
 		public ActionResult StaffBadges()
 		{
-			//TODO: make this use staff, not company people
 			return new BadgePdfResult(
-				_repository.GetAllCompanyPersons().Select(x => x.People),
+				_repository.GetAllStaffMembers().Select(x => x.People),
 				_sd.StaffBadgeBackground,
 				"StaffBadges.pdf");
 		}
