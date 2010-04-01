@@ -22,15 +22,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Index()
 		{
-			return View();
-		}
-
-		//
-		// GET: /StaffMember/Details/5
-
-		public ActionResult Details(int id)
-		{
-			return View();
+			return View("Index", _repository.GetAllStaffMembers());
 		}
 
 		//
@@ -38,25 +30,23 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Create()
 		{
-			return View();
+			return View("Create", new StaffMember());
 		}
 
 		//
 		// POST: /StaffMember/Create
 
 		[HttpPost]
-		public ActionResult Create(FormCollection collection)
+		public ActionResult Create(StaffMember sm)
 		{
-			try
+			if (ModelState.IsValid)
 			{
-				// TODO: Add insert logic here
-
+				_repository.AddStaffMember(sm);
+				_repository.Save();
+				TempData["Message"] = "Staff Member created";
 				return RedirectToAction("Index");
 			}
-			catch
-			{
-				return View();
-			}
+			return View("Create", sm);
 		}
 
 		//
@@ -64,7 +54,12 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			return View();
+			var sm = _repository.GetStaffMemberById(id);
+			if (sm == null)
+			{
+				return View("StaffMemberNotFound");
+			}
+			return View("Edit", sm);
 		}
 
 		//
@@ -73,16 +68,18 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			try
+			var sm = _repository.GetStaffMemberById(id);
+			if (sm == null)
 			{
-				// TODO: Add update logic here
-
+				return View("StaffMemberNotFound");
+			}
+			if (TryUpdateModel(sm))
+			{
+				_repository.Save();
+				TempData["Message"] = "Staff Member updated";
 				return RedirectToAction("Index");
 			}
-			catch
-			{
-				return View();
-			}
+			return View("Edit", sm);
 		}
 
 		//
@@ -90,25 +87,15 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			return View();
-		}
-
-		//
-		// POST: /StaffMember/Delete/5
-
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
-		{
-			try
+			var sm = _repository.GetStaffMemberById(id);
+			if (sm == null)
 			{
-				// TODO: Add delete logic here
-
-				return RedirectToAction("Index");
+				return View("StaffMemberNotFound");
 			}
-			catch
-			{
-				return View();
-			}
+			_repository.DeleteStaffMember(sm);
+			_repository.Save();
+			TempData["Message"] = "Staff Member deleted";
+			return RedirectToAction("Index");
 		}
 	}
 }
