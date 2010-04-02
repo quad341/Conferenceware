@@ -300,7 +300,7 @@ namespace Conferenceware.Controllers
 					TempData["Message"] = "Could not delete file";
 				}
 			}
-			if (ecldd.DeleteDir && !errorEncountered)
+			if (ecldd.DeleteDir)
 			{
 				try
 				{
@@ -309,7 +309,6 @@ namespace Conferenceware.Controllers
 				}
 				catch
 				{
-					errorEncountered = true;
 					TempData["Message"] = "Could not delete directory";
 				}
 			}
