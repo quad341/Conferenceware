@@ -180,6 +180,7 @@
     <None Include="Resources\staff.png" />
     <None Include="Resources\volunteer.png" />
     <Content Include="Views\Badge\Index.aspx" />
+    <Content Include="Views\Event\AddLink.aspx" />
     <Content Include="Views\Event\EventContentLinkNotFound.aspx" />
     <Content Include="Views\Event\RemoveContentLink.aspx" />
     <Content Include="Views\Event\UploadContent.aspx" />

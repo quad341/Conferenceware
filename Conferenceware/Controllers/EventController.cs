@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
@@ -261,6 +262,43 @@ namespace Conferenceware.Controllers
 			}
 			ecl.Event = _repository.GetEventById(ecl.event_id);
 			return View("UploadContent", ecl);
+		}
+
+		public ActionResult AddLink(int id)
+		{
+			Event ev = _repository.GetEventById(id);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			var ecl = new EventContentLink
+						{
+							Event = ev
+						};
+			return View("AddLink", ecl);
+		}
+
+		[HttpPost]
+		public ActionResult AddLink(EventContentLink ecl)
+		{
+			// some model checking is done here just because we are exploiting structures above
+			// and it means that we will get a null above when we don't want to allow that here
+			if (ecl.link_location == null || ecl.link_location.Trim() == "")
+			{
+				ModelState.AddModelError("link_location", "Link Location is required");
+			}
+			if (ecl.link_location != null && ecl.link_location.IndexOf("/Content/") != 0)
+			{
+				ModelState.AddModelError("link_location", "Links must start with /Content/ (files need to be in /Content)");
+			}
+			if (ModelState.IsValid)
+			{
+				_repository.AddEventContentLink(ecl);
+				_repository.Save();
+				TempData["Message"] = "Link added";
+				return RedirectToAction("Edit", new { id = ecl.event_id });
+			}
+			return View("AddLink", ecl);
 		}
 
 		public ActionResult RemoveContentLink(int contentId)

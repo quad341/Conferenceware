@@ -134,7 +134,8 @@
                 <%
                     }%>
             </ul>
-            <%= Html.ActionLink("Upload Content", "UploadContent", new {Model.Event.id} ) %>
+            <%= Html.ActionLink("Upload Content", "UploadContent", new {Model.Event.id} ) %> |
+            <%= Html.ActionLink("Link to content", "AddLink", new {Model.Event.id}) %>
         </div>
         <div>
             <%=Html.ActionLink("Back to List", "Index") %>
