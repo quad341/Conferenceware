@@ -28,6 +28,14 @@
                 <%= Html.ValidationMessageFor(model => model.link_location) %>
             </div>
             
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.list_on_video_page) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.CheckBoxFor(model => model.list_on_video_page) %>
+                <%= Html.ValidationMessageFor(model => model.list_on_video_page) %>
+            </div>
+            
             <p>
                 <input type="submit" value="Create" />
             </p>
@@ -36,7 +44,7 @@
     </form>
 
     <div>
-        <%= Html.ActionLink("Back to List", "Index") %>
+        <%= Html.ActionLink("Back to Event", "Edit", new {id=Model.event_id}) %>
     </div>
 
 </asp:Content>

@@ -257,9 +257,65 @@ namespace Conferenceware.Controllers
 				_repository.AddEventContentLink(ecl);
 				_repository.Save();
 				TempData["Message"] = "Content added";
+				return RedirectToAction("Edit", new { id = ecl.event_id });
 			}
 			ecl.Event = _repository.GetEventById(ecl.event_id);
 			return View("UploadContent", ecl);
+		}
+
+		public ActionResult RemoveContentLink(int contentId)
+		{
+			var ecl = _repository.GetEventContentLinkById(contentId);
+			if (ecl == null)
+			{
+				return View("EventContentLinkNotFound");
+			}
+			return View("RemoveContentLink", ecl);
+		}
+
+		[HttpPost]
+		public ActionResult RemoveContentLink(EventContentLinkDeleteData ecldd)
+		{
+			var ecl = _repository.GetEventContentLinkById(ecldd.id);
+			if (ecl == null)
+			{
+				return View("EventContentLinkNotFound");
+			}
+			var errorEncountered = false;
+			var fixedPath = AppDomain.CurrentDomain.BaseDirectory +
+							 ecl.link_location.Replace('/', '\\');
+			if (ecldd.DeleteFile)
+			{
+				try
+				{
+					System.IO.File.Delete(fixedPath);
+
+				}
+				catch
+				{
+					errorEncountered = true;
+					TempData["Message"] = "Could not delete file";
+				}
+			}
+			if (ecldd.DeleteDir && !errorEncountered)
+			{
+				try
+				{
+					Directory.Delete(fixedPath.Substring(0, fixedPath.LastIndexOf('\\')));
+
+				}
+				catch
+				{
+					errorEncountered = true;
+					TempData["Message"] = "Could not delete directory";
+				}
+			}
+			if (!errorEncountered)
+			{
+				_repository.DeleteEventContentLink(ecl);
+				_repository.Save();
+			}
+			return RedirectToAction("Edit", new { id = ecl.event_id });
 		}
 
 		private string ProcessUpload(EventContentLink ecl)

@@ -10,7 +10,11 @@ namespace Conferenceware.Models
 		{
 			get
 			{
-				return link_location.Substring(link_location.LastIndexOf('/') + 1);
+				if (link_location.Substring(0, link_location.LastIndexOf('/') + 1) == "/Content/" + event_id)
+				{
+					return link_location.Substring(link_location.LastIndexOf('/') + 1);
+				}
+				return link_location;
 			}
 		}
 

@@ -124,6 +124,7 @@
     <Compile Include="Models\DataAnnotationsValidationRunner.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventContentLink.cs" />
+    <Compile Include="Models\EventContentLinkDeleteData.cs" />
     <Compile Include="Models\EventContentLinkMetadata.cs" />
     <Compile Include="Models\EventEditData.cs" />
     <Compile Include="Models\EventMetadata.cs" />
@@ -179,6 +180,8 @@
     <None Include="Resources\staff.png" />
     <None Include="Resources\volunteer.png" />
     <Content Include="Views\Badge\Index.aspx" />
+    <Content Include="Views\Event\EventContentLinkNotFound.aspx" />
+    <Content Include="Views\Event\RemoveContentLink.aspx" />
     <Content Include="Views\Event\UploadContent.aspx" />
     <Content Include="Views\PageManager\Create.aspx" />
     <Content Include="Views\PageManager\Delete.aspx" />

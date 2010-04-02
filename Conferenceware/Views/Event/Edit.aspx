@@ -124,8 +124,7 @@
                 <% foreach (var ecl in Model.Event.EventContentLinks)
                    {%>
                 <li class="entry-with-inline-form">
-                <% using (Html.BeginForm("RemoveContentLink", "Event")) {%>
-                    <%= Html.Hidden("eventId", Model.Event.id) %>
+                <% using (Html.BeginForm("RemoveContentLink", "Event", FormMethod.Get)) {%>
                     <%= Html.Hidden("contentId", ecl.ContentId) %>
                     <input type="submit" value="Remove" />
                 <% }%>
