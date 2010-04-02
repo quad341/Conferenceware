@@ -118,9 +118,27 @@
         
          <% }%>
     </div>
-    <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
-    </div>
-
+        <div class=display-label">Linked Content</div>
+        <div class="display-field">
+            <ul>
+                <% foreach (var ecl in Model.Event.EventContentLinks)
+                   {%>
+                <li class="entry-with-inline-form">
+                <% using (Html.BeginForm("RemoveContentLink", "Event")) {%>
+                    <%= Html.Hidden("eventId", Model.Event.id) %>
+                    <%= Html.Hidden("contentId", ecl.ContentId) %>
+                    <input type="submit" value="Remove" />
+                <% }%>
+                <!-- remove button -->
+                <a href="<%= ecl.link_location %>" title="Related Content">
+                    <%= ecl.filename %></a></li>
+                <%
+                    }%>
+            </ul>
+            <%= Html.ActionLink("Upload Content", "UploadContent", new {Model.Event.id} ) %>
+        </div>
+        <div>
+            <%=Html.ActionLink("Back to List", "Index") %>
+        </div>
 </asp:Content>
 

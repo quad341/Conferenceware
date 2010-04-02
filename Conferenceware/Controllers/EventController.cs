@@ -258,6 +258,7 @@ namespace Conferenceware.Controllers
 				_repository.Save();
 				TempData["Message"] = "Content added";
 			}
+			ecl.Event = _repository.GetEventById(ecl.event_id);
 			return View("UploadContent", ecl);
 		}
 
@@ -282,6 +283,10 @@ namespace Conferenceware.Controllers
 			}
 			try
 			{
+				if (!Directory.Exists(dir))
+				{
+					Directory.CreateDirectory(dir);
+				}
 				hpf.SaveAs(dir + filename);
 			}
 			catch

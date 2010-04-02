@@ -13,5 +13,12 @@ namespace Conferenceware.Models
 			get;
 			set;
 		}
+
+		[DisplayName("List this on the video page?")]
+		public bool list_on_video_page
+		{
+			get;
+			set;
+		}
 	}
 }

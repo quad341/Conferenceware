@@ -46,6 +46,16 @@
   }%>
             </ul>
         </div>
+        
+        <div class="display-field">
+                <ul>
+                    <% foreach (var ecl in Model.EventContentLinks)
+{%>
+                    <li><a href="<%= ecl.link_location %>" title="Related Content"><%= ecl.filename %></a></li>
+                    <%
+}%>
+                </ul>
+           </div>
     </fieldset>
     <p>
         <%= Html.ActionLink("Edit", "Edit", new { Model.id }) %> |

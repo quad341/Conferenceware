@@ -10,8 +10,13 @@ namespace Conferenceware.Models
 		{
 			get
 			{
-				return link_location.Substring(link_location.LastIndexOf('/'));
+				return link_location.Substring(link_location.LastIndexOf('/') + 1);
 			}
+		}
+
+		public int ContentId
+		{
+			get { return id; }
 		}
 	}
 }
