@@ -47,6 +47,20 @@
      	}
      }%>
         </div>
+        <% if (Model.EventContentLinks.Count > 0)
+           {%>
+           <div class="display-label">Associated Files</div>
+           <div class="display-field">
+                <ul>
+                    <% foreach (var ecl in Model.EventContentLinks)
+{%>
+                    <li><a href="<%= ecl.link_location %>" title="Related Content"><%= ecl.filename %></a></li>
+                    <%
+}%>
+                </ul>
+           </div>
+        <%
+           }%>
         
     </fieldset>
     <p>
