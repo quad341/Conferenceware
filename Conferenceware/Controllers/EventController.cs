@@ -270,20 +270,23 @@ namespace Conferenceware.Controllers
 			{
 				return View("EventContentLinkNotFound");
 			}
-			return View("RemoveContentLink", ecl);
+			return View("RemoveContentLink",
+						new EventContentLinkDeleteData { EventContentLink = ecl });
 		}
 
 		[HttpPost]
 		public ActionResult RemoveContentLink(EventContentLinkDeleteData ecldd)
 		{
-			var ecl = _repository.GetEventContentLinkById(ecldd.id);
+			//var ecldd = new EventContentLinkDeleteData();
+			//UpdateModel(ecldd);
+			var ecl = _repository.GetEventContentLinkById(ecldd.EventContentLink.id);
 			if (ecl == null)
 			{
 				return View("EventContentLinkNotFound");
 			}
 			var errorEncountered = false;
 			var fixedPath = AppDomain.CurrentDomain.BaseDirectory +
-							 ecl.link_location.Replace('/', '\\');
+							 ecl.link_location.Replace('/', '\\').Replace("\\\\", "\\");
 			if (ecldd.DeleteFile)
 			{
 				try

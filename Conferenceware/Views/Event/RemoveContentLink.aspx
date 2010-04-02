@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.EventContentLink>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.EventContentLinkDeleteData>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Remove Content Link
@@ -13,17 +13,17 @@
         <legend>Fields</legend>
         
         <div class="display-label">Link</div>
-        <div class="display-field"><a href="<%= Model.link_location %>"><%= Model.filename %></a></div>
+        <div class="display-field"><a href="<%= Model.EventContentLink.link_location %>"><%= Model.EventContentLink.filename %></a></div>
         
         <div class="display-label">List on video page?</div>
-        <div class="display-field"><%= Html.Encode(Model.list_on_video_page) %></div>
+        <div class="display-field"><%= Html.Encode(Model.EventContentLink.list_on_video_page) %></div>
         
     </fieldset>
     <% using (Html.BeginForm()) { %>
         <p>
-            <%= Html.HiddenFor(model => model.id) %>
-            <input type="checkbox" name="DeleteFile" id="DeleteFile" /><label for="DeleteFile">Delete the file also?</label><br />
-            <input type="checkbox" name="DeleteDir" id="DeleteDir" /><label for="DeleteFile">Delete the directory for content if empty?</label><br />
+            <%= Html.HiddenFor(model => model.EventContentLink.id) %>
+            <%= Html.CheckBoxFor(model => model.DeleteFile) %><%= Html.LabelFor(model => model.DeleteFile) %><br />
+            <%= Html.CheckBoxFor(model => model.DeleteDir) %><%= Html.LabelFor(model => model.DeleteDir) %><br />
 		    <input type="submit" value="Delete" /> |
 		    <%= Html.ActionLink("Back to List", "Index") %>
         </p>

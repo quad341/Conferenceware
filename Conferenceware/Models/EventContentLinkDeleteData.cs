@@ -14,7 +14,7 @@ namespace Conferenceware.Models
 			set;
 		}
 
-		public int id
+		public EventContentLink EventContentLink
 		{
 			get;
 			set;
