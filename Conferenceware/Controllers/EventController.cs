@@ -249,6 +249,20 @@ namespace Conferenceware.Controllers
 			{
 				return View("EventNotFound");
 			}
+			string filename = ProcessUpload(ecl);
+			if (ModelState.IsValid)
+			{
+				// add link
+				ecl.link_location = "/Content/" + ecl.event_id + "/" + filename;
+				_repository.AddEventContentLink(ecl);
+				_repository.Save();
+				TempData["Message"] = "Content added";
+			}
+			return View("UploadContent", ecl);
+		}
+
+		private string ProcessUpload(EventContentLink ecl)
+		{
 			var hpf = Request.Files["link_location"];
 			if (hpf == null || hpf.ContentLength == 0)
 			{
@@ -270,18 +284,12 @@ namespace Conferenceware.Controllers
 			{
 				hpf.SaveAs(dir + filename);
 			}
-			catch (Exception)
+			catch
 			{
 				TempData["Message"] = "Unable to write file";
 				ModelState.AddModelError("link_location", "File could not be saved");
 			}
-			if (ModelState.IsValid)
-			{
-				// add link
-				ecl.link_location = "/Content/" + ecl.event_id + "/" + filename;
-				TempData["Message"] = "Content added";
-			}
-			return View("UploadContent", ecl);
+			return filename;
 		}
 	}
 }

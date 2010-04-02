@@ -179,6 +179,7 @@
     <None Include="Resources\staff.png" />
     <None Include="Resources\volunteer.png" />
     <Content Include="Views\Badge\Index.aspx" />
+    <Content Include="Views\Event\UploadContent.aspx" />
     <Content Include="Views\PageManager\Create.aspx" />
     <Content Include="Views\PageManager\Delete.aspx" />
     <Content Include="Views\PageManager\Details.aspx" />

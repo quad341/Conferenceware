@@ -4746,6 +4746,8 @@ namespace Conferenceware.Models
 		
 		private string _link_location;
 		
+		private bool _list_on_video_page;
+		
 		private EntityRef<Event> _Event;
 		
     #region Extensibility Method Definitions
@@ -4758,6 +4760,8 @@ namespace Conferenceware.Models
     partial void Onevent_idChanged();
     partial void Onlink_locationChanging(string value);
     partial void Onlink_locationChanged();
+    partial void Onlist_on_video_pageChanging(bool value);
+    partial void Onlist_on_video_pageChanged();
     #endregion
 		
 		public EventContentLink()
@@ -4826,6 +4830,26 @@ namespace Conferenceware.Models
 					this._link_location = value;
 					this.SendPropertyChanged("link_location");
 					this.Onlink_locationChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_list_on_video_page", DbType="Bit NOT NULL")]
+		public bool list_on_video_page
+		{
+			get
+			{
+				return this._list_on_video_page;
+			}
+			set
+			{
+				if ((this._list_on_video_page != value))
+				{
+					this.Onlist_on_video_pageChanging(value);
+					this.SendPropertyChanging();
+					this._list_on_video_page = value;
+					this.SendPropertyChanged("list_on_video_page");
+					this.Onlist_on_video_pageChanged();
 				}
 			}
 		}
