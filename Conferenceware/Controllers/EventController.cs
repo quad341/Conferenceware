@@ -315,8 +315,6 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult RemoveContentLink(EventContentLinkDeleteData ecldd)
 		{
-			//var ecldd = new EventContentLinkDeleteData();
-			//UpdateModel(ecldd);
 			var ecl = _repository.GetEventContentLinkById(ecldd.EventContentLink.id);
 			if (ecl == null)
 			{
@@ -325,7 +323,7 @@ namespace Conferenceware.Controllers
 			var errorEncountered = false;
 			var fixedPath = AppDomain.CurrentDomain.BaseDirectory +
 							 ecl.link_location.Replace('/', '\\').Replace("\\\\", "\\");
-			if (ecldd.DeleteFile)
+			if (ecldd.DeleteFile && !System.IO.File.Exists(fixedPath))
 			{
 				try
 				{
