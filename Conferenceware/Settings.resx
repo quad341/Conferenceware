@@ -143,6 +143,22 @@
   <data name="MechmaniaBadgeBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\mechmania.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SmtpAuthenticationPassword" xml:space="preserve">
+    <value>password</value>
+    <comment>Password to use when authenticating for smtp if needed</comment>
+  </data>
+  <data name="SmtpAuthenticationUserName" xml:space="preserve">
+    <value>username</value>
+    <comment>Username to use when authenticating for smtp if needed</comment>
+  </data>
+  <data name="SmtpHostname" xml:space="preserve">
+    <value>localhost</value>
+    <comment>The smtp server's hostname</comment>
+  </data>
+  <data name="SmtpPort" xml:space="preserve">
+    <value>25</value>
+    <comment>The smtp server's port</comment>
+  </data>
   <data name="SpeakerBadgeBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\speaker.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

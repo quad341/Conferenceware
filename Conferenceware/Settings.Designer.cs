@@ -119,6 +119,42 @@ namespace Conferenceware {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to password.
+        /// </summary>
+        internal static string SmtpAuthenticationPassword {
+            get {
+                return ResourceManager.GetString("SmtpAuthenticationPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to username.
+        /// </summary>
+        internal static string SmtpAuthenticationUserName {
+            get {
+                return ResourceManager.GetString("SmtpAuthenticationUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to localhost.
+        /// </summary>
+        internal static string SmtpHostname {
+            get {
+                return ResourceManager.GetString("SmtpHostname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 25.
+        /// </summary>
+        internal static string SmtpPort {
+            get {
+                return ResourceManager.GetString("SmtpPort", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap SpeakerBadgeBackground {
             get {
                 object obj = ResourceManager.GetObject("SpeakerBadgeBackground", resourceCulture);

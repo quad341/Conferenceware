@@ -54,6 +54,46 @@
                 <%= Html.TextAreaFor(model => model.EventRegistrationConfirmationBodyFormat, 15, 80, null) %>
                 <%= Html.ValidationMessageFor(model => model.EventRegistrationConfirmationBodyFormat) %>
             </div>
+              
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SmtpHostname) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.SmtpHostname) %>
+                <%= Html.ValidationMessageFor(model => model.SmtpHostname) %>
+            </div>
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SmtpPort) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.SmtpPort) %>
+                <%= Html.ValidationMessageFor(model => model.SmtpPort) %>
+            </div>
+             
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SmtpNeedsAuthentication) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.CheckBoxFor(model => model.SmtpNeedsAuthentication) %>
+                <%= Html.ValidationMessageFor(model => model.SmtpNeedsAuthentication) %>
+            </div>
+             
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SmtpAuthenticationUserName) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.SmtpAuthenticationUserName) %>
+                <%= Html.ValidationMessageFor(model => model.SmtpAuthenticationUserName) %>
+            </div>
+             
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.SmtpAuthenticationPassword) %>
+            </div>
+            <div class="editor-field">
+                <%= Html.TextBoxFor(model => model.SmtpAuthenticationPassword) %>
+                <%= Html.ValidationMessageFor(model => model.SmtpAuthenticationPassword) %>
+            </div>
             
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.AttendeeBadgeBackground) %><br />

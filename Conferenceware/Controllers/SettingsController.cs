@@ -29,7 +29,12 @@ namespace Conferenceware.Controllers
 				"FrontpageTitle", 
 				"FrontpageContent", 
 				"EventRegistrationConfirmationSubjectFormat", 
-				"EventRegistrationConfirmationBodyFormat"
+				"EventRegistrationConfirmationBodyFormat",
+                "SmtpHostname",
+                "SmtpPort",
+                "SmtpNeedsAuthentication",
+                "SmtpAuthenticationUserName",
+                "SmtpAuthenticationPassword"                
 			}))
 			{
 				try

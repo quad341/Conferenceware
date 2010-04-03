@@ -137,6 +137,45 @@ namespace Conferenceware.Models
 		}
 		#endregion
 
+		#region SmtpSettings
+		[DisplayName("SMTP server requires authentication?")]
+		public bool SmtpNeedsAuthentication
+		{
+			get;
+			set;
+		}
+
+		[DisplayName("Username for SMTP server")]
+		public string SmtpAuthenticationUserName
+		{
+			get;
+			set;
+		}
+
+		[DisplayName("Password for SMTP server")]
+		public string SmtpAuthenticationPassword
+		{
+			get;
+			set;
+		}
+
+		[Required]
+		[DisplayName("SMTP server hostname")]
+		public string SmtpHostname
+		{
+			get;
+			set;
+		}
+
+		[Range(1, 65535)]
+		[DisplayName("SMTP server port")]
+		public int SmtpPort
+		{
+			get;
+			set;
+		}
+		#endregion
+
 		public static SettingsData FromCurrent(string fileBase, string dirName)
 		{
 			ResourceManager rm = null;
@@ -154,18 +193,25 @@ namespace Conferenceware.Models
 							SpeakerBadgeBackground = Settings.SpeakerBadgeBackground,
 							SponsorBadgeBackground = Settings.SponsorBadgeBackground,
 							StaffBadgeBackground = Settings.StaffBadgeBackground,
-							VolunteerBadgeBackground = Settings.VolunteerBadgeBackground
+							VolunteerBadgeBackground = Settings.VolunteerBadgeBackground,
+							SmtpNeedsAuthentication = true,
+							SmtpHostname = Settings.SmtpHostname,
+							SmtpPort = int.Parse(Settings.SmtpPort),
+							SmtpAuthenticationUserName = Settings.SmtpAuthenticationUserName,
+							SmtpAuthenticationPassword = Settings.SmtpAuthenticationPassword
 						};
 			try
 			{
 				rm = ResourceManager.CreateFileBasedResourceManager(fileBase, _baseDir + dirName, null);
-				sd.FrontpageContent = rm.GetString("FrontpageContent");
-				sd.FrontpageTitle = rm.GetString("FrontpageTitle");
-				sd.EmailFrom = rm.GetString("EmailFrom");
+				sd.FrontpageContent = rm.GetString("FrontpageContent") ?? Settings.FrontpageContent;
+				sd.FrontpageTitle = rm.GetString("FrontpageTitle") ?? Settings.FrontpageTitle;
+				sd.EmailFrom = rm.GetString("EmailFrom") ?? Settings.EmailFrom;
 				sd.EventRegistrationConfirmationBodyFormat =
-					rm.GetString("EventRegistrationConfirmationBodyFormat");
+					rm.GetString("EventRegistrationConfirmationBodyFormat") ??
+					Settings.EventRegistrationConfirmationBodyFormat;
 				sd.EventRegistrationConfirmationSubjectFormat =
-					rm.GetString("EventRegistrationConfirmationSubjectFormat");
+					rm.GetString("EventRegistrationConfirmationSubjectFormat") ??
+					Settings.EventRegistrationConfirmationSubjectFormat;
 				sd.AttendeeBadgeBackground =
 					rm.GetObject("AttendeeBadgeBackground") as Bitmap;
 				sd.MechmaniaBadgeBackground =
@@ -178,6 +224,18 @@ namespace Conferenceware.Models
 					rm.GetObject("StaffBadgeBackground") as Bitmap;
 				sd.VolunteerBadgeBackground =
 					rm.GetObject("VolunteerBadgeBackground") as Bitmap;
+				sd.SmtpAuthenticationPassword =
+					rm.GetString("SmtpAuthenticationPassword") ??
+					Settings.SmtpAuthenticationPassword;
+				sd.SmtpAuthenticationUserName =
+					rm.GetString("SmtpAuthenticationUserName") ??
+					Settings.SmtpAuthenticationUserName;
+				sd.SmtpHostname =
+					rm.GetString("SmtpHostname") ?? Settings.SmtpHostname;
+				sd.SmtpPort =
+					(int)(rm.GetObject("SmtpPort") ?? int.Parse(Settings.SmtpPort));
+				sd.SmtpNeedsAuthentication =
+					(bool)rm.GetObject("SmtpNeedsAuthentication");
 				rm.ReleaseAllResources();
 			}
 			catch
@@ -205,6 +263,11 @@ namespace Conferenceware.Models
 			writer.AddResource("SponsorBadgeBackground", SponsorBadgeBackground);
 			writer.AddResource("StaffBadgeBackground", StaffBadgeBackground);
 			writer.AddResource("VolunteerBadgeBackground", VolunteerBadgeBackground);
+			writer.AddResource("SmtpNeedsAuthentication", SmtpNeedsAuthentication);
+			writer.AddResource("SmtpAuthenticationUserName", SmtpAuthenticationUserName);
+			writer.AddResource("SmtpAuthenticationPassword", SmtpAuthenticationPassword);
+			writer.AddResource("SmtpHostname", SmtpHostname);
+			writer.AddResource("SmtpPort", SmtpPort);
 			writer.Generate();
 			writer.Close();
 		}
