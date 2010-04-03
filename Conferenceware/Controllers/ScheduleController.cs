@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
 using Conferenceware.Models;
+using Conferenceware.Utils;
 
 namespace Conferenceware.Controllers
 {
@@ -65,26 +66,23 @@ namespace Conferenceware.Controllers
 				_repository.RegisterAttendeeForEvent(attendee, ev);
 				_repository.Save();
 				TempData["Message"] = "You were successfully registered for the event!";
-				/*
 				// eventually this should actually work; should determine how to connect to smtp server; 
 				// maybe add the setting to the settings data object
-				var settings = SettingsData.FromCurrent(SettingsData.RESOURCE_FILE_NAME);
+				var settings = SettingsData.FromCurrent(
+					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 				var message = new MailMessage(settings.EmailFrom,
-				                              email,
-				                              String.Format(
-				                              	settings.
-				                              		EventRegistrationConfirmationSubjectFormat,
-				                              	ev.name),
-				                              String.Format(
-				                              	settings.
-				                              		EventRegistrationConfirmationBodyFormat,
-				                              	ev.name,
-				                              	ev.TimeSlot.StringValue,
-				                              	ev.Location.StringValue));
-				var smtpclient = new SmtpClient();
-				smtpclient.Send(message);
-				 */
-
+											  email,
+											  String.Format(
+												settings.
+													EventRegistrationConfirmationSubjectFormat,
+												ev.name),
+											  String.Format(
+												settings.
+													EventRegistrationConfirmationBodyFormat,
+												ev.name,
+												ev.TimeSlot.StringValue,
+												ev.Location.StringValue));
+				Mailer.Send(message);
 			}
 			return RedirectToAction("Details", new { id = eventId });
 		}
