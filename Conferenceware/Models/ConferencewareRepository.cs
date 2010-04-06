@@ -540,6 +540,11 @@ namespace Conferenceware.Models
 			return _conferenceware.EventContentLinks.AsQueryable();
 		}
 
+		public People GetPeopleById(int id)
+		{
+			return _conferenceware.Peoples.SingleOrDefault(x => x.id == id);
+		}
+
 		public void DeletePerson(People person)
 		{
 			_conferenceware.Peoples.DeleteOnSubmit(person);

@@ -314,6 +314,9 @@ namespace Conferenceware.Models
 		EventContentLink GetEventContentLinkById(int id);
 		IQueryable<EventContentLink> GetAllEventContentLinks();
 
+		//People
+		People GetPeopleById(int id);
+
 		//General
 		/// <summary>
 		/// Causes the repository to commit its changes

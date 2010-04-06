@@ -539,6 +539,11 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
+		public People GetPeopleById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Save()
 		{
 			// we do that anyway. we might want to do something more interesting 
