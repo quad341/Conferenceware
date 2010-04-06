@@ -158,6 +158,7 @@
     <Compile Include="Models\VolunteerTimeSlot.cs" />
     <Compile Include="Models\VolunteerTimeSlotEditData.cs" />
     <Compile Include="Models\VolunteerTimeSlotMetadata.cs" />
+    <Compile Include="Models\VolunteerTimeSlotScheduleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -199,6 +200,7 @@
     <Content Include="Views\VolunteerRegistration\Index.aspx" />
     <Content Include="Views\VolunteerRegistration\Success.aspx" />
     <Content Include="Views\VolunteerTimeSlot\Create.aspx" />
+    <Content Include="Views\VolunteerTimeSlot\Schedule.aspx" />
     <Content Include="Views\VolunteerTimeSlot\VolunteerTimeSlotNotFound.aspx" />
     <Content Include="Views\VolunteerTimeSlot\Index.aspx" />
     <Content Include="Global.asax" />
@@ -313,7 +315,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CurrentSettings.resources" />
     <EmbeddedResource Include="Settings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

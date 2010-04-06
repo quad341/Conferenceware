@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
@@ -69,6 +68,63 @@ namespace Conferenceware.Controllers
 			_repository.Save();
 			return RedirectToAction("Index");
 		}
+
+        //
+        // POST: /VolunteerTimeSlot/Schedule
+
+        [HttpPost]
+        public ActionResult Schedule(FormCollection collection)
+        {
+            //TODO the parse calls might fail
+            var volunteerId = int.Parse(collection["Volunteer"]);
+            var timeslotId = int.Parse(collection["VolunteerTs.timeslot_id"]);
+
+            var volunteer = _repository.GetVolunteerById(volunteerId);
+            if(volunteer == null)
+            {
+                //TODO actually make it return an error
+                return RedirectToAction("Index");
+            }
+
+            var vvts =
+                volunteer.VolunteersVolunteerTimeSlots.SingleOrDefault(
+                    x => (x.Volunteer.person_id == volunteerId) && (x.volunteer_timeslot_id == timeslotId));
+
+            if (vvts != null)
+            {
+                vvts.is_confirmed = true;
+                vvts.is_scheduled = true;
+                _repository.Save();
+                //TODO maybe show some confirmation msg
+                return RedirectToAction("Index");
+            }
+            
+            return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /VolunteerTimeSlot/Schedule/5
+
+        public ActionResult Schedule(int id)
+        {
+            var vts = _repository.GetVolunteerTimeSlotById(id);
+            if (vts == null)
+            {
+                return View("VolunteerTimeSlotNotFound");
+            }
+
+            var vtsdat = new VolunteerTimeSlotScheduleData
+                             {
+                                 Volunteers =
+                                     new SelectList(
+                                     vts.VolunteersVolunteerTimeSlots.Select(x => x.Volunteer), "person_id",
+                                     "People.name"),
+                                 VolunteerTs = vts
+                             };
+
+            return View("Schedule", vtsdat);
+        }
+
 
 		private VolunteerTimeSlotEditData MakeEditDataFromVolunteerTimeSlot(VolunteerTimeSlot volunteerTimeSlot)
 		{
