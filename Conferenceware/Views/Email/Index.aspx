@@ -96,7 +96,7 @@
 {%>
                 <li>
                     <input type="checkbox" name="SelectedPeopleIds" value="<%= vol.person_id %>" <%= Model.SelectedPeopleIds.Contains(vol.person_id)?"checked=\"checked\"":"" %> />
-                    <%= vol.People.name %>
+                    <%= vol.People.name %><%= vol.NeedsVideoTraining ? "(Needs Video Training)":"" %>
                 </li>
                 <%
 }%>

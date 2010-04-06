@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Linq;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Conferenceware.Models;
@@ -96,14 +97,24 @@ namespace Conferenceware.Controllers
 		{
 			baseData.SelectedPeopleIds = baseData.SelectedPeopleIds ?? new int[0];
 			baseData.Everyone = new EveryoneCollection
-						{
-							Attendees = _repository.GetAllAttendees(),
-							CompanyPersons = _repository.GetAllCompanyPersons(),
-							MechManiaTeams = _repository.GetAllMechManiaTeams(),
-							Speakers = _repository.GetAllSpeakers(),
-							StaffMembers = _repository.GetAllStaffMembers(),
-							Volunteers = _repository.GetAllVolunteers()
-						};
+									{
+										Attendees =
+											_repository.GetAllAttendees().OrderBy(
+												x => x.People.name),
+										CompanyPersons =
+											_repository.GetAllCompanyPersons().OrderBy(
+												x => x.Company.name),
+										MechManiaTeams = _repository.GetAllMechManiaTeams(),
+										Speakers =
+											_repository.GetAllSpeakers().OrderBy(
+												x => x.People.name),
+										StaffMembers =
+											_repository.GetAllStaffMembers().OrderBy(
+												x => x.People.name),
+										Volunteers =
+											_repository.GetAllVolunteers().OrderBy(
+												x => x.People.name)
+									};
 			return baseData;
 		}
 
