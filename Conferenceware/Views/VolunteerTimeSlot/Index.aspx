@@ -26,6 +26,9 @@
                 <%= Html.ActionLink("Delete", "Delete", new { id=item.timeslot_id })%>
             </td>
             <td>
+                <%= Html.ActionLink("Schedule", "Schedule", new { id=item.timeslot_id })%>
+            </td>
+            <td>
                 <%= Html.Encode(item.TimeSlot.StringValue) %>
             </td>
             <td>
