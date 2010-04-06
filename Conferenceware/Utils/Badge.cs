@@ -79,7 +79,6 @@ namespace Conferenceware.Utils
 									XUnit.FromInch(nameTextHeight)),
 								   XStringFormats.Center);
 				// draw their title (company, alum)
-				var title = "";
 				if (person.CompanyPerson != null)
 				{
 					pageGfx.DrawString(person.CompanyPerson.Company.name,

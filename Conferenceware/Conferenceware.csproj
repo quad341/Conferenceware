@@ -79,6 +79,7 @@
     <Compile Include="Controllers\CompanyInvoiceItemController.cs" />
     <Compile Include="Controllers\CompanyPaymentController.cs" />
     <Compile Include="Controllers\CompanyPersonController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -122,12 +123,14 @@
     </Compile>
     <Compile Include="Models\ConferencewareRepository.cs" />
     <Compile Include="Models\DataAnnotationsValidationRunner.cs" />
+    <Compile Include="Models\EmailEditData.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventContentLink.cs" />
     <Compile Include="Models\EventContentLinkDeleteData.cs" />
     <Compile Include="Models\EventContentLinkMetadata.cs" />
     <Compile Include="Models\EventEditData.cs" />
     <Compile Include="Models\EventMetadata.cs" />
+    <Compile Include="Models\EveryoneCollection.cs" />
     <Compile Include="Models\Food.cs" />
     <Compile Include="Models\FoodMetadata.cs" />
     <Compile Include="Models\FrontpageSettings.cs" />
@@ -181,6 +184,7 @@
     <None Include="Resources\staff.png" />
     <None Include="Resources\volunteer.png" />
     <Content Include="Views\Badge\Index.aspx" />
+    <Content Include="Views\Email\Index.aspx" />
     <Content Include="Views\Event\AddLink.aspx" />
     <Content Include="Views\Event\EventContentLinkNotFound.aspx" />
     <Content Include="Views\Event\RemoveContentLink.aspx" />

@@ -94,6 +94,7 @@ namespace Conferenceware.Controllers
 
 		private EmailEditData AddEveryoneToEmailEditData(EmailEditData baseData)
 		{
+			baseData.SelectedPeopleIds = baseData.SelectedPeopleIds ?? new int[0];
 			baseData.Everyone = new EveryoneCollection
 						{
 							Attendees = _repository.GetAllAttendees(),
