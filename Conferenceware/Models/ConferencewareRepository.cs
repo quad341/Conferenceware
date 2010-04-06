@@ -545,6 +545,22 @@ namespace Conferenceware.Models
 			return _conferenceware.Peoples.SingleOrDefault(x => x.id == id);
 		}
 
+		public IQueryable<People> GetAllPeople()
+		{
+			return _conferenceware.Peoples.AsQueryable();
+		}
+
+		public VolunteersVolunteerTimeSlot GetVolunteersVolunteerTimeSlotById(int id)
+		{
+			return
+				_conferenceware.VolunteersVolunteerTimeSlots.SingleOrDefault(x => x.id == id);
+		}
+
+		public IQueryable<VolunteersVolunteerTimeSlot> GetAllVolunteersVolunteerTimeSlots()
+		{
+			return _conferenceware.VolunteersVolunteerTimeSlots.AsQueryable();
+		}
+
 		public void DeletePerson(People person)
 		{
 			_conferenceware.Peoples.DeleteOnSubmit(person);

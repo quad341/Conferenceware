@@ -69,64 +69,81 @@ namespace Conferenceware.Controllers
 			return RedirectToAction("Index");
 		}
 
-        //
-        // POST: /VolunteerTimeSlot/Schedule
+		//
+		// POST: /VolunteerTimeSlot/Schedule
 
-        [HttpPost]
-        public ActionResult Schedule(FormCollection collection)
-        {
-            //TODO the parse calls might fail
-            var volunteerId = int.Parse(collection["Volunteer"]);
-            var timeslotId = int.Parse(collection["VolunteerTs.timeslot_id"]);
+		[HttpPost]
+		public ActionResult Schedule(FormCollection collection)
+		{
+			//TODO the parse calls might fail
+			int vvtsid;
+			if (!int.TryParse(collection["VolunteersVolunteerTimeSlot"], out vvtsid))
+			{
+				ModelState.AddModelError("VolunteersVolunteerTimeSlot", "Invalid Selection");
+			}
+			var vvts = _repository.GetVolunteersVolunteerTimeSlotById(vvtsid);
+			if (vvts == null)
+			{
+				TempData["Message"] = "Error finding volunteer time slot link";
+				return RedirectToAction("Index");
+			}
 
-            var volunteer = _repository.GetVolunteerById(volunteerId);
-            if(volunteer == null)
-            {
-                //TODO actually make it return an error
-                return RedirectToAction("Index");
-            }
+			if (ModelState.IsValid)
+			{
+				vvts.is_confirmed = true;
+				vvts.is_scheduled = true;
+				_repository.Save();
+				TempData["Message"] = "Volunteer Scheduled";
+				return RedirectToAction("Index");
+			}
+			// not redirecting back; something went wrong so our data is lost
+			TempData["Message"] = "Invalid selection";
+			return RedirectToAction("Index");
+		}
 
-            var vvts =
-                volunteer.VolunteersVolunteerTimeSlots.SingleOrDefault(
-                    x => (x.Volunteer.person_id == volunteerId) && (x.volunteer_timeslot_id == timeslotId));
+		//
+		// GET: /VolunteerTimeSlot/Schedule/5
 
-            if (vvts != null)
-            {
-                vvts.is_confirmed = true;
-                vvts.is_scheduled = true;
-                _repository.Save();
-                //TODO maybe show some confirmation msg
-                return RedirectToAction("Index");
-            }
-            
-            return RedirectToAction("Index");
-        }
+		public ActionResult Schedule(int id)
+		{
+			var vts = _repository.GetVolunteerTimeSlotById(id);
+			if (vts == null)
+			{
+				return View("VolunteerTimeSlotNotFound");
+			}
 
-        //
-        // GET: /VolunteerTimeSlot/Schedule/5
+			var prunedVvts =
+				vts.VolunteersVolunteerTimeSlots.Where(
+					x => !vts.ConfirmedVolunteers.Contains(x.Volunteer));
 
-        public ActionResult Schedule(int id)
-        {
-            var vts = _repository.GetVolunteerTimeSlotById(id);
-            if (vts == null)
-            {
-                return View("VolunteerTimeSlotNotFound");
-            }
+			var vtsdat = new VolunteerTimeSlotScheduleData
+							{
+								Volunteers =
+									new SelectList(prunedVvts,
+												   "id",
+												   "Volunteer.People.name"),
+								VolunteerTs = vts
+							};
 
-            var volunteers = vts.VolunteersVolunteerTimeSlots.Select(x => x.Volunteer);
-            if(vts.is_video)
-            {
-                volunteers = volunteers.Where(x => x.is_video_trained);
-            }
+			return View("Schedule", vtsdat);
+		}
 
-            var vtsdat = new VolunteerTimeSlotScheduleData
-                             {
-                                 Volunteers = new SelectList(volunteers, "person_id", "People.name"),
-                                 VolunteerTs = vts
-                             };
-
-            return View("Schedule", vtsdat);
-        }
+		public ActionResult UnSchedule(int id)
+		{
+			var vvts = _repository.GetVolunteersVolunteerTimeSlotById(id);
+			if (vvts == null)
+			{
+				TempData["Message"] = "Link not found";
+			}
+			else
+			{
+				vvts.is_confirmed = false;
+				vvts.is_scheduled = false;
+				_repository.Save();
+				TempData["Message"] = "Volunteer Unscheduled";
+			}
+			return RedirectToAction("Index");
+		}
 
 		private VolunteerTimeSlotEditData MakeEditDataFromVolunteerTimeSlot(VolunteerTimeSlot volunteerTimeSlot)
 		{

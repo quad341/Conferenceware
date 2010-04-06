@@ -7,17 +7,36 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Schedule</h2>
+    <div class="display-label">Currently Confirmed volunteers</div>
+    <div class="display-field">
+        <ul>
+            <% foreach (var vol in Model.VolunteerTs.ConfirmedVolunteers)
+               {%>
+               <li class="entry-with-inline-form">
+                    <% using(Html.BeginForm("UnSchedule", "VolunteerTimeSlot", FormMethod.Post))
+{%>
+                    <input type="hidden" name="id" value="<%=
+		vol.VolunteersVolunteerTimeSlots.SingleOrDefault(
+			x => x.volunteer_timeslot_id == Model.VolunteerTs.timeslot_id).id %>" />
+                    <input type="submit" value="Remove" />
+                    <%
+}%>
+                    <%= Html.Encode(vol.People.name) %>
+               </li>
+            <%
+               }%>
+        </ul>
+    </div>
 
     <% using (Html.BeginForm()) {%>
 
         <fieldset>
             <legend>Fields</legend>  
-            <%= Html.HiddenFor(model => model.VolunteerTs.timeslot_id) %>
             <div class="editor-label">
                 Volunteer
             </div>
             <div class="editor-field">
-                <%= Html.DropDownList("Volunteer", Model.Volunteers) %>
+                <%= Html.DropDownList("VolunteersVolunteerTimeSlot", Model.Volunteers) %>
             </div>
             
             <p>

@@ -544,6 +544,21 @@ namespace Conferenceware.Tests.Models
 			throw new NotImplementedException();
 		}
 
+		public IQueryable<People> GetAllPeople()
+		{
+			throw new NotImplementedException();
+		}
+
+		public VolunteersVolunteerTimeSlot GetVolunteersVolunteerTimeSlotById(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IQueryable<VolunteersVolunteerTimeSlot> GetAllVolunteersVolunteerTimeSlots()
+		{
+			throw new NotImplementedException();
+		}
+
 		public void Save()
 		{
 			// we do that anyway. we might want to do something more interesting 

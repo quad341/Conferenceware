@@ -316,6 +316,11 @@ namespace Conferenceware.Models
 
 		//People
 		People GetPeopleById(int id);
+		IQueryable<People> GetAllPeople();
+
+		//VolunteersVolunteerTimeSlot
+		VolunteersVolunteerTimeSlot GetVolunteersVolunteerTimeSlotById(int id);
+		IQueryable<VolunteersVolunteerTimeSlot> GetAllVolunteersVolunteerTimeSlots();
 
 		//General
 		/// <summary>

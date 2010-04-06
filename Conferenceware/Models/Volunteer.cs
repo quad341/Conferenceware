@@ -13,7 +13,7 @@ namespace Conferenceware.Models
 		{
 			get
 			{
-				return VolunteerTimeSlots.Where(x => x.is_video).Count() > 0;
+				return ConfirmedVolunteerTimeSlots.Where(x => x.is_video).Count() > 0;
 			}
 		}
 
@@ -22,6 +22,26 @@ namespace Conferenceware.Models
 			get
 			{
 				return VolunteersVolunteerTimeSlots.Select(x => x.VolunteerTimeSlot);
+			}
+		}
+
+		public IEnumerable<VolunteerTimeSlot> ScheduledVolunteerTimeSlots
+		{
+			get
+			{
+				return
+					VolunteersVolunteerTimeSlots.Where(x => x.is_scheduled).Select(
+						x => x.VolunteerTimeSlot);
+			}
+		}
+
+		public IEnumerable<VolunteerTimeSlot> ConfirmedVolunteerTimeSlots
+		{
+			get
+			{
+				return
+					VolunteersVolunteerTimeSlots.Where(x => x.is_confirmed).Select(
+						x => x.VolunteerTimeSlot);
 			}
 		}
 	}
