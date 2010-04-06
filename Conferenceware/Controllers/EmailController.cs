@@ -48,9 +48,9 @@ namespace Conferenceware.Controllers
 					SendBccEmail(eed, sd);
 				}
 				TempData["Message"] = "Emails sent";
-				RedirectToAction("Index");
+				return RedirectToAction("Index");
 			}
-			return View("Index");
+			return View("Index", AddEveryoneToEmailEditData(eed));
 		}
 
 		private void SendBccEmail(EmailEditData eed, SettingsData sd)
@@ -68,7 +68,7 @@ namespace Conferenceware.Controllers
 				{
 					continue;
 				}
-				message.Bcc.Add(new MailAddress(person.name));
+				message.Bcc.Add(new MailAddress(person.email));
 			}
 			Mailer.Send(message);
 		}

@@ -21,5 +21,6 @@
         <li><%= Html.ActionLink("Pages", "Index", "PageManager") %></li>
         <li><%= Html.ActionLink("Badges", "Index", "Badge") %></li>
         <li><%= Html.ActionLink("Staff", "Index", "StaffMember") %></li>
+        <li><%= Html.ActionLink("Email People", "Index", "Email") %></li>
     </ul>
 </asp:Content>
