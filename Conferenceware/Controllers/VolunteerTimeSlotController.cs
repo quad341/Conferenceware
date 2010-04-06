@@ -113,18 +113,20 @@ namespace Conferenceware.Controllers
                 return View("VolunteerTimeSlotNotFound");
             }
 
+            var volunteers = vts.VolunteersVolunteerTimeSlots.Select(x => x.Volunteer);
+            if(vts.is_video)
+            {
+                volunteers = volunteers.Where(x => x.is_video_trained);
+            }
+
             var vtsdat = new VolunteerTimeSlotScheduleData
                              {
-                                 Volunteers =
-                                     new SelectList(
-                                     vts.VolunteersVolunteerTimeSlots.Select(x => x.Volunteer), "person_id",
-                                     "People.name"),
+                                 Volunteers = new SelectList(volunteers, "person_id", "People.name"),
                                  VolunteerTs = vts
                              };
 
             return View("Schedule", vtsdat);
         }
-
 
 		private VolunteerTimeSlotEditData MakeEditDataFromVolunteerTimeSlot(VolunteerTimeSlot volunteerTimeSlot)
 		{
