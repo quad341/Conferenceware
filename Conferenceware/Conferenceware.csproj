@@ -196,6 +196,7 @@
     <Content Include="Views\PageManager\Edit.aspx" />
     <Content Include="Views\PageManager\Index.aspx" />
     <Content Include="Views\Page\Display.aspx" />
+    <Content Include="Views\Schedule\Videos.aspx" />
     <Content Include="Views\Shared\PageNotFound.aspx" />
     <Content Include="Views\StaffMember\Create.aspx" />
     <Content Include="Views\StaffMember\Edit.aspx" />

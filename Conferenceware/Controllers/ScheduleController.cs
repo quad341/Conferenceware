@@ -82,9 +82,18 @@ namespace Conferenceware.Controllers
 												ev.name,
 												ev.TimeSlot.StringValue,
 												ev.Location.StringValue));
+				//TODO find out what happens if this fails
 				Mailer.Send(message);
 			}
 			return RedirectToAction("Details", new { id = eventId });
+		}
+
+		public ActionResult Videos()
+		{
+			var videos =
+				_repository.GetAllEventContentLinks().Where(x => x.list_on_video_page).
+					OrderBy(x => x.Event.name);
+			return View("Videos", videos);
 		}
 	}
 }

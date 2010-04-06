@@ -323,7 +323,7 @@ namespace Conferenceware.Controllers
 			var errorEncountered = false;
 			var fixedPath = AppDomain.CurrentDomain.BaseDirectory +
 							 ecl.link_location.Replace('/', '\\').Replace("\\\\", "\\");
-			if (ecldd.DeleteFile && !System.IO.File.Exists(fixedPath))
+			if (ecldd.DeleteFile && System.IO.File.Exists(fixedPath))
 			{
 				try
 				{

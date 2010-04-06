@@ -17,5 +17,6 @@
         </p>
     <% } %>
 
+    <p>You can also check out the <%= Html.ActionLink("videos", "Videos") %><small>(Posted as they are available)</small></p>
 </asp:Content>
 
