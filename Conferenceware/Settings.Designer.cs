@@ -120,6 +120,24 @@ namespace Conferenceware {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is your confirmation that you have registered to be a {role} at the Reflections|Projections conference. We look forward to seeing you there.
+        /// </summary>
+        internal static string RegistrationMessage {
+            get {
+                return ResourceManager.GetString("RegistrationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Confirmation.
+        /// </summary>
+        internal static string RegistrationSubject {
+            get {
+                return ResourceManager.GetString("RegistrationSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to password.
         /// </summary>
         internal static string SmtpAuthenticationPassword {

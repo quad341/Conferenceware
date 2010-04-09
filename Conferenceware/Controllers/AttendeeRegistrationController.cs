@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Net.Mail;
+using System.Text.RegularExpressions;
+using System.Web.Mvc;
 using Conferenceware.Models;
+using Conferenceware.Utils;
 
 namespace Conferenceware.Controllers
 {
@@ -37,6 +40,15 @@ namespace Conferenceware.Controllers
 			{
 				_repository.AddAttendee(newAttendee);
 				_repository.Save();
+				var settings = SettingsData.FromCurrent(
+					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				var message = new MailMessage(settings.EmailFrom,
+											  newAttendee.People.email,
+											  settings.RegistrationSubject,
+											  settings.RegistrationMessage.Replace(
+												"{name}", newAttendee.People.name).Replace(
+													"{role}", "Attendee"));
+				Mailer.Send(message);
 				return RedirectToAction("Success");
 			}
 			var data = MakeEditDateFromAttendee(newAttendee);

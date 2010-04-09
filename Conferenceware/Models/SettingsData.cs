@@ -1,12 +1,8 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Configuration;
 using System.Drawing;
-using System.Net.Mail;
-using System.Reflection;
 using System.Resources;
-using System.Text;
 
 namespace Conferenceware.Models
 {
@@ -87,6 +83,23 @@ namespace Conferenceware.Models
 		[DisplayName("Format string for subject of email for event registration confirmations. Use {0} for event name (required)")]
 		[RegularExpression(@".*{0}.*", ErrorMessage = "Must use {0} for event name")]
 		public string EventRegistrationConfirmationSubjectFormat
+		{
+			get;
+			set;
+		}
+
+		[Required]
+		[StringLength(100)]
+		[DisplayName("Registration Confirmation Email Subject")]
+		public string RegistrationSubject
+		{
+			get;
+			set;
+		}
+
+		[Required]
+		[DisplayName("Registration Message Email (use {name} for name and {role} for type (attendee, volunteer, etc.))")]
+		public string RegistrationMessage
 		{
 			get;
 			set;
@@ -198,7 +211,9 @@ namespace Conferenceware.Models
 							SmtpHostname = Settings.SmtpHostname,
 							SmtpPort = int.Parse(Settings.SmtpPort),
 							SmtpAuthenticationUserName = Settings.SmtpAuthenticationUserName,
-							SmtpAuthenticationPassword = Settings.SmtpAuthenticationPassword
+							SmtpAuthenticationPassword = Settings.SmtpAuthenticationPassword,
+							RegistrationSubject = Settings.RegistrationSubject,
+							RegistrationMessage = Settings.RegistrationMessage
 						};
 			try
 			{
@@ -236,6 +251,8 @@ namespace Conferenceware.Models
 					(int)(rm.GetObject("SmtpPort") ?? int.Parse(Settings.SmtpPort));
 				sd.SmtpNeedsAuthentication =
 					(bool)rm.GetObject("SmtpNeedsAuthentication");
+				sd.RegistrationSubject = rm.GetString("RegistrationSubject");
+				sd.RegistrationMessage = rm.GetString("RegistrationMessage");
 				rm.ReleaseAllResources();
 			}
 			catch
@@ -268,6 +285,8 @@ namespace Conferenceware.Models
 			writer.AddResource("SmtpAuthenticationPassword", SmtpAuthenticationPassword);
 			writer.AddResource("SmtpHostname", SmtpHostname);
 			writer.AddResource("SmtpPort", SmtpPort);
+			writer.AddResource("RegistrationSubject", RegistrationSubject);
+			writer.AddResource("RegistrationMessage", RegistrationMessage);
 			writer.Generate();
 			writer.Close();
 		}

@@ -65,6 +65,20 @@
                     <%= Html.ValidationMessageFor(model => model.EventRegistrationConfirmationBodyFormat) %>
                 </div>
                 <div class="editor-label">
+                    <%= Html.LabelFor(model => model.RegistrationSubject) %>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextBoxFor(model => model.RegistrationSubject) %>
+                    <%= Html.ValidationMessageFor(model => model.RegistrationSubject) %>
+                </div>
+                <div class="editor-label">
+                    <%= Html.LabelFor(model => model.RegistrationMessage) %>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextAreaFor(model => model.RegistrationMessage, 15, 80, null) %>
+                    <%= Html.ValidationMessageFor(model => model.RegistrationMessage) %>
+                </div>
+                <div class="editor-label">
                     <%= Html.LabelFor(model => model.SmtpHostname) %>
                 </div>
                 <div class="editor-field">

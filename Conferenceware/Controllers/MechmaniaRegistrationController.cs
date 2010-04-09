@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Mail;
 using Conferenceware.Models;
+using Conferenceware.Utils;
 
 namespace Conferenceware.Controllers
 {
@@ -62,6 +63,29 @@ namespace Conferenceware.Controllers
 							};
 				_repository.AddMechManiaTeam(mmt);
 				_repository.Save();
+				var settings = SettingsData.FromCurrent(
+					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				var message1 = new MailMessage(settings.EmailFrom,
+											  att1.People.email,
+											  settings.RegistrationSubject,
+											  settings.RegistrationMessage.Replace(
+												"{name}", att1.People.name).Replace(
+													"{role}", "Mechmania Participant"));
+				Mailer.Send(message1);
+				var message2 = new MailMessage(settings.EmailFrom,
+											  att2.People.email,
+											  settings.RegistrationSubject,
+											  settings.RegistrationMessage.Replace(
+												"{name}", att2.People.name).Replace(
+													"{role}", "Mechmania Participant"));
+				Mailer.Send(message2);
+				var message3 = new MailMessage(settings.EmailFrom,
+											  att3.People.email,
+											  settings.RegistrationSubject,
+											  settings.RegistrationMessage.Replace(
+												"{name}", att3.People.name).Replace(
+													"{role}", "Mechmania Participant"));
+				Mailer.Send(message3);
 				return RedirectToAction("Success");
 			}
 			return View("Index", mmted);

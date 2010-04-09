@@ -143,6 +143,14 @@
   <data name="MechmaniaBadgeBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\mechmania.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RegistrationMessage" xml:space="preserve">
+    <value>This is your confirmation that you have registered to be a {role} at the Reflections|Projections conference. We look forward to seeing you there</value>
+    <comment>Message for email confirmations sent after registration</comment>
+  </data>
+  <data name="RegistrationSubject" xml:space="preserve">
+    <value>Registration Confirmation</value>
+    <comment>Subject for email confirmations sent after registration</comment>
+  </data>
   <data name="SmtpAuthenticationPassword" xml:space="preserve">
     <value>password</value>
     <comment>Password to use when authenticating for smtp if needed</comment>
