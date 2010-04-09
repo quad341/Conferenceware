@@ -6,6 +6,20 @@
 
 <asp:Content ContentPlaceHolderID="ExtraHeadContent" ID="JsStuff" runat="server">
 <script type="text/javascript">
+    function checkSubs (checkall) {
+        var checked = checkall.checked;
+        checkall.parent().children(":checkbox").each(function() {
+            this.checked = checked;
+        });
+    }
+    $(document).ready(function() {
+        $("#selectAllAttendees").click(function() {
+            var checked = this.checked;
+            $("#attendeeChoices input:checkbox").each(function() {
+                this.checked = checked;
+            });
+        });
+    });
     $(function() {
         $("#people").accordion();
     });
@@ -28,7 +42,7 @@
             <%= Html.ValidationMessageFor(model => model.SelectedPeopleIds) %>
             <div id="people" class="editor-field">
                 <h3><a href="#">Attendees</a></h3>
-                <div class="editor-field">
+                <div id="attendeeChoices" class="editor-field">
                 <ul>
                 <% foreach (var at in Model.Everyone.Attendees)
 {%>
@@ -39,7 +53,7 @@
                 <%
 }%>
                 </ul>
-                <!-- select all button -->
+                <input type="checkbox" id="selectAllAttendees" name="selectAllAttendees"/><label for="selectAllAttendees">Select All/None Attendees</label>
                 </div>
                 <h3><a href="#">Mechmania Participants</a></h3>
                 <div class="editor-field">
