@@ -1,5 +1,5 @@
 ﻿@import url('./reset.css');
-@import url('./themes/south-street/jquery.ui.base.css');
+@import url('./south-street/jquery-ui-1.7.2.custom.css');
 
 body 
 {

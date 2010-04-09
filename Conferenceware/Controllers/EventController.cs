@@ -111,6 +111,7 @@ namespace Conferenceware.Controllers
 			}
 			try
 			{
+				//TODO: get rid of dependencies
 				var name = ev.name;
 				_repository.DeleteEvent(ev);
 				_repository.Save();
