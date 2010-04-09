@@ -43,17 +43,30 @@
                 </div>
                 <h3><a href="#">Mechmania Participants</a></h3>
                 <div class="editor-field">
-                <ul>
-                <% foreach (var mmp in Model.Everyone.MechmaniaParticipants)
+                    <dl>
+                        <% foreach (var mmt in Model.Everyone.MechManiaTeams)
+                           {%>
+                        <dt>
+                            <%= String.Format("{0} (Account: {1})", Html.Encode(mmt.team_name), Html.Encode(mmt.account_name)) %></dt>
+                        <dd>
+                            <ul>
+                            <% foreach (var member in mmt.Members)
 {%>
-                <li>
-                    <input type="checkbox" name="SelectedPeopleIds" value="<%= mmp.person_id %>" <%= Model.SelectedPeopleIds.Contains(mmp.person_id)?"checked=\"checked\"":"" %> />
-                    <%= Html.Encode(mmp.People.name) %>
-                </li>
-                <%
+                                <li>
+                                    <input type="checkbox" name="SelectedPeopleIds" value="<%= member.person_id%>"
+                                        <%=Model.SelectedPeopleIds.Contains(member.person_id)
+	                  	? "checked=\"checked\""
+	                  	: ""%> />
+                                    <%=Html.Encode(member.People.name)%>
+                                </li>
+                                <%
 }%>
-                </ul>
-                <!-- select all button -->
+                            </ul>
+                        </dd>
+                        <%
+                            }%>
+                    </dl>
+                    <!-- select all button -->
                 </div>
                 <h3><a href="#">Speakers</a></h3>
                 <div class="editor-field">
