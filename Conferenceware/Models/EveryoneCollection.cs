@@ -60,7 +60,7 @@ namespace Conferenceware.Models
 				var participants = new List<Attendee>(MechManiaTeams.Select(x => x.Attendee));
 				participants.AddRange(MechManiaTeams.Select(x => x.Attendee1));
 				participants.AddRange(MechManiaTeams.Select(x => x.Attendee2));
-				return participants;
+				return participants.Distinct();
 			}
 		}
 	}
