@@ -4,6 +4,14 @@
 	Index
 </asp:Content>
 
+<asp:Content ContentPlaceHolderID="ExtraHeadContent" ID="JsStuff" runat="server">
+<script type="text/javascript">
+    $(function() {
+        $("#people").accordion();
+    });
+</script>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <% Html.EnableClientValidation(); %>
@@ -18,8 +26,8 @@
             
             <div class="display-label">People to email</div>
             <%= Html.ValidationMessageFor(model => model.SelectedPeopleIds) %>
-            <div class="editor-field">
-                <div class="editor-label">Attendees</div>
+            <div id="people" class="editor-field">
+                <h3><a href="#">Attendees</a></h3>
                 <div class="editor-field">
                 <ul>
                 <% foreach (var at in Model.Everyone.Attendees)
@@ -33,7 +41,7 @@
                 </ul>
                 <!-- select all button -->
                 </div>
-                <div class="editor-label">Mechmania Participants</div>
+                <h3><a href="#">Mechmania Participants</a></h3>
                 <div class="editor-field">
                 <ul>
                 <% foreach (var mmp in Model.Everyone.MechmaniaParticipants)
@@ -47,7 +55,7 @@
                 </ul>
                 <!-- select all button -->
                 </div>
-                <div class="editor-label">Speakers</div>
+                <h3><a href="#">Speakers</a></h3>
                 <div class="editor-field">
                 <ul>
                 <% foreach (var speaker in Model.Everyone.Speakers)
@@ -61,7 +69,7 @@
                 </ul>
                 <!-- select all button -->
                 </div>
-                <div class="editor-label">Sponsors</div>
+                <h3><a href="#">Sponsors</a></h3>
                 <div class="editor-field">
                 <ul>
                 <% foreach (var sponsor in Model.Everyone.Sponsors)
@@ -75,7 +83,7 @@
                 </ul>
                 <!-- select all button -->
                 </div>
-                <div class="editor-label">Staff</div>
+                <h3><a href="#">Staff</a></h3>
                 <div class="editor-field">
                 <ul>
                 <% foreach (var sm in Model.Everyone.StaffMembers)
@@ -89,7 +97,7 @@
                 </ul>
                 <!-- select all button -->
                 </div>
-                <div class="editor-label">Volunteers</div>
+                <h3><a href="#">Volunteers</a></h3>
                 <div class="editor-field">
                 <ul>
                 <% foreach (var vol in Model.Everyone.Volunteers)
