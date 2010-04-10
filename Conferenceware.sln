@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conferenceware", "Conferenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conferenceware.Tests", "Conferenceware.Tests\Conferenceware.Tests.csproj", "{BBD8A446-A337-4F08-8F72-6A7C23077D79}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Conferenceware.Setup", "Conferenceware.Setup\Conferenceware.Setup.vdproj", "{9D5B1E36-8A9B-4D6C-B42C-EB7DF06999CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,8 @@ Global
 		{BBD8A446-A337-4F08-8F72-6A7C23077D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBD8A446-A337-4F08-8F72-6A7C23077D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBD8A446-A337-4F08-8F72-6A7C23077D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D5B1E36-8A9B-4D6C-B42C-EB7DF06999CE}.Debug|Any CPU.ActiveCfg = Debug
+		{9D5B1E36-8A9B-4D6C-B42C-EB7DF06999CE}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
