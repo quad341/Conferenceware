@@ -3,7 +3,7 @@
 
 body 
 {
-	background: url("./img/top.gif") repeat-x scroll center top #F0F7ED;
+		
 }
 
 .display-label
@@ -22,12 +22,10 @@ body
     height: 4in;
 }
 
-#navigation 
+div#navigation
 {
-	width: 814px;
-	height: 40px;
-	margin: 0 auto;
-	margin-top: 5px;
+	width: 100%;
+	clear: both;
 }
 
 #navigation #menu {
@@ -38,7 +36,7 @@ body
 #navigation #menu li 
 {
 	color:#7E8972;
-	font:italic 16px Georgia,Garamond,"Times New Roman",serif;
+	font:italic 9px Georgia,Garamond,"Times New Roman",serif;
 	height:27px;
 	padding:5px 3px 0 7px;
 	text-decoration:none;
@@ -49,7 +47,7 @@ body
 #navigation #menu li a
 {
 	color:#7E8972;
-	font:italic 16px Georgia,Garamond,"Times New Roman",serif;
+	font:italic 9px Georgia,Garamond,"Times New Roman",serif;
 	height:27px;
 	padding:5px 3px 0 7px;
 	text-decoration:none;
@@ -59,7 +57,7 @@ body
 #navigation #menu li a:hover , #navigation #menu li a:active
 {
 	color:#79B4B4;
-	font:italic 16px Georgia,Garamond,"Times New Roman",serif;
+	font:italic 9px Georgia,Garamond,"Times New Roman",serif;
 	height:27px;
 	padding:5px 3px 0 7px;
 	text-decoration:none;
@@ -68,7 +66,7 @@ body
 	
 
 #content {
-	width: 925px;
+	width: 100%;
 	margin: 0 auto;
 	padding: 25px 0;
 	text-align: left;
