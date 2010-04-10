@@ -167,10 +167,13 @@
       <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Badge.cs" />
+    <Compile Include="Utils\ConferenceMemberProvider.cs" />
     <Compile Include="Utils\ImageHelper.cs" />
     <Compile Include="Utils\Mailer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\WiLstPrd.vbs" />
+    <Content Include="App_Data\WiRunSQL.vbs" />
     <Content Include="Content\south-street\images\ui-bg_glass_55_fcf0ba_1x400.png" />
     <Content Include="Content\south-street\images\ui-bg_gloss-wave_100_ece8da_500x100.png" />
     <Content Include="Content\south-street\images\ui-bg_highlight-hard_100_f5f3e5_1x100.png" />
