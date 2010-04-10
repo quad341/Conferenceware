@@ -1,11 +1,108 @@
 ﻿@import url('./reset.css');
 @import url('./south-street/jquery-ui-1.7.2.custom.css');
 
+
+/* main site structure */
 body 
 {
-		
+	
 }
 
+div#header
+{
+	clear: both;
+	height: 175px;
+	margin-top: 20px;
+}
+
+div#logindisplay
+{
+	color:#CDA8CF;
+	font:italic 12px Georgia,Garamond,"Times New Roman",serif;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
+
+div#logindisplay a
+{
+	color:#CDA8CF;
+	text-decoration: none;
+}
+
+div#logindisplay a:hover , div#logindisplay a:active
+{
+	color:#F9BB0F;
+	text-decoration: none;
+}
+
+div#navigation
+{
+	margin-left: 50%;
+}
+
+#navigation #menu {
+	list-style: none outside none;
+}
+
+#navigation #menu li 
+{
+	color:#CDA8CF;
+	font:italic 12px Georgia,Garamond,"Times New Roman",serif;
+	height:27px;
+	padding:5px 3px 0 7px;
+	text-decoration:none;
+	float: left;
+	float: left;
+}
+
+#navigation #menu li a
+{
+	color:#CDA8CF;
+	height:27px;
+	padding:5px 3px 0 7px;
+	text-decoration:none;
+	float: left;
+}
+
+#navigation #menu li a:hover , #navigation #menu li a:active
+{
+	color:#F9BB0F;
+	height:27px;
+	padding:5px 3px 0 7px;
+	text-decoration:none;
+	float: left;
+}
+
+#header #logo a:link, #header #logo a:visited, #header #logo a:hover, #header #logo a:active {
+	display: block;
+	width: 824px;
+	height: 113px;
+	margin: 0 auto;
+	background: transparent url('./img/logo.png') no-repeat;
+	text-indent: -9999px;
+}
+	
+#footer 
+{
+	margin-top: 20px;
+	display: block;
+	clear: both;
+	font: 0.77em Tahoma, Helvetica, sans-serif;
+	color: #4F5050;
+	padding: 5px 5px;
+	text-align:center;
+}
+
+#footer p{
+  padding-left:30px;
+}
+
+div#main 
+{
+}
+
+/* Badge related styles */
 .display-label
 {
     font-weight: bold;
@@ -20,86 +117,4 @@ body
 {
     width: 3in;
     height: 4in;
-}
-
-div#navigation
-{
-	width: 100%;
-	clear: both;
-}
-
-#navigation #menu {
-	list-style: none outside none;
-	float: right;
-}
-
-#navigation #menu li 
-{
-	color:#7E8972;
-	font:italic 9px Georgia,Garamond,"Times New Roman",serif;
-	height:27px;
-	padding:5px 3px 0 7px;
-	text-decoration:none;
-	float: left;
-	float: left;
-}
-
-#navigation #menu li a
-{
-	color:#7E8972;
-	font:italic 9px Georgia,Garamond,"Times New Roman",serif;
-	height:27px;
-	padding:5px 3px 0 7px;
-	text-decoration:none;
-	float: left;
-}
-
-#navigation #menu li a:hover , #navigation #menu li a:active
-{
-	color:#79B4B4;
-	font:italic 9px Georgia,Garamond,"Times New Roman",serif;
-	height:27px;
-	padding:5px 3px 0 7px;
-	text-decoration:none;
-	float: left;
-}
-	
-
-#content {
-	width: 100%;
-	margin: 0 auto;
-	padding: 25px 0;
-	text-align: left;
-	background-position: 511px 50px;
-}
-
-/* Min-height voodoo hack */
-#content.main {
-	min-height: 950px;
-	height: auto !important;
-	height: 950px;
-}
-
-#header #logo a:link, #header #logo a:visited, #header #logo a:hover, #header #logo a:active {
-	display: block;
-	width: 824px;
-	height: 113px;
-	margin: 0 auto;
-	background: transparent url('./img/logo.png') no-repeat;
-	text-indent: -9999px;
-}
-	
-#footer {
-  display: block;
-  clear: both;
-  background-color: #85c041;
-  font: 0.77em Tahoma, Helvetica, sans-serif;
-  color: #f0f7ed;
-  border-top: 3px solid #a5d074;
-  padding: 5px 5px;
-  text-align:center;
-}
-
-#footer p{
-  padding-left:30px;
 }

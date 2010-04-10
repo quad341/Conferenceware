@@ -46,6 +46,7 @@
                     <li>
                         <%= Html.ActionLink("Events", "Index", "Event") %></li>
                     <li>|</li>
+                    <!--
                     <li>
                         <%= Html.ActionLink("Attendees", "Index", "Attendee") %></li>
                     <li>|</li>
@@ -63,6 +64,7 @@
                     <li>|</li>
                     <li>
                         <%= Html.ActionLink("Volunteer Registration", "Index", "VolunteerRegistration")%></li>
+                        -->
                 </ul>
             </div>
         </div>
@@ -70,10 +72,9 @@
             <div class="error">
                 <%= TempData["Message"]%></div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-            <div id="footer">
-                15th Annual Reflections | Projections Student Computing Conference October 16-18,
-                2009
-            </div>
+        </div>
+        <div id="footer">
+            16th annual conference hosted by the ACM Student Chapter  at the University of Illinois
         </div>
     </div>
 </body>
