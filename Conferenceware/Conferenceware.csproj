@@ -167,6 +167,7 @@
       <DependentUpon>Settings.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Badge.cs" />
+    <Compile Include="Utils\ConferenceMemberProvider.cs" />
     <Compile Include="Utils\ImageHelper.cs" />
     <Compile Include="Utils\Mailer.cs" />
   </ItemGroup>
