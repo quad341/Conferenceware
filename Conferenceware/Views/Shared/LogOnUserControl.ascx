@@ -4,12 +4,12 @@
 %>
          Logged in as : <b><%= Html.Encode(Page.User.Identity.Name) %></b>
          <br />
-         <%= Html.ActionLink("Log Off", "LogOff", "Account") %> 
+         <%= Html.ActionLink("Log Out", "LogOff", "Account") %> 
 <%
     }
     else {
 %> 
-         <%= Html.ActionLink("Log On", "LogOn", "Account") %> 
+         <%= Html.ActionLink("Log In", "LogOn", "Account") %> 
 <%
     }
 %>

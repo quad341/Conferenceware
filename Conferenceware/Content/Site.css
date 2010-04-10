@@ -38,10 +38,14 @@ div#logindisplay a:hover , div#logindisplay a:active
 
 div#navigation
 {
-	margin-left: 50%;
+	width: 824px;
+	margin: auto;
 }
 
-#navigation #menu {
+#navigation #menu 
+{
+	margin-right: 50px;
+	float: right;
 	list-style: none outside none;
 }
 
@@ -53,7 +57,7 @@ div#navigation
 	padding:5px 3px 0 7px;
 	text-decoration:none;
 	float: left;
-	float: left;
+	position: relative;
 }
 
 #navigation #menu li a
@@ -72,6 +76,18 @@ div#navigation
 	padding:5px 3px 0 7px;
 	text-decoration:none;
 	float: left;
+}
+
+#navigation ul#menu li ul.submenu
+{
+	list-style: none;
+	position: absolute;
+	left: 0; top: 35px;
+	margin: 0; padding: 0;
+	display: none;
+	float: left;
+	width: 170px;
+	border-left: 1px solid #F9BB0F;
 }
 
 #header #logo a:link, #header #logo a:visited, #header #logo a:hover, #header #logo a:active {
@@ -98,8 +114,31 @@ div#navigation
   padding-left:30px;
 }
 
-div#main 
+div#main
 {
+	color: #4F5050;
+	font-family: Sans-Serif;
+	margin-left: 200px;
+	margin-right: 200px;
+	min-height: 450px;
+}
+
+div#main a 
+{
+	color: #964F9F;
+	text-decoration: none;
+}
+
+div#main a:hover , div#main a:active
+{
+	color:#F9BB0F;
+	text-decoration: none;
+}
+
+div#main a:visited
+{
+	color:#CDA8CF;
+	text-decoration: none;
 }
 
 /* Badge related styles */
