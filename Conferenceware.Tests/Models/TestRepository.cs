@@ -7,6 +7,11 @@ namespace Conferenceware.Tests.Models
 {
 	class TestRepository : IRepository
 	{
+	    /// <summary>
+	    /// Internal reference max id for a person
+	    /// </summary>
+	    private int _personMaxId = 0;
+
 		/// <summary>
         /// Internal storage and reference max id for locations
 		/// </summary>
@@ -32,10 +37,9 @@ namespace Conferenceware.Tests.Models
         private int _companyMaxId = 0;
 
         /// <summary>
-        /// Internal storage and reference max id for company person.
+        /// Internal storage for a company person.
         /// </summary>
         private List<CompanyPerson> _companyPeople = new List<CompanyPerson>();
-        private int _companyPeopleMaxId = 0;
 
         /// <summary>
         /// Internal storage and reference max id for company invoices.
@@ -62,16 +66,14 @@ namespace Conferenceware.Tests.Models
         private int _foodMaxId = 0;
 
 		/// <summary>
-		/// Internal storage and reference max id for attendees.
+		/// Internal storage for attendees.
 		/// </summary>
 		private List<Attendee> _attendees = new List<Attendee>();
-		private int _attendeeMaxId = 0;
 
 		/// <summary>
-		/// Internal storage and reference max id for speakers.
+		/// Internal storage for speakers.
 		/// </summary>
 		private List<Speaker> _speakers = new List<Speaker>();
-		private int _speakerMaxId = 0;
 
 		public void AddEvent(Event ev)
 		{
@@ -101,7 +103,7 @@ namespace Conferenceware.Tests.Models
 
 		public void AddAttendee(Attendee attendee)
 		{
-			attendee.People.id = ++_attendeeMaxId;
+		    attendee.People.id = ++_personMaxId;
 			_attendees.Add(attendee);
 		}
 
@@ -179,7 +181,7 @@ namespace Conferenceware.Tests.Models
 
 		public void AddSpeaker(Speaker speaker)
 		{
-			speaker.People.id = ++_speakerMaxId;
+		    speaker.People.id = ++_personMaxId;
 			_speakers.Add(speaker);
 		}
 
@@ -311,7 +313,7 @@ namespace Conferenceware.Tests.Models
 
 		public void AddCompanyPerson(CompanyPerson cp)
 		{
-		    cp.People.id = ++_companyPeopleMaxId;
+		    cp.People.id = ++_personMaxId;
             _companyPeople.Add(cp);
 		}
 
@@ -384,7 +386,7 @@ namespace Conferenceware.Tests.Models
 
 		public IQueryable<CompanyInvoiceItem> GetAllCompanyInvoiceItems()
 		{
-		    _companyInvoiceItems.AsQueryable();
+		    return _companyInvoiceItems.AsQueryable();
 		}
 
 		public void AddCompanyPayment(CompanyPayment cp)
