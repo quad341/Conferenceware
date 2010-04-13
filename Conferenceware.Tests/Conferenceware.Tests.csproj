@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\FoodControllerTest.cs" />
     <Compile Include="Controllers\LocationControllerTests.cs" />
     <Compile Include="Models\LocationTests.cs" />
     <Compile Include="Models\RepositoryLocationTests.cs" />
