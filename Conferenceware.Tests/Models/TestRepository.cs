@@ -12,11 +12,45 @@ namespace Conferenceware.Tests.Models
 	    /// </summary>
 	    private int _personMaxId = 0;
 
+        /// <summary>
+        /// Internal storage and reference max id for pages
+        /// </summary>
+        private List<Page> _pages = new List<Page>();
+        private int _pageMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for event content links
+        /// </summary>
+        private List<EventContentLink> _eventContentLinks = new List<EventContentLink>();
+        private int _eventContentLinkMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for MechMania Teams
+        /// </summary>
+        private List<MechManiaTeam> _mechManiaTeams = new List<MechManiaTeam>();
+        private int _mechManiaTeamMaxId = 0;
+
 		/// <summary>
         /// Internal storage and reference max id for locations
 		/// </summary>
 		private List<Location> _locations = new List<Location>();
         private int _locationMaxId = 0;
+
+        /// <summary>
+        /// Internal storage for staff members
+        /// </summary>
+        private List<StaffMember> _staffMembers = new List<StaffMember>();
+
+        /// <summary>
+        /// Internal storage for volunteers
+        /// </summary>
+        private List<Volunteer> _volunteers = new List<Volunteer>();
+
+        /// <summary>
+        /// Internal storage and reference max id for company payments
+        /// </summary>
+        private List<CompanyPayment> _companyPayments = new List<CompanyPayment>();
+        private int _companyPaymentsMaxId = 0;
 
         /// <summary>
         /// Internal storage and reference max id for locations
@@ -391,27 +425,28 @@ namespace Conferenceware.Tests.Models
 
 		public void AddCompanyPayment(CompanyPayment cp)
 		{
-			throw new NotImplementedException();
+		    cp.id = ++_companyPaymentsMaxId;
+		    _companyPayments.Add(cp);
 		}
 
 		public void DeleteCompanyPayment(CompanyPayment cp)
 		{
-			throw new NotImplementedException();
+		    _companyPayments.Remove(cp);
 		}
 
 		public void DeleteCompanyPayment(int id)
 		{
-			throw new NotImplementedException();
+			DeleteCompanyPayment(GetCompanyPaymentById(id));
 		}
 
 		public CompanyPayment GetCompanyPaymentById(int id)
 		{
-			throw new NotImplementedException();
+            return _companyPayments.SingleOrDefault(x => id == x.id);
 		}
 
 		public IQueryable<CompanyPayment> GetAllCompanyPayments()
 		{
-			throw new NotImplementedException();
+		    return _companyPayments.AsQueryable();
 		}
 
 		public void AddVolunteerTimeSlot(VolunteerTimeSlot vts)
@@ -441,27 +476,28 @@ namespace Conferenceware.Tests.Models
 
 		public void AddVolunteer(Volunteer v)
 		{
-			throw new NotImplementedException();
+		    v.People.id = ++_personMaxId;
+		    _volunteers.Add(v);
 		}
 
 		public void DeleteVolunteer(Volunteer v)
 		{
-			throw new NotImplementedException();
+		    _volunteers.Remove(v);
 		}
 
 		public void DeleteVolunteer(int id)
 		{
-			throw new NotImplementedException();
+			DeleteVolunteer(GetVolunteerById(id));
 		}
 
 		public Volunteer GetVolunteerById(int id)
 		{
-			throw new NotImplementedException();
+            return _volunteers.SingleOrDefault(x => x.People.id == id);
 		}
 
 		public IQueryable<Volunteer> GetAllVolunteers()
 		{
-			throw new NotImplementedException();
+			return _volunteers.AsQueryable();
 		}
 
 		public void RegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts)
@@ -476,107 +512,111 @@ namespace Conferenceware.Tests.Models
 
 		public void AddMechManiaTeam(MechManiaTeam mmt)
 		{
-			throw new NotImplementedException();
+		    mmt.id = ++_mechManiaTeamMaxId;
+		    _mechManiaTeams.Add(mmt);
 		}
 
 		public void DeleteMechManiaTeam(MechManiaTeam mmt)
 		{
-			throw new NotImplementedException();
+		    _mechManiaTeams.Remove(mmt);
 		}
 
 		public void DeleteMechManiaTeam(int id)
 		{
-			throw new NotImplementedException();
+			DeleteMechManiaTeam(GetMechManiaTeamById(id));
 		}
 
 		public MechManiaTeam GetMechManiaTeamById(int id)
 		{
-			throw new NotImplementedException();
+            return _mechManiaTeams.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<MechManiaTeam> GetAllMechManiaTeams()
 		{
-			throw new NotImplementedException();
+		    return _mechManiaTeams.AsQueryable();
 		}
 
 		public void AddPage(Page page)
 		{
-			throw new NotImplementedException();
+		    page.id = ++_pageMaxId;
+		    _pages.Add(page);
 		}
 
 		public void DeletePage(Page page)
 		{
-			throw new NotImplementedException();
+		    _pages.Remove(page);
 		}
 
 		public void DeletePage(int id)
 		{
-			throw new NotImplementedException();
+			DeletePage(GetPageById(id));
 		}
 
 		public Page GetPageById(int id)
 		{
-			throw new NotImplementedException();
+            return _pages.SingleOrDefault(x => x.id == id);
 		}
 
 		public Page GetPageByTitle(string title)
 		{
-			throw new NotImplementedException();
+		    return _pages.SingleOrDefault(x => x.title.Equals(title));
 		}
 
 		public IQueryable<Page> GetAllPages()
 		{
-			throw new NotImplementedException();
+		    return _pages.AsQueryable();
 		}
 
 		public void AddStaffMember(StaffMember sm)
 		{
-			throw new NotImplementedException();
+		    sm.People.id = ++_personMaxId;
+		    _staffMembers.Add(sm);
 		}
 
 		public void DeleteStaffMember(StaffMember sm)
 		{
-			throw new NotImplementedException();
+		    _staffMembers.Remove(sm);
 		}
 
 		public void DeleteStaffMember(int id)
 		{
-			throw new NotImplementedException();
+			DeleteStaffMember(GetStaffMemberById(id));
 		}
 
 		public StaffMember GetStaffMemberById(int id)
 		{
-			throw new NotImplementedException();
+            return _staffMembers.SingleOrDefault(x => x.People.id == id);
 		}
 
 		public IQueryable<StaffMember> GetAllStaffMembers()
 		{
-			throw new NotImplementedException();
+		    return _staffMembers.AsQueryable();
 		}
 
 		public void AddEventContentLink(EventContentLink ecl)
 		{
-			throw new NotImplementedException();
+		    ecl.id = ++_eventContentLinkMaxId;
+		    _eventContentLinks.Add(ecl);
 		}
 
 		public void DeleteEventContentLink(EventContentLink ecl)
 		{
-			throw new NotImplementedException();
+		    _eventContentLinks.Remove(ecl);
 		}
 
 		public void DeleteEventContentLink(int id)
 		{
-			throw new NotImplementedException();
+			DeleteEventContentLink(GetEventContentLinkById(id));
 		}
 
 		public EventContentLink GetEventContentLinkById(int id)
 		{
-			throw new NotImplementedException();
+            return _eventContentLinks.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<EventContentLink> GetAllEventContentLinks()
 		{
-			throw new NotImplementedException();
+		    return _eventContentLinks.AsQueryable();
 		}
 
 		public People GetPeopleById(int id)
