@@ -8,20 +8,46 @@ namespace Conferenceware.Tests.Models
 	class TestRepository : IRepository
 	{
 		/// <summary>
-		/// Internal storage for locations in memory
+        /// Internal storage and reference max id for locations
 		/// </summary>
 		private List<Location> _locations = new List<Location>();
+        private int _locationMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for locations
+        /// </summary>
+        private List<TShirtSize> _tshirts = new List<TShirtSize>();
+        private int _tshirtsMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for timeslots.
+        /// </summary>
+        private List<TimeSlot> _timeslots = new List<TimeSlot>();
+        private int _timeslotMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for companies.
+        /// </summary>
+        private List<Company> _companies = new List<Company>();
+        private int _companyMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for company person.
+        /// </summary>
+        private List<CompanyPerson> _companyPeople = new List<CompanyPerson>();
+        private int _companyPeopleMaxId = 0;
+
+        /// <summary>
+        /// Internal storage and reference max id for company invoices.
+        /// </summary>
+        private List<CompanyInvoice> _companyInvoices = new List<CompanyInvoice>();
+        private int _companyInvoicesMaxId = 0;
 
 		/// <summary>
-		/// The last used Id for locations
+		/// Internal storage and reference max id for company invoice items.
 		/// </summary>
-		private int _locationMaxId = 0;
-
-		/// <summary>
-		/// Internal storage and reference max id for timeslots.
-		/// </summary>
-		private List<TimeSlot> _timeslots = new List<TimeSlot>();
-		private int _timeslotmaxId = 0;
+        private List<CompanyInvoiceItem> _companyInvoiceItems = new List<CompanyInvoiceItem>();
+        private int _companyInvoiceItemsMaxId = 0;
 
 		/// <summary>
 		/// Internal storage and reference max id for events.
@@ -65,7 +91,7 @@ namespace Conferenceware.Tests.Models
 
 		public Event GetEventById(int id)
 		{
-			return _events.SingleOrDefault<Event>(x => x.id == id);
+			return _events.SingleOrDefault(x => x.id == id);
 		}
 
 		public IQueryable<Event> GetAllEvents()
@@ -127,7 +153,7 @@ namespace Conferenceware.Tests.Models
 
 		public void AddTimeSlot(TimeSlot timeslot)
 		{
-			timeslot.id = ++_timeslotmaxId;
+			timeslot.id = ++_timeslotMaxId;
 			_timeslots.Add(timeslot);
 		}
 
@@ -207,6 +233,7 @@ namespace Conferenceware.Tests.Models
 
 		public void AddFood(Food food)
 		{
+		    food.id = ++_foodMaxId;
 			_foods.Add(food);
 		}
 
@@ -232,127 +259,132 @@ namespace Conferenceware.Tests.Models
 
 		public void AddTShirtSize(TShirtSize t)
 		{
-			throw new NotImplementedException();
+		    t.id = ++_tshirtsMaxId;
+			_tshirts.Add(t);
 		}
 
 		public void DeleteTShirtSize(TShirtSize tshirtsize)
 		{
-			throw new NotImplementedException();
+		    _tshirts.Remove(tshirtsize);
 		}
 
 		public void DeleteTShirtSize(int id)
 		{
-			throw new NotImplementedException();
+			DeleteTShirtSize(GetTShirtSizeById(id));
 		}
 
 		public TShirtSize GetTShirtSizeById(int id)
 		{
-			throw new NotImplementedException();
+            return _tshirts.SingleOrDefault(x => id == x.id);
 		}
 
 		public IQueryable<TShirtSize> GetAllTShirtSizes()
 		{
-			throw new NotImplementedException();
+		    return _tshirts.AsQueryable();
 		}
 
 		public void AddCompany(Company c)
 		{
-			throw new NotImplementedException();
+		    c.id = ++_companyMaxId;
+		    _companies.Add(c);
 		}
 
 		public void DeleteCompany(Company c)
 		{
-			throw new NotImplementedException();
+		    _companies.Remove(c);
 		}
 
 		public void DeleteCompany(int id)
 		{
-			throw new NotImplementedException();
+		    DeleteCompany(GetCompanyById(id));
 		}
 
 		public Company GetCompanyById(int id)
 		{
-			throw new NotImplementedException();
+            return _companies.SingleOrDefault(x => id == x.id);
 		}
 
 		public IQueryable<Company> GetAllCompanies()
 		{
-			throw new NotImplementedException();
+		    return _companies.AsQueryable();
 		}
 
 		public void AddCompanyPerson(CompanyPerson cp)
 		{
-			throw new NotImplementedException();
+		    cp.People.id = ++_companyPeopleMaxId;
+            _companyPeople.Add(cp);
 		}
 
 		public void DeleteCompanyPerson(CompanyPerson cp)
 		{
-			throw new NotImplementedException();
+		    _companyPeople.Remove(cp);
 		}
 
 		public void DeleteCompanyPerson(int id)
 		{
-			throw new NotImplementedException();
+		    DeleteCompanyPerson(GetCompanyPersonById(id));
 		}
 
 		public CompanyPerson GetCompanyPersonById(int id)
 		{
-			throw new NotImplementedException();
+            return _companyPeople.SingleOrDefault(x => x.People.id == id);
 		}
 
 		public IQueryable<CompanyPerson> GetAllCompanyPersons()
 		{
-			throw new NotImplementedException();
+		    return _companyPeople.AsQueryable();
 		}
 
 		public void AddCompanyInvoice(CompanyInvoice ci)
 		{
-			throw new NotImplementedException();
+		    ci.id = ++_companyInvoicesMaxId;
+		    _companyInvoices.Add(ci);
 		}
 
 		public void DeleteCompanyInvoice(CompanyInvoice ci)
 		{
-			throw new NotImplementedException();
+		    _companyInvoices.Remove(ci);
 		}
 
 		public void DeleteCompanyInvoice(int id)
 		{
-			throw new NotImplementedException();
+			DeleteCompanyInvoice(GetCompanyInvoiceById(id));
 		}
 
 		public CompanyInvoice GetCompanyInvoiceById(int id)
 		{
-			throw new NotImplementedException();
+            return _companyInvoices.SingleOrDefault(x => id == x.id);
 		}
 
 		public IQueryable<CompanyInvoice> GetAllCompanyInvoices()
 		{
-			throw new NotImplementedException();
+		    return _companyInvoices.AsQueryable();
 		}
 
 		public void AddCompanyInvoiceItem(CompanyInvoiceItem cii)
 		{
-			throw new NotImplementedException();
+		    cii.id = ++_companyInvoiceItemsMaxId;
+            _companyInvoiceItems.Add(cii);
 		}
 
 		public void DeleteCompanyInvoiceItem(CompanyInvoiceItem cii)
 		{
-			throw new NotImplementedException();
+		    _companyInvoiceItems.Remove(cii);
 		}
 
 		public void DeleteCompanyInvoiceItem(int id)
 		{
-			throw new NotImplementedException();
+			DeleteCompanyInvoiceItem(GetCompanyInvoiceItemById(id));
 		}
 
 		public CompanyInvoiceItem GetCompanyInvoiceItemById(int id)
 		{
-			throw new NotImplementedException();
+            return _companyInvoiceItems.SingleOrDefault(x => id == x.id);
 		}
 
 		public IQueryable<CompanyInvoiceItem> GetAllCompanyInvoiceItems()
 		{
-			throw new NotImplementedException();
+		    _companyInvoiceItems.AsQueryable();
 		}
 
 		public void AddCompanyPayment(CompanyPayment cp)
