@@ -29,6 +29,12 @@ namespace Conferenceware.Tests.Models
 		private List<Event> _events = new List<Event>();
 		private int _eventMaxId = 0;
 
+        /// <summary>
+        /// Internal storage and reference max id for foods.
+        /// </summary>
+        private List<Food> _foods = new List<Food>();
+        private int _foodMaxId = 0;
+
 		/// <summary>
 		/// Internal storage and reference max id for attendees.
 		/// </summary>
@@ -201,27 +207,27 @@ namespace Conferenceware.Tests.Models
 
 		public void AddFood(Food food)
 		{
-			throw new NotImplementedException();
+			_foods.Add(food);
 		}
 
 		public void DeleteFood(Food food)
 		{
-			throw new NotImplementedException();
+		    _foods.Remove(food);
 		}
 
-		public void DeleteFood(int id)
+	    public void DeleteFood(int id)
 		{
-			throw new NotImplementedException();
+			DeleteFood(GetFoodById(id));
 		}
 
 		public Food GetFoodById(int id)
 		{
-			throw new NotImplementedException();
+            return _foods.SingleOrDefault(x => id == x.id);
 		}
 
 		public IQueryable<Food> GetAllFoods()
 		{
-			throw new NotImplementedException();
+		    return _foods.AsQueryable();
 		}
 
 		public void AddTShirtSize(TShirtSize t)
