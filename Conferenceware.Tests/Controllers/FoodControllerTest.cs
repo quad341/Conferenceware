@@ -19,11 +19,20 @@ namespace Conferenceware.Tests.Controllers
             var result = controller.Index() as ViewResult;
 
             Assert.IsNotNull(result);
+
+            Assert.AreEqual(result.ViewName, "Index");
         }
 
         [TestMethod]
         public void CreateTest()
         {
+            var controller = new FoodController(_repository);
+
+            var result = controller.Create() as ViewResult;
+
+            Assert.IsNotNull(result);
+
+            Assert.AreEqual(result.ViewName, "Create");
         }
 
         [TestMethod]
