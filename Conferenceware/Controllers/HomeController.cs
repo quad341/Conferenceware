@@ -20,6 +20,7 @@ namespace Conferenceware.Controllers
 			return View("Index", frontPageSettings);
 		}
 
+		[Authorize]
 		public ActionResult Admin()
 		{
 			return View("Admin");
