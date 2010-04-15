@@ -46,7 +46,17 @@
             <div class="editor-field">
                 <%= Html.TextBoxFor(model => model.auth_name) %>
                 <%= Html.ValidationMessageFor(model => model.auth_name) %>
+            </div>          
+            
+            <div class="editor-label">
+                <%= Html.LabelFor(model => model.password_hash) %>
+                <small>Set to blank to not change</small>
             </div>
+            <div class="editor-field">
+                <input type="text" name="password_hash" id="password_hash" />
+                <%= Html.ValidationMessageFor(model => model.password_hash) %>
+            </div>
+  
              <p>
                 <input type="submit" value="Save" />
             </p>

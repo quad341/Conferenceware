@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Security;
 using Conferenceware.Models;
 
@@ -33,13 +31,11 @@ namespace Conferenceware.Utils
 			// Find the staff member
 			var staffmember = _repository.GetAllStaffMembers().SingleOrDefault(x => x.auth_name == username);
 			// If no staff member found with this name, false
-			if (staffmember == null)
+			if (staffmember == null || !staffmember.VerifyPassword(password))
 			{
 				return false;
 			}
-			// TODO: Actually check passwords
 			return true;
-			//return false;
 		}
 
 		// Everything below is not implemented because we don't use it (it just makes the compiler happy to have it)

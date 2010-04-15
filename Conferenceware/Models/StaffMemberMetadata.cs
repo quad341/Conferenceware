@@ -13,5 +13,13 @@ namespace Conferenceware.Models
 			get;
 			set;
 		}
+
+		[Required]
+		[DisplayName("Password")]
+		public string password_hash
+		{
+			get;
+			set;
+		}
 	}
 }

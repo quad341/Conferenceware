@@ -41,6 +41,8 @@ namespace Conferenceware.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+				// we use password_hash so we can use declaritive verification
+				sm.SetPassword(sm.password_hash);
 				_repository.AddStaffMember(sm);
 				_repository.Save();
 				TempData["Message"] = "Staff Member created";
@@ -73,8 +75,18 @@ namespace Conferenceware.Controllers
 			{
 				return View("StaffMemberNotFound");
 			}
+			var needsHash = true;
+			if (collection["password_hash"] == null || collection["password_hash"].Trim() == "")
+			{
+				collection["password_hash"] = sm.password_hash;
+				needsHash = false;
+			}
 			if (TryUpdateModel(sm))
 			{
+				if (needsHash)
+				{
+					sm.SetPassword(sm.password_hash);
+				}
 				_repository.Save();
 				TempData["Message"] = "Staff Member updated";
 				return RedirectToAction("Index");

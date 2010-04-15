@@ -192,13 +192,6 @@
       <Association Name="People_StaffMember" Member="StaffMember" ThisKey="id" OtherKey="person_id" Type="StaffMember" Cardinality="One" />
     </Type>
   </Table>
-  <Table Name="dbo.StaffMembers" Member="StaffMembers">
-    <Type Name="StaffMember">
-      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="auth_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="People_StaffMember" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Events" Member="Events">
     <Type Name="Event">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -222,6 +215,15 @@
       <Column Name="link_location" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="list_on_video_page" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Event_EventContentLink" Member="Event" ThisKey="event_id" OtherKey="id" Type="Event" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StaffMembers" Member="StaffMembers">
+    <Type Name="StaffMember">
+      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="auth_name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="password_hash" Type="System.String" DbType="NChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="seed" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="People_StaffMember" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
