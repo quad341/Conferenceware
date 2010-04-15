@@ -19,6 +19,42 @@
                 this.checked = checked;
             });
         });
+        $("#selectAllPeople").click(function() {
+            var checked = this.checked;
+            $("#people input:checkbox").each(function() {
+                this.checked = checked;
+            });
+        });
+        $("#selectAllMMT").click(function() {
+            var checked = this.checked;
+            $("#mmtChoices input:checkbox").each(function() {
+                this.checked = checked;
+            });
+        });
+        $("#selectAllSpeakers").click(function() {
+            var checked = this.checked;
+            $("#speakerChoices input:checkbox").each(function() {
+                this.checked = checked;
+            });
+        });
+        $("#selectAllSponsors").click(function() {
+            var checked = this.checked;
+            $("#sponsorChoices input:checkbox").each(function() {
+                this.checked = checked;
+            });
+        });
+        $("#selectAllStaff").click(function() {
+            var checked = this.checked;
+            $("#staffChoices input:checkbox").each(function() {
+                this.checked = checked;
+            });
+        });
+        $("#selectAllVolunteers").click(function() {
+            var checked = this.checked;
+            $("#volunteerChoices input:checkbox").each(function() {
+                this.checked = checked;
+            });
+        });
     });
     $(function() {
         $("#people").accordion();
@@ -40,6 +76,7 @@
             
             <div class="display-label">People to email</div>
             <%= Html.ValidationMessageFor(model => model.SelectedPeopleIds) %>
+            <input type="checkbox" id="selectAllPeople" name="selectAllPeople"/><label for="selectAllPeople">Select All/None People</label>
             <div id="people" class="editor-field">
                 <h3><a href="#">Attendees</a></h3>
                 <div id="attendeeChoices" class="editor-field">
@@ -56,7 +93,7 @@
                 <input type="checkbox" id="selectAllAttendees" name="selectAllAttendees"/><label for="selectAllAttendees">Select All/None Attendees</label>
                 </div>
                 <h3><a href="#">Mechmania Participants</a></h3>
-                <div class="editor-field">
+                <div id="mmtChoices" class="editor-field">
                     <dl>
                         <% foreach (var mmt in Model.Everyone.MechManiaTeams)
                            {%>
@@ -80,10 +117,10 @@
                         <%
                             }%>
                     </dl>
-                    <!-- select all button -->
+                    <input type="checkbox" id="selectAllMMT" name="selectAllMMT"/><label for="selectAllMMT">Select All/None MechMania People</label>
                 </div>
                 <h3><a href="#">Speakers</a></h3>
-                <div class="editor-field">
+                <div id="speakerChoices" class="editor-field">
                 <ul>
                 <% foreach (var speaker in Model.Everyone.Speakers)
 {%>
@@ -94,10 +131,10 @@
                 <%
 }%>
                 </ul>
-                <!-- select all button -->
+                    <input type="checkbox" id="selectAllSpeakers" name="selectAllSpeakers"/><label for="selectAllSpeakers">Select All/None Speakers</label>
                 </div>
                 <h3><a href="#">Sponsors</a></h3>
-                <div class="editor-field">
+                <div id="sponsorChoices" class="editor-field">
                 <ul>
                 <% foreach (var sponsor in Model.Everyone.Sponsors)
 {%>
@@ -108,10 +145,10 @@
                 <%
 }%>
                 </ul>
-                <!-- select all button -->
+                    <input type="checkbox" id="selectAllSponsors" name="selectAllSponsors"/><label for="selectAllSponsors">Select All/None Sponsors</label>
                 </div>
                 <h3><a href="#">Staff</a></h3>
-                <div class="editor-field">
+                <div id="staffChoices" class="editor-field">
                 <ul>
                 <% foreach (var sm in Model.Everyone.StaffMembers)
 {%>
@@ -122,10 +159,10 @@
                 <%
 }%>
                 </ul>
-                <!-- select all button -->
+                    <input type="checkbox" id="selectAllStaff" name="selectAllStaff"/><label for="selectAllStaff">Select All/None Staff</label>
                 </div>
                 <h3><a href="#">Volunteers</a></h3>
-                <div class="editor-field">
+                <div id="volunteerChoices" class="editor-field">
                 <ul>
                 <% foreach (var vol in Model.Everyone.Volunteers)
 {%>
@@ -136,7 +173,7 @@
                 <%
 }%>
                 </ul>
-                <!-- select all button -->
+                    <input type="checkbox" id="selectAllVolunteers" name="selectAllVolunteers"/><label for="selectAllVolunteers">Select All/None Volunteers</label>
                 </div>
                
             </div>

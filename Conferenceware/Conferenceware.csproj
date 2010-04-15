@@ -208,6 +208,7 @@
     <Content Include="Views\Event\EventContentLinkNotFound.aspx" />
     <Content Include="Views\Event\RemoveContentLink.aspx" />
     <Content Include="Views\Event\UploadContent.aspx" />
+    <Content Include="Views\Food\FoodIsInvalid.aspx" />
     <Content Include="Views\PageManager\Create.aspx" />
     <Content Include="Views\PageManager\Delete.aspx" />
     <Content Include="Views\PageManager\Details.aspx" />
