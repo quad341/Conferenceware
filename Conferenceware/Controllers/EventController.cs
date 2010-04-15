@@ -7,6 +7,7 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
 	public class EventController : Controller
 	{
 

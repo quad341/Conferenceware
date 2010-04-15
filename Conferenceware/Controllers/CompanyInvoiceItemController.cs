@@ -4,6 +4,7 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
 	public class CompanyInvoiceItemController : Controller
 	{
 		private readonly IRepository _repository;

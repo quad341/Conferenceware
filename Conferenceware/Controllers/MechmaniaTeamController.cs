@@ -4,6 +4,7 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
 	public class MechManiaTeamController : Controller
 	{
 		private readonly IRepository _repository;

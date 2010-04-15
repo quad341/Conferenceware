@@ -4,6 +4,7 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
 	public class VolunteerController : Controller
 	{
 		private readonly IRepository _repository;

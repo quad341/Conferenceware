@@ -3,6 +3,7 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
 	public class CompanyPersonController : Controller
 	{
 		private readonly IRepository _repository;

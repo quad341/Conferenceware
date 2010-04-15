@@ -7,6 +7,7 @@ using Conferenceware.Utils;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
 	public class EmailController : Controller
 	{
 		private readonly IRepository _repository;

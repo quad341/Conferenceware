@@ -5,6 +5,7 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
 	public class BadgeController : Controller
 	{
 		private readonly IRepository _repository;
