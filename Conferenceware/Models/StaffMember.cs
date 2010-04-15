@@ -24,9 +24,23 @@ namespace Conferenceware.Models
 
 		private string MakePassword(string password)
 		{
-			var sha = SHA1.Create();
-			var toHash = Encoding.Unicode.GetBytes(STATIC_SEED + password + seed);
-			return Convert.ToBase64String(sha.ComputeHash(toHash, 0, toHash.Length));
+			var toHash = (STATIC_SEED + password + seed);
+			return Sha1(toHash);
+		}
+
+		// from http://mattwilko.com/SHA1%20Hash%20in%20C#
+		// his worked, mine didn't
+		static string Sha1(string str)
+		{
+			byte[] buffer = Encoding.ASCII.GetBytes(str);
+			var hasher = new SHA1CryptoServiceProvider();
+			buffer = hasher.ComputeHash(buffer);
+			var hash = new StringBuilder(40);
+			for (var i = 0; i < buffer.Length; i++)
+			{
+				hash.Append(buffer[i].ToString("X"));
+			}
+			return hash.ToString();
 		}
 
 		private string GenerateSeed()
