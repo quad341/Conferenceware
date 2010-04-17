@@ -137,10 +137,10 @@ namespace Conferenceware.Tests.Models
 
 		public void AddAttendee(Attendee attendee)
 		{
-			if(attendee.People == null)
+			if (attendee.People == null)
 				attendee.People = new People();
 
-			attendee.People.id = ++_attendeeMaxId;
+			attendee.People.id = ++_personMaxId;
 			_attendees.Add(attendee);
 		}
 
