@@ -18,9 +18,10 @@ namespace Conferenceware.Controllers
 		{
 			_repoository = repoository;
 		}
+
 		//
 		// GET: /Company/
-
+		//
 		public ActionResult Index()
 		{
 			return View("Index", _repoository.GetAllCompanies());
@@ -28,7 +29,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /Company/Details/5
-
+		//
 		public ActionResult Details(int id)
 		{
 			var company = _repoository.GetCompanyById(id);
@@ -41,7 +42,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /Company/Create
-
+		//
 		public ActionResult Create()
 		{
 			return View("Create", new Company());
@@ -49,7 +50,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /Company/Create
-
+		//
 		[HttpPost]
 		public ActionResult Create(FormCollection collection)
 		{
@@ -82,7 +83,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /Company/Edit/5
-
+		//
 		public ActionResult Edit(int id)
 		{
 			var company = _repoository.GetCompanyById(id);
@@ -95,7 +96,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /Company/Edit/5
-
+		//
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
@@ -114,7 +115,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /Company/Delete/5
-
+		//
 		public ActionResult Delete(int id)
 		{
 			var company = _repoository.GetCompanyById(id);
