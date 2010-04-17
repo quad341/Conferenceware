@@ -20,9 +20,10 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repo;
 		}
+
 		//
 		// GET: /AttendeeRegistration/
-
+		//
 		public ActionResult Index()
 		{
 			var data = MakeEditDateFromAttendee(new Attendee());
@@ -30,8 +31,8 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// POST: /Speaker/Create
-
+		// POST: /AttendeeRegistration/
+		//
 		[HttpPost]
 		public ActionResult Index(FormCollection collection)
 		{
@@ -55,12 +56,17 @@ namespace Conferenceware.Controllers
 			return RedirectToAction("Index", data);
 		}
 
-
+		//
+		// GET: /AttendeeRegistration/Success
+		//
 		public ActionResult Success()
 		{
 			return View("Success");
 		}
 
+		//
+		// This method creates some data for the AttendeeRegistration Form inside the view
+		//
 		private AttendeeEditData MakeEditDateFromAttendee(Attendee attendee)
 		{
 			return new AttendeeEditData
