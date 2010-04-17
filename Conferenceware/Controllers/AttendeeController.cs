@@ -21,17 +21,18 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repo;
 		}
-		//
-		// GET: /Speaker/
 
+		//
+		// GET: /Attendee/
+		//
 		public ActionResult Index()
 		{
 			return View("Index", _repository.GetAllAttendees());
 		}
 
 		//
-		// GET: /Speaker/Create
-
+		// GET: /Attendee/Create
+		//
 		public ActionResult Create()
 		{
 			var data = MakeEditDateFromAttendee(new Attendee());
@@ -39,8 +40,8 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// POST: /Speaker/Create
-
+		// POST: /Attendee/Create
+		//
 		[HttpPost]
 		public ActionResult Create(FormCollection collection)
 		{
@@ -56,8 +57,8 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// GET: /Speaker/Edit/5
-
+		// GET: /Attendee/Edit/5
+		//
 		public ActionResult Edit(int id)
 		{
 			var att = _repository.GetAttendeeById(id);
@@ -69,8 +70,8 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// POST: /Speaker/Edit/5
-
+		// POST: /Attendee/Edit/5
+		//
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
@@ -84,6 +85,9 @@ namespace Conferenceware.Controllers
 			return View("Edit", data);
 		}
 
+		//
+		// GET: /Attendee/Delete
+		//
 		public ActionResult Delete(int id)
 		{
 			var att = _repository.GetAttendeeById(id);
@@ -97,6 +101,9 @@ namespace Conferenceware.Controllers
 			return RedirectToAction("Index");
 		}
 
+		//
+		// This method creates some data for the Attendee Form inside the view
+		//
 		private AttendeeEditData MakeEditDateFromAttendee(Attendee attendee)
 		{
 			return new AttendeeEditData
