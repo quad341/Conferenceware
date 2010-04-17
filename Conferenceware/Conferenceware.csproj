@@ -205,7 +205,6 @@
     <Content Include="Views\Badge\Index.aspx" />
     <Content Include="Views\Email\Index.aspx" />
     <Content Include="Views\Event\AddLink.aspx" />
-    <Content Include="Views\Event\Delete.aspx" />
     <Content Include="Views\Event\EventContentLinkNotFound.aspx" />
     <Content Include="Views\Event\RemoveContentLink.aspx" />
     <Content Include="Views\Event\UploadContent.aspx" />
@@ -309,10 +308,7 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\Account\ChangePassword.aspx" />
-    <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />

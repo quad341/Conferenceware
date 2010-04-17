@@ -8,6 +8,11 @@ body
 	
 }
 
+.hidden
+{
+    display: none;
+}
+
 div#header
 {
 	clear: both;
