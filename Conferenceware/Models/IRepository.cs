@@ -247,7 +247,7 @@ namespace Conferenceware.Models
 		/// Precondition: id is a valid food ID.
 		/// </summary>
 		/// <param name="id">A valid food ID from the repository.</param>
-		/// <returns>A Food object with data from the repository.</returns>
+		/// <returns>A valid Food ID.</returns>
 		Food GetFoodById(int id);
 
 		/// <summary>
@@ -279,7 +279,7 @@ namespace Conferenceware.Models
 		/// Precondition: id is a valid TShirtSize ID.
 		/// Postcondition: The repository no longer contains a TShirtSize item with that ID.
 		/// </summary>
-		/// <param name="id">A TShirtSize object with a valid ID from the repository</param>
+		/// <param name="id">A valid TShirtSize ID.</param>
 		void DeleteTShirtSize(int id);
 
 		/// <summary>
@@ -319,7 +319,7 @@ namespace Conferenceware.Models
 		/// Precondition: id is a valid Company ID.
 		/// Postcondition: The repository no longer contains a Company item with that ID.
 		/// </summary>
-		/// <param name="id">A Company object with a valid ID from the repository</param>
+		/// <param name="id">A valid Company ID.</param>
 		void DeleteCompany(int id);
 
 		/// <summary>
@@ -359,7 +359,7 @@ namespace Conferenceware.Models
 		/// Precondition: id is a valid CompanyPerson ID.
 		/// Postcondition: The repository no longer contains a CompanyPerson item with that ID.
 		/// </summary>
-		/// <param name="id">A CompanyPerson object with a valid ID from the repository</param>
+		/// <param name="id">A valid CompanyPerson ID.</param>
 		void DeleteCompanyPerson(int id);
 
 		/// <summary>
@@ -377,10 +377,43 @@ namespace Conferenceware.Models
 		IQueryable<CompanyPerson> GetAllCompanyPersons();
 
 		//CompanyInvoice
+
+		/// <summary>
+		/// Adds a CompanyInvoice item to the repository.
+		/// Precondition: ci must have a valid ID.
+		/// Postcondition: The CompanyInvoice item is contained in the repository.
+		/// </summary>
+		/// <param name="ci">A CompanyInvoice object with a valid ID from the repository</param>
 		void AddCompanyInvoice(CompanyInvoice ci);
+
+		/// <summary>
+		/// Deletes a CompanyInvoice item from the repository.
+		/// Precondition: ci must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that CompanyInvoice object.
+		/// </summary>
+		/// <param name="ci">A CompanyInvoice object with a valid ID from the repository</param>
 		void DeleteCompanyInvoice(CompanyInvoice ci);
+
+		/// <summary>
+		/// Delete a CompanyInvoice item from the repository.
+		/// Precondition: id is a valid CompanyInvoice ID.
+		/// Postcondition: The repository no longer contains a CompanyInvoice item with that ID.
+		/// </summary>
+		/// <param name="id">A valid CompanyInvoice ID.</param>
 		void DeleteCompanyInvoice(int id);
+
+		/// <summary>
+		/// Retrieve a CompanyInvoice object.
+		/// Precondition: id is a valid CompanyInvoice ID.
+		/// </summary>
+		/// <param name="id">A valid CompanyInvoice ID from the repository.</param>
+		/// <returns>A CompanyInvoice object with data from the repository.</returns>
 		CompanyInvoice GetCompanyInvoiceById(int id);
+
+		/// <summary>
+		/// Get all CompanyInvoice objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all CompanyInvoice objects from the data repository.</returns>
 		IQueryable<CompanyInvoice> GetAllCompanyInvoices();
 
 		//CompanyInvoiceItem
