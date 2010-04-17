@@ -24,6 +24,7 @@ namespace Conferenceware.Controllers
 			var sd = SettingsData.FromCurrent(
 				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 			ProcessFiles(sd);
+			// This will try to update all the fields in the model based on the form collection
 			if (TryUpdateModel(sd, new[] 
 			{
 				"EmailFrom", 
@@ -36,7 +37,7 @@ namespace Conferenceware.Controllers
                 "SmtpNeedsAuthentication",
                 "SmtpAuthenticationUserName",
                 "SmtpAuthenticationPassword"                
-			}))
+			}, collection))
 			{
 				try
 				{

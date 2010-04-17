@@ -42,7 +42,8 @@ namespace Conferenceware.Controllers
 		public ActionResult Create(FormCollection collection)
 		{
 			var mmt = new MechManiaTeam();
-			if (TryUpdateModel(mmt, "MechManiaTeam"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(mmt, "MechManiaTeam", collection))
 			{
 				if (mmt.account_name == null)
 				{
@@ -84,7 +85,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("MechManiaTeamNotFound");
 			}
-			if (TryUpdateModel(mmt, "MechManiaTeam"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(mmt, "MechManiaTeam", collection))
 			{
 				_repository.Save();
 

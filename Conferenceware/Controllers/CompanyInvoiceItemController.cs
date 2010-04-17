@@ -49,7 +49,8 @@ namespace Conferenceware.Controllers
 		public ActionResult Create(FormCollection collection)
 		{
 			var cii = new CompanyInvoiceItem();
-			if (TryUpdateModel(cii, new[] { "name", "description", "cost", "invoice_id" }))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(cii, new[] { "name", "description", "cost", "invoice_id" }, collection))
 			{
 				if (cii.description == null)
 				{

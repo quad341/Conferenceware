@@ -59,7 +59,8 @@ namespace Conferenceware.Controllers
 		{
 			var eventToCreate = new Event();
 
-			if (TryUpdateModel(eventToCreate, "Event"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(eventToCreate, "Event", collection))
 			{
 				_repository.AddEvent(eventToCreate);
 				_repository.Save();
@@ -95,7 +96,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("EventNotFound");
 			}
-			if (TryUpdateModel(ev, "Event"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(ev, "Event", collection))
 			{
 				_repository.Save();
 				return RedirectToAction("Index");

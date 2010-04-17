@@ -86,7 +86,8 @@ namespace Conferenceware.Controllers
 				return View("VolunteerNotFound");
 			}
 			ved.Volunteer = vol;
-			if (TryUpdateModel(ved))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(ved, collection))
 			{
 				var oldTimeSlots =
 					vol.VolunteersVolunteerTimeSlots.Select(x => x.VolunteerTimeSlot).

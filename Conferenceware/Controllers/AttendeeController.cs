@@ -46,7 +46,8 @@ namespace Conferenceware.Controllers
 		public ActionResult Create(FormCollection collection)
 		{
 			var newAttendee = new Attendee();
-			if (TryUpdateModel(newAttendee, "Attendee"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(newAttendee, "Attendee", collection))
 			{
 				_repository.AddAttendee(newAttendee);
 				_repository.Save();
@@ -76,7 +77,8 @@ namespace Conferenceware.Controllers
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			var att = _repository.GetAttendeeById(id);
-			if (TryUpdateModel(att, "Attendee"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(att, "Attendee", collection))
 			{
 				_repository.Save();
 				return RedirectToAction("Index");

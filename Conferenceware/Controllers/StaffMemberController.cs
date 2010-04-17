@@ -82,7 +82,8 @@ namespace Conferenceware.Controllers
 				collection["password_hash"] = sm.password_hash;
 				needsHash = false;
 			}
-			if (TryUpdateModel(sm))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(sm, collection))
 			{
 				if (needsHash)
 				{

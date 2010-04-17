@@ -55,7 +55,8 @@ namespace Conferenceware.Controllers
 			{
 				ModelState.AddModelError("Page.title", "Page title must be unique");
 			}
-			if (TryUpdateModel(page, "Page"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(page, "Page", collection))
 			{
 				page.title = page.title.Trim();
 				_repository.AddPage(page);
@@ -95,7 +96,8 @@ namespace Conferenceware.Controllers
 			{
 				ModelState.AddModelError("Page.title", "Page title must be unique");
 			}
-			if (TryUpdateModel(page, "Page"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(page, "Page", collection))
 			{
 				page.title = page.title.Trim();
 				_repository.Save();

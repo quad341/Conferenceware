@@ -80,7 +80,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyPersonNotFound");
 			}
-			if (TryUpdateModel(cp))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(cp, collection))
 			{
 				_repository.Save();
 				return RedirectToAction("Details", "Company", new { id = cp.company_id });

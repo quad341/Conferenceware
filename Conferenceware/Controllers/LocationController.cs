@@ -80,7 +80,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("LocationNotFound");
 			}
-			if (TryUpdateModel(loc))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(loc, collection))
 			{
 				_repository.Save();
 				return RedirectToAction("Index");

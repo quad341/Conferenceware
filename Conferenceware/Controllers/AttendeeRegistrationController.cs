@@ -37,7 +37,8 @@ namespace Conferenceware.Controllers
 		public ActionResult Index(FormCollection collection)
 		{
 			var newAttendee = new Attendee();
-			if (TryUpdateModel(newAttendee, "Attendee"))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(newAttendee, "Attendee", collection))
 			{
 				_repository.AddAttendee(newAttendee);
 				_repository.Save();

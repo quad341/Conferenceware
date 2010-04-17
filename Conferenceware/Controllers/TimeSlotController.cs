@@ -74,7 +74,8 @@ namespace Conferenceware.Controllers
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			TimeSlot ts = _repository.GetTimeSlotById(id);
-			if (TryUpdateModel(ts))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(ts, collection))
 			{
 				_repository.Save();
 				return RedirectToAction("Index");

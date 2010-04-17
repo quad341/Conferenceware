@@ -75,7 +75,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("SpeakerNotFound");
 			}
-			if (TryUpdateModel(speaker))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(speaker, collection))
 			{
 				_repository.Save();
 

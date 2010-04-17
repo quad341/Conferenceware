@@ -55,6 +55,7 @@ namespace Conferenceware.Controllers
 		public ActionResult Create(FormCollection collection)
 		{
 			var companyToCreate = new Company();
+			// This will try to update all the fields in the model based on the form collection
 			if (TryUpdateModel(companyToCreate, new[]
 			                                    	{
 			                                    		"name", 
@@ -65,7 +66,7 @@ namespace Conferenceware.Controllers
 														"zip", 
 														"needs_power", 
 														"priority_shipping"
-			                                    	}))
+			                                    	}, collection))
 			{
 				if (companyToCreate.address_line2 == null)
 				{
@@ -105,7 +106,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyNotFound");
 			}
-			if (TryUpdateModel(company))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(company, collection))
 			{
 				_repoository.Save();
 				return RedirectToAction("Details", new { id });
