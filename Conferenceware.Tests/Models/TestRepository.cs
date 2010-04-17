@@ -69,6 +69,9 @@ namespace Conferenceware.Tests.Models
 
 		public void AddAttendee(Attendee attendee)
 		{
+			if(attendee.People == null)
+				attendee.People = new People();
+
 			attendee.People.id = ++_attendeeMaxId;
 			_attendees.Add(attendee);
 		}
