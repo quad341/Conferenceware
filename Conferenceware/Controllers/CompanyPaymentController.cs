@@ -18,9 +18,10 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /CompanyPayment/
-
+		//
 		public ActionResult Index()
 		{
 			return RedirectToAction("Index", "Company");
@@ -28,7 +29,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /CompanyPayment/Create
-
+		//
 		public ActionResult Create(int id)
 		{
 			var company = _repository.GetCompanyById(id);
@@ -42,12 +43,13 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /CompanyPayment/Create
-
+		//
 		[HttpPost]
 		public ActionResult Create(FormCollection collection)
 		{
 			var cp = new CompanyPayment();
-			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }, collection))
 			{
 				if (cp.comments == null)
 				{
@@ -72,7 +74,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /CompanyPayment/Edit/5
-
+		//
 		public ActionResult Edit(int id)
 		{
 			var cp = _repository.GetCompanyPaymentById(id);
@@ -85,7 +87,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /CompanyPayment/Edit/5
-
+		//
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
@@ -94,7 +96,8 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyPaymentNotFound");
 			}
-			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }))
+			// This will try to update all the fields in the model based on the form collection
+			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }, collection))
 			{
 				if (cp.comments == null)
 				{
@@ -109,7 +112,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /CompanyPayment/Delete/5
-
+		//
 		[HttpPost]
 		public ActionResult Delete(int payment_id)
 		{
