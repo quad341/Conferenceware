@@ -18,18 +18,20 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /CompanyPerson/
-
+		//
 		public ActionResult Index()
 		{
 			// we don't want to deal with lists of all company people; really we just want to manage
 			// companies and then related details
 			return RedirectToAction("Index", "Company");
 		}
+
 		//
 		// GET: /CompanyPerson/Create
-
+		//
 		public ActionResult Create(int id)
 		{
 			var company = _repository.GetCompanyById(id);
@@ -43,7 +45,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /CompanyPerson/Create
-
+		//
 		[HttpPost]
 		public ActionResult Create(CompanyPerson cpToCreate)
 		{
@@ -58,7 +60,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /CompanyPerson/Edit/5
-
+		//
 		public ActionResult Edit(int id)
 		{
 			var cp = _repository.GetCompanyPersonById(id);
@@ -71,7 +73,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /CompanyPerson/Edit/5
-
+		//
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
@@ -89,6 +91,9 @@ namespace Conferenceware.Controllers
 			return View("Edit", cp);
 		}
 
+		//
+		// POST: /CompanyPerson/Delete/5
+		//
 		[HttpPost]
 		public ActionResult Delete(int person_id)
 		{
