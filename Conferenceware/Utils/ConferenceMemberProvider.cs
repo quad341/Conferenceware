@@ -30,7 +30,7 @@ namespace Conferenceware.Utils
 			}
 			// Find the staff member
 			var staffmember = _repository.GetAllStaffMembers().SingleOrDefault(x => x.auth_name == username);
-			// If no staff member found with this name, false
+			// If no staff member found with this name or passwords don't match, false
 			if (staffmember == null || !staffmember.VerifyPassword(password))
 			{
 				return false;
