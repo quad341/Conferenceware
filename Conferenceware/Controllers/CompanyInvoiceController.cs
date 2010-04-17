@@ -19,9 +19,10 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /CompanyInvoice/
-
+		//
 		public ActionResult Index()
 		{
 			return RedirectToAction("Index", "Company");
@@ -29,7 +30,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /CompanyInvoice/Create
-
+		//
 		public ActionResult Create(int id)
 		{
 			var company = _repository.GetCompanyById(id);
@@ -53,7 +54,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /CompanyInvoice/Edit/5
-
+		//
 		public ActionResult Edit(int id)
 		{
 			var ci = _repository.GetCompanyInvoiceById(id);
@@ -66,7 +67,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /CompanyInvoice/Edit/5
-
+		//
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
@@ -108,7 +109,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// GET: /CompanyInvoice/Delete/5
-
+		//
 		public ActionResult Delete(int InvoiceId)
 		{
 			var ci = _repository.GetCompanyInvoiceById(InvoiceId);
@@ -121,7 +122,7 @@ namespace Conferenceware.Controllers
 
 		//
 		// POST: /CompanyInvoice/Delete/5
-
+		//
 		[HttpPost]
 		public ActionResult Delete(int id, FormCollection collection)
 		{
