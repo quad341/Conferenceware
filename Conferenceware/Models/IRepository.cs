@@ -217,10 +217,43 @@ namespace Conferenceware.Models
 		void UnRegisterSpeakerForEvent(Speaker speaker, Event ev);
 
 		//Foods
+
+		/// <summary>
+		/// Adds a food item to the list of possible foods.
+		/// Precondition: food must have a valid ID.
+		/// Postcondition: The food item is contained in the repository.
+		/// </summary>
+		/// <param name="food">A Food object with a valid ID from the repository</param>
 		void AddFood(Food food);
+
+		/// <summary>
+		/// Deletes a food item from the repository.
+		/// Precondition: Food must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that food object.
+		/// </summary>
+		/// <param name="food">A Food object with a valid ID from the repository</param>
 		void DeleteFood(Food food);
+
+		/// <summary>
+		/// Delete a food item from the repository.
+		/// Precondition: id is a valid food ID.
+		/// Postcondition: The repository no longer contains a food item with that ID.
+		/// </summary>
+		/// <param name="id">A Food object with a valid ID from the repository</param>
 		void DeleteFood(int id);
+
+		/// <summary>
+		/// Retrieve a Food object.
+		/// Precondition: id is a valid food ID.
+		/// </summary>
+		/// <param name="id">A valid food ID from the repository.</param>
+		/// <returns>A Food object with data from the repository.</returns>
 		Food GetFoodById(int id);
+
+		/// <summary>
+		/// Get all Food objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all Food objects from the data repository.</returns>
 		IQueryable<Food> GetAllFoods();
 
 		//TShirt
