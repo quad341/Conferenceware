@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -127,6 +128,10 @@ namespace Conferenceware.Controllers
 			if (page == null)
 			{
 				return View("PageNotFound");
+			}
+			foreach (var p in _repository.GetAllPages().Where(x => x.parent_id == id))
+			{
+				p.parent_id = page.parent_id;
 			}
 			_repository.DeletePage(page);
 			_repository.Save();

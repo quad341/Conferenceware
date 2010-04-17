@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Conferenceware.Models
 {
@@ -16,6 +15,11 @@ namespace Conferenceware.Models
 		public ConferencewareRepository(ConferencewareDataContext context)
 		{
 			_conferenceware = context;
+		}
+
+		public ConferencewareRepository(string connectionString)
+		{
+			_conferenceware = new ConferencewareDataContext(connectionString);
 		}
 
 		public void AddEvent(Event ev)
@@ -579,6 +583,21 @@ namespace Conferenceware.Models
 		public void Save()
 		{
 			_conferenceware.SubmitChanges();
+		}
+
+		public void CreateDatabase()
+		{
+			_conferenceware.CreateDatabase();
+		}
+
+		public bool DatabaseExists()
+		{
+			return _conferenceware.DatabaseExists();
+		}
+
+		public void DeleteDatabase()
+		{
+			_conferenceware.DeleteDatabase();
 		}
 	}
 

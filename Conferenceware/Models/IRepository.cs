@@ -328,5 +328,9 @@ namespace Conferenceware.Models
 		/// </summary>
 		void Save();
 
+		void CreateDatabase();
+		bool DatabaseExists();
+		void DeleteDatabase();
+
 	}
 }

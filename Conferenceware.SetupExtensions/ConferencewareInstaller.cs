@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using Conferenceware.Models;
 
 namespace Conferenceware.SetupExtensions
 {
@@ -31,14 +32,21 @@ namespace Conferenceware.SetupExtensions
 
 		private void AddUser(string username, string password, SqlConnection sqlCon)
 		{
-			SqlCommand cmd = sqlCon.CreateCommand();
-			cmd.Connection = sqlCon;
-			cmd.CommandText = @"INSERT INTO People (name, email, phone_number) VALUES ('name','email@email.edu', '555-555-5555')";
-			cmd.CommandType = CommandType.Text;
-			cmd.ExecuteNonQuery();
-			cmd.CommandText = @"INSERT INTO StaffMembers (person_id, auth_name) VALUES (1,'" + username + "')";
-			cmd.CommandType = CommandType.Text;
-			cmd.ExecuteNonQuery();
+			var person = new People
+							{
+								email = "admin@local.com",
+								name = "Admin",
+								phone_number = "555-555-5555"
+							};
+			var sm = new StaffMember
+						{
+							auth_name = username,
+							People = person
+						};
+			sm.SetPassword(password);
+			var repo = new ConferencewareRepository(sqlCon.ConnectionString);
+			repo.AddStaffMember(sm);
+			repo.Save();
 		}
 
 		// from http://www.codeproject.com/KB/install/sqlscriptinstall.aspx
