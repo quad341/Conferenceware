@@ -33,6 +33,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7E31A1DE83545FF2301AFC198A06F21A"
+        "OwnerKey" = "8:_F80EE429ACC94CCE91689434F7F39081"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9823F3F2D98BA1C41951A6792D2BB962"
         "OwnerKey" = "8:_BFB819AB99E449AABF00FBB27F27AEE7"
         "MsmSig" = "8:_UNDEFINED"
@@ -53,6 +59,18 @@
         {
         "MsmKey" = "8:_A8940CA6C2B662AB430EC45A4F9F644B"
         "OwnerKey" = "8:_E039CAFECF2D18EDD9430AE20AE125A4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A8940CA6C2B662AB430EC45A4F9F644B"
+        "OwnerKey" = "8:_F80EE429ACC94CCE91689434F7F39081"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A8940CA6C2B662AB430EC45A4F9F644B"
+        "OwnerKey" = "8:_7E31A1DE83545FF2301AFC198A06F21A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -105,14 +123,38 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F148E2A64525F08D339BB9BBBAA817D9"
+        "MsmKey" = "8:_F148E2A64525F08D339BB9BBBAA817D9"
+        "OwnerKey" = "8:_7E31A1DE83545FF2301AFC198A06F21A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F148E2A64525F08D339BB9BBBAA817D9"
+        "OwnerKey" = "8:_F80EE429ACC94CCE91689434F7F39081"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F80EE429ACC94CCE91689434F7F39081"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BFB819AB99E449AABF00FBB27F27AEE7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F80EE429ACC94CCE91689434F7F39081"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7E31A1DE83545FF2301AFC198A06F21A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -145,6 +187,12 @@
         "OwnerKey" = "8:_2161353D27F603C81E334711644C7736"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F148E2A64525F08D339BB9BBBAA817D9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -163,6 +211,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -179,12 +248,47 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_D8EB33E92B0A4DF9A68EE4B9EB9FF412"
+            {
+            "Name" = "8:Primary output from Conferenceware.SetupExtensions (Active)"
+            "Condition" = "8:"
+            "Object" = "8:_F80EE429ACC94CCE91689434F7F39081"
+            "FileType" = "3:1"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_B10346ED_1D7A_40E0_9889_53A2F052ABAA"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/UserName=[USERNAME] /Password=[PASSWORD]"
+            }
         }
         "DefaultFeature"
         {
@@ -225,6 +329,37 @@
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_B712B96ABC16434187D4929281D7E1E4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E31A1DE83545FF2301AFC198A06F21A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Conferenceware, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_7E31A1DE83545FF2301AFC198A06F21A"
+                    {
+                    "Name" = "8:Conferenceware.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Conferenceware.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DB37EB442C154DEFBB74376F945C57B2"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -467,13 +602,6 @@
         }
         "LaunchCondition"
         {
-            "{836E08B8-0285-4809-BA42-01DB6754A45D}:_4EF200CBD74F4A6891A0BCA4A2D2D1EE"
-            {
-            "Name" = "8:MSSQL Condition"
-            "Condition" = "8:MSSQLEXISTS"
-            "Message" = "8:Microsoft SQL Server must be installed with a database called Conferenceware"
-            "InstallUrl" = "8:"
-            }
             "{836E08B8-0285-4809-BA42-01DB6754A45D}:_DF1CA2119CD64D4B94CE993CF1624ACE"
             {
             "Name" = "8:IIS Condition"
@@ -492,12 +620,6 @@
             "Value" = "8:MajorVersion"
             "Property" = "8:IISVERSION"
             }
-            "{B8A5E33E-1082-4FE2-AC2E-1197791E9409}:_D245AE0654C3434B9A67FEDA2A578A41"
-            {
-            "Name" = "8:Search for MSSQL"
-            "ComponentId" = "8:F3494AB6-6900-41C6-AF57-823626827ED8"
-            "Property" = "8:MSSQLEXISTS"
-            }
         }
         "MsiBootstrapper"
         {
@@ -507,19 +629,19 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Conferenceware.Setup"
-        "ProductCode" = "8:{78B8F24A-8C2E-4D6B-8216-E566BC675DF2}"
-        "PackageCode" = "8:{5526A712-28E9-496A-ABB9-05900BE0BBC0}"
+        "ProductName" = "8:Conferenceware"
+        "ProductCode" = "8:{EB2D98DE-B882-4B66-8FBF-B8528537ABC3}"
+        "PackageCode" = "8:{03CE616C-6FAD-40B1-BE36-F6AAA95A9713}"
         "UpgradeCode" = "8:{01D67509-D5AE-4A70-907A-B89D9F13CF3F}"
         "RestartWWWService" = "11:TRUE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:0.8"
         "Manufacturer" = "8:ACM"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Conferenceware.Setup"
+        "Title" = "8:Conferenceware"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Conferenceware"
         "Keywords" = "8:"
@@ -698,7 +820,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_6C28AF6DC62642429B1BDA2036800155"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Installation Address"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -720,7 +842,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_BA9ACE6048014D2897319FABD25F2E9A"
                     {
-                    "Sequence" = "3:300"
+                    "Sequence" = "3:200"
                     "DisplayName" = "8:Textboxes   (A)"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1293,6 +1415,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{2CBE9479-CAAA-4A28-828F-180E876D53CC}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F80EE429ACC94CCE91689434F7F39081"
+            {
+            "SourcePath" = "8:..\\Conferenceware.SetupExtensions\\obj\\Debug\\Conferenceware.SetupExtensions.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DB37EB442C154DEFBB74376F945C57B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{8ADE3F74-9D79-40BE-9E60-4C9A3CDE76F4}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {
