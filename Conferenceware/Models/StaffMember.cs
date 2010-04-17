@@ -22,7 +22,7 @@ namespace Conferenceware.Models
 			password_hash = MakePassword(password);
 		}
 
-		private string MakePassword(string password)
+		internal string MakePassword(string password)
 		{
 			var toHash = (STATIC_SEED + password + seed);
 			return Sha1(toHash);

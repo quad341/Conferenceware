@@ -15,7 +15,7 @@ namespace Conferenceware.SetupExtensions
 			// now show thing for adding database
 			var username = Context.Parameters["UserName"];
 			var password = Context.Parameters["Password"];
-			var message = "User successfully added";
+			var message = "User successfully added with password " + password;
 			if (username == null || password == null)
 			{
 				message = "Using admin/password for authentication";
@@ -35,10 +35,7 @@ namespace Conferenceware.SetupExtensions
 		private static void RemoveDb(string connString)
 		{
 			var repo = new ConferencewareRepository(connString);
-			if (repo.DatabaseExists())
-			{
-				repo.DeleteDatabase();
-			}
+			repo.DeleteDatabase();
 		}
 
 		private static void InstallDbAndAddUser(string username, string password, string connString)

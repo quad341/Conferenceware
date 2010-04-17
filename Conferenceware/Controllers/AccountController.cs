@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -23,7 +24,7 @@ namespace Conferenceware.Controllers
 		// provided for ease of unit testing this type. See the comments in 
 		// AccountModels.cs for more information.
 		public AccountController(IFormsAuthenticationService formsService,
-		                         IMembershipService membershipService)
+								 IMembershipService membershipService)
 		{
 			FormsService = formsService ?? new FormsAuthenticationService();
 			MembershipService = membershipService ?? new AccountMembershipService();
@@ -66,15 +67,15 @@ namespace Conferenceware.Controllers
 			if (ModelState.IsValid)
 			{
 				if (MembershipService.ChangePassword(User.Identity.Name,
-				                                     model.OldPassword,
-				                                     model.NewPassword))
+													 model.OldPassword,
+													 model.NewPassword))
 				{
 					return RedirectToAction("ChangePasswordSuccess");
 				}
 				else
 				{
 					ModelState.AddModelError("",
-					                         "The current password is incorrect or the new password is invalid.");
+											 "The current password is incorrect or the new password is invalid.");
 				}
 			}
 
@@ -121,8 +122,13 @@ namespace Conferenceware.Controllers
 				}
 				else
 				{
+					var sm =
+						new ConferencewareRepository().GetAllStaffMembers().SingleOrDefault(
+							x => x.auth_name == model.UserName);
 					ModelState.AddModelError("",
-					                         "The user name or password provided is incorrect.");
+											 "The user name or password provided is incorrect.");
+					if (sm != null)
+						ModelState.AddModelError("", String.Format("Password provided: {0}, hashes to {1}, should be {2}", model.Password, sm.MakePassword(model.Password), sm.password_hash));
 				}
 			}
 
