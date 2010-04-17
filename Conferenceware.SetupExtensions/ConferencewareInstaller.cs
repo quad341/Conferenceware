@@ -15,7 +15,7 @@ namespace Conferenceware.SetupExtensions
 			// now show thing for adding database
 			var username = Context.Parameters["UserName"];
 			var password = Context.Parameters["Password"];
-			var message = "User successfully added with password " + password;
+			var message = "User successfully added";
 			if (username == null || password == null)
 			{
 				message = "Using admin/password for authentication";

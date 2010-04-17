@@ -54,40 +54,6 @@ namespace Conferenceware.Controllers
 			base.OnActionExecuting(filterContext);
 		}
 
-		[Authorize]
-		public ActionResult ChangePassword()
-		{
-			return View();
-		}
-
-		[Authorize]
-		[HttpPost]
-		public ActionResult ChangePassword(ChangePasswordModel model)
-		{
-			if (ModelState.IsValid)
-			{
-				if (MembershipService.ChangePassword(User.Identity.Name,
-													 model.OldPassword,
-													 model.NewPassword))
-				{
-					return RedirectToAction("ChangePasswordSuccess");
-				}
-				else
-				{
-					ModelState.AddModelError("",
-											 "The current password is incorrect or the new password is invalid.");
-				}
-			}
-
-			// If we got this far, something failed, redisplay form
-			return View(model);
-		}
-
-		public ActionResult ChangePasswordSuccess()
-		{
-			return View();
-		}
-
 		public ActionResult LogOff()
 		{
 			FormsService.SignOut();
@@ -127,37 +93,6 @@ namespace Conferenceware.Controllers
 							x => x.auth_name == model.UserName);
 					ModelState.AddModelError("",
 											 "The user name or password provided is incorrect.");
-					if (sm != null)
-						ModelState.AddModelError("", String.Format("Password provided: {0}, hashes to {1}, should be {2}", model.Password, sm.MakePassword(model.Password), sm.password_hash));
-				}
-			}
-
-			// If we got this far, something failed, redisplay form
-			return View(model);
-		}
-
-		public ActionResult Register()
-		{
-			return View();
-		}
-
-		[HttpPost]
-		public ActionResult Register(RegisterModel model)
-		{
-			if (ModelState.IsValid)
-			{
-				// Attempt to register the user
-				MembershipCreateStatus createStatus =
-					MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-
-				if (createStatus == MembershipCreateStatus.Success)
-				{
-					FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-					return RedirectToAction("Index", "Home");
-				}
-				else
-				{
-					ModelState.AddModelError("", ErrorCodeToString(createStatus));
 				}
 			}
 

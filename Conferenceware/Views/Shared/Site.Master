@@ -26,7 +26,7 @@
     <div class="page">
         <div id="header">
             <div id="logo">
-                <a href="/"></a>
+                <span class="hidden"><%= Html.ActionLink("Home", "Index", "Home") %></span>
             </div>
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
@@ -39,11 +39,7 @@
                     <li>
                         <%= Html.ActionLink("Speakers", "Index", "Speaker") %></li>
                     <li>
-                        <%= Html.ActionLink("Events", "Index", "Event") %></li>
-                    <li>
                         <%= Html.ActionLink("Attendees", "Index", "Attendee") %></li>
-                    <li>
-                        <%= Html.ActionLink("Companies", "Index", "Company")%></li>
                     <li><a href="#">Register</a>
                         <ul class="submenu">
                             <li>
