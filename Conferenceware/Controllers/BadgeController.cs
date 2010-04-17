@@ -23,14 +23,18 @@ namespace Conferenceware.Controllers
 			_sd = SettingsData.FromCurrent(
 				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 		}
+
 		//
 		// GET: /Badge/
-
+		//
 		public ActionResult Index()
 		{
 			return View("Index");
 		}
 
+		//
+		// GET: /Badge/AttendeeBadges
+		//
 		public ActionResult AttendeeBadges()
 		{
 			return new BadgePdfResult(
@@ -39,6 +43,9 @@ namespace Conferenceware.Controllers
 				"AttendeeBadges.pdf");
 		}
 
+		//
+		// GET: /Badge/MechmaniaBadges
+		//
 		public ActionResult MechmaniaBadges()
 		{
 			var mmpeople = new List<People>();
@@ -54,6 +61,9 @@ namespace Conferenceware.Controllers
 				"MechmaniaBadges.pdf");
 		}
 
+		//
+		// GET: /Badge/SpeakerBadges
+		//
 		public ActionResult SpeakerBadges()
 		{
 			return new BadgePdfResult(
@@ -62,6 +72,9 @@ namespace Conferenceware.Controllers
 				"SpeakerBadges.pdf");
 		}
 
+		//
+		// GET: /Badge/SponsorBadges
+		//
 		public ActionResult SponsorBadges()
 		{
 			return new BadgePdfResult(
@@ -70,6 +83,9 @@ namespace Conferenceware.Controllers
 				"SponsorBadges.pdf");
 		}
 
+		//
+		// GET: /Badges/StaffBadges
+		//
 		public ActionResult StaffBadges()
 		{
 			return new BadgePdfResult(
@@ -78,6 +94,9 @@ namespace Conferenceware.Controllers
 				"StaffBadges.pdf");
 		}
 
+		//
+		// GET: /Badges/Volunteer
+		//
 		public ActionResult VolunteerBadges()
 		{
 			return new BadgePdfResult(
