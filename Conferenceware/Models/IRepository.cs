@@ -217,38 +217,203 @@ namespace Conferenceware.Models
 		void UnRegisterSpeakerForEvent(Speaker speaker, Event ev);
 
 		//Foods
+
+		/// <summary>
+		/// Adds a food item to the list of possible foods.
+		/// Precondition: food must have a valid ID.
+		/// Postcondition: The food item is contained in the repository.
+		/// </summary>
+		/// <param name="food">A Food object with a valid ID from the repository</param>
 		void AddFood(Food food);
+
+		/// <summary>
+		/// Deletes a food item from the repository.
+		/// Precondition: Food must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that food object.
+		/// </summary>
+		/// <param name="food">A Food object with a valid ID from the repository</param>
 		void DeleteFood(Food food);
+
+		/// <summary>
+		/// Delete a food item from the repository.
+		/// Precondition: id is a valid food ID.
+		/// Postcondition: The repository no longer contains a food item with that ID.
+		/// </summary>
+		/// <param name="id">A Food object with a valid ID from the repository</param>
 		void DeleteFood(int id);
+
+		/// <summary>
+		/// Retrieve a Food object.
+		/// Precondition: id is a valid food ID.
+		/// </summary>
+		/// <param name="id">A valid food ID from the repository.</param>
+		/// <returns>A valid Food ID.</returns>
 		Food GetFoodById(int id);
+
+		/// <summary>
+		/// Get all Food objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all Food objects from the data repository.</returns>
 		IQueryable<Food> GetAllFoods();
 
 		//TShirt
+
+		/// <summary>
+		/// Adds a TShirtSize item to the list of possible TShirtSizes.
+		/// Precondition: t must have a valid ID.
+		/// Postcondition: The TShirtSize item is contained in the repository.
+		/// </summary>
+		/// <param name="t">A TShirtSize object with a valid ID from the repository</param>
 		void AddTShirtSize(TShirtSize t);
+
+		/// <summary>
+		/// Deletes a TShirtSize item from the repository.
+		/// Precondition: tshirtsize must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that TShirtSize object.
+		/// </summary>
+		/// <param name="tshirtsize">A TShirtSize object with a valid ID from the repository</param>
 		void DeleteTShirtSize(TShirtSize tshirtsize);
+
+		/// <summary>
+		/// Delete a TShirtSize item from the repository.
+		/// Precondition: id is a valid TShirtSize ID.
+		/// Postcondition: The repository no longer contains a TShirtSize item with that ID.
+		/// </summary>
+		/// <param name="id">A valid TShirtSize ID.</param>
 		void DeleteTShirtSize(int id);
+
+		/// <summary>
+		/// Retrieve a TShirtSize object.
+		/// Precondition: id is a valid TShirtSize ID.
+		/// </summary>
+		/// <param name="id">A valid TShirtSize ID from the repository.</param>
+		/// <returns>A TShirtSize object with data from the repository.</returns>
 		TShirtSize GetTShirtSizeById(int id);
+
+		/// <summary>
+		/// Get all TShirtSizes objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all TShirtsize objects from the data repository.</returns>
 		IQueryable<TShirtSize> GetAllTShirtSizes();
 
 		//Company
+
+		/// <summary>
+		/// Adds a Company item to the repository.
+		/// Precondition: c must have a valid ID.
+		/// Postcondition: The Company item is contained in the repository.
+		/// </summary>
+		/// <param name="c">A Company object with a valid ID from the repository</param>
 		void AddCompany(Company c);
+
+		/// <summary>
+		/// Deletes a Company item from the repository.
+		/// Precondition: c must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that Company object.
+		/// </summary>
+		/// <param name="c">A Company object with a valid ID from the repository</param>
 		void DeleteCompany(Company c);
+
+		/// <summary>
+		/// Delete a Company item from the repository.
+		/// Precondition: id is a valid Company ID.
+		/// Postcondition: The repository no longer contains a Company item with that ID.
+		/// </summary>
+		/// <param name="id">A valid Company ID.</param>
 		void DeleteCompany(int id);
+
+		/// <summary>
+		/// Retrieve a Company object.
+		/// Precondition: id is a valid Company ID.
+		/// </summary>
+		/// <param name="id">A valid Company ID from the repository.</param>
+		/// <returns>A Company object with data from the repository.</returns>
 		Company GetCompanyById(int id);
+
+		/// <summary>
+		/// Get all Company objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all Company objects from the data repository.</returns>
 		IQueryable<Company> GetAllCompanies();
 
 		//CompanyPerson
+
+		/// <summary>
+		/// Adds a CompanyPerson item to the repository.
+		/// Precondition: cp must have a valid ID.
+		/// Postcondition: The CompanyPerson item is contained in the repository.
+		/// </summary>
+		/// <param name="cp">A CompanyPerson object with a valid ID from the repository</param>
 		void AddCompanyPerson(CompanyPerson cp);
+
+		/// <summary>
+		/// Deletes a CompanyPerson item from the repository.
+		/// Precondition: cp must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that CompanyPerson object.
+		/// </summary>
+		/// <param name="cp">A CompanyPerson object with a valid ID from the repository</param>
 		void DeleteCompanyPerson(CompanyPerson cp);
+
+		/// <summary>
+		/// Delete a CompanyPerson item from the repository.
+		/// Precondition: id is a valid CompanyPerson ID.
+		/// Postcondition: The repository no longer contains a CompanyPerson item with that ID.
+		/// </summary>
+		/// <param name="id">A valid CompanyPerson ID.</param>
 		void DeleteCompanyPerson(int id);
+
+		/// <summary>
+		/// Retrieve a CompanyPerson object.
+		/// Precondition: id is a valid CompanyPerson ID.
+		/// </summary>
+		/// <param name="id">A valid CompanyPerson ID from the repository.</param>
+		/// <returns>A CompanyPerson object with data from the repository.</returns>
 		CompanyPerson GetCompanyPersonById(int id);
+
+		/// <summary>
+		/// Get all CompanyPerson objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all CompanyPerson objects from the data repository.</returns>
 		IQueryable<CompanyPerson> GetAllCompanyPersons();
 
 		//CompanyInvoice
+
+		/// <summary>
+		/// Adds a CompanyInvoice item to the repository.
+		/// Precondition: ci must have a valid ID.
+		/// Postcondition: The CompanyInvoice item is contained in the repository.
+		/// </summary>
+		/// <param name="ci">A CompanyInvoice object with a valid ID from the repository</param>
 		void AddCompanyInvoice(CompanyInvoice ci);
+
+		/// <summary>
+		/// Deletes a CompanyInvoice item from the repository.
+		/// Precondition: ci must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that CompanyInvoice object.
+		/// </summary>
+		/// <param name="ci">A CompanyInvoice object with a valid ID from the repository</param>
 		void DeleteCompanyInvoice(CompanyInvoice ci);
+
+		/// <summary>
+		/// Delete a CompanyInvoice item from the repository.
+		/// Precondition: id is a valid CompanyInvoice ID.
+		/// Postcondition: The repository no longer contains a CompanyInvoice item with that ID.
+		/// </summary>
+		/// <param name="id">A valid CompanyInvoice ID.</param>
 		void DeleteCompanyInvoice(int id);
+
+		/// <summary>
+		/// Retrieve a CompanyInvoice object.
+		/// Precondition: id is a valid CompanyInvoice ID.
+		/// </summary>
+		/// <param name="id">A valid CompanyInvoice ID from the repository.</param>
+		/// <returns>A CompanyInvoice object with data from the repository.</returns>
 		CompanyInvoice GetCompanyInvoiceById(int id);
+
+		/// <summary>
+		/// Get all CompanyInvoice objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all CompanyInvoice objects from the data repository.</returns>
 		IQueryable<CompanyInvoice> GetAllCompanyInvoices();
 
 		//CompanyInvoiceItem
