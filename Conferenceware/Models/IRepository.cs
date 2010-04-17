@@ -257,10 +257,43 @@ namespace Conferenceware.Models
 		IQueryable<Food> GetAllFoods();
 
 		//TShirt
+
+		/// <summary>
+		/// Adds a TShirtSize item to the list of possible TShirtSizes.
+		/// Precondition: t must have a valid ID.
+		/// Postcondition: The TShirtSize item is contained in the repository.
+		/// </summary>
+		/// <param name="t">A TShirtSize object with a valid ID from the repository</param>
 		void AddTShirtSize(TShirtSize t);
+
+		/// <summary>
+		/// Deletes a TShirtSize item from the repository.
+		/// Precondition: tshirtsize must have a valid ID from the repository.
+		/// Postcondition: The repository no longer contains that TShirtSize object.
+		/// </summary>
+		/// <param name="tshirtsize">A TShirtSize object with a valid ID from the repository</param>
 		void DeleteTShirtSize(TShirtSize tshirtsize);
+
+		/// <summary>
+		/// Delete a TShirtSize item from the repository.
+		/// Precondition: id is a valid TShirtSize ID.
+		/// Postcondition: The repository no longer contains a TShirtSize item with that ID.
+		/// </summary>
+		/// <param name="id">A TShirtSize object with a valid ID from the repository</param>
 		void DeleteTShirtSize(int id);
+
+		/// <summary>
+		/// Retrieve a TShirtSize object.
+		/// Precondition: id is a valid food ID.
+		/// </summary>
+		/// <param name="id">A valid TShirtSize ID from the repository.</param>
+		/// <returns>A TShirtSize object with data from the repository.</returns>
 		TShirtSize GetTShirtSizeById(int id);
+
+		/// <summary>
+		/// Get all TShirtSizes objects from the repository.
+		/// </summary>
+		/// <returns>A List object containing all TShirtsize objects from the data repository.</returns>
 		IQueryable<TShirtSize> GetAllTShirtSizes();
 
 		//Company
