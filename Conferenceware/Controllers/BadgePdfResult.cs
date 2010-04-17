@@ -34,6 +34,10 @@ namespace Conferenceware.Controllers
 			set;
 		}
 
+		//
+		// This class is used to return a special pdf type instead of a view
+		// this is where that result is processed and shown to the user
+		//
 		public override void ExecuteResult(ControllerContext context)
 		{
 			context.HttpContext.Response.Clear();
