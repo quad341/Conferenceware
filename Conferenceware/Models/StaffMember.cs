@@ -13,7 +13,8 @@ namespace Conferenceware.Models
 
 		public bool VerifyPassword(string toCheck)
 		{
-			return MakePassword(toCheck) == password_hash;
+			//TODO: this should _NOT_ require trim, but on server 2008, hashes come out as 36 characters
+			return MakePassword(toCheck) == password_hash.Trim();
 		}
 
 		public void SetPassword(string password)

@@ -105,7 +105,19 @@ namespace Conferenceware.Controllers
 			return View("Edit", MakeEditDataFromEvent(ev));
 		}
 
-		public ActionResult Delete(int id)
+        public ActionResult Delete(int id)
+        {
+            Event ev = _repository.GetEventById(id);
+            if (ev == null)
+            {
+                return View("EventNotFound");
+            }
+            return View("Delete", ev);
+        }
+
+
+       [HttpPost]
+		public ActionResult Delete(int id,FormCollection collection)
 		{
 			Event ev = _repository.GetEventById(id);
 			if (ev == null)
@@ -114,7 +126,16 @@ namespace Conferenceware.Controllers
 			}
 			try
 			{
-				//TODO: get rid of dependencies
+				// Unlink speakers from this event
+                foreach (var speaker in ev.Speakers)
+                {
+                    _repository.UnRegisterSpeakerForEvent(speaker, ev);
+                }
+                // Unlink attendees from this event
+                foreach (var attendee in ev.Attendees)
+                {
+                    _repository.UnRegisterAttendeeForEvent(attendee, ev);
+                }
 				var name = ev.name;
 				_repository.DeleteEvent(ev);
 				_repository.Save();
