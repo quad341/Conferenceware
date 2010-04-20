@@ -635,18 +635,57 @@ namespace Conferenceware.Models
 		IQueryable<StaffMember> GetAllStaffMembers();
 
 		//EventContentLink
+		/// <summary>
+		/// Adds an event content link
+		/// </summary>
+		/// <param name="ecl">The event content link to add</param>
 		void AddEventContentLink(EventContentLink ecl);
+		/// <summary>
+		/// Deletes an event content link
+		/// </summary>
+		/// <param name="ecl">The event content link to delete</param>
 		void DeleteEventContentLink(EventContentLink ecl);
+		/// <summary>
+		/// Deletes an event content link
+		/// </summary>
+		/// <param name="id">The event content link's id to delete</param>
 		void DeleteEventContentLink(int id);
+		/// <summary>
+		/// Gets and event content link with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the event content link to find</param>
+		/// <returns>The event content link with the specified id or null</returns>
 		EventContentLink GetEventContentLinkById(int id);
+		/// <summary>
+		/// Gets all event content links
+		/// </summary>
+		/// <returns>All the event content links</returns>
 		IQueryable<EventContentLink> GetAllEventContentLinks();
 
 		//People
+		/// <summary>
+		/// Gets a people object with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the people object to find</param>
+		/// <returns>The people object or null</returns>
 		People GetPeopleById(int id);
+		/// <summary>
+		/// Gets all people
+		/// </summary>
+		/// <returns>All people</returns>
 		IQueryable<People> GetAllPeople();
 
 		//VolunteersVolunteerTimeSlot
+		/// <summary>
+		/// Gets volunteers volunteer timeslot with a specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the volunteers volunteer time slot to find</param>
+		/// <returns>The volunteers volunteer timeslot or null</returns>
 		VolunteersVolunteerTimeSlot GetVolunteersVolunteerTimeSlotById(int id);
+		/// <summary>
+		/// Gets all volunteers volunteer time slots
+		/// </summary>
+		/// <returns>All volunteers volunteer time slots</returns>
 		IQueryable<VolunteersVolunteerTimeSlot> GetAllVolunteersVolunteerTimeSlots();
 
 		//General
@@ -655,8 +694,19 @@ namespace Conferenceware.Models
 		/// </summary>
 		void Save();
 
+		//Database stuff
+		/// <summary>
+		/// Creates the underlying database
+		/// </summary>
 		void CreateDatabase();
+		/// <summary>
+		/// Whether or not the underlying database exists
+		/// </summary>
+		/// <returns>Whether or not the underlying database exists</returns>
 		bool DatabaseExists();
+		/// <summary>
+		/// Deletes the underlying database
+		/// </summary>
 		void DeleteDatabase();
 
 	}
