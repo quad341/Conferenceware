@@ -529,16 +529,47 @@ namespace Conferenceware.Models
 		IQueryable<Volunteer> GetAllVolunteers();
 
 		//Register volunteers for timeslots
+		/// <summary>
+		/// Registers a volunteer for a volunteer time slot
+		/// </summary>
+		/// <param name="v">The volunteer to register</param>
+		/// <param name="vts">The volunteer time slot to register the volunteer to</param>
 		void RegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts);
 
+		/// <summary>
+		/// Removes the registration for a volunteer to a timeslot
+		/// </summary>
+		/// <param name="v">The volunteer to unregister</param>
+		/// <param name="vts">The volunteer time slot to disconnect</param>
 		void UnRegisterVolunteerForVolunteerTimeSlot(Volunteer v,
 													 VolunteerTimeSlot vts);
 
 		//MechManiaTeam
+		/// <summary>
+		/// Adds a mechmania team
+		/// </summary>
+		/// <param name="mmt">The mechmania team to add</param>
 		void AddMechManiaTeam(MechManiaTeam mmt);
+		/// <summary>
+		/// Deletes a mechmania team
+		/// </summary>
+		/// <param name="mmt">The mechmania team to delete</param>
 		void DeleteMechManiaTeam(MechManiaTeam mmt);
+		/// <summary>
+		/// Deletes a mechmania team
+		/// </summary>
+		/// <param name="id">The id of the mechmania team to delete</param>
 		void DeleteMechManiaTeam(int id);
+		/// <summary>
+		/// Gets a specified mechmania team with the given id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the team to find</param>
+		/// <returns>The specified mechmania team or null</returns>
 		MechManiaTeam GetMechManiaTeamById(int id);
+		/// <summary>
+		/// Gets all the mechmania teams
+		/// </summary>
+		/// <returns>All the mechmania teams</returns>
 		IQueryable<MechManiaTeam> GetAllMechManiaTeams();
 
 		//Page
