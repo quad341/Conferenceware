@@ -573,11 +573,37 @@ namespace Conferenceware.Models
 		IQueryable<MechManiaTeam> GetAllMechManiaTeams();
 
 		//Page
+		/// <summary>
+		/// Adds a page
+		/// </summary>
+		/// <param name="page">The page to add</param>
 		void AddPage(Page page);
+		/// <summary>
+		/// Deletes a page
+		/// </summary>
+		/// <param name="page">The page to delete</param>
 		void DeletePage(Page page);
+		/// <summary>
+		/// Deletes a page
+		/// </summary>
+		/// <param name="id">The id of the page to delete</param>
 		void DeletePage(int id);
+		/// <summary>
+		/// Gets a page with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the page to select</param>
+		/// <returns>The page or null</returns>
 		Page GetPageById(int id);
+		/// <summary>
+		/// Gets a page with the specified title or null if not found
+		/// </summary>
+		/// <param name="title">The title of the page to find</param>
+		/// <returns>The specified page or null</returns>
 		Page GetPageByTitle(string title);
+		/// <summary>
+		/// Gets all the pages
+		/// </summary>
+		/// <returns>All the pages</returns>
 		IQueryable<Page> GetAllPages();
 
 		//StaffMember
