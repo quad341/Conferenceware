@@ -60,6 +60,8 @@
     <Compile Include="Controllers\FoodControllerTest.cs" />
     <Compile Include="Controllers\LocationControllerTests.cs" />
     <Compile Include="Models\LocationTests.cs" />
+    <Compile Include="Models\RepositoryEventTests.cs" />
+    <Compile Include="Models\RepositoryFactory.cs" />
     <Compile Include="Models\RepositoryLocationTests.cs" />
     <Compile Include="Models\RepositoryTimeSlotTests.cs" />
     <Compile Include="Models\RepositoryTShirtSizeTests.cs" />

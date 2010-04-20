@@ -13,7 +13,7 @@ namespace Conferenceware.Tests.Models
 		/// <summary>
 		/// Repository to use for testing
 		/// </summary>
-		private readonly IRepository _repository = new TestRepository();
+		private readonly IRepository _repository = RepositoryFactory.GetRepo();
 		//private IRepository _repository = new ConferencewareRepository();
 
 		/// <summary>
