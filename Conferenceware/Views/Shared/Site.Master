@@ -17,6 +17,10 @@
 
     <script src="<%= Url.Content("~/Scripts/jquery-ui-1.7.2.custom.min.js") %>" type="text/javascript"></script>
     
+    <script src="<%= Url.Content("~/Scripts/jquery_ui_datepicker.js") %>" type="text/javascript"></script>
+    
+    <script src="<%= Url.Content("~/Scripts/timepicker.js") %>" type="text/javascript"></script>
+    
     <script src="<%= Url.Content("~/Scripts/site-global.js") %>" type="text/javascript"></script>
     
 
@@ -26,7 +30,7 @@
     <div class="page">
         <div id="header">
             <div id="logo">
-                <span class="hidden"><%= Html.ActionLink("Home", "Index", "Home") %></span>
+                <a href="<%= Url.Content("~/") %>" title="Home"></a>
             </div>
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
@@ -36,10 +40,6 @@
                 <ul id="menu">
                     <li>
                         <%= Html.ActionLink("Schedule", "Index", "Schedule") %></li>
-                    <li>
-                        <%= Html.ActionLink("Speakers", "Index", "Speaker") %></li>
-                    <li>
-                        <%= Html.ActionLink("Attendees", "Index", "Attendee") %></li>
                     <li><a href="#">Register</a>
                         <ul class="submenu">
                             <li>
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div id="main">
-            <div class="error">
+            <div class="ui-state-highlight">
                 <%= TempData["Message"]%></div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>

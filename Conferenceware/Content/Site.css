@@ -1,11 +1,17 @@
-﻿@import url('./reset.css');
+﻿/*@import url('./reset.css');*/
 @import url('./south-street/jquery-ui-1.7.2.custom.css');
+@import url('./timepicker.css');
 
 
 /* main site structure */
 body 
 {
 	
+}
+
+td
+{
+    background: #ddd;
 }
 
 .hidden

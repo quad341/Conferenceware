@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -36,7 +37,12 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Create()
 		{
-			return View("Create", new TimeSlot());
+			var ts = new TimeSlot
+						{
+							start_time = DateTime.Now,
+							end_time = DateTime.Now
+						};
+			return View("Create", ts);
 		}
 
 		//
