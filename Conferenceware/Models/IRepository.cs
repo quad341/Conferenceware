@@ -417,24 +417,87 @@ namespace Conferenceware.Models
 		IQueryable<CompanyInvoice> GetAllCompanyInvoices();
 
 		//CompanyInvoiceItem
+		/// <summary>
+		/// Adds a company invoice item
+		/// </summary>
+		/// <param name="cii">The item to add</param>
 		void AddCompanyInvoiceItem(CompanyInvoiceItem cii);
+		/// <summary>
+		/// Delete a company invoice item
+		/// </summary>
+		/// <param name="cii">The item to delete</param>
 		void DeleteCompanyInvoiceItem(CompanyInvoiceItem cii);
+		/// <summary>
+		/// Delete a company invoice item
+		/// </summary>
+		/// <param name="id">The id of the item to delete</param>
 		void DeleteCompanyInvoiceItem(int id);
+		/// <summary>
+		/// Gets a company invoice item with the given id or null
+		/// </summary>
+		/// <param name="id">The id to search for</param>
+		/// <returns>The company invoice item with the given id or null</returns>
 		CompanyInvoiceItem GetCompanyInvoiceItemById(int id);
+		/// <summary>
+		/// Gets all the company invoice items
+		/// </summary>
+		/// <returns>All of the company invoice items</returns>
 		IQueryable<CompanyInvoiceItem> GetAllCompanyInvoiceItems();
 
 		//CompanyPayment
+		/// <summary>
+		/// Adds a company payment
+		/// </summary>
+		/// <param name="cp">The payment to add</param>
 		void AddCompanyPayment(CompanyPayment cp);
+		/// <summary>
+		/// Deletes a company payment
+		/// </summary>
+		/// <param name="cp">The payment to delete</param>
 		void DeleteCompanyPayment(CompanyPayment cp);
+		/// <summary>
+		/// Delete a company payment
+		/// </summary>
+		/// <param name="id">The id of the company payment to delete</param>
 		void DeleteCompanyPayment(int id);
+		/// <summary>
+		/// Gets a specified company payment or null if the id isn't found
+		/// </summary>
+		/// <param name="id">The id of a company payment to retrieve</param>
+		/// <returns>The company payment or null</returns>
 		CompanyPayment GetCompanyPaymentById(int id);
+		/// <summary>
+		/// Gets all company payments
+		/// </summary>
+		/// <returns>All of the company payments</returns>
 		IQueryable<CompanyPayment> GetAllCompanyPayments();
 
 		//VolunteerTimeSot
+		/// <summary>
+		/// Adds a volunteer time slot
+		/// </summary>
+		/// <param name="vts">The volunteer time slot to add</param>
 		void AddVolunteerTimeSlot(VolunteerTimeSlot vts);
+		/// <summary>
+		/// Deletes a volunteer time slot
+		/// </summary>
+		/// <param name="vts">The volunteer time slot to delete</param>
 		void DeleteVolunteerTimeSlot(VolunteerTimeSlot vts);
+		/// <summary>
+		/// Deletes a volunteer time slot
+		/// </summary>
+		/// <param name="id">The id of the volunteer time slot to delete</param>
 		void DeleteVolunteerTimeSlot(int id);
+		/// <summary>
+		/// Gets a specified volunteer time slot or null if it is not found
+		/// </summary>
+		/// <param name="id">The id of the volunteer time slot to find</param>
+		/// <returns>The time slot with the specified id or null</returns>
 		VolunteerTimeSlot GetVolunteerTimeSlotById(int id);
+		/// <summary>
+		/// Gets all the volunteer time slots
+		/// </summary>
+		/// <returns>All the volunteer time slots</returns>
 		IQueryable<VolunteerTimeSlot> GetAllVolunteerTimeSlots();
 
 		//Volunteer
