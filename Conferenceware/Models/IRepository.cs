@@ -607,10 +607,31 @@ namespace Conferenceware.Models
 		IQueryable<Page> GetAllPages();
 
 		//StaffMember
+		/// <summary>
+		/// Adds a staff member
+		/// </summary>
+		/// <param name="sm">The staff member to add</param>
 		void AddStaffMember(StaffMember sm);
+		/// <summary>
+		/// Deletes a staff member
+		/// </summary>
+		/// <param name="sm">The staff member to delete</param>
 		void DeleteStaffMember(StaffMember sm);
+		/// <summary>
+		/// Deletes a staff member
+		/// </summary>
+		/// <param name="id">The id of the staff member to delete</param>
 		void DeleteStaffMember(int id);
+		/// <summary>
+		/// Gets a staff member with the specified id of null if not found
+		/// </summary>
+		/// <param name="id">The id of the staff member to find</param>
+		/// <returns>The specified staff member of null</returns>
 		StaffMember GetStaffMemberById(int id);
+		/// <summary>
+		/// Gets all the staff members
+		/// </summary>
+		/// <returns>All the staff members</returns>
 		IQueryable<StaffMember> GetAllStaffMembers();
 
 		//EventContentLink
