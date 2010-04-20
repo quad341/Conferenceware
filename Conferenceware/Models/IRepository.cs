@@ -501,10 +501,31 @@ namespace Conferenceware.Models
 		IQueryable<VolunteerTimeSlot> GetAllVolunteerTimeSlots();
 
 		//Volunteer
+		/// <summary>
+		/// Adds a volunteer
+		/// </summary>
+		/// <param name="v">The volunteer to add</param>
 		void AddVolunteer(Volunteer v);
+		/// <summary>
+		/// Deletes a volunteer
+		/// </summary>
+		/// <param name="v">The volunteer to delete</param>
 		void DeleteVolunteer(Volunteer v);
+		/// <summary>
+		/// Deletes a volunteer
+		/// </summary>
+		/// <param name="id">The id of the volunteer to delete</param>
 		void DeleteVolunteer(int id);
+		/// <summary>
+		/// Gets the volunteer with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the volunteer to select</param>
+		/// <returns>The volunteer with the given id or null</returns>
 		Volunteer GetVolunteerById(int id);
+		/// <summary>
+		/// Gets all the volunteers
+		/// </summary>
+		/// <returns>All the volunteers</returns>
 		IQueryable<Volunteer> GetAllVolunteers();
 
 		//Register volunteers for timeslots
