@@ -181,11 +181,12 @@ namespace Conferenceware.Tests.Models
 			var tss2 = GenerateNewTShirtSize2();
 			_repository.AddTShirtSize(tss1);
 			_repository.Save();
+			var id = tss1.id;
 			_repository.DeleteTShirtSize(tss1);
 			_repository.Save();
 			_repository.AddTShirtSize(tss2);
 			_repository.Save();
-			Assert.AreNotEqual(tss1.id, tss2.id, "Should have generated distinct values");
+			Assert.AreNotEqual(id, tss2.id, "Should have generated distinct values");
 		}
 	}
 }

@@ -152,7 +152,7 @@ namespace Conferenceware.Tests.Models
 			var item1 = GenerateNewAttendee1();
 			_repository.AddAttendee(item1);
 			_repository.Save();
-			Assert.IsNotNull(_repository.GetAttendeeById(item1.person_id), "The object should have been found");
+			Assert.IsNotNull(_repository.GetAttendeeById(item1.People.id), "The object should have been found");
 		}
 
 		[TestMethod]
@@ -161,7 +161,7 @@ namespace Conferenceware.Tests.Models
 			var item1 = GenerateNewAttendee1();
 			_repository.AddAttendee(item1);
 			_repository.Save();
-			var fromRepo = _repository.GetAttendeeById(item1.person_id);
+			var fromRepo = _repository.GetAttendeeById(item1.People.id);
 			Assert.IsTrue(EqualAttendees(item1, fromRepo), "The same object should have come back");
 		}
 
@@ -180,7 +180,7 @@ namespace Conferenceware.Tests.Models
 			var item = GenerateNewAttendee1();
 			_repository.AddAttendee(item);
 			_repository.Save();
-			int itemId = item.person_id;
+			int itemId = item.People.id;
 			item.People.name = "New Name";
 			_repository.Save();
 			var itemTest = _repository.GetAttendeeById(itemId);
@@ -209,7 +209,7 @@ namespace Conferenceware.Tests.Models
 			_repository.Save();
 			_repository.DeleteAttendee(item);
 			_repository.Save();
-			Assert.IsNull(_repository.GetAttendeeById(item.person_id), "TShirt Size should not exist anymore");
+			Assert.IsNull(_repository.GetAttendeeById(item.People.id), "TShirt Size should not exist anymore");
 		}
 
 		[TestMethod]
@@ -219,7 +219,7 @@ namespace Conferenceware.Tests.Models
 			var item = GenerateNewAttendee3();
 			_repository.AddAttendee(item);
 			_repository.Save();
-			_repository.DeleteAttendee(item.person_id);
+			_repository.DeleteAttendee(item.People.id);
 			_repository.Save();
 			Assert.AreEqual(2, _repository.GetAllAttendees().Count(), "One less t-shirt size should exist");
 		}
@@ -231,9 +231,9 @@ namespace Conferenceware.Tests.Models
 			var item = GenerateNewAttendee3();
 			_repository.AddAttendee(item);
 			_repository.Save();
-			_repository.DeleteAttendee(item.person_id);
+			_repository.DeleteAttendee(item.People.id);
 			_repository.Save();
-			Assert.IsNull(_repository.GetAttendeeById(item.person_id), "TShirt Size should not exist anymore");
+			Assert.IsNull(_repository.GetAttendeeById(item.People.id), "TShirt Size should not exist anymore");
 		}
 
 		[TestMethod]
@@ -243,11 +243,12 @@ namespace Conferenceware.Tests.Models
 			var item2 = GenerateNewAttendee2();
 			_repository.AddAttendee(item1);
 			_repository.Save();
+			var id = item1.People.id;
 			_repository.DeleteAttendee(item1);
 			_repository.Save();
 			_repository.AddAttendee(item2);
 			_repository.Save();
-			Assert.AreNotEqual(item1.person_id, item2.person_id, "Should have generated distinct values");
+			Assert.AreNotEqual(id, item2.People.id, "Should have generated distinct values");
 		}
 	}
 }

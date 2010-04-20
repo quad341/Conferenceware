@@ -240,11 +240,12 @@ namespace Conferenceware.Tests.Models
 			var ev2 = GenerateNewEvent2();
 			_repository.AddEvent(ev1);
 			_repository.Save();
+			var id = ev2.id;
 			_repository.DeleteEvent(ev1);
 			_repository.Save();
 			_repository.AddEvent(ev2);
 			_repository.Save();
-			Assert.AreNotEqual(ev1.id, ev2.id, "Should have generated distinct values");
+			Assert.AreNotEqual(id, ev2.id, "Should have generated distinct values");
 		}
 	}
 }

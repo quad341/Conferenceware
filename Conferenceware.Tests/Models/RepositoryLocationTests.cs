@@ -204,11 +204,12 @@ namespace Conferenceware.Tests.Models
 			Location loc2 = GenerateNewLocation2();
 			_repository.AddLocation(loc1);
 			_repository.Save();
+			var id = loc1.id;
 			_repository.DeleteLocation(loc1);
 			_repository.Save();
 			_repository.AddLocation(loc2);
 			_repository.Save();
-			Assert.AreNotEqual(loc1.id, loc2.id, "Should have generated distinct values");
+			Assert.AreNotEqual(id, loc2.id, "Should have generated distinct values");
 		}
 	}
 }
