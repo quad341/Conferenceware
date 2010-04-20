@@ -141,7 +141,15 @@ namespace Conferenceware.Tests.Models
 				attendee.People = new People();
 
 			attendee.People.id = ++_personMaxId;
-			_attendees.Add(attendee);
+			//attendee.person_id = _personMaxId;
+			var newAttendee = new Attendee
+								{
+									person_id = _personMaxId,
+									Food = attendee.Food,
+									TShirtSize = attendee.TShirtSize,
+									People = attendee.People
+								};
+			_attendees.Add(newAttendee);
 		}
 
 		public void DeleteAttendee(Attendee attendee)
