@@ -21,7 +21,7 @@ namespace Conferenceware.Controllers
 			_repository = repo;
 		}
 		//
-		// GET: /Speaker/
+		// GET: /Attendee/
 
 		public ActionResult Index()
 		{
@@ -29,7 +29,7 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// GET: /Speaker/Create
+		// GET: /Attendee/Create
 
 		public ActionResult Create()
 		{
@@ -38,13 +38,13 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// POST: /Speaker/Create
+		// POST: /Attendee/Create
 
 		[HttpPost]
 		public ActionResult Create(FormCollection collection)
 		{
 			var newAttendee = new Attendee();
-			if (TryUpdateModel(newAttendee, "Attendee"))
+			if (TryUpdateModel(newAttendee, "Attendee", collection))
 			{
 				_repository.AddAttendee(newAttendee);
 				_repository.Save();
@@ -55,7 +55,7 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// GET: /Speaker/Edit/5
+		// GET: /Attendee/Edit/5
 
 		public ActionResult Edit(int id)
 		{
@@ -68,7 +68,7 @@ namespace Conferenceware.Controllers
 		}
 
 		//
-		// POST: /Speaker/Edit/5
+		// POST: /Attendee/Edit/5
 
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
