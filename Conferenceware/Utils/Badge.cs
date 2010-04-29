@@ -32,11 +32,21 @@ namespace Conferenceware.Utils
 			const double alumTextXOffset = .25;
 			const double alumTextYOffset = 2.9;
 			const double alumTextHeight = .2;
+			const double badgeWidth = 2.8;
+			const double badgeHeight = 3.8;
+			const int maxNameBigFontLength = 17;
+			const int bigFontSize = 20;
+			const int smallFontSize = 16;
+			const int titleFontSize = 14;
+			const string fontName = "Helvetica";
+			const XFontStyle nameFontStyle = XFontStyle.Regular;
+			const XFontStyle titleFontStyle = XFontStyle.Regular;
+			// the rest just build it
 			//make a new document
 			var doc = new PdfDocument();
 			// badge is 4 inches wide and 3 inches tall
 			// it's smaller here so we can leave some spacing around the edges so they print right
-			var badge = new XForm(doc, XUnit.FromInch(2.8), XUnit.FromInch(3.8));
+			var badge = new XForm(doc, XUnit.FromInch(badgeWidth), XUnit.FromInch(badgeHeight));
 			// graphic for form
 			var formGfx = XGraphics.FromForm(badge);
 			// add background image to template
@@ -49,9 +59,11 @@ namespace Conferenceware.Utils
 			foreach (var person in people)
 			{
 				// make long names smaller
-				var fontSize = person.name.Length > 17 ? 16 : 20;
-				var nameFont = new XFont("Helvetica", fontSize, XFontStyle.Regular);
-				var titleFont = new XFont("Helvetica", 14, XFontStyle.Regular);
+				var fontSize = person.name.Length > maxNameBigFontLength ? smallFontSize : bigFontSize;
+				var nameFont = new XFont(fontName, fontSize, nameFontStyle);
+				var titleFont = new XFont(fontName, titleFontSize, titleFontStyle);
+				// there are 3 columns with 2 rows with each column being 3 inches and row being 4 inches
+				// these offsets choose which badge is being printed by simple algebra
 				var columnOffset = ((counter % 6) / 2) * 3.0;
 				var rowOffset = (counter % 2) * 4.0;
 				if (counter % 6 == 0)

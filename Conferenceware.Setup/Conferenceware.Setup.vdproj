@@ -1657,7 +1657,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Conferenceware"
         "ProductCode" = "8:{EB2D98DE-B882-4B66-8FBF-B8528537ABC3}"
-        "PackageCode" = "8:{B5D00884-D8E2-474A-8B4C-A5554145D168}"
+        "PackageCode" = "8:{24B32FE8-3113-4966-8B0F-2ED52C992D0A}"
         "UpgradeCode" = "8:{01D67509-D5AE-4A70-907A-B89D9F13CF3F}"
         "RestartWWWService" = "11:TRUE"
         "RemovePreviousVersions" = "11:TRUE"
