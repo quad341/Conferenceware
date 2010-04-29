@@ -19,6 +19,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /Volunteer/
 
@@ -32,7 +33,8 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Create()
 		{
-			return View("Create", CreateEditDataFromVolunteer(new Volunteer(), _repository));
+			return View("Create",
+						CreateEditDataFromVolunteer(new Volunteer(), _repository));
 		}
 
 		//
@@ -45,9 +47,9 @@ namespace Conferenceware.Controllers
 			{
 				_repository.AddVolunteer(ved.Volunteer);
 				_repository.Save();
-				foreach (var i in ved.ChosenTimeSlots)
+				foreach (int i in ved.ChosenTimeSlots)
 				{
-					var vts = _repository.GetVolunteerTimeSlotById(i);
+					VolunteerTimeSlot vts = _repository.GetVolunteerTimeSlotById(i);
 					if (vts != null)
 					{
 						_repository.RegisterVolunteerForVolunteerTimeSlot(ved.Volunteer, vts);
@@ -65,7 +67,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var vol = _repository.GetVolunteerById(id);
+			Volunteer vol = _repository.GetVolunteerById(id);
 			if (vol == null)
 			{
 				return View("VolunteerNotFound");
@@ -80,7 +82,7 @@ namespace Conferenceware.Controllers
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			var ved = new VolunteerEditData();
-			var vol = _repository.GetVolunteerById(id);
+			Volunteer vol = _repository.GetVolunteerById(id);
 			if (vol == null)
 			{
 				return View("VolunteerNotFound");
@@ -89,17 +91,17 @@ namespace Conferenceware.Controllers
 			// This will try to update all the fields in the model based on the form collection
 			if (TryUpdateModel(ved, collection))
 			{
-				var oldTimeSlots =
+				IQueryable<VolunteerTimeSlot> oldTimeSlots =
 					vol.VolunteersVolunteerTimeSlots.Select(x => x.VolunteerTimeSlot).
 						AsQueryable();
-				foreach (var vts in oldTimeSlots)
+				foreach (VolunteerTimeSlot vts in oldTimeSlots)
 				{
 					_repository.UnRegisterVolunteerForVolunteerTimeSlot(vol, vts);
 				}
 				_repository.Save();
-				foreach (var i in ved.ChosenTimeSlots)
+				foreach (int i in ved.ChosenTimeSlots)
 				{
-					var vts = _repository.GetVolunteerTimeSlotById(i);
+					VolunteerTimeSlot vts = _repository.GetVolunteerTimeSlotById(i);
 					if (vts != null)
 					{
 						_repository.RegisterVolunteerForVolunteerTimeSlot(ved.Volunteer, vts);
@@ -116,15 +118,15 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var vol = _repository.GetVolunteerById(id);
+			Volunteer vol = _repository.GetVolunteerById(id);
 			if (vol == null)
 			{
 				return View("VolunteerNotFound");
 			}
-			var oldTimeSlots =
+			IQueryable<VolunteerTimeSlot> oldTimeSlots =
 				vol.VolunteersVolunteerTimeSlots.Select(x => x.VolunteerTimeSlot).
 					AsQueryable();
-			foreach (var vts in oldTimeSlots)
+			foreach (VolunteerTimeSlot vts in oldTimeSlots)
 			{
 				_repository.UnRegisterVolunteerForVolunteerTimeSlot(vol, vts);
 			}
@@ -134,14 +136,16 @@ namespace Conferenceware.Controllers
 			return RedirectToAction("Index");
 		}
 
-		public static VolunteerEditData CreateEditDataFromVolunteer(Volunteer volunteer, IRepository repo)
+		public static VolunteerEditData CreateEditDataFromVolunteer(
+			Volunteer volunteer, IRepository repo)
 		{
 			var ved = new VolunteerEditData
-					{
-						Volunteer = volunteer,
-						VolunteerTimeSlots = repo.GetAllVolunteerTimeSlots(),
-						ChosenTimeSlots = new int[volunteer.VolunteersVolunteerTimeSlots.Count]
-					};
+						{
+							Volunteer = volunteer,
+							VolunteerTimeSlots = repo.GetAllVolunteerTimeSlots(),
+							ChosenTimeSlots =
+								new int[volunteer.VolunteersVolunteerTimeSlots.Count]
+						};
 			for (int i = 0; i < volunteer.VolunteersVolunteerTimeSlots.Count; i++)
 			{
 				ved.ChosenTimeSlots[i] =

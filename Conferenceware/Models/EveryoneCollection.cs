@@ -5,52 +5,22 @@ namespace Conferenceware.Models
 {
 	public class EveryoneCollection
 	{
-		public IEnumerable<Attendee> Attendees
-		{
-			get;
-			set;
-		}
+		public IEnumerable<Attendee> Attendees { get; set; }
 
-		public IEnumerable<MechManiaTeam> MechManiaTeams
-		{
-			get;
-			set;
-		}
+		public IEnumerable<MechManiaTeam> MechManiaTeams { get; set; }
 
-		public IEnumerable<Speaker> Speakers
-		{
-			get;
-			set;
-		}
+		public IEnumerable<Speaker> Speakers { get; set; }
 
-		public IEnumerable<CompanyPerson> CompanyPersons
-		{
-			get;
-			set;
-		}
+		public IEnumerable<CompanyPerson> CompanyPersons { get; set; }
 
-		public IEnumerable<StaffMember> StaffMembers
-		{
-			get;
-			set;
-		}
+		public IEnumerable<StaffMember> StaffMembers { get; set; }
 
-		public IEnumerable<Volunteer> Volunteers
-		{
-			get;
-			set;
-		}
+		public IEnumerable<Volunteer> Volunteers { get; set; }
 
 		public IEnumerable<CompanyPerson> Sponsors
 		{
-			get
-			{
-				return CompanyPersons;
-			}
-			set
-			{
-				CompanyPersons = value;
-			}
+			get { return CompanyPersons; }
+			set { CompanyPersons = value; }
 		}
 
 		public IEnumerable<Attendee> MechmaniaParticipants

@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Web;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
@@ -21,23 +22,25 @@ namespace Conferenceware.Controllers
 		[ValidateInput(false)]
 		public ActionResult Index(FormCollection collection)
 		{
-			var sd = SettingsData.FromCurrent(
+			SettingsData sd = SettingsData.FromCurrent(
 				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 			ProcessFiles(sd);
 			// This will try to update all the fields in the model based on the form collection
-			if (TryUpdateModel(sd, new[] 
-			{
-				"EmailFrom", 
-				"FrontpageTitle", 
-				"FrontpageContent", 
-				"EventRegistrationConfirmationSubjectFormat", 
-				"EventRegistrationConfirmationBodyFormat",
-                "SmtpHostname",
-                "SmtpPort",
-                "SmtpNeedsAuthentication",
-                "SmtpAuthenticationUserName",
-                "SmtpAuthenticationPassword"                
-			}, collection))
+			if (TryUpdateModel(sd,
+							   new[]
+			                   	{
+			                   		"EmailFrom",
+			                   		"FrontpageTitle",
+			                   		"FrontpageContent",
+			                   		"EventRegistrationConfirmationSubjectFormat",
+			                   		"EventRegistrationConfirmationBodyFormat",
+			                   		"SmtpHostname",
+			                   		"SmtpPort",
+			                   		"SmtpNeedsAuthentication",
+			                   		"SmtpAuthenticationUserName",
+			                   		"SmtpAuthenticationPassword"
+			                   	},
+							   collection))
 			{
 				try
 				{
@@ -64,7 +67,7 @@ namespace Conferenceware.Controllers
 		{
 			foreach (string file in Request.Files)
 			{
-				var hpf = Request.Files[file];
+				HttpPostedFileBase hpf = Request.Files[file];
 				if (hpf.ContentLength == 0)
 					continue;
 				if (hpf.ContentType != "image/png" && hpf.ContentType != "image/x-png")
@@ -99,7 +102,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult GetImage(string filename)
 		{
-			var sd = SettingsData.FromCurrent(
+			SettingsData sd = SettingsData.FromCurrent(
 				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 			Bitmap img = null;
 			switch (filename)

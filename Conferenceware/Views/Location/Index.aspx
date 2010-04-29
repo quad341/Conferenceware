@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Conferenceware.Models.Location>>" %>
+<%@ Import Namespace="Conferenceware.Models" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -25,33 +26,36 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <%
+    	foreach (Location item in Model)
+     {%>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.id }) %> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.id })%>
+                <%=Html.ActionLink("Edit", "Edit", new {item.id})%> |
+                <%=Html.ActionLink("Delete", "Delete", new {item.id})%>
             </td>
             <td>
-                <%= Html.Encode(item.max_capacity) %>
+                <%=Html.Encode(item.max_capacity)%>
             </td>
             <td>
-                <%= Html.Encode(item.building_name) %>
+                <%=Html.Encode(item.building_name)%>
             </td>
             <td>
-                <%= Html.Encode(item.room_number) %>
+                <%=Html.Encode(item.room_number)%>
             </td>
             <td>
-                <%= Html.Encode(item.notes) %>
+                <%=Html.Encode(item.notes)%>
             </td>
         </tr>
     
-    <% } %>
+    <%
+     }%>
 
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%=Html.ActionLink("Create New", "Create")%>
     </p>
 
 </asp:Content>

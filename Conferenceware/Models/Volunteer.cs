@@ -11,18 +11,12 @@ namespace Conferenceware.Models
 
 		public bool NeedsVideoTraining
 		{
-			get
-			{
-				return ConfirmedVolunteerTimeSlots.Where(x => x.is_video).Count() > 0;
-			}
+			get { return ConfirmedVolunteerTimeSlots.Where(x => x.is_video).Count() > 0; }
 		}
 
 		public IEnumerable<VolunteerTimeSlot> VolunteerTimeSlots
 		{
-			get
-			{
-				return VolunteersVolunteerTimeSlots.Select(x => x.VolunteerTimeSlot);
-			}
+			get { return VolunteersVolunteerTimeSlots.Select(x => x.VolunteerTimeSlot); }
 		}
 
 		public IEnumerable<VolunteerTimeSlot> ScheduledVolunteerTimeSlots

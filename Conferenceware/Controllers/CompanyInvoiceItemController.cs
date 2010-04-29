@@ -33,7 +33,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Create(int id)
 		{
-			var invoice = _repository.GetCompanyInvoiceById(id);
+			CompanyInvoice invoice = _repository.GetCompanyInvoiceById(id);
 			if (invoice == null)
 			{
 				return View("CompanyInvoiceNotFound");
@@ -50,14 +50,16 @@ namespace Conferenceware.Controllers
 		{
 			var cii = new CompanyInvoiceItem();
 			// This will try to update all the fields in the model based on the form collection
-			if (TryUpdateModel(cii, new[] { "name", "description", "cost", "invoice_id" }, collection))
+			if (TryUpdateModel(cii,
+							   new[] { "name", "description", "cost", "invoice_id" },
+							   collection))
 			{
 				if (cii.description == null)
 				{
 					cii.description = "";
 				}
 				_repository.AddCompanyInvoiceItem(cii);
-				var invoice = _repository.GetCompanyInvoiceById(cii.invoice_id);
+				CompanyInvoice invoice = _repository.GetCompanyInvoiceById(cii.invoice_id);
 				invoice.created = DateTime.Now;
 				_repository.Save();
 				return RedirectToAction("Edit", "CompanyInvoice", new { id = cii.invoice_id });
@@ -70,13 +72,13 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Delete(int ItemId)
 		{
-			var cii = _repository.GetCompanyInvoiceItemById(ItemId);
+			CompanyInvoiceItem cii = _repository.GetCompanyInvoiceItemById(ItemId);
 			if (cii == null)
 			{
 				return View("CompanyInvoiceItemNotFound");
 			}
 			int invoiceId = cii.invoice_id;
-			var invoice = _repository.GetCompanyInvoiceById(cii.invoice_id);
+			CompanyInvoice invoice = _repository.GetCompanyInvoiceById(cii.invoice_id);
 			invoice.created = DateTime.Now;
 			_repository.DeleteCompanyInvoiceItem(cii);
 			_repository.Save();

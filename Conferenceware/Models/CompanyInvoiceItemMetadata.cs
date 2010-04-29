@@ -8,26 +8,13 @@ namespace Conferenceware.Models
 		[Required]
 		[StringLength(255)]
 		[DisplayName("Name")]
-		public string name
-		{
-			get;
-			set;
-		}
+		public string name { get; set; }
 
 		[DisplayName("Description")]
-		public string description
-		{
-			get;
-			set;
-		}
+		public string description { get; set; }
 
 		[Range(0, int.MaxValue)]
 		[DisplayName("Cost for item")]
-		public decimal cost
-		{
-			get;
-			set;
-		}
-
+		public decimal cost { get; set; }
 	}
 }

@@ -8,44 +8,49 @@
 
     <h2>Edit</h2>
 
-    <% using (Html.BeginForm()) {%>
-        <%= Html.ValidationSummary(true) %>
+    <%
+    	using (Html.BeginForm())
+     {%>
+        <%=Html.ValidationSummary(true)%>
         
         <fieldset>
             <legend>Fields</legend>
             
-            <%= Html.HiddenFor(model => model.id) %>
+            <%=Html.HiddenFor(model => model.id)%>
             
             <div class="editor-label">
                 Company
             </div>
             <div class="editor-field">
-                <%= Html.HiddenFor(model => model.company_id) %>
-                <%= Model.Company.name %>
+                <%=Html.HiddenFor(model => model.company_id)%>
+                <%=Model.Company.name%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.received_date) %>
+                <%=Html.LabelFor(model => model.received_date)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.received_date, String.Format("{0:g}", Model.received_date)) %>
-                <%= Html.ValidationMessageFor(model => model.received_date) %>
+                <%=Html.TextBoxFor(model => model.received_date,
+     	                                  String.Format("{0:g}",
+     	                                                Model.received_date))%>
+                <%=Html.ValidationMessageFor(model => model.received_date)%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.amount) %>
+                <%=Html.LabelFor(model => model.amount)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.amount, String.Format("{0:F}", Model.amount)) %>
-                <%= Html.ValidationMessageFor(model => model.amount) %>
+                <%=Html.TextBoxFor(model => model.amount,
+     	                                  String.Format("{0:F}", Model.amount))%>
+                <%=Html.ValidationMessageFor(model => model.amount)%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.comments) %>
+                <%=Html.LabelFor(model => model.comments)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextAreaFor(model => model.comments, 15, 80, null) %>
-                <%= Html.ValidationMessageFor(model => model.comments) %>
+                <%=Html.TextAreaFor(model => model.comments, 15, 80, null)%>
+                <%=Html.ValidationMessageFor(model => model.comments)%>
             </div>
             
             <p>
@@ -53,10 +58,11 @@
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+     }%>
 
     <div>
-        <%= Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 
 </asp:Content>

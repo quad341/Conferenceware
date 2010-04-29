@@ -4,17 +4,8 @@ namespace Conferenceware.Models
 {
 	public class VolunteerTimeSlotEditData
 	{
-		public VolunteerTimeSlot VolunteerTimeSlot
-		{
-			get;
-			set;
-		}
+		public VolunteerTimeSlot VolunteerTimeSlot { get; set; }
 
-		public SelectList Timeslots
-		{
-			get;
-			set;
-		}
-
+		public SelectList Timeslots { get; set; }
 	}
 }

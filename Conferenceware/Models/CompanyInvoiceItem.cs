@@ -12,11 +12,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		public int ItemId
 		{
-			get
-			{
-				return id;
-			}
+			get { return id; }
 		}
-
 	}
 }

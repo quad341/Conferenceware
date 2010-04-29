@@ -32,7 +32,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Details(int id)
 		{
-			var company = _repoository.GetCompanyById(id);
+			Company company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
@@ -56,17 +56,19 @@ namespace Conferenceware.Controllers
 		{
 			var companyToCreate = new Company();
 			// This will try to update all the fields in the model based on the form collection
-			if (TryUpdateModel(companyToCreate, new[]
-			                                    	{
-			                                    		"name", 
-														"address_line1", 
-														"address_line2", 
-														"city", 
-														"state", 
-														"zip", 
-														"needs_power", 
-														"priority_shipping"
-			                                    	}, collection))
+			if (TryUpdateModel(companyToCreate,
+							   new[]
+			                   	{
+			                   		"name",
+			                   		"address_line1",
+			                   		"address_line2",
+			                   		"city",
+			                   		"state",
+			                   		"zip",
+			                   		"needs_power",
+			                   		"priority_shipping"
+			                   	},
+							   collection))
 			{
 				if (companyToCreate.address_line2 == null)
 				{
@@ -79,7 +81,6 @@ namespace Conferenceware.Controllers
 				return RedirectToAction("Index");
 			}
 			return View("Create", companyToCreate);
-
 		}
 
 		//
@@ -87,7 +88,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Edit(int id)
 		{
-			var company = _repoository.GetCompanyById(id);
+			Company company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
@@ -101,7 +102,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var company = _repoository.GetCompanyById(id);
+			Company company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
@@ -120,7 +121,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Delete(int id)
 		{
-			var company = _repoository.GetCompanyById(id);
+			Company company = _repoository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");

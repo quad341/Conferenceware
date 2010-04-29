@@ -18,6 +18,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /StaffMember/
 
@@ -57,7 +58,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var sm = _repository.GetStaffMemberById(id);
+			StaffMember sm = _repository.GetStaffMemberById(id);
 			if (sm == null)
 			{
 				return View("StaffMemberNotFound");
@@ -71,13 +72,14 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var sm = _repository.GetStaffMemberById(id);
+			StaffMember sm = _repository.GetStaffMemberById(id);
 			if (sm == null)
 			{
 				return View("StaffMemberNotFound");
 			}
-			var needsHash = true;
-			if (collection["password_hash"] == null || collection["password_hash"].Trim() == "")
+			bool needsHash = true;
+			if (collection["password_hash"] == null ||
+				collection["password_hash"].Trim() == "")
 			{
 				collection["password_hash"] = sm.password_hash;
 				needsHash = false;
@@ -101,7 +103,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var sm = _repository.GetStaffMemberById(id);
+			StaffMember sm = _repository.GetStaffMemberById(id);
 			if (sm == null)
 			{
 				return View("StaffMemberNotFound");

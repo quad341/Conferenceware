@@ -6,29 +6,28 @@ namespace Conferenceware.Models
 	public partial class People
 	{
 		//linq is doing the rest
-        public bool Equals(object obj)
-        {
+		public bool Equals(object obj)
+		{
+			if (obj is People)
+			{
+				var compare = obj as People;
 
-            if (obj is People)
-            {
-                People compare = obj as People;
+				if (_Attendee.Equals(compare._Attendee) &&
+					_CompanyPerson.Equals(compare._CompanyPerson) &&
+					_email == compare._email &&
+					_id == compare._id &&
+					_is_alum == compare._is_alum &&
+					_name == compare._name &&
+					_phone_number == compare._phone_number &&
+					_Speaker.Equals(compare._Speaker) &&
+					_StaffMember.Equals(compare._StaffMember) &&
+					_Volunteer.Equals(compare._Volunteer))
+				{
+					return true;
+				}
+			}
 
-                if (this._Attendee.Equals(compare._Attendee) &&
-                    this._CompanyPerson.Equals(compare._CompanyPerson) &&
-                    this._email == compare._email &&
-                    this._id == compare._id &&
-                    this._is_alum == compare._is_alum &&
-                    this._name == compare._name &&
-                    this._phone_number == compare._phone_number &&
-                    this._Speaker.Equals(compare._Speaker) &&
-                    this._StaffMember.Equals(compare._StaffMember) &&
-                    this._Volunteer.Equals(compare._Volunteer))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+			return false;
+		}
 	}
 }

@@ -34,7 +34,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Create(int id)
 		{
-			var company = _repository.GetCompanyById(id);
+			Company company = _repository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
@@ -53,7 +53,9 @@ namespace Conferenceware.Controllers
 			{
 				_repository.AddCompanyPerson(cpToCreate);
 				_repository.Save();
-				return RedirectToAction("Details", "Company", new { id = cpToCreate.company_id });
+				return RedirectToAction("Details",
+										"Company",
+										new { id = cpToCreate.company_id });
 			}
 			return View("Create", cpToCreate);
 		}
@@ -63,7 +65,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Edit(int id)
 		{
-			var cp = _repository.GetCompanyPersonById(id);
+			CompanyPerson cp = _repository.GetCompanyPersonById(id);
 			if (cp == null)
 			{
 				return View("CompanyPersonNotFound");
@@ -77,7 +79,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var cp = _repository.GetCompanyPersonById(id);
+			CompanyPerson cp = _repository.GetCompanyPersonById(id);
 			if (cp == null)
 			{
 				return View("CompanyPersonNotFound");
@@ -97,7 +99,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Delete(int person_id)
 		{
-			var cp = _repository.GetCompanyPersonById(person_id);
+			CompanyPerson cp = _repository.GetCompanyPersonById(person_id);
 			if (cp == null)
 			{
 				return View("CompanyPersonNotFound");

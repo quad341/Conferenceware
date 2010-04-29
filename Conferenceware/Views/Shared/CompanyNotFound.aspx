@@ -8,6 +8,6 @@
 
     <h2>Company Not Found</h2>
     
-    <p>The requested company was not found. You can go back to the <%= Html.ActionLink("company list", "Index") %></p>
+    <p>The requested company was not found. You can go back to the <%=Html.ActionLink("company list", "Index")%></p>
 
 </asp:Content>

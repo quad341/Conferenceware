@@ -10,20 +10,12 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// The title to show on the front page
 		/// </summary>
-		public string Title
-		{
-			get;
-			set;
-		}
+		public string Title { get; set; }
 
 		/// <summary>
 		/// The content for the front page
 		/// </summary>
-		public string Content
-		{
-			get;
-			set;
-		}
+		public string Content { get; set; }
 
 		public string ConvertedContent(HtmlHelper html)
 		{

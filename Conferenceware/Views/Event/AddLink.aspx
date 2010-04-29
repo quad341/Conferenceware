@@ -8,30 +8,33 @@
 
     <h2>AddLink</h2>
 
-    <% using (Html.BeginForm()) {%>
-        <%= Html.ValidationSummary(true) %>
+    <%
+    	using (Html.BeginForm())
+     {%>
+        <%=Html.ValidationSummary(true)%>
 
         <fieldset>
             <legend>Fields</legend>
             
-                <%= Html.HiddenFor(model => model.id) %>
+                <%=Html.HiddenFor(model => model.id)%>
             
-                <%= Html.HiddenFor(model => model.event_id) %>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.link_location) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.link_location) %>
-                <%= Html.ValidationMessageFor(model => model.link_location) %>
-            </div>
+                <%=Html.HiddenFor(model => model.event_id)%>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.list_on_video_page) %>
+                <%=Html.LabelFor(model => model.link_location)%>
             </div>
             <div class="editor-field">
-                <%= Html.CheckBoxFor(model => model.list_on_video_page) %>
-                <%= Html.ValidationMessageFor(model => model.list_on_video_page) %>
+                <%=Html.TextBoxFor(model => model.link_location)%>
+                <%=Html.ValidationMessageFor(model => model.link_location)%>
+            </div>
+            
+            <div class="editor-label">
+                <%=Html.LabelFor(model => model.list_on_video_page)%>
+            </div>
+            <div class="editor-field">
+                <%=Html.CheckBoxFor(model => model.list_on_video_page)%>
+                <%=
+     		Html.ValidationMessageFor(model => model.list_on_video_page)%>
             </div>
             
             <p>
@@ -39,10 +42,11 @@
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+     }%>
 
     <div>
-        <%= Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 
 </asp:Content>

@@ -8,6 +8,6 @@
 
     <h2>Event Content Link Not Found</h2>
     
-    <p>The requested content link was not found. You can return to the <%= Html.ActionLink("event list", "Index") %></p>
+    <p>The requested content link was not found. You can return to the <%=Html.ActionLink("event list", "Index")%></p>
 
 </asp:Content>

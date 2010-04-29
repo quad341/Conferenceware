@@ -8,6 +8,6 @@
 
 	<h2>Person Not Found</h2>
 	
-	<p>The requested person was not found. You can return to <%= Html.ActionLink("the companies list", "Index", "Company") %>.</p>
+	<p>The requested person was not found. You can return to <%=Html.ActionLink("the companies list", "Index", "Company")%>.</p>
 
 </asp:Content>

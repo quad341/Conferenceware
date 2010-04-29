@@ -14,23 +14,26 @@
         <legend>Fields</legend>
         
         <div class="display-label">Title</div>
-        <div class="display-field"><%= Html.Encode(Model.title) %></div>
+        <div class="display-field"><%=Html.Encode(Model.title)%></div>
         
         <div class="display-label">Content</div>
         <div class="display-field">
             <pre>
-                <%= Html.Encode(Model.page_content) %>
+                <%=Html.Encode(Model.page_content)%>
             </pre>
         </div>
         
     </fieldset>
-    <% using (Html.BeginForm()) { %>
+    <%
+    	using (Html.BeginForm())
+     {%>
         <p>
-            <%= Html.HiddenFor(model => model.id) %>
+            <%=Html.HiddenFor(model => model.id)%>
 		    <input type="submit" value="Delete" /> |
-		    <%= Html.ActionLink("Back to List", "Index") %>
+		    <%=Html.ActionLink("Back to List", "Index")%>
         </p>
-    <% } %>
+    <%
+     }%>
 
 </asp:Content>
 

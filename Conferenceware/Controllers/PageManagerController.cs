@@ -19,6 +19,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /PageManager/
 
@@ -72,7 +73,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var page = _repository.GetPageById(id);
+			Page page = _repository.GetPageById(id);
 			if (page == null)
 			{
 				return View("PageNotFound");
@@ -87,12 +88,12 @@ namespace Conferenceware.Controllers
 		[ValidateInput(false)]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var page = _repository.GetPageById(id);
+			Page page = _repository.GetPageById(id);
 			if (page == null)
 			{
 				return View("PageNotFound");
 			}
-			if (_repository.GetPageByTitle(collection["Page.title"]) != null)
+			if (_repository.GetPageByTitle(collection["Page.title"]).id != id)
 			{
 				ModelState.AddModelError("Page.title", "Page title must be unique");
 			}
@@ -112,7 +113,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var page = _repository.GetPageById(id);
+			Page page = _repository.GetPageById(id);
 			if (page == null)
 			{
 				return View("PageNotFound");
@@ -126,12 +127,12 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Delete(int id, FormCollection collection)
 		{
-			var page = _repository.GetPageById(id);
+			Page page = _repository.GetPageById(id);
 			if (page == null)
 			{
 				return View("PageNotFound");
 			}
-			foreach (var p in _repository.GetAllPages().Where(x => x.parent_id == id))
+			foreach (Page p in _repository.GetAllPages().Where(x => x.parent_id == id))
 			{
 				p.parent_id = page.parent_id;
 			}

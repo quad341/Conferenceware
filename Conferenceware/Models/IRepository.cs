@@ -12,6 +12,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="ev">An Event object containing data to add.</param>
 		void AddEvent(Event ev);
+
 		/// <summary>
 		/// Delete an Event from a data repository.
 		/// Precondition: Event has it's ID property set and ID is valid.
@@ -19,6 +20,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="ev">An Event object with ID property set</param>
 		void DeleteEvent(Event ev);
+
 		/// <summary>
 		/// Delete an Event from a data repository.
 		/// Precondition: ID is valid.
@@ -26,6 +28,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="id">An ID associated to an Event.</param>
 		void DeleteEvent(int id);
+
 		/// <summary>
 		/// Get an Event object from the data repository.
 		/// Precondition: ID is for an existing Event.
@@ -33,6 +36,7 @@ namespace Conferenceware.Models
 		/// <param name="id">A valid ID for an existing Event</param>
 		/// <returns>An Event object with data from the repository.</returns>
 		Event GetEventById(int id);
+
 		/// <summary>
 		/// Get all Event objects from the data repository.
 		/// </summary>
@@ -47,6 +51,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="attendee">An Attendee object containing data to add.</param>
 		void AddAttendee(Attendee attendee);
+
 		/// <summary>
 		/// Delete an Attendee from a data repository.
 		/// Precondition: Attendee has it's ID property set and ID is valid.
@@ -54,6 +59,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="attendee">An Attendee object with ID property set</param>
 		void DeleteAttendee(Attendee attendee);
+
 		/// <summary>
 		/// Delete an Attendee from a data repository.
 		/// Precondition: ID is valid.
@@ -61,6 +67,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="id">An ID associated to an Attendee.</param>
 		void DeleteAttendee(int id);
+
 		/// <summary>
 		/// Get an Attendee object from the data repository.
 		/// Precondition: ID is for an existing Attendee.
@@ -68,6 +75,7 @@ namespace Conferenceware.Models
 		/// <param name="id">A valid ID for an existing Attendee</param>
 		/// <returns>An Attendee object with data from the repository.</returns>
 		Attendee GetAttendeeById(int id);
+
 		/// <summary>
 		/// Get all Attendee objects from the data repository.
 		/// </summary>
@@ -82,6 +90,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="location">A Location object containing data to add.</param>
 		void AddLocation(Location location);
+
 		/// <summary>
 		/// Delete a Location from a data repository.
 		/// Precondition: Location has it's ID property set and ID is valid.
@@ -89,6 +98,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="location">A Location object with ID property set</param>
 		void DeleteLocation(Location location);
+
 		/// <summary>
 		/// Delete a Location from a data repository.
 		/// Precondition: ID is valid.
@@ -96,6 +106,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="id">An ID associated to a Location.</param>
 		void DeleteLocation(int id);
+
 		/// <summary>
 		/// Get a Location object from the data repository.
 		/// Precondition: ID is for an existing Location.
@@ -103,6 +114,7 @@ namespace Conferenceware.Models
 		/// <param name="id">A valid ID for an existing Location</param>
 		/// <returns>A Location object with data from the repository.</returns>
 		Location GetLocationById(int id);
+
 		/// <summary>
 		/// Get all Location objects from the data repository.
 		/// </summary>
@@ -117,6 +129,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="timeslot">A TimeSlot object containing data to add.</param>
 		void AddTimeSlot(TimeSlot timeslot);
+
 		/// <summary>
 		/// Delete a TimeSlot from a data repository.
 		/// Precondition: TimeSlot has it's ID property set and ID is valid.
@@ -124,6 +137,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="timeslot">A TimeSlot object with ID property set</param>
 		void DeleteTimeSlot(TimeSlot timeslot);
+
 		/// <summary>
 		/// Delete a TimeSlot from a data repository.
 		/// Precondition: ID is valid.
@@ -131,6 +145,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="id">An ID associated to a TimeSlot.</param>
 		void DeleteTimeSlot(int id);
+
 		/// <summary>
 		/// Get a TimeSlot object from the data repository.
 		/// Precondition: ID is for an existing TimeSlot.
@@ -138,6 +153,7 @@ namespace Conferenceware.Models
 		/// <param name="id">A valid ID for an existing TimeSlot</param>
 		/// <returns>A TimeSlot object with data from the repository.</returns>
 		TimeSlot GetTimeSlotById(int id);
+
 		/// <summary>
 		/// Get all TimeSlot objects from the data repository.
 		/// </summary>
@@ -152,6 +168,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="speaker">A Speaker object containing data to add.</param>
 		void AddSpeaker(Speaker speaker);
+
 		/// <summary>
 		/// Delete a Speaker from a data repository.
 		/// Precondition: Speaker has it's ID property set and ID is valid.
@@ -159,6 +176,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="speaker">A Speaker object with ID property set</param>
 		void DeleteSpeaker(Speaker speaker);
+
 		/// <summary>
 		/// Delete a Speaker from a data repository.
 		/// Precondition: ID is valid.
@@ -166,6 +184,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		/// <param name="id">An ID associated to a Speaker.</param>
 		void DeleteSpeaker(int id);
+
 		/// <summary>
 		/// Get a Speaker object from the data repository.
 		/// Precondition: ID is for an existing Speaker.
@@ -173,6 +192,7 @@ namespace Conferenceware.Models
 		/// <param name="id">A valid ID for an existing Speaker</param>
 		/// <returns>A Speaker object with data from the repository.</returns>
 		Speaker GetSpeakerById(int id);
+
 		/// <summary>
 		/// Get all Speaker objects from the data repository.
 		/// </summary>
@@ -417,74 +437,310 @@ namespace Conferenceware.Models
 		IQueryable<CompanyInvoice> GetAllCompanyInvoices();
 
 		//CompanyInvoiceItem
+		/// <summary>
+		/// Adds a company invoice item
+		/// </summary>
+		/// <param name="cii">The item to add</param>
 		void AddCompanyInvoiceItem(CompanyInvoiceItem cii);
+
+		/// <summary>
+		/// Delete a company invoice item
+		/// </summary>
+		/// <param name="cii">The item to delete</param>
 		void DeleteCompanyInvoiceItem(CompanyInvoiceItem cii);
+
+		/// <summary>
+		/// Delete a company invoice item
+		/// </summary>
+		/// <param name="id">The id of the item to delete</param>
 		void DeleteCompanyInvoiceItem(int id);
+
+		/// <summary>
+		/// Gets a company invoice item with the given id or null
+		/// </summary>
+		/// <param name="id">The id to search for</param>
+		/// <returns>The company invoice item with the given id or null</returns>
 		CompanyInvoiceItem GetCompanyInvoiceItemById(int id);
+
+		/// <summary>
+		/// Gets all the company invoice items
+		/// </summary>
+		/// <returns>All of the company invoice items</returns>
 		IQueryable<CompanyInvoiceItem> GetAllCompanyInvoiceItems();
 
 		//CompanyPayment
+		/// <summary>
+		/// Adds a company payment
+		/// </summary>
+		/// <param name="cp">The payment to add</param>
 		void AddCompanyPayment(CompanyPayment cp);
+
+		/// <summary>
+		/// Deletes a company payment
+		/// </summary>
+		/// <param name="cp">The payment to delete</param>
 		void DeleteCompanyPayment(CompanyPayment cp);
+
+		/// <summary>
+		/// Delete a company payment
+		/// </summary>
+		/// <param name="id">The id of the company payment to delete</param>
 		void DeleteCompanyPayment(int id);
+
+		/// <summary>
+		/// Gets a specified company payment or null if the id isn't found
+		/// </summary>
+		/// <param name="id">The id of a company payment to retrieve</param>
+		/// <returns>The company payment or null</returns>
 		CompanyPayment GetCompanyPaymentById(int id);
+
+		/// <summary>
+		/// Gets all company payments
+		/// </summary>
+		/// <returns>All of the company payments</returns>
 		IQueryable<CompanyPayment> GetAllCompanyPayments();
 
 		//VolunteerTimeSot
+		/// <summary>
+		/// Adds a volunteer time slot
+		/// </summary>
+		/// <param name="vts">The volunteer time slot to add</param>
 		void AddVolunteerTimeSlot(VolunteerTimeSlot vts);
+
+		/// <summary>
+		/// Deletes a volunteer time slot
+		/// </summary>
+		/// <param name="vts">The volunteer time slot to delete</param>
 		void DeleteVolunteerTimeSlot(VolunteerTimeSlot vts);
+
+		/// <summary>
+		/// Deletes a volunteer time slot
+		/// </summary>
+		/// <param name="id">The id of the volunteer time slot to delete</param>
 		void DeleteVolunteerTimeSlot(int id);
+
+		/// <summary>
+		/// Gets a specified volunteer time slot or null if it is not found
+		/// </summary>
+		/// <param name="id">The id of the volunteer time slot to find</param>
+		/// <returns>The time slot with the specified id or null</returns>
 		VolunteerTimeSlot GetVolunteerTimeSlotById(int id);
+
+		/// <summary>
+		/// Gets all the volunteer time slots
+		/// </summary>
+		/// <returns>All the volunteer time slots</returns>
 		IQueryable<VolunteerTimeSlot> GetAllVolunteerTimeSlots();
 
 		//Volunteer
+		/// <summary>
+		/// Adds a volunteer
+		/// </summary>
+		/// <param name="v">The volunteer to add</param>
 		void AddVolunteer(Volunteer v);
+
+		/// <summary>
+		/// Deletes a volunteer
+		/// </summary>
+		/// <param name="v">The volunteer to delete</param>
 		void DeleteVolunteer(Volunteer v);
+
+		/// <summary>
+		/// Deletes a volunteer
+		/// </summary>
+		/// <param name="id">The id of the volunteer to delete</param>
 		void DeleteVolunteer(int id);
+
+		/// <summary>
+		/// Gets the volunteer with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the volunteer to select</param>
+		/// <returns>The volunteer with the given id or null</returns>
 		Volunteer GetVolunteerById(int id);
+
+		/// <summary>
+		/// Gets all the volunteers
+		/// </summary>
+		/// <returns>All the volunteers</returns>
 		IQueryable<Volunteer> GetAllVolunteers();
 
 		//Register volunteers for timeslots
+		/// <summary>
+		/// Registers a volunteer for a volunteer time slot
+		/// </summary>
+		/// <param name="v">The volunteer to register</param>
+		/// <param name="vts">The volunteer time slot to register the volunteer to</param>
 		void RegisterVolunteerForVolunteerTimeSlot(Volunteer v, VolunteerTimeSlot vts);
 
+		/// <summary>
+		/// Removes the registration for a volunteer to a timeslot
+		/// </summary>
+		/// <param name="v">The volunteer to unregister</param>
+		/// <param name="vts">The volunteer time slot to disconnect</param>
 		void UnRegisterVolunteerForVolunteerTimeSlot(Volunteer v,
 													 VolunteerTimeSlot vts);
 
 		//MechManiaTeam
+		/// <summary>
+		/// Adds a mechmania team
+		/// </summary>
+		/// <param name="mmt">The mechmania team to add</param>
 		void AddMechManiaTeam(MechManiaTeam mmt);
+
+		/// <summary>
+		/// Deletes a mechmania team
+		/// </summary>
+		/// <param name="mmt">The mechmania team to delete</param>
 		void DeleteMechManiaTeam(MechManiaTeam mmt);
+
+		/// <summary>
+		/// Deletes a mechmania team
+		/// </summary>
+		/// <param name="id">The id of the mechmania team to delete</param>
 		void DeleteMechManiaTeam(int id);
+
+		/// <summary>
+		/// Gets a specified mechmania team with the given id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the team to find</param>
+		/// <returns>The specified mechmania team or null</returns>
 		MechManiaTeam GetMechManiaTeamById(int id);
+
+		/// <summary>
+		/// Gets all the mechmania teams
+		/// </summary>
+		/// <returns>All the mechmania teams</returns>
 		IQueryable<MechManiaTeam> GetAllMechManiaTeams();
 
 		//Page
+		/// <summary>
+		/// Adds a page
+		/// </summary>
+		/// <param name="page">The page to add</param>
 		void AddPage(Page page);
+
+		/// <summary>
+		/// Deletes a page
+		/// </summary>
+		/// <param name="page">The page to delete</param>
 		void DeletePage(Page page);
+
+		/// <summary>
+		/// Deletes a page
+		/// </summary>
+		/// <param name="id">The id of the page to delete</param>
 		void DeletePage(int id);
+
+		/// <summary>
+		/// Gets a page with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the page to select</param>
+		/// <returns>The page or null</returns>
 		Page GetPageById(int id);
+
+		/// <summary>
+		/// Gets a page with the specified title or null if not found
+		/// </summary>
+		/// <param name="title">The title of the page to find</param>
+		/// <returns>The specified page or null</returns>
 		Page GetPageByTitle(string title);
+
+		/// <summary>
+		/// Gets all the pages
+		/// </summary>
+		/// <returns>All the pages</returns>
 		IQueryable<Page> GetAllPages();
 
 		//StaffMember
+		/// <summary>
+		/// Adds a staff member
+		/// </summary>
+		/// <param name="sm">The staff member to add</param>
 		void AddStaffMember(StaffMember sm);
+
+		/// <summary>
+		/// Deletes a staff member
+		/// </summary>
+		/// <param name="sm">The staff member to delete</param>
 		void DeleteStaffMember(StaffMember sm);
+
+		/// <summary>
+		/// Deletes a staff member
+		/// </summary>
+		/// <param name="id">The id of the staff member to delete</param>
 		void DeleteStaffMember(int id);
+
+		/// <summary>
+		/// Gets a staff member with the specified id of null if not found
+		/// </summary>
+		/// <param name="id">The id of the staff member to find</param>
+		/// <returns>The specified staff member of null</returns>
 		StaffMember GetStaffMemberById(int id);
+
+		/// <summary>
+		/// Gets all the staff members
+		/// </summary>
+		/// <returns>All the staff members</returns>
 		IQueryable<StaffMember> GetAllStaffMembers();
 
 		//EventContentLink
+		/// <summary>
+		/// Adds an event content link
+		/// </summary>
+		/// <param name="ecl">The event content link to add</param>
 		void AddEventContentLink(EventContentLink ecl);
+
+		/// <summary>
+		/// Deletes an event content link
+		/// </summary>
+		/// <param name="ecl">The event content link to delete</param>
 		void DeleteEventContentLink(EventContentLink ecl);
+
+		/// <summary>
+		/// Deletes an event content link
+		/// </summary>
+		/// <param name="id">The event content link's id to delete</param>
 		void DeleteEventContentLink(int id);
+
+		/// <summary>
+		/// Gets and event content link with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the event content link to find</param>
+		/// <returns>The event content link with the specified id or null</returns>
 		EventContentLink GetEventContentLinkById(int id);
+
+		/// <summary>
+		/// Gets all event content links
+		/// </summary>
+		/// <returns>All the event content links</returns>
 		IQueryable<EventContentLink> GetAllEventContentLinks();
 
 		//People
+		/// <summary>
+		/// Gets a people object with the specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the people object to find</param>
+		/// <returns>The people object or null</returns>
 		People GetPeopleById(int id);
+
+		/// <summary>
+		/// Gets all people
+		/// </summary>
+		/// <returns>All people</returns>
 		IQueryable<People> GetAllPeople();
 
 		//VolunteersVolunteerTimeSlot
+		/// <summary>
+		/// Gets volunteers volunteer timeslot with a specified id or null if not found
+		/// </summary>
+		/// <param name="id">The id of the volunteers volunteer time slot to find</param>
+		/// <returns>The volunteers volunteer timeslot or null</returns>
 		VolunteersVolunteerTimeSlot GetVolunteersVolunteerTimeSlotById(int id);
+
+		/// <summary>
+		/// Gets all volunteers volunteer time slots
+		/// </summary>
+		/// <returns>All volunteers volunteer time slots</returns>
 		IQueryable<VolunteersVolunteerTimeSlot> GetAllVolunteersVolunteerTimeSlots();
 
 		//General
@@ -493,9 +749,21 @@ namespace Conferenceware.Models
 		/// </summary>
 		void Save();
 
+		//Database stuff
+		/// <summary>
+		/// Creates the underlying database
+		/// </summary>
 		void CreateDatabase();
-		bool DatabaseExists();
-		void DeleteDatabase();
 
+		/// <summary>
+		/// Whether or not the underlying database exists
+		/// </summary>
+		/// <returns>Whether or not the underlying database exists</returns>
+		bool DatabaseExists();
+
+		/// <summary>
+		/// Deletes the underlying database
+		/// </summary>
+		void DeleteDatabase();
 	}
 }

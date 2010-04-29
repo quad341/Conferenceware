@@ -18,6 +18,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repo;
 		}
+
 		//
 		// GET: /Food/
 
@@ -55,7 +56,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var food = _repository.GetFoodById(id);
+			Food food = _repository.GetFoodById(id);
 			if (food == null)
 			{
 				return View("FoodIsInvalid");
@@ -69,7 +70,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var food = _repository.GetFoodById(id);
+			Food food = _repository.GetFoodById(id);
 			if (food == null)
 			{
 				return View("FoodIsInvalid");
@@ -87,7 +88,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var food = _repository.GetFoodById(id);
+			Food food = _repository.GetFoodById(id);
 			if (food == null)
 			{
 				return View("FoodIsInvalid");

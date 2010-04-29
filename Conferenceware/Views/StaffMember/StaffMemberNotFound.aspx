@@ -8,6 +8,6 @@
 
     <h2>Staff Member Not Found</h2>
     
-    <p>The requested staff member was not found. You can return to the <%= Html.ActionLink("staff member list", "Index") %></p>
+    <p>The requested staff member was not found. You can return to the <%=Html.ActionLink("staff member list", "Index")%></p>
 
 </asp:Content>

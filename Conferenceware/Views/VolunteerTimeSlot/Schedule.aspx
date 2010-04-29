@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.VolunteerTimeSlotScheduleData>" %>
+<%@ Import Namespace="Conferenceware.Models" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Schedule
@@ -10,25 +11,32 @@
     <div class="display-label">Currently Confirmed volunteers</div>
     <div class="display-field">
         <ul>
-            <% foreach (var vol in Model.VolunteerTs.ConfirmedVolunteers)
-               {%>
+            <%
+            	foreach (Volunteer vol in Model.VolunteerTs.ConfirmedVolunteers)
+             {%>
                <li class="entry-with-inline-form">
-                    <% using(Html.BeginForm("UnSchedule", "VolunteerTimeSlot", FormMethod.Post))
-{%>
+                    <%
+             	using (
+             		Html.BeginForm("UnSchedule", "VolunteerTimeSlot", FormMethod.Post)
+             		)
+             	{%>
                     <input type="hidden" name="id" value="<%=
-		vol.VolunteersVolunteerTimeSlots.SingleOrDefault(
-			x => x.volunteer_timeslot_id == Model.VolunteerTs.timeslot_id).id %>" />
+             			vol.VolunteersVolunteerTimeSlots.SingleOrDefault(
+             				x => x.volunteer_timeslot_id == Model.VolunteerTs.timeslot_id).
+             				id%>" />
                     <input type="submit" value="Remove" />
                     <%
-}%>
-                    <%= Html.Encode(vol.People.name) %>
+             	}%>
+                    <%=Html.Encode(vol.People.name)%>
                </li>
             <%
-               }%>
+             }%>
         </ul>
     </div>
 
-    <% using (Html.BeginForm()) {%>
+    <%
+            	using (Html.BeginForm())
+             {%>
 
         <fieldset>
             <legend>Fields</legend>  
@@ -36,7 +44,8 @@
                 Volunteer
             </div>
             <div class="editor-field">
-                <%= Html.DropDownList("VolunteersVolunteerTimeSlot", Model.Volunteers) %>
+                <%=Html.DropDownList(
+             		"VolunteersVolunteerTimeSlot", Model.Volunteers)%>
             </div>
             
             <p>
@@ -44,9 +53,10 @@
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+             }%>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 </asp:Content>

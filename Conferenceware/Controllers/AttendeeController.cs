@@ -14,7 +14,6 @@ namespace Conferenceware.Controllers
 		public AttendeeController()
 			: this(new ConferencewareRepository())
 		{
-
 		}
 
 		public AttendeeController(IRepository repo)
@@ -35,7 +34,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Create()
 		{
-			var data = MakeEditDateFromAttendee(new Attendee());
+			AttendeeEditData data = MakeEditDateFromAttendee(new Attendee());
 			return View("Create", data);
 		}
 
@@ -53,7 +52,7 @@ namespace Conferenceware.Controllers
 				_repository.Save();
 				return RedirectToAction("Index");
 			}
-			var data = MakeEditDateFromAttendee(newAttendee);
+			AttendeeEditData data = MakeEditDateFromAttendee(newAttendee);
 			return View("Create", data);
 		}
 
@@ -62,7 +61,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Edit(int id)
 		{
-			var att = _repository.GetAttendeeById(id);
+			Attendee att = _repository.GetAttendeeById(id);
 			if (att == null)
 			{
 				View("AttendeeNotFound");
@@ -76,14 +75,14 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var att = _repository.GetAttendeeById(id);
+			Attendee att = _repository.GetAttendeeById(id);
 			// This will try to update all the fields in the model based on the form collection
 			if (TryUpdateModel(att, "Attendee", collection))
 			{
 				_repository.Save();
 				return RedirectToAction("Index");
 			}
-			var data = MakeEditDateFromAttendee(att);
+			AttendeeEditData data = MakeEditDateFromAttendee(att);
 			return View("Edit", data);
 		}
 
@@ -92,7 +91,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Delete(int id)
 		{
-			var att = _repository.GetAttendeeById(id);
+			Attendee att = _repository.GetAttendeeById(id);
 			if (att == null)
 			{
 				return View("AttendeeNotFound");

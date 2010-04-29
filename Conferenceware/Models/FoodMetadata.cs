@@ -6,10 +6,6 @@ namespace Conferenceware.Models
 	{
 		[Required]
 		[StringLength(255)]
-		public string name
-		{
-			get;
-			set;
-		}
+		public string name { get; set; }
 	}
 }
