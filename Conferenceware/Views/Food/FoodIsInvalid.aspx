@@ -8,7 +8,7 @@
 
     <h2>Food Is Invalid</h2>
     
-    <p>Requested food was not found. You can return to <%= Html.ActionLink("the list", "Index") %></p>
+    <p>Requested food was not found. You can return to <%=Html.ActionLink("the list", "Index")%></p>
 
 </asp:Content>
 

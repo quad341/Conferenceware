@@ -8,6 +8,6 @@
 
     <h2>Payment Not Found</h2>
     
-    <p>The requested payment was not found. You can return to the <%= Html.ActionLink("company list", "Index", "Company") %></p>
+    <p>The requested payment was not found. You can return to the <%=Html.ActionLink("company list", "Index", "Company")%></p>
 
 </asp:Content>

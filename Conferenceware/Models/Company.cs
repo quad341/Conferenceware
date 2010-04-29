@@ -14,10 +14,7 @@ namespace Conferenceware.Models
 		[DisplayName("Total for Invoices")]
 		public decimal InvoiceTotal
 		{
-			get
-			{
-				return CompanyInvoices.Sum(x => x.TotalValue);
-			}
+			get { return CompanyInvoices.Sum(x => x.TotalValue); }
 		}
 
 		/// <summary>
@@ -26,10 +23,7 @@ namespace Conferenceware.Models
 		[DisplayName("Total for Payments")]
 		public decimal PaymentsTotal
 		{
-			get
-			{
-				return CompanyPayments.Sum(x => x.amount);
-			}
+			get { return CompanyPayments.Sum(x => x.amount); }
 		}
 
 		/// <summary>
@@ -38,10 +32,7 @@ namespace Conferenceware.Models
 		[DisplayName("Total Owed")]
 		public decimal TotalOwed
 		{
-			get
-			{
-				return InvoiceTotal - PaymentsTotal;
-			}
+			get { return InvoiceTotal - PaymentsTotal; }
 		}
 	}
 }

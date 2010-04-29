@@ -25,19 +25,19 @@ namespace Conferenceware.Models
 
 		internal string MakePassword(string password)
 		{
-			var toHash = (STATIC_SEED + password + seed);
+			string toHash = (STATIC_SEED + password + seed);
 			return Sha1(toHash);
 		}
 
 		// from http://mattwilko.com/SHA1%20Hash%20in%20C#
 		// his worked, mine didn't
-		static string Sha1(string str)
+		private static string Sha1(string str)
 		{
 			byte[] buffer = Encoding.ASCII.GetBytes(str);
 			var hasher = new SHA1CryptoServiceProvider();
 			buffer = hasher.ComputeHash(buffer);
 			var hash = new StringBuilder(40);
-			for (var i = 0; i < buffer.Length; i++)
+			for (int i = 0; i < buffer.Length; i++)
 			{
 				hash.Append(buffer[i].ToString("X"));
 			}
@@ -62,7 +62,8 @@ namespace Conferenceware.Models
 			var random = new Random();
 			for (int i = 0; i < size; i++)
 			{
-				char ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+				char ch =
+					Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
 				builder.Append(ch);
 			}
 			if (lowerCase)
@@ -70,6 +71,4 @@ namespace Conferenceware.Models
 			return builder.ToString();
 		}
 	}
-
-
 }

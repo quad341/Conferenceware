@@ -8,18 +8,10 @@ namespace Conferenceware.Models
 		[Required]
 		[StringLength(255)]
 		[DisplayName("Username for authentication")]
-		public string auth_name
-		{
-			get;
-			set;
-		}
+		public string auth_name { get; set; }
 
 		[Required]
 		[DisplayName("Password")]
-		public string password_hash
-		{
-			get;
-			set;
-		}
+		public string password_hash { get; set; }
 	}
 }

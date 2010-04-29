@@ -32,7 +32,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Create(int id)
 		{
-			var company = _repository.GetCompanyById(id);
+			Company company = _repository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
@@ -49,7 +49,9 @@ namespace Conferenceware.Controllers
 		{
 			var cp = new CompanyPayment();
 			// This will try to update all the fields in the model based on the form collection
-			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }, collection))
+			if (TryUpdateModel(cp,
+							   new[] { "company_id", "amount", "received_date", "comments" },
+							   collection))
 			{
 				if (cp.comments == null)
 				{
@@ -61,7 +63,7 @@ namespace Conferenceware.Controllers
 				return RedirectToAction("Details", "Company", new { id = cp.company_id });
 			}
 			// if it errors on submit; it only has the id, not the linq object
-			var company = _repository.GetCompanyById(cp.company_id);
+			Company company = _repository.GetCompanyById(cp.company_id);
 			if (company == null)
 			{
 				// this has happened; not sure why
@@ -77,7 +79,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Edit(int id)
 		{
-			var cp = _repository.GetCompanyPaymentById(id);
+			CompanyPayment cp = _repository.GetCompanyPaymentById(id);
 			if (cp == null)
 			{
 				return View("CompanyPaymentNotFound");
@@ -91,13 +93,15 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var cp = _repository.GetCompanyPaymentById(id);
+			CompanyPayment cp = _repository.GetCompanyPaymentById(id);
 			if (cp == null)
 			{
 				return View("CompanyPaymentNotFound");
 			}
 			// This will try to update all the fields in the model based on the form collection
-			if (TryUpdateModel(cp, new[] { "company_id", "amount", "received_date", "comments" }, collection))
+			if (TryUpdateModel(cp,
+							   new[] { "company_id", "amount", "received_date", "comments" },
+							   collection))
 			{
 				if (cp.comments == null)
 				{
@@ -116,7 +120,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Delete(int payment_id)
 		{
-			var cp = _repository.GetCompanyPaymentById(payment_id);
+			CompanyPayment cp = _repository.GetCompanyPaymentById(payment_id);
 			if (cp == null)
 			{
 				return View("CompanyPaymentNotFound");

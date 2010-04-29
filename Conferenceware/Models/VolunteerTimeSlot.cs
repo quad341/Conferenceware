@@ -11,10 +11,7 @@ namespace Conferenceware.Models
 
 		public IEnumerable<Volunteer> Volunteers
 		{
-			get
-			{
-				return VolunteersVolunteerTimeSlots.Select(x => x.Volunteer);
-			}
+			get { return VolunteersVolunteerTimeSlots.Select(x => x.Volunteer); }
 		}
 
 		public IEnumerable<Volunteer> UnscheduledVolunteers

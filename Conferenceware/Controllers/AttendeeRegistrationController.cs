@@ -1,5 +1,4 @@
 ﻿using System.Net.Mail;
-using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Conferenceware.Models;
 using Conferenceware.Utils;
@@ -26,7 +25,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Index()
 		{
-			var data = MakeEditDateFromAttendee(new Attendee());
+			AttendeeEditData data = MakeEditDateFromAttendee(new Attendee());
 			return View("Index", data);
 		}
 
@@ -42,7 +41,7 @@ namespace Conferenceware.Controllers
 			{
 				_repository.AddAttendee(newAttendee);
 				_repository.Save();
-				var settings = SettingsData.FromCurrent(
+				SettingsData settings = SettingsData.FromCurrent(
 					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 				var message = new MailMessage(settings.EmailFrom,
 											  newAttendee.People.email,
@@ -53,7 +52,7 @@ namespace Conferenceware.Controllers
 				Mailer.Send(message);
 				return RedirectToAction("Success");
 			}
-			var data = MakeEditDateFromAttendee(newAttendee);
+			AttendeeEditData data = MakeEditDateFromAttendee(newAttendee);
 			return RedirectToAction("Index", data);
 		}
 

@@ -56,7 +56,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var speaker = _repository.GetSpeakerById(id);
+			Speaker speaker = _repository.GetSpeakerById(id);
 			if (speaker == null)
 			{
 				return View("SpeakerNotFound");
@@ -70,7 +70,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var speaker = _repository.GetSpeakerById(id);
+			Speaker speaker = _repository.GetSpeakerById(id);
 			if (speaker == null)
 			{
 				return View("SpeakerNotFound");
@@ -87,7 +87,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var speaker = _repository.GetSpeakerById(id);
+			Speaker speaker = _repository.GetSpeakerById(id);
 			if (speaker == null)
 			{
 				return View("SpeakerNotFound");

@@ -49,7 +49,7 @@ namespace Conferenceware.Controllers
 		public ActionResult MechmaniaBadges()
 		{
 			var mmpeople = new List<People>();
-			foreach (var mmt in _repository.GetAllMechManiaTeams())
+			foreach (MechManiaTeam mmt in _repository.GetAllMechManiaTeams())
 			{
 				mmpeople.Add(mmt.Attendee.People);
 				mmpeople.Add(mmt.Attendee1.People);

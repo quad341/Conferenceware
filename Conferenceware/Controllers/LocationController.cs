@@ -21,6 +21,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repo;
 		}
+
 		//
 		// GET: /Location/
 
@@ -61,7 +62,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var loc = _repository.GetLocationById(id);
+			Location loc = _repository.GetLocationById(id);
 			if (loc == null)
 			{
 				return View("LocationNotFound");
@@ -75,7 +76,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var loc = _repository.GetLocationById(id);
+			Location loc = _repository.GetLocationById(id);
 			if (loc == null)
 			{
 				return View("LocationNotFound");
@@ -91,7 +92,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var loc = _repository.GetLocationById(id);
+			Location loc = _repository.GetLocationById(id);
 			if (loc == null)
 			{
 				return View("LocationNotFound");
@@ -100,7 +101,8 @@ namespace Conferenceware.Controllers
 			{
 				_repository.DeleteLocation(loc);
 				_repository.Save();
-				TempData["Message"] = loc.building_name + " " + loc.room_number + " was deleted";
+				TempData["Message"] = loc.building_name + " " + loc.room_number +
+									  " was deleted";
 			}
 			catch
 			{

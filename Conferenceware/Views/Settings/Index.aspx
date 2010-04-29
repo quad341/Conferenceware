@@ -13,11 +13,12 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% Html.EnableClientValidation(); %>
+    <%
+    	Html.EnableClientValidation();%>
     <h2>
         Settings</h2>
-    <form action="<%= Url.Action("Index") %>" enctype="multipart/form-data" method="post">
-    <%= Html.ValidationSummary(true) %>
+    <form action="<%=Url.Action("Index")%>" enctype="multipart/form-data" method="post">
+    <%=Html.ValidationSummary(true)%>
     <fieldset>
         <legend>Fields</legend>
         <div id="tabs">
@@ -28,136 +29,164 @@
             </ul>
             <div id="frontpageSettings">
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.FrontpageTitle) %>
+                    <%=Html.LabelFor(model => model.FrontpageTitle)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.FrontpageTitle) %>
-                    <%= Html.ValidationMessageFor(model => model.FrontpageTitle) %>
+                    <%=Html.TextBoxFor(model => model.FrontpageTitle)%>
+                    <%=Html.ValidationMessageFor(model => model.FrontpageTitle)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.FrontpageContent) %>
+                    <%=Html.LabelFor(model => model.FrontpageContent)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextAreaFor(model => model.FrontpageContent, 15, 80, null) %>
-                    <%= Html.ValidationMessageFor(model => model.FrontpageContent) %>
+                    <%=Html.TextAreaFor(model => model.FrontpageContent,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=Html.ValidationMessageFor(model => model.FrontpageContent)%>
                 </div>
             </div>
             <div id="emailSettings">
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.EmailFrom) %>
+                    <%=Html.LabelFor(model => model.EmailFrom)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.EmailFrom) %>
-                    <%= Html.ValidationMessageFor(model => model.EmailFrom) %>
+                    <%=Html.TextBoxFor(model => model.EmailFrom)%>
+                    <%=Html.ValidationMessageFor(model => model.EmailFrom)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.EventRegistrationConfirmationSubjectFormat) %>
+                    <%=
+				Html.LabelFor(model => model.EventRegistrationConfirmationSubjectFormat)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.EventRegistrationConfirmationSubjectFormat) %>
-                    <%= Html.ValidationMessageFor(model => model.EventRegistrationConfirmationSubjectFormat) %>
+                    <%=
+				Html.TextBoxFor(model => model.EventRegistrationConfirmationSubjectFormat)%>
+                    <%=
+				Html.ValidationMessageFor(
+					model => model.EventRegistrationConfirmationSubjectFormat)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.EventRegistrationConfirmationBodyFormat) %>
+                    <%=
+				Html.LabelFor(model => model.EventRegistrationConfirmationBodyFormat)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextAreaFor(model => model.EventRegistrationConfirmationBodyFormat, 15, 80, null) %>
-                    <%= Html.ValidationMessageFor(model => model.EventRegistrationConfirmationBodyFormat) %>
+                    <%=
+				Html.TextAreaFor(model => model.EventRegistrationConfirmationBodyFormat,
+				                 15,
+				                 80,
+				                 null)%>
+                    <%=
+				Html.ValidationMessageFor(
+					model => model.EventRegistrationConfirmationBodyFormat)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.RegistrationSubject) %>
+                    <%=Html.LabelFor(model => model.RegistrationSubject)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.RegistrationSubject) %>
-                    <%= Html.ValidationMessageFor(model => model.RegistrationSubject) %>
+                    <%=Html.TextBoxFor(model => model.RegistrationSubject)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.RegistrationSubject)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.RegistrationMessage) %>
+                    <%=Html.LabelFor(model => model.RegistrationMessage)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextAreaFor(model => model.RegistrationMessage, 15, 80, null) %>
-                    <%= Html.ValidationMessageFor(model => model.RegistrationMessage) %>
+                    <%=Html.TextAreaFor(model => model.RegistrationMessage,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.RegistrationMessage)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.SmtpHostname) %>
+                    <%=Html.LabelFor(model => model.SmtpHostname)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.SmtpHostname) %>
-                    <%= Html.ValidationMessageFor(model => model.SmtpHostname) %>
+                    <%=Html.TextBoxFor(model => model.SmtpHostname)%>
+                    <%=Html.ValidationMessageFor(model => model.SmtpHostname)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.SmtpPort) %>
+                    <%=Html.LabelFor(model => model.SmtpPort)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.SmtpPort) %>
-                    <%= Html.ValidationMessageFor(model => model.SmtpPort) %>
+                    <%=Html.TextBoxFor(model => model.SmtpPort)%>
+                    <%=Html.ValidationMessageFor(model => model.SmtpPort)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.SmtpNeedsAuthentication) %>
+                    <%=Html.LabelFor(model => model.SmtpNeedsAuthentication)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.CheckBoxFor(model => model.SmtpNeedsAuthentication) %>
-                    <%= Html.ValidationMessageFor(model => model.SmtpNeedsAuthentication) %>
+                    <%=Html.CheckBoxFor(model => model.SmtpNeedsAuthentication)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.SmtpNeedsAuthentication)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.SmtpAuthenticationUserName) %>
+                    <%=Html.LabelFor(model => model.SmtpAuthenticationUserName)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.SmtpAuthenticationUserName) %>
-                    <%= Html.ValidationMessageFor(model => model.SmtpAuthenticationUserName) %>
+                    <%=Html.TextBoxFor(model => model.SmtpAuthenticationUserName)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.SmtpAuthenticationUserName)%>
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.SmtpAuthenticationPassword) %>
+                    <%=Html.LabelFor(model => model.SmtpAuthenticationPassword)%>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextBoxFor(model => model.SmtpAuthenticationPassword) %>
-                    <%= Html.ValidationMessageFor(model => model.SmtpAuthenticationPassword) %>
+                    <%=Html.TextBoxFor(model => model.SmtpAuthenticationPassword)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.SmtpAuthenticationPassword)%>
                 </div>
             </div>
             <div id="badgeSettings">
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.AttendeeBadgeBackground) %><br />
-                    <img src="<%= Url.Action("GetImage", new {filename="AttendeeBadgeBackground"})%>"
+                    <%=Html.LabelFor(model => model.AttendeeBadgeBackground)%><br />
+                    <img src="<%=Url.Action("GetImage",
+			                             new {filename = "AttendeeBadgeBackground"})%>"
                         class="badge-background-image" alt="Attendee Badge Background" />
                 </div>
                 <div class="editor-field">
                     <input type="file" name="AttendeeBadgeBackground" id="AttendeeBadgeBackground" />
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.MechmaniaBadgeBackground) %><br />
-                    <img src="<%= Url.Action("GetImage", new {filename="MechmaniaBadgeBackground"})%>"
+                    <%=Html.LabelFor(model => model.MechmaniaBadgeBackground)%><br />
+                    <img src="<%=Url.Action("GetImage",
+			                             new {filename = "MechmaniaBadgeBackground"})%>"
                         class="badge-background-image" alt="Mechmania Badge Background" />
                 </div>
                 <div class="editor-field">
                     <input type="file" name="MechmaniaBadgeBackground" id="MechmaniaBadgeBackground" />
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.SpeakerBadgeBackground) %><br />
-                    <img src="<%= Url.Action("GetImage", new {filename="SpeakerBadgeBackground"})%>"
+                    <%=Html.LabelFor(model => model.SpeakerBadgeBackground)%><br />
+                    <img src="<%=Url.Action("GetImage",
+			                             new {filename = "SpeakerBadgeBackground"})%>"
                         class="badge-background-image" alt="Speaker Badge Background" />
                 </div>
                 <div class="editor-field">
                     <input type="file" name="SpeakerBadgeBackground" id="SpeakerBadgeBackground" />
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.SponsorBadgeBackground) %><br />
-                    <img src="<%= Url.Action("GetImage", new {filename="SponsorBadgeBackground"})%>"
+                    <%=Html.LabelFor(model => model.SponsorBadgeBackground)%><br />
+                    <img src="<%=Url.Action("GetImage",
+			                             new {filename = "SponsorBadgeBackground"})%>"
                         class="badge-background-image" alt="Sponsor Badge Background" />
                 </div>
                 <div class="editor-field">
                     <input type="file" name="SponsorBadgeBackground" id="SponsorBadgeBackground" />
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.StaffBadgeBackground) %><br />
-                    <img src="<%= Url.Action("GetImage", new {filename="StaffBadgeBackground"})%>" class="badge-background-image"
+                    <%=Html.LabelFor(model => model.StaffBadgeBackground)%><br />
+                    <img src="<%=Url.Action("GetImage",
+			                             new {filename = "StaffBadgeBackground"})%>" class="badge-background-image"
                         alt="Staff Badge Background" />
                 </div>
                 <div class="editor-field">
                     <input type="file" name="StaffBadgeBackground" id="StaffBadgeBackground" />
                 </div>
                 <div class="editor-label">
-                    <%= Html.LabelFor(model => model.VolunteerBadgeBackground) %><br />
-                    <img src="<%= Url.Action("GetImage", new {filename="VolunteerBadgeBackground"})%>"
+                    <%=Html.LabelFor(model => model.VolunteerBadgeBackground)%><br />
+                    <img src="<%=Url.Action("GetImage",
+			                             new {filename = "VolunteerBadgeBackground"})%>"
                         class="badge-background-image" alt="Volunteer Badge Background" />
                 </div>
                 <div class="editor-field">
@@ -171,7 +200,7 @@
     </fieldset>
     </form>
     <div>
-        <%= Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 </asp:Content>
 

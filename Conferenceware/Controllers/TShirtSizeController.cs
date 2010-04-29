@@ -18,6 +18,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repo;
 		}
+
 		//
 		// GET: /TShirtSize/
 
@@ -54,7 +55,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var tss = _repository.GetTShirtSizeById(id);
+			TShirtSize tss = _repository.GetTShirtSizeById(id);
 			if (tss == null)
 			{
 				return View("TShirtSizeNotFound");
@@ -68,7 +69,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var tss = _repository.GetTShirtSizeById(id);
+			TShirtSize tss = _repository.GetTShirtSizeById(id);
 			if (tss == null)
 			{
 				return View("TShirtSizeNotFound");
@@ -85,7 +86,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var tss = _repository.GetTShirtSizeById(id);
+			TShirtSize tss = _repository.GetTShirtSizeById(id);
 			if (tss == null)
 			{
 				return View("TShirtSizeNotFound");

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Conferenceware.Models
 {
@@ -11,23 +10,19 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// The attendee
 		/// </summary>
-		public Attendee Attendee
-		{
-			get; set;
-		}
+		public Attendee Attendee { get; set; }
 
 		/// <summary>
 		/// A list of all the t shirt sizes
 		/// </summary>
-		public SelectList TShirtSizes
-		{
-			get; set;
-		}
+		public SelectList TShirtSizes { get; set; }
 
 		/// <summary>
 		/// A list of all the food choices
 		/// </summary>
-		public SelectList Foods
+		public SelectList Foods { get; set; }
+	}
+}s
 		{
 			get; set;
 		}

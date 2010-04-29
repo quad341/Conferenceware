@@ -16,25 +16,28 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <%
+    	foreach (Conferenceware.Models.Page item in Model)
+     {%>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { item.id }) %> |
-                <%= Html.ActionLink("Details", "Details", new { item.id })%> |
-                <%= Html.ActionLink("Delete", "Delete", new { item.id })%>
+                <%=Html.ActionLink("Edit", "Edit", new {item.id})%> |
+                <%=Html.ActionLink("Details", "Details", new {item.id})%> |
+                <%=Html.ActionLink("Delete", "Delete", new {item.id})%>
             </td>
             <td>
-                <%= Html.Encode(item.title) %>
+                <%=Html.Encode(item.title)%>
             </td>
         </tr>
     
-    <% } %>
+    <%
+     }%>
 
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%=Html.ActionLink("Create New", "Create")%>
     </p>
 
 </asp:Content>

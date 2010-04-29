@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
@@ -10,8 +11,6 @@ namespace Conferenceware.Controllers
 	[Authorize]
 	public class EventController : Controller
 	{
-
-
 		/// <summary>
 		/// Repository to interact with database
 		/// </summary>
@@ -127,16 +126,16 @@ namespace Conferenceware.Controllers
 			try
 			{
 				// Unlink speakers from this event
-				foreach (var speaker in ev.Speakers)
+				foreach (Speaker speaker in ev.Speakers)
 				{
 					_repository.UnRegisterSpeakerForEvent(speaker, ev);
 				}
 				// Unlink attendees from this event
-				foreach (var attendee in ev.Attendees)
+				foreach (Attendee attendee in ev.Attendees)
 				{
 					_repository.UnRegisterAttendeeForEvent(attendee, ev);
 				}
-				var name = ev.name;
+				string name = ev.name;
 				_repository.DeleteEvent(ev);
 				_repository.Save();
 				TempData["Message"] = name + " was deleted";
@@ -150,13 +149,13 @@ namespace Conferenceware.Controllers
 
 		private EventEditData MakeEditDataFromEvent(Event e)
 		{
-			var allSpeakers = _repository.GetAllSpeakers().ToList();
-			foreach (var listedSpeaker in e.Speakers)
+			List<Speaker> allSpeakers = _repository.GetAllSpeakers().ToList();
+			foreach (Speaker listedSpeaker in e.Speakers)
 			{
 				allSpeakers.Remove(listedSpeaker);
 			}
-			var allAttendees = _repository.GetAllAttendees().ToList();
-			foreach (var listedAttendee in e.Attendees)
+			List<Attendee> allAttendees = _repository.GetAllAttendees().ToList();
+			foreach (Attendee listedAttendee in e.Attendees)
 			{
 				allAttendees.Remove(listedAttendee);
 			}
@@ -184,7 +183,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult AddSpeaker(int eventId, int speakerId)
 		{
-			var speaker = _repository.GetSpeakerById(speakerId);
+			Speaker speaker = _repository.GetSpeakerById(speakerId);
 			if (speaker == null)
 			{
 				return RedirectToAction("Edit", new { id = eventId });
@@ -202,7 +201,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult RemoveSpeaker(int eventId, int speakerId)
 		{
-			var speaker = _repository.GetSpeakerById(speakerId);
+			Speaker speaker = _repository.GetSpeakerById(speakerId);
 			if (speaker == null)
 			{
 				return RedirectToAction("Edit", new { id = eventId });
@@ -220,7 +219,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult AddAttendee(int eventId, int attendeeId)
 		{
-			var attendee = _repository.GetAttendeeById(attendeeId);
+			Attendee attendee = _repository.GetAttendeeById(attendeeId);
 			if (attendee == null)
 			{
 				return RedirectToAction("Edit", new { id = eventId });
@@ -238,7 +237,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult RemoveAttendee(int eventId, int attendeeId)
 		{
-			var attendee = _repository.GetAttendeeById(attendeeId);
+			Attendee attendee = _repository.GetAttendeeById(attendeeId);
 			if (attendee == null)
 			{
 				return RedirectToAction("Edit", new { id = eventId });
@@ -312,8 +311,9 @@ namespace Conferenceware.Controllers
 			{
 				ModelState.AddModelError("link_location", "Link Location is required");
 			}
-			var contentLocation = Url.Content("~/Content/");
-			if (ecl.link_location != null && ecl.link_location.IndexOf(contentLocation) != 0)
+			string contentLocation = Url.Content("~/Content/");
+			if (ecl.link_location != null &&
+				ecl.link_location.IndexOf(contentLocation) != 0)
 			{
 				ModelState.AddModelError("link_location",
 										 String.Format(
@@ -332,7 +332,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult RemoveContentLink(int contentId)
 		{
-			var ecl = _repository.GetEventContentLinkById(contentId);
+			EventContentLink ecl = _repository.GetEventContentLinkById(contentId);
 			if (ecl == null)
 			{
 				return View("EventContentLinkNotFound");
@@ -344,20 +344,20 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult RemoveContentLink(EventContentLinkDeleteData ecldd)
 		{
-			var ecl = _repository.GetEventContentLinkById(ecldd.EventContentLink.id);
+			EventContentLink ecl =
+				_repository.GetEventContentLinkById(ecldd.EventContentLink.id);
 			if (ecl == null)
 			{
 				return View("EventContentLinkNotFound");
 			}
-			var errorEncountered = false;
-			var fixedPath = AppDomain.CurrentDomain.BaseDirectory +
-							 ecl.link_location.Replace('/', '\\').Replace("\\\\", "\\");
+			bool errorEncountered = false;
+			string fixedPath = AppDomain.CurrentDomain.BaseDirectory +
+							   ecl.link_location.Replace('/', '\\').Replace("\\\\", "\\");
 			if (ecldd.DeleteFile && System.IO.File.Exists(fixedPath))
 			{
 				try
 				{
 					System.IO.File.Delete(fixedPath);
-
 				}
 				catch
 				{
@@ -370,7 +370,6 @@ namespace Conferenceware.Controllers
 				try
 				{
 					Directory.Delete(fixedPath.Substring(0, fixedPath.LastIndexOf('\\')));
-
 				}
 				catch
 				{
@@ -387,17 +386,17 @@ namespace Conferenceware.Controllers
 
 		private string ProcessUpload(EventContentLink ecl)
 		{
-			var hpf = Request.Files["link_location"];
+			HttpPostedFileBase hpf = Request.Files["link_location"];
 			if (hpf == null || hpf.ContentLength == 0)
 			{
 				ModelState.AddModelError("link_location", "File required");
 			}
-			var dir = AppDomain.CurrentDomain.BaseDirectory + "\\Content\\" +
-					  ecl.event_id + "\\";
-			var filename = hpf.FileName;
+			string dir = AppDomain.CurrentDomain.BaseDirectory + "\\Content\\" +
+						 ecl.event_id + "\\";
+			string filename = hpf.FileName;
 			if (System.IO.File.Exists(dir + filename))
 			{
-				var i = 0;
+				int i = 0;
 				while (System.IO.File.Exists(dir + i + filename))
 				{
 					i++;

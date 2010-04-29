@@ -12,10 +12,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		public IQueryable<Attendee> Attendees
 		{
-			get
-			{
-				return EventsAttendees.Select(ea => ea.Attendee).AsQueryable();
-			}
+			get { return EventsAttendees.Select(ea => ea.Attendee).AsQueryable(); }
 		}
 
 		/// <summary>
@@ -23,10 +20,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		public IQueryable<Speaker> Speakers
 		{
-			get
-			{
-				return EventsSpeakers.Select(es => es.Speaker).AsQueryable();
-			}
+			get { return EventsSpeakers.Select(es => es.Speaker).AsQueryable(); }
 		}
 	}
 }

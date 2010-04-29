@@ -88,7 +88,7 @@ namespace Conferenceware.Controllers
 				}
 				else
 				{
-					var sm =
+					StaffMember sm =
 						new ConferencewareRepository().GetAllStaffMembers().SingleOrDefault(
 							x => x.auth_name == model.UserName);
 					ModelState.AddModelError("",

@@ -12,20 +12,12 @@ namespace Conferenceware.Models
 		[DataType(DataType.DateTime)]
 		[DisplayName("Start Time")]
 		[Range(typeof(DateTime), "1/1/2000", "12/31/9999")]
-		public DateTime start_time
-		{
-			get;
-			set;
-		}
+		public DateTime start_time { get; set; }
 
 		[Required]
 		[DataType(DataType.DateTime)]
 		[DisplayName("End Time")]
 		[Range(typeof(DateTime), "1/1/2000", "12/31/9999")]
-		public DateTime end_time
-		{
-			get;
-			set;
-		}
+		public DateTime end_time { get; set; }
 	}
 }

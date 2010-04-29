@@ -8,6 +8,6 @@
 
     <h2>Volunteer Time Slot Not Found</h2>
     
-    <p>The requested time slot was not found. You can return to the <%= Html.ActionLink("list of volunteer time slots", "Index") %></p>
+    <p>The requested time slot was not found. You can return to the <%=Html.ActionLink("list of volunteer time slots", "Index")%></p>
 
 </asp:Content>

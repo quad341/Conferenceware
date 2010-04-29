@@ -6,11 +6,12 @@ namespace Conferenceware.Controllers
 	[HandleError]
 	public class HomeController : Controller
 	{
-		[OutputCache(Duration = 3600, VaryByParam = "none", VaryByCustom = "settings")]
+		[OutputCache(Duration = 3600, VaryByParam = "none", VaryByCustom = "settings")
+		]
 		public ActionResult Index()
 		{
-			var sd = SettingsData.FromCurrent(SettingsData.RESOURCE_FILE_NAME,
-											  SettingsData.RESOURCE_FILE_DIR);
+			SettingsData sd = SettingsData.FromCurrent(SettingsData.RESOURCE_FILE_NAME,
+													   SettingsData.RESOURCE_FILE_DIR);
 			var frontPageSettings =
 				new FrontpageSettings
 					{

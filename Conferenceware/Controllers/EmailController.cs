@@ -22,6 +22,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /Email/
 
@@ -35,11 +36,12 @@ namespace Conferenceware.Controllers
 		{
 			if (eed.SelectedPeopleIds.Length < 1)
 			{
-				ModelState.AddModelError("SelectedPeopleIds", "At least one recipiant must be selected");
+				ModelState.AddModelError("SelectedPeopleIds",
+										 "At least one recipiant must be selected");
 			}
 			if (ModelState.IsValid)
 			{
-				var sd = SettingsData.FromCurrent(
+				SettingsData sd = SettingsData.FromCurrent(
 					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 				eed.SelectedPeopleIds = eed.SelectedPeopleIds.Distinct().ToArray();
 				if (eed.SendIndividualEmails)
@@ -64,9 +66,9 @@ namespace Conferenceware.Controllers
 								Subject = eed.Subject,
 								Body = eed.Message
 							};
-			foreach (var i in eed.SelectedPeopleIds)
+			foreach (int i in eed.SelectedPeopleIds)
 			{
-				var person = _repository.GetPeopleById(i);
+				People person = _repository.GetPeopleById(i);
 				if (person == null)
 				{
 					continue;
@@ -78,9 +80,9 @@ namespace Conferenceware.Controllers
 
 		private void SendIndividualEmails(EmailEditData eed, SettingsData sd)
 		{
-			foreach (var i in eed.SelectedPeopleIds)
+			foreach (int i in eed.SelectedPeopleIds)
 			{
-				var person = _repository.GetPeopleById(i);
+				People person = _repository.GetPeopleById(i);
 				if (person == null)
 				{
 					continue;
@@ -119,6 +121,5 @@ namespace Conferenceware.Controllers
 									};
 			return baseData;
 		}
-
 	}
 }

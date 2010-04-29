@@ -6,22 +6,25 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <% Html.EnableClientValidation(); %>
+    <%
+    	Html.EnableClientValidation();%>
     <h2>Edit</h2>
 
-    <% using (Html.BeginForm()) {%>
+    <%
+    	using (Html.BeginForm())
+     {%>
 
         <fieldset>
             <legend>Fields</legend>
             
-            <%= Html.HiddenFor(model => model.id) %>
+            <%=Html.HiddenFor(model => model.id)%>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.name) %>
+                <%=Html.LabelFor(model => model.name)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.name) %>
-                <%= Html.ValidationMessageFor(model => model.name) %>
+                <%=Html.TextBoxFor(model => model.name)%>
+                <%=Html.ValidationMessageFor(model => model.name)%>
             </div>
             
             <p>
@@ -29,10 +32,11 @@
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+     }%>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 
 </asp:Content>

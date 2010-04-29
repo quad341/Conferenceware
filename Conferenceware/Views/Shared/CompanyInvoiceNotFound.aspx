@@ -8,6 +8,6 @@
 
     <h2>Invoice Not Found</h2>
     
-    <p>The requested invoice was not found. You can view the <%= Html.ActionLink("company list", "Index", "Company") %>.</p>
+    <p>The requested invoice was not found. You can view the <%=Html.ActionLink("company list", "Index", "Company")%>.</p>
 
 </asp:Content>

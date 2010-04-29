@@ -8,6 +8,6 @@
 
     <h2>Attendee Not Found</h2>
     
-    <p>The requested attendee was not found. You can return to the <%= Html.ActionLink("attendee list", "Index") %></p>
+    <p>The requested attendee was not found. You can return to the <%=Html.ActionLink("attendee list", "Index")%></p>
 
 </asp:Content>
