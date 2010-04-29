@@ -21,7 +21,6 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repo;
 		}
-		// GET: /Attendee/
 
 		//
 		// GET: /Attendee/
