@@ -92,7 +92,7 @@ namespace Conferenceware.Controllers
 			{
 				return View("PageNotFound");
 			}
-			if (_repository.GetPageByTitle(collection["Page.title"]) != null)
+			if (_repository.GetPageByTitle(collection["Page.title"]).id != id)
 			{
 				ModelState.AddModelError("Page.title", "Page title must be unique");
 			}
