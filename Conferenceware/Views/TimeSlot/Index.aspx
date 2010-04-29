@@ -12,13 +12,13 @@
         <tr>
             <th></th>
             <th>
-                id
+                ID
             </th>
             <th>
-                start_time
+                Start Time
             </th>
             <th>
-                end_time
+                End Time
             </th>
         </tr>
 
@@ -26,8 +26,8 @@
     
         <tr>
             <td>
-                <%= Html.ActionLink("Edit", "Edit", new { id=item.id }) %> |
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.id })%>
+                <%= Html.ActionLink("Edit", "Edit", new { item.id }) %> |
+                <%= Html.ActionLink("Delete", "Delete", new { item.id })%>
             </td>
             <td>
                 <%= Html.Encode(item.id) %>
