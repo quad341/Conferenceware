@@ -105,19 +105,19 @@ namespace Conferenceware.Controllers
 			return View("Edit", MakeEditDataFromEvent(ev));
 		}
 
-        public ActionResult Delete(int id)
-        {
-            Event ev = _repository.GetEventById(id);
-            if (ev == null)
-            {
-                return View("EventNotFound");
-            }
-            return View("Delete", ev);
-        }
+		public ActionResult Delete(int id)
+		{
+			Event ev = _repository.GetEventById(id);
+			if (ev == null)
+			{
+				return View("EventNotFound");
+			}
+			return View("Delete", ev);
+		}
 
 
-       [HttpPost]
-		public ActionResult Delete(int id,FormCollection collection)
+		[HttpPost]
+		public ActionResult Delete(int id, FormCollection collection)
 		{
 			Event ev = _repository.GetEventById(id);
 			if (ev == null)
@@ -127,15 +127,15 @@ namespace Conferenceware.Controllers
 			try
 			{
 				// Unlink speakers from this event
-                foreach (var speaker in ev.Speakers)
-                {
-                    _repository.UnRegisterSpeakerForEvent(speaker, ev);
-                }
-                // Unlink attendees from this event
-                foreach (var attendee in ev.Attendees)
-                {
-                    _repository.UnRegisterAttendeeForEvent(attendee, ev);
-                }
+				foreach (var speaker in ev.Speakers)
+				{
+					_repository.UnRegisterSpeakerForEvent(speaker, ev);
+				}
+				// Unlink attendees from this event
+				foreach (var attendee in ev.Attendees)
+				{
+					_repository.UnRegisterAttendeeForEvent(attendee, ev);
+				}
 				var name = ev.name;
 				_repository.DeleteEvent(ev);
 				_repository.Save();
@@ -312,9 +312,13 @@ namespace Conferenceware.Controllers
 			{
 				ModelState.AddModelError("link_location", "Link Location is required");
 			}
-			if (ecl.link_location != null && ecl.link_location.IndexOf("/Content/") != 0)
+			var contentLocation = Url.Content("~/Content/");
+			if (ecl.link_location != null && ecl.link_location.IndexOf(contentLocation) != 0)
 			{
-				ModelState.AddModelError("link_location", "Links must start with /Content/ (files need to be in /Content)");
+				ModelState.AddModelError("link_location",
+										 String.Format(
+											"Links must start with {0} (files need to be in {0})",
+											contentLocation));
 			}
 			if (ModelState.IsValid)
 			{
