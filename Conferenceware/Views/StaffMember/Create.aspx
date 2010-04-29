@@ -52,7 +52,7 @@
                 <%= Html.LabelFor(model => model.password_hash) %>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.password_hash) %>
+                <%= Html.PasswordFor(model => model.password_hash) %>
                 <%= Html.ValidationMessageFor(model => model.password_hash) %>
             </div>
            

@@ -53,7 +53,7 @@
                 <small>Set to blank to not change</small>
             </div>
             <div class="editor-field">
-                <input type="text" name="password_hash" id="password_hash" />
+                <%= Html.PasswordFor(model => model.password_hash) %>
                 <%= Html.ValidationMessageFor(model => model.password_hash) %>
             </div>
   
