@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
 \usepackage{amsmath}
@@ -9,6 +9,7 @@
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{float}
 
 \pagestyle{fancy}
 \lhead{CS 428}
@@ -131,16 +132,32 @@ to the user.
 %% Oh god, importing pdfs
 \section{Architecture and Design}
 \subsection{UML Sequence Diagrams}
-\begin{center}
-\includegraphics[scale=0.8]{AddEvent_sequence.pdf}\\
-\includegraphics[scale=0.8]{ManageEvent_sequence.pdf}\\
-\includegraphics[scale=0.8]{RegisterAttendee_sequence.pdf}\\
-\includegraphics[scale=0.8]{TShirtSizeCreate_sequence.pdf}\\
-\end{center}
+\begin{figure}[H]
+\centering
+\caption{Add Event Sequence Diagram}
+\includegraphics[width=\textwidth]{AddEvent_sequence}
+\end{figure}
+\begin{figure}[H]
+\centering
+\caption{Manage Event Sequence Diagram}
+\includegraphics[width=\textwidth]{ManageEvent_sequence}
+\end{figure}
+\begin{figure}[H]
+\centering
+\caption{Register Attendee Sequence Diagram}
+\includegraphics[width=\textwidth]{RegisterAttendee_sequence}
+\end{figure}
+\begin{figure}[H]
+\centering
+\caption{TShirtSize Create Sequence Diagram}
+\includegraphics[width=\textwidth]{TShirtSizeCreate_sequence}
+\end{figure}
 \subsection{UML Class Diagram}
-\begin{center}
-\includegraphics[scale=0.6]{UMLClassDiagram.pdf}\\
-\end{center}
+\begin{figure}[H]
+\centering
+\caption{UML Class Diagram of Conferenceware}
+\includegraphics[width=\textwidth]{UMLClassDiagram}
+\end{figure}
 \subsection{Design Explanation}
 %% Jim's WA6
 When we approach a large project, we must keep the entire design in mind all the time. Because Conferenceware is a project of considerable size and complexity, we need to keep conventions and separation consistent throughout the development process. Otherwise, we can not keep it 
