@@ -23,6 +23,7 @@
 \section{Description}
 Conferenceware is a web-based project for running a conference. Specifically, the software was designed to run the ACM Reflections|Projections conference. It is outfitted with features to support everything from registration to event staff scheduling to printing name badges for staff and attendees.  The software was designed to eliminate redundant actions, prevent the introduction of invalid data and, most importantly, make running a large conference easier.
 
+\newpage
 %% Nick's WA4
 \section{Process}
 
@@ -127,7 +128,6 @@ corrections. If correct, the server takes the information, sanitizes it,
 and stores it in the database. The server then returns a sucess message
 to the user.
 
-\newpage
 %% Oh god, importing pdfs
 \section{Architecture and Design}
 \subsection{UML Sequence Diagrams}
@@ -157,12 +157,37 @@ At the lowest, most specific level that we can manage with C\#, we must plan the
 
 As a project grows, its design is tested. Conferenceware has shown that a well defined and very verbose design can stand up to a lot of growth of a code base. Conferenceware is therefore free to grow to become a full featured application which can be used and maintained for the future. Instead of being a source of frustration and constraints, a good design can bring tremendous benefits to a project.
 
+\newpage
 \section{Future Plans}
 \subsection{Fate of the Code}
 Conferenceware is planned to be used for many years to host the ACM Reflections $|$ Projections Conference. To facilitate the usage of this software, the whole project will be uploaded to GitHub, and have a UofI/NCSA License attached to it. Future generations of ACM members will hopefully maintain the project through updates of IIS, SQL Server, and ASP .NET MVC. There will be some future development of the project after class by the original Conferenceware team, but this will be very minor. The ACM Conference group is expected to be the future developers of the project after the middle of next semester.
 \subsection{Future Features}
+\subsubsection{Be able to email Volunteers their Schedule}
+Volunteers are scheduled into specific time slots. It would be very useful to be
+able to mass-send all of the volunteers their schedules once they have been
+decided upon rather than needing to format them manually.
+\subsubsection{Generate PDF Invoices}
+Currently invoices are only generated as part of a web page (HTML). It would be
+easier to email and is also preferred for many companies. Equivalent but nice
+looking invoices would be good.
+\subsubsection{Be able to email invoices}
+Invoices have to be manually sent currently. Being able to send them easier
+would be nice as well as keeping track of when they were last sent
+\subsubsection{Create a way to keep track of email}
+Though minor, keeping a full history of the emails sent would be good to do. For
+historic reasons and just in case there is some confusion.
+\subsubsection{(Auto) close registration}
+Currently there is no way to close registration. When setting the flag to close
+registration, it should be easy to give date and registration count to close
+the registration without further input.
+\subsubsection{Attendees can be checked in}
+When an attendee arrives, we want to make sure to record that t-shirt and
+program has been given to the person. We also need to be able to undo these
+actions.
+\subsubsection{Add a way to optionally enforce link locations}
+Because of nginx, links might be different than what we expect. We should allow
+links to be anything if the administrator desires.
 %%TODO:fix these
-\textit{Make it super good}
 \subsection{Personal Reflections}
 \subsubsection{Eric Dyoniziak}
 \textit{Add personal reflections here}
@@ -177,6 +202,7 @@ Conferenceware is planned to be used for many years to host the ACM Reflections 
 \subsubsection{Brian Sawicki}
 \textit{Add personal reflections here}
 \subsubsection{Nick Tenczar}
+\textit{Add personal reflections here}
 \subsubsection{Jim Wordelman}
 For me, this was not the first attempt at this project, but it was the first
 successful creation. I had been in charge of maintaining the Conference web site
@@ -186,6 +212,7 @@ that, working on this amount of code with a team was a good experience. I became
 very consistant about committing changes and keeping tickets up to date. This, I
 forsee, will be invaluable in the future. Keeping a good level of communication
 and all of the work was a great experience. I am very pleased with the outcome.
+\newpage
 \section{Appendix}
 \subsection{Installation}
 There is an installer for the project as a whole. There are some expectations
