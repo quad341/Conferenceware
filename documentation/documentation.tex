@@ -8,23 +8,23 @@
 \usepackage[utf8]{inputenc}
 \usepackage{setspace}
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 \pagestyle{fancy}
 \lhead{CS 428}
 \chead{Conferenceware Documentation}
 \rhead{\today}
-
 %% yay doublespace
 \doublespacing
 \begin{document}
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
 \newpage
-\part{Description}
+\section{Description}
 Conferenceware is a web-based project for running a conference. Specifically, the software was designed to run the ACM Reflections|Projections conference. It is outfitted with features to support everything from registration to event staff scheduling to printing name badges for staff and attendees.  The software was designed to eliminate redundant actions, prevent the introduction of invalid data and, most importantly, make running a large conference easier.
 
 %% Nick's WA4
-\part{Process}
+\section{Process}
 
 Our team chose to follow the XP (eXtreme Programming) software development process. The fundamental tenets of this process include pair programming, test first design, user stories, and design simplicity. These tenets give us great flexibility and allow us to make changes to our requirements with minimal refactoring. Additionally changes to requirements can be handled with greater ease in XP because of the emphasis placed on the design of the software. All of these attributes of XP have helped guide our efforts and continue to simplify our workload while allowing individuals or pairs to work concurrently without adverse effects on one another.\\
 
@@ -55,46 +55,64 @@ This simplicity of the design also allows for easy refactorings of the code. If 
 In total these four aspects make up the basis of sound software design methodology. XP's relies on these tenets to insure that a team of engineers are working as effectively as possible toward completing the project on time and in a form that is highly maintainable.
 
 %% copied in user stories for now
-\part{Requirements and Specifications}
+\section{Requirements and Specifications}
+\subsection{Public features}
+\subsubsection{Event Listing}
 The user will visit the web site and click on events. The events will be
 listed in chronological order from top to bottom. Each entry will list the
 event title, location, presenter or presenters and time. Clicking the title
-will give more details about the event.\\
+will give more details about the event.
+
+\subsection{Private (administrator) features}
+\subsubsection{Insallation}
+An Admin will need to be able to install the application. This includes setting up the database
+and prefilling certain variables with user defined attributes. This process should involve the least
+amount of direct configuration by the user.
+\subsubsection{Company Management}
+An administrator will have the ability to enter companies into the system manually. From there
+an administrator can update the status on the generated invoice. Balances can be marked as
+billed or paid, and the system can accept multiple payment sources.\\
+\subsubsection{Billing Companies}
 The admin will log into the web site. They will choose to see a list of
 companies. They will then choose the appropriate company to bill. They will
 add items to the invoice and select which people associated with that company
 to send it to. The admin will then submit the invoice which will be emailed
-to the people.\\
-The user uses a web form to type in their information. The web form is
-validated using Javascript and the user is alerted of any necessary
-corrections. If correct, the server takes the information, sanitizes it,
-and stores it in the database. The server then returns a sucess message
-to the user.\\
+to the people.
+\subsubsection{Badge Generation}
 The admin is presented with a list of registered attendees, they may select
 individually or select all of them. The list is submitted via a web form,
 and the server generates and returns a PDF based on the selected users. If
 no users were selected, the admin is given an error message. Otherwise, the
 web server returns a PDF to the admin, which they can then save, open, or
-print.\\
-The administrator will login to the Conferenceware website.  They will navigate to an event list.  They will click "Add New Event".  They'll be presented with a clean interface in which to enter any necessary information for an event's creation.  The admin will click "Save" (or "Add", "Create", etc.) and the event will be added to the conference.  The admin will be returned to the list of events.\\
-The administrator will login to the Conferenceware website.  They will navigate to the Schedule page.  They will drag an event from the list of events onto the list of available timeslots, choosing where they'd like to place the event in the schedule.  The admin will click on "Save" and the schedule will be saved.\\
-An administrator will have the ability to enter companies into the system manually. From there
-an administrator can update the status on the generated invoice. Balances can be marked as
-billed or paid, and the system can accept multiple payment sources.\\
-An Admin will need to be able to install the application. This includes setting up the database
-and prefilling certain variables with user defined attributes. This process should involve the least
-amount of direct configuration by the user.\\
+print.
+\subsubsection{Event Creation}
+The administrator will login to the Conferenceware website.  They will navigate to an event list.  They will click "Add New Event".  They'll be presented with a clean interface in which to enter any necessary information for an event's creation.  The admin will click "Save" (or "Add", "Create", etc.) and the event will be added to the conference.  The admin will be returned to the list of events.
+\subsubsection{Scheduling}
+The administrator will login to the Conferenceware website.  They will navigate to the Schedule page.  They will drag an event from the list of events onto the list of available timeslots, choosing where they'd like to place the event in the schedule.  The admin will click on "Save" and the schedule will be saved.
+
+\subsection{Combination features}
+\subsubsection{Form processing}
+The user uses a web form to type in their information. The web form is
+validated using Javascript and the user is alerted of any necessary
+corrections. If correct, the server takes the information, sanitizes it,
+and stores it in the database. The server then returns a sucess message
+to the user.
 
 %% Oh god, importing pdfs
-\part{Architecture and Design}
+\section{Architecture and Design}
+\subsection{UML Sequence Diagrams}
 \begin{center}
 \includegraphics[scale=0.8]{AddEvent_sequence.pdf}\\
 \includegraphics[scale=0.8]{ManageEvent_sequence.pdf}\\
 \includegraphics[scale=0.8]{RegisterAttendee_sequence.pdf}\\
 \includegraphics[scale=0.8]{TShirtSizeCreate_sequence.pdf}\\
+\end{center}
+\subsection{UML Class Diagram}
+\begin{center}
 \includegraphics[scale=0.6]{UMLClassDiagram.pdf}\\
 \end{center}
 \newpage
+\subsection{Design Explanation}
 %% Jim's WA6
 When we approach a large project, we must keep the entire design in mind all the time. Because Conferenceware is a project of considerable size and complexity, we need to keep conventions and separation consistent throughout the development process. Otherwise, we can not keep it 
 in a manageable state. We strive to maintain cohesion when dealing with issues as course-grained as file management and as specific as module management or the content of the classes.  Our concern for consistent design extends to all aspects of the project.
@@ -110,9 +128,9 @@ At the lowest, most specific level that we can manage with C\#, we must plan the
 
 As a project grows, its design is tested. Conferenceware has shown that a well defined and very verbose design can stand up to a lot of growth of a code base. Conferenceware is therefore free to grow to become a full featured application which can be used and maintained for the future. Instead of being a source of frustration and constraints, a good design can bring tremendous benefits to a project.
 
-\part{Future Plans}
+\section{Future Plans}
 \textit{Add personal reflections here}
-\part{Appendix}
+\section{Appendix}
 \section*{Installation}
 \section*{How to run}
 \end{document}
