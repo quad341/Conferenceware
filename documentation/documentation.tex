@@ -157,8 +157,55 @@ At the lowest, most specific level that we can manage with C\#, we must plan the
 As a project grows, its design is tested. Conferenceware has shown that a well defined and very verbose design can stand up to a lot of growth of a code base. Conferenceware is therefore free to grow to become a full featured application which can be used and maintained for the future. Instead of being a source of frustration and constraints, a good design can bring tremendous benefits to a project.
 
 \section{Future Plans}
+\subsection{Fate of the Code}
+\subsection{Future Features}
+\subsection{Personal Reflections}
+\subsubsection{Eric Dyoniziak}
 \textit{Add personal reflections here}
+\subsubsection{Dan Freedman}
+\textit{Add personal reflections here}
+\subsubsection{Stoyan Gaydarov}
+\textit{Add personal reflections here}
+\subsubsection{Simo Leone}
+\textit{Add personal reflections here}
+\subsubsection{Dave Paola}
+\textit{Add personal reflections here}
+\subsubsection{Brian Sawicki}
+\textit{Add personal reflections here}
+\subsubsection{Nick Tenczar}
+\textit{Add personal reflections here}
+\subsubsection{Jim Wordelman}
+For me, this was not the first attempt at this project, but it was the first
+successful creation. I had been in charge of maintaining the Conference web site
+for the past two years directly and worked on it before that as well. This made
+me extremely aware of how important and useful this project could be. Beyond
+that, working on this amount of code with a team was a good experience. I became
+very consistant about committing changes and keeping tickets up to date. This, I
+forsee, will be invaluable in the future. Keeping a good level of communication
+and all of the work was a great experience. I am very pleased with the outcome.
 \section{Appendix}
-\section*{Installation}
-\section*{How to run}
+\subsection{Installation}
+There is an installer for the project as a whole. There are some expectations
+about the state of the system before it is installed though.
+\begin{enumerate}
+\item Microsoft SQL Server 2008 SP1 is installed on the same machine as the web
+server
+\item There is a Conferenceware database (named Conferenceware) in existance and
+the installing user has full control over it
+\item Internet Information Services (IIS) is installed an running with the
+following roles: Static files, ASP.NET, and IIS 6 Metabase Compatibility
+\end{enumerate}
+
+The installer can then just be run. A database will be created and an
+administrator will be added with the credentials provided during the install.
+After the install, the user that is running ASP.NET on the local system will
+need to be given access to the database. This reminder is given at the end of
+installation.
+\subsection{How to run}
+After running the installer and fixing the database permissions, the system is
+running any time the web server is running with the website into which
+Conferenceware was installed. All one has to do is navigate to the web site (for
+instance http://localhost/Conferenceware). From here, the administrator can log
+in with the credentials specified in the installer and begin to configure the
+conference (by going through settings and events and so on).
 \end{document}
