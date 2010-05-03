@@ -57,11 +57,30 @@ In total these four aspects make up the basis of sound software design methodolo
 %% copied in user stories for now
 \section{Requirements and Specifications}
 \subsection{Public features}
+\subsubsection{Register for Roles}
+The user will visit the web site and click on the appropriate registration link.
+They will then fill in their information and click submit. After submission,
+they will be told of the success or failure (due to technical difficulties or
+invalid information). Upon success they will also get an email. This should be
+possible for attendees, volunteers, and MechMania teams.
+\subsubsection{Volunteers can Sign up for Timeslots}
+During registration as a volunteer (described above) volunteers need to be able
+to choose which time slots they would be willing to work. The registration form
+will provide extra information about the role as well as a series of checkboxes
+to choose which time slots are available for them to be scheduled.
 \subsubsection{Event Listing}
 The user will visit the web site and click on events. The events will be
 listed in chronological order from top to bottom. Each entry will list the
 event title, location, presenter or presenters and time. Clicking the title
 will give more details about the event.
+\subsubsection{Limited Space Event Registration}
+The user will visit the web site and navigate to a specific event. If the event
+has limited attendance, this will be expressed. If all available spots are
+registered, the user will be informed on the page. If not, a space where an
+email address will be provided is listed. The user will enter their email
+address. If correct and the user is registered for the conference, success will
+be displayed and the user will be emailed. If an error occurs, the user will be
+informed and reminded they must register first.
 
 \subsection{Private (administrator) features}
 \subsubsection{Insallation}
@@ -71,7 +90,7 @@ amount of direct configuration by the user.
 \subsubsection{Company Management}
 An administrator will have the ability to enter companies into the system manually. From there
 an administrator can update the status on the generated invoice. Balances can be marked as
-billed or paid, and the system can accept multiple payment sources.\\
+billed or paid, and the system can accept multiple payment sources.
 \subsubsection{Billing Companies}
 The admin will log into the web site. They will choose to see a list of
 companies. They will then choose the appropriate company to bill. They will
@@ -89,6 +108,15 @@ print.
 The administrator will login to the Conferenceware website.  They will navigate to an event list.  They will click "Add New Event".  They'll be presented with a clean interface in which to enter any necessary information for an event's creation.  The admin will click "Save" (or "Add", "Create", etc.) and the event will be added to the conference.  The admin will be returned to the list of events.
 \subsubsection{Scheduling}
 The administrator will login to the Conferenceware website.  They will navigate to the Schedule page.  They will drag an event from the list of events onto the list of available timeslots, choosing where they'd like to place the event in the schedule.  The admin will click on "Save" and the schedule will be saved.
+\subsubsection{User Management}
+The administrator will log into the Conferenceware website. They will navigate
+to the administration section and click on the type of user they would like to
+manage. From here, they should be able to create, delete, and edit any user.
+\subsubsection{Content Management}
+The administrator will log into the Conferenceware website. They will navigate
+to the administrative list of events and select to edit a single event. The
+administrator will be allowed to upload content or link to content for the
+event. Any linked content will now display at the bottom of the event listing.
 
 \subsection{Combination features}
 \subsubsection{Form processing}
