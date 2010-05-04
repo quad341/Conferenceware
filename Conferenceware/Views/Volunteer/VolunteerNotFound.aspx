@@ -8,6 +8,6 @@
 
     <h2>Volunteer Not Found</h2>
     
-    <p>The requested volunteer was not found. You can return to the <%= Html.ActionLink("volunteers list", "Index") %></p>
+    <p>The requested volunteer was not found. You can return to the <%=Html.ActionLink("volunteers list", "Index")%></p>
 
 </asp:Content>

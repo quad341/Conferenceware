@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Conferenceware.Models.Event>" %>
+<%@ Import Namespace="Conferenceware.Models" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Delete
@@ -12,33 +13,41 @@
     <fieldset>
         <legend>Fields</legend>
         <div class="diplay-label">Event</div>
-        <div class="display-label"><%=Model.name %></div>
+        <div class="display-label"><%=Model.name%></div>
         <div class="display-label">Speakers</div>
         <div class="display-field">
             <ul>
-                <%foreach(var sp in Model.Speakers)
-                  { %>
-                    <li><%= sp.People.name %></li>
-                <%} %>
+                <%
+                	foreach (Speaker sp in Model.Speakers)
+                 {%>
+                    <li><%=sp.People.name%></li>
+                <%
+                 }%>
             </ul>
         </div>
         <div class="display-label">Attendees</div>
         <div class="display-field">
             <ul>
-                <%foreach (var at in Model.Attendees)
-                  { %>
-                    <li><%= at.People.name %></li>
-                <%} %>
+                <%
+                	foreach (Attendee at in Model.Attendees)
+                 {%>
+                    <li><%=at.People.name%></li>
+                <%
+                 }%>
             </ul>
         </div>
     </fieldset>
-    <% using (Html.BeginForm()) { %>
+    <%
+                	using (Html.BeginForm())
+                 {%>
         <p>
-            <%= Html.HiddenFor(model => model.id) %>
+            <%=Html.HiddenFor(model => model.id)%>
 		    <input type="submit" value="Delete" /> |
-		    <%= Html.ActionLink("Back to Events Page","Index") %>
+		    <%=Html.ActionLink("Back to Events Page",
+                 	                                  "Index")%>
         </p>
-    <% } %>
+    <%
+                 }%>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ExtraHeadContent" runat="server">
 </asp:Content>

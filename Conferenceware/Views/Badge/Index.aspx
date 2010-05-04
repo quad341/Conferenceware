@@ -9,12 +9,12 @@
     <h2>Generate Badges</h2>
     
     <ul>
-        <li><%= Html.ActionLink("Attendee badges", "AttendeeBadges") %></li>
-        <li><%= Html.ActionLink("Mechmania badges", "MechmaniaBadges") %></li>
-        <li><%= Html.ActionLink("Speaker badges", "SpeakerBadges") %></li>
-        <li><%= Html.ActionLink("Sponsor badges", "SponsorBadges") %></li>
-        <li><%= Html.ActionLink("Staff badges", "StaffBadges") %></li>
-        <li><%= Html.ActionLink("Volunteer badges", "VolunteerBadges") %></li>
+        <li><%=Html.ActionLink("Attendee badges", "AttendeeBadges")%></li>
+        <li><%=Html.ActionLink("Mechmania badges", "MechmaniaBadges")%></li>
+        <li><%=Html.ActionLink("Speaker badges", "SpeakerBadges")%></li>
+        <li><%=Html.ActionLink("Sponsor badges", "SponsorBadges")%></li>
+        <li><%=Html.ActionLink("Staff badges", "StaffBadges")%></li>
+        <li><%=Html.ActionLink("Volunteer badges", "VolunteerBadges")%></li>
     </ul>
 
 </asp:Content>

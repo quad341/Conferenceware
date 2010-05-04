@@ -8,27 +8,15 @@ namespace Conferenceware.Models
 	{
 		[Range(0, int.MaxValue, ErrorMessage = "Payment amount must be positive")]
 		[DisplayName("Payment amount")]
-		public decimal amount
-		{
-			get;
-			set;
-		}
+		public decimal amount { get; set; }
 
 		[Required]
 		[DataType(DataType.DateTime)]
 		[Range(typeof(DateTime), "1/1/2000", "12/31/9999")]
 		[DisplayName("Received Date")]
-		public DateTime received_date
-		{
-			get;
-			set;
-		}
+		public DateTime received_date { get; set; }
 
 		[DisplayName("Comments")]
-		public string comments
-		{
-			get;
-			set;
-		}
+		public string comments { get; set; }
 	}
 }

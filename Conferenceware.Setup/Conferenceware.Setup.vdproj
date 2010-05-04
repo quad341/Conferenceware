@@ -339,6 +339,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F5E35A702E7B4B1682E9403F4193D2F9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F80EE429ACC94CCE91689434F7F39081"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1439,6 +1445,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F5E35A702E7B4B1682E9403F4193D2F9"
+            {
+            "SourcePath" = "8:EndNote.rtf"
+            "TargetName" = "8:EndNote.rtf"
+            "Tag" = "8:"
+            "Folder" = "8:_DB37EB442C154DEFBB74376F945C57B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FD861782D38543BF833F101BE329198B"
             {
             "SourcePath" = "8:..\\Conferenceware\\Scripts\\jquery-1.3.2-vsdoc.js"
@@ -1631,7 +1657,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Conferenceware"
         "ProductCode" = "8:{EB2D98DE-B882-4B66-8FBF-B8528537ABC3}"
-        "PackageCode" = "8:{1961370E-948F-4938-BD9F-B50C4BB7618A}"
+        "PackageCode" = "8:{24B32FE8-3113-4966-8B0F-2ED52C992D0A}"
         "UpgradeCode" = "8:{01D67509-D5AE-4A70-907A-B89D9F13CF3F}"
         "RestartWWWService" = "11:TRUE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -1706,7 +1732,7 @@
                 {
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_AC36E3D7BC2540E0AE707DA53E95AB64"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:110"
                     "DisplayName" = "8:Finished"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1739,6 +1765,53 @@
                             }
                         }
                     }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_E393B463AA384EBCAE6EF4568B9BA4E4"
+                    {
+                    "Sequence" = "3:100"
+                    "DisplayName" = "8:Read Me"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdReadmeDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ReadmeText"
+                            {
+                            "Name" = "8:ReadmeText"
+                            "DisplayName" = "8:#1010"
+                            "Description" = "8:#1110"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_F5E35A702E7B4B1682E9403F4193D2F9"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
                 }
             }
             "{DF760B10-853B-4699-99F2-AFF7185B4A62}:_6C1A96E579614169A390AC803D7106AF"
@@ -1750,7 +1823,7 @@
                 {
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_0F5E1EE2595D4C3C9C5A69779C29530F"
                     {
-                    "Sequence" = "3:310"
+                    "Sequence" = "3:400"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -1811,8 +1884,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1203"
+                            "Setting" = "3:2"
+                            "Value" = "8:The installer will guide you through the steps required to install [ProductName] on your computer. NOTE: This installer assumes that you already have a LOCAL SQL Server 2008 Instance with a database named Conferenceware that this user has full access to as well as has IIS set up with Static files, ASP.NET, and IIS 6 Metabase Compatibility"
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }

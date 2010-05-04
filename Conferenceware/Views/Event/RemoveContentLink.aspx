@@ -13,21 +13,24 @@
         <legend>Fields</legend>
         
         <div class="display-label">Link</div>
-        <div class="display-field"><a href="<%= Model.EventContentLink.link_location %>"><%= Model.EventContentLink.filename %></a></div>
+        <div class="display-field"><a href="<%=Model.EventContentLink.link_location%>"><%=Model.EventContentLink.filename%></a></div>
         
         <div class="display-label">List on video page?</div>
-        <div class="display-field"><%= Html.Encode(Model.EventContentLink.list_on_video_page) %></div>
+        <div class="display-field"><%=Html.Encode(Model.EventContentLink.list_on_video_page)%></div>
         
     </fieldset>
-    <% using (Html.BeginForm()) { %>
+    <%
+    	using (Html.BeginForm())
+     {%>
         <p>
-            <%= Html.HiddenFor(model => model.EventContentLink.id) %>
-            <%= Html.CheckBoxFor(model => model.DeleteFile) %><%= Html.LabelFor(model => model.DeleteFile) %><br />
-            <%= Html.CheckBoxFor(model => model.DeleteDir) %><%= Html.LabelFor(model => model.DeleteDir) %><br />
+            <%=Html.HiddenFor(model => model.EventContentLink.id)%>
+            <%=Html.CheckBoxFor(model => model.DeleteFile)%><%=Html.LabelFor(model => model.DeleteFile)%><br />
+            <%=Html.CheckBoxFor(model => model.DeleteDir)%><%=Html.LabelFor(model => model.DeleteDir)%><br />
 		    <input type="submit" value="Delete" /> |
-		    <%= Html.ActionLink("Back to List", "Index") %>
+		    <%=Html.ActionLink("Back to List", "Index")%>
         </p>
-    <% } %>
+    <%
+     }%>
 
 </asp:Content>
 

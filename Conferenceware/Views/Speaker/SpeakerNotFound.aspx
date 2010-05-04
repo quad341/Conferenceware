@@ -8,6 +8,6 @@
 
     <h2>Speaker Not Found</h2>
     
-    <p>The requested speaker was not found. You can return to the <%= Html.ActionLink("speaker list","index") %></p>
+    <p>The requested speaker was not found. You can return to the <%=Html.ActionLink("speaker list", "index")%></p>
 
 </asp:Content>

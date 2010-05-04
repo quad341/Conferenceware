@@ -33,12 +33,12 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Create(int id)
 		{
-			var company = _repository.GetCompanyById(id);
+			Company company = _repository.GetCompanyById(id);
 			if (company == null)
 			{
 				return View("CompanyNotFound");
 			}
-			var now = DateTime.Now;
+			DateTime now = DateTime.Now;
 			var ci = new CompanyInvoice
 						{
 							Company = company,
@@ -57,7 +57,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Edit(int id)
 		{
-			var ci = _repository.GetCompanyInvoiceById(id);
+			CompanyInvoice ci = _repository.GetCompanyInvoiceById(id);
 			if (ci == null)
 			{
 				return View("CompanyInvoiceNotFound");
@@ -71,7 +71,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var ci = _repository.GetCompanyInvoiceById(id);
+			CompanyInvoice ci = _repository.GetCompanyInvoiceById(id);
 			if (ci == null)
 			{
 				return View("CompanyInvoiceNotFound");
@@ -82,7 +82,8 @@ namespace Conferenceware.Controllers
 				ci.last_sent = last_sent;
 				if (last_sent > DateTime.Now)
 				{
-					ModelState.AddModelError("last_sent", "Cannot have sent a message in the future");
+					ModelState.AddModelError("last_sent",
+											 "Cannot have sent a message in the future");
 				}
 			}
 			else
@@ -112,7 +113,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Delete(int InvoiceId)
 		{
-			var ci = _repository.GetCompanyInvoiceById(InvoiceId);
+			CompanyInvoice ci = _repository.GetCompanyInvoiceById(InvoiceId);
 			if (ci == null)
 			{
 				return View("CompanyInvoiceNotFound");
@@ -126,13 +127,13 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Delete(int id, FormCollection collection)
 		{
-			var ci = _repository.GetCompanyInvoiceById(id);
+			CompanyInvoice ci = _repository.GetCompanyInvoiceById(id);
 			if (ci == null)
 			{
 				return View("CompanyInvoiceNotFound");
 			}
 
-			foreach (var cii in ci.CompanyInvoiceItems)
+			foreach (CompanyInvoiceItem cii in ci.CompanyInvoiceItems)
 			{
 				_repository.DeleteCompanyInvoiceItem(cii);
 			}

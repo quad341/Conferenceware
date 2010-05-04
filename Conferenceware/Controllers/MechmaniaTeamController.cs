@@ -19,6 +19,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repo;
 		}
+
 		//
 		// GET: /MechmaniaTeam/
 
@@ -26,6 +27,7 @@ namespace Conferenceware.Controllers
 		{
 			return View("Index", _repository.GetAllMechManiaTeams());
 		}
+
 		//
 		// GET: /MechmaniaTeam/Create
 
@@ -66,7 +68,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Edit(int id)
 		{
-			var mmt = _repository.GetMechManiaTeamById(id);
+			MechManiaTeam mmt = _repository.GetMechManiaTeamById(id);
 			if (mmt == null)
 			{
 				return View("MechManiaTeamNotFound");
@@ -80,7 +82,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
-			var mmt = _repository.GetMechManiaTeamById(id);
+			MechManiaTeam mmt = _repository.GetMechManiaTeamById(id);
 			if (mmt == null)
 			{
 				return View("MechManiaTeamNotFound");
@@ -102,7 +104,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Delete(int id)
 		{
-			var mmt = _repository.GetMechManiaTeamById(id);
+			MechManiaTeam mmt = _repository.GetMechManiaTeamById(id);
 			if (mmt == null)
 			{
 				return View("MechManiaTeamNotFound");
@@ -114,12 +116,16 @@ namespace Conferenceware.Controllers
 			return RedirectToAction("Index");
 		}
 
-		private MechManiaTeamAdminEditData MakeAdminEditDataFromTeam(MechManiaTeam mechManiaTeam)
+		private MechManiaTeamAdminEditData MakeAdminEditDataFromTeam(
+			MechManiaTeam mechManiaTeam)
 		{
 			return new MechManiaTeamAdminEditData
 					{
 						MechManiaTeam = mechManiaTeam,
-						Attendees = new SelectList(_repository.GetAllAttendees(), "person_id", "People.name")
+						Attendees =
+							new SelectList(_repository.GetAllAttendees(),
+										   "person_id",
+										   "People.name")
 					};
 		}
 	}

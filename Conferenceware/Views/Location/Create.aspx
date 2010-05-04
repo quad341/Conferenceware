@@ -6,45 +6,48 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<% Html.EnableClientValidation(); %>
+<%
+	Html.EnableClientValidation();%>
     <h2>Create</h2>
 
-    <% using (Html.BeginForm()) {%>
+    <%
+	using (Html.BeginForm())
+ {%>
 
         <fieldset>
             <legend>Fields</legend>
             
-            <%= Html.HiddenFor(model => model.id, new {value="0"}) %>
+            <%=Html.HiddenFor(model => model.id, new {value = "0"})%>
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.max_capacity) %>
+                <%=Html.LabelFor(model => model.max_capacity)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.max_capacity) %>
-                <%= Html.ValidationMessageFor(model => model.max_capacity) %>
+                <%=Html.TextBoxFor(model => model.max_capacity)%>
+                <%=Html.ValidationMessageFor(model => model.max_capacity)%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.building_name) %>
+                <%=Html.LabelFor(model => model.building_name)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.building_name) %>
-                <%= Html.ValidationMessageFor(model => model.building_name) %>
+                <%=Html.TextBoxFor(model => model.building_name)%>
+                <%=Html.ValidationMessageFor(model => model.building_name)%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.room_number) %>
+                <%=Html.LabelFor(model => model.room_number)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.room_number) %>
-                <%= Html.ValidationMessageFor(model => model.room_number) %>
+                <%=Html.TextBoxFor(model => model.room_number)%>
+                <%=Html.ValidationMessageFor(model => model.room_number)%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.notes) %>
+                <%=Html.LabelFor(model => model.notes)%>
             </div>
             <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.notes) %>
-                <%= Html.ValidationMessageFor(model => model.notes) %>
+                <%=Html.TextBoxFor(model => model.notes)%>
+                <%=Html.ValidationMessageFor(model => model.notes)%>
             </div>
             
             <p>
@@ -52,10 +55,11 @@
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+ }%>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 
 </asp:Content>

@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Conferenceware.Models.VolunteerTimeSlot>>" %>
+<%@ Import Namespace="Conferenceware.Models" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Index
@@ -19,29 +20,36 @@
             </th>
         </tr>
 
-    <% foreach (var item in Model) { %>
+    <%
+    	foreach (VolunteerTimeSlot item in Model)
+     {%>
     
         <tr>
             <td>
-                <%= Html.ActionLink("Delete", "Delete", new { id=item.timeslot_id })%>
+                <%=Html.ActionLink("Delete",
+     	                                  "Delete",
+     	                                  new {id = item.timeslot_id})%>
             </td>
             <td>
-                <%= Html.ActionLink("Schedule", "Schedule", new { id=item.timeslot_id })%>
+                <%=Html.ActionLink("Schedule",
+     	                                  "Schedule",
+     	                                  new {id = item.timeslot_id})%>
             </td>
             <td>
-                <%= Html.Encode(item.TimeSlot.StringValue) %>
+                <%=Html.Encode(item.TimeSlot.StringValue)%>
             </td>
             <td>
-                <%= Html.Encode(item.is_video) %>
+                <%=Html.Encode(item.is_video)%>
             </td>
         </tr>
     
-    <% } %>
+    <%
+     }%>
 
     </table>
 
     <p>
-        <%= Html.ActionLink("Create New", "Create") %>
+        <%=Html.ActionLink("Create New", "Create")%>
     </p>
 
 </asp:Content>

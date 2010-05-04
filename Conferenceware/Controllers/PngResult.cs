@@ -8,15 +8,11 @@ namespace Conferenceware.Controllers
 	{
 		public PngResult(Image img)
 		{
-
 			Image = img;
 		}
 
-		public Image Image
-		{
-			get;
-			set;
-		}
+		public Image Image { get; set; }
+
 		public override void ExecuteResult(ControllerContext context)
 		{
 			context.HttpContext.Response.Clear();

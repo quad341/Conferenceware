@@ -8,9 +8,11 @@ namespace Conferenceware.Models
 	[MetadataType(typeof(PageMetadata))]
 	public partial class Page
 	{
-		private static HtmlHelper _html;
 		private const string PAGE_LINK_REGEX =
 			@"{\s*{\s*([^{}|]+)(?:\|([^{}]+))?\s*}\s*}";
+
+		private static HtmlHelper _html;
+
 		// linq to my lou
 
 		public string ConvertedContent(HtmlHelper html)
@@ -18,18 +20,19 @@ namespace Conferenceware.Models
 			return ConvertMarkupToHtml(page_content, html);
 		}
 
-		public static string ConvertMarkupToHtml(string markupString, HtmlHelper htmlHelper)
+		public static string ConvertMarkupToHtml(string markupString,
+												 HtmlHelper htmlHelper)
 		{
 			_html = htmlHelper;
-			var linkFixedString = Regex.Replace(markupString,
-												PAGE_LINK_REGEX,
-												new MatchEvaluator(FixPageLink));
+			string linkFixedString = Regex.Replace(markupString,
+												   PAGE_LINK_REGEX,
+												   new MatchEvaluator(FixPageLink));
 			return Regex.Replace(linkFixedString, @"\\{", "{");
 		}
 
 		public static string FixPageLink(Match match)
 		{
-			var title = match.Groups[1].Value.Trim();
+			string title = match.Groups[1].Value.Trim();
 			if (match.Groups[2].Value != "")
 			{
 				title = match.Groups[2].Value.Trim();

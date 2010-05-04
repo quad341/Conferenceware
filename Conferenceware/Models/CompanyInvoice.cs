@@ -10,10 +10,7 @@ namespace Conferenceware.Models
 
 		public decimal TotalValue
 		{
-			get
-			{
-				return CompanyInvoiceItems.Sum(x => x.cost);
-			}
+			get { return CompanyInvoiceItems.Sum(x => x.cost); }
 		}
 
 		/// <summary>
@@ -21,11 +18,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		public int InvoiceId
 		{
-			get
-			{
-				return id;
-			}
+			get { return id; }
 		}
-
 	}
 }

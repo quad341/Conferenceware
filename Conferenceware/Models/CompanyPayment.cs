@@ -12,10 +12,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		public int payment_id
 		{
-			get
-			{
-				return id;
-			}
+			get { return id; }
 		}
 	}
 }

@@ -22,37 +22,40 @@
 
     <h2>Edit</h2>
 
-    <% using (Html.BeginForm()) {%>
+    <%
+    	using (Html.BeginForm())
+     {%>
 
         <fieldset>
             <legend>Fields</legend>
             
-            <%= Html.HiddenFor(model => model.id) %>
+            <%=Html.HiddenFor(model => model.id)%>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.start_time) %>
+                <%=Html.LabelFor(model => model.start_time)%>
             </div>
             <div class="editor-field">
-                <input type="text" name="start_time" id="start_time" value="<%= Model.start_time.ToString("u") %>" />
-                <%= Html.ValidationMessageFor(model => model.start_time) %>
+                <input type="text" name="start_time" id="start_time" value="<%=Model.start_time.ToString("u")%>" />
+                <%=Html.ValidationMessageFor(model => model.start_time)%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.end_time) %>
+                <%=Html.LabelFor(model => model.end_time)%>
             </div>
             <div class="editor-field">
-                <input type="text" name="end_time" id="end_time" value="<%= Model.end_time.ToString("u") %>" />
-                <%= Html.ValidationMessageFor(model => model.end_time) %>
+                <input type="text" name="end_time" id="end_time" value="<%=Model.end_time.ToString("u")%>" />
+                <%=Html.ValidationMessageFor(model => model.end_time)%>
             </div>
             <p>
                 <input type="submit" value="Save" />
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+     }%>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 
 </asp:Content>

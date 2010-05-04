@@ -17,18 +17,18 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /Page/Title
 
 		public ActionResult Display(string name)
 		{
-			var page = _repository.GetPageByTitle(name);
+			Page page = _repository.GetPageByTitle(name);
 			if (page == null)
 			{
 				return Display("PageNotFound");
 			}
 			return View("Display", page);
 		}
-
 	}
 }

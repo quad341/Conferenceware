@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Conferenceware.Models;
 
@@ -19,6 +20,7 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 		}
+
 		//
 		// GET: /VolunteerTimeSlot/
 
@@ -32,7 +34,8 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Create()
 		{
-			return View("Create", MakeEditDataFromVolunteerTimeSlot(new VolunteerTimeSlot()));
+			return View("Create",
+						MakeEditDataFromVolunteerTimeSlot(new VolunteerTimeSlot()));
 		}
 
 		//
@@ -43,8 +46,9 @@ namespace Conferenceware.Controllers
 		{
 			var vts = new VolunteerTimeSlot();
 			//TODO: all these parses might fail. fix it
-			var timeslot =
-				_repository.GetTimeSlotById(int.Parse(collection["VolunteerTimeSlot.timeslot_id"]));
+			TimeSlot timeslot =
+				_repository.GetTimeSlotById(
+					int.Parse(collection["VolunteerTimeSlot.timeslot_id"]));
 			if (timeslot != null)
 			{
 				vts.TimeSlot = timeslot;
@@ -55,12 +59,13 @@ namespace Conferenceware.Controllers
 			}
 			return View("Create", MakeEditDataFromVolunteerTimeSlot(vts));
 		}
+
 		//
 		// GET: /VolunteerTimeSlot/Delete/5
 
 		public ActionResult Delete(int id)
 		{
-			var vts = _repository.GetVolunteerTimeSlotById(id);
+			VolunteerTimeSlot vts = _repository.GetVolunteerTimeSlotById(id);
 			if (vts == null)
 			{
 				return View("VolunteerTimeSlotNotFound");
@@ -82,7 +87,8 @@ namespace Conferenceware.Controllers
 			{
 				ModelState.AddModelError("VolunteersVolunteerTimeSlot", "Invalid Selection");
 			}
-			var vvts = _repository.GetVolunteersVolunteerTimeSlotById(vvtsid);
+			VolunteersVolunteerTimeSlot vvts =
+				_repository.GetVolunteersVolunteerTimeSlotById(vvtsid);
 			if (vvts == null)
 			{
 				TempData["Message"] = "Error finding volunteer time slot link";
@@ -107,13 +113,13 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Schedule(int id)
 		{
-			var vts = _repository.GetVolunteerTimeSlotById(id);
+			VolunteerTimeSlot vts = _repository.GetVolunteerTimeSlotById(id);
 			if (vts == null)
 			{
 				return View("VolunteerTimeSlotNotFound");
 			}
 
-			var prunedVvts =
+			IEnumerable<VolunteersVolunteerTimeSlot> prunedVvts =
 				vts.VolunteersVolunteerTimeSlots.Where(
 					x => !vts.ConfirmedVolunteers.Contains(x.Volunteer));
 
@@ -131,7 +137,8 @@ namespace Conferenceware.Controllers
 
 		public ActionResult UnSchedule(int id)
 		{
-			var vvts = _repository.GetVolunteersVolunteerTimeSlotById(id);
+			VolunteersVolunteerTimeSlot vvts =
+				_repository.GetVolunteersVolunteerTimeSlotById(id);
 			if (vvts == null)
 			{
 				TempData["Message"] = "Link not found";
@@ -146,10 +153,11 @@ namespace Conferenceware.Controllers
 			return RedirectToAction("Index");
 		}
 
-		private VolunteerTimeSlotEditData MakeEditDataFromVolunteerTimeSlot(VolunteerTimeSlot volunteerTimeSlot)
+		private VolunteerTimeSlotEditData MakeEditDataFromVolunteerTimeSlot(
+			VolunteerTimeSlot volunteerTimeSlot)
 		{
-			var timeslots = _repository.GetAllTimeSlots().ToList();
-			foreach (var vts in _repository.GetAllVolunteerTimeSlots())
+			List<TimeSlot> timeslots = _repository.GetAllTimeSlots().ToList();
+			foreach (VolunteerTimeSlot vts in _repository.GetAllVolunteerTimeSlots())
 			{
 				timeslots.Remove(vts.TimeSlot);
 			}

@@ -8,23 +8,29 @@
 
     <h2>Create</h2>
 
-    <% using (Html.BeginForm()) {%>
+    <%
+    	using (Html.BeginForm())
+     {%>
 
         <fieldset>
             <legend>Fields</legend>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.VolunteerTimeSlot.timeslot_id) %>
+                <%=
+     		Html.LabelFor(model => model.VolunteerTimeSlot.timeslot_id)%>
             </div>
             <div class="editor-field">
-                <%= Html.DropDownListFor(model => model.VolunteerTimeSlot.timeslot_id, Model.Timeslots) %>
+                <%=
+     		Html.DropDownListFor(model => model.VolunteerTimeSlot.timeslot_id,
+     		                     Model.Timeslots)%>
             </div>
             
             <div class="editor-label">
-                <%= Html.LabelFor(model => model.VolunteerTimeSlot.is_video) %>
+                <%=Html.LabelFor(model => model.VolunteerTimeSlot.is_video)%>
             </div>
             <div class="editor-field">
-                <%= Html.CheckBoxFor(model => model.VolunteerTimeSlot.is_video) %>
+                <%=
+     		Html.CheckBoxFor(model => model.VolunteerTimeSlot.is_video)%>
             </div>           
             
             <p>
@@ -32,9 +38,10 @@
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+     }%>
 
     <div>
-        <%=Html.ActionLink("Back to List", "Index") %>
+        <%=Html.ActionLink("Back to List", "Index")%>
     </div>
 </asp:Content>

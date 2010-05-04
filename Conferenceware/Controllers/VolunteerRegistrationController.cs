@@ -40,16 +40,16 @@ namespace Conferenceware.Controllers
 			{
 				_repository.AddVolunteer(ved.Volunteer);
 				_repository.Save();
-				foreach (var i in ved.ChosenTimeSlots)
+				foreach (int i in ved.ChosenTimeSlots)
 				{
-					var vts = _repository.GetVolunteerTimeSlotById(i);
+					VolunteerTimeSlot vts = _repository.GetVolunteerTimeSlotById(i);
 					if (vts != null)
 					{
 						_repository.RegisterVolunteerForVolunteerTimeSlot(ved.Volunteer, vts);
 					}
 				}
 				_repository.Save();
-				var settings = SettingsData.FromCurrent(
+				SettingsData settings = SettingsData.FromCurrent(
 					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
 				var message = new MailMessage(settings.EmailFrom,
 											  ved.Volunteer.People.email,

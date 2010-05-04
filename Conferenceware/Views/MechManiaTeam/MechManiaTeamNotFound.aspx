@@ -8,6 +8,6 @@
 
     <h2>MechMania Team Not Found</h2>
     
-    <p>The requested team was not found. You can return to the <%= Html.ActionLink("team list", "Index") %>.</p>
+    <p>The requested team was not found. You can return to the <%=Html.ActionLink("team list", "Index")%>.</p>
 
 </asp:Content>
