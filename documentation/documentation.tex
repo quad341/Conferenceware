@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.8in]{geometry}
 \usepackage{fancyhdr}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -15,12 +15,14 @@
 \lhead{CS 428}
 \chead{Conferenceware Documentation}
 \rhead{\today}
+
 %% yay doublespace
 \doublespacing
 \begin{document}
 \renewcommand{\contentsname}{Table of Contents}
 \tableofcontents
 \newpage
+
 \section{Description}
 Conferenceware is a web-based project for running a conference. Specifically, the software was designed to run the ACM Reflections|Projections conference. It is outfitted with features to support everything from registration to event staff scheduling to printing name badges for staff and attendees.  The software was designed to eliminate redundant actions, prevent the introduction of invalid data and, most importantly, make running a large conference easier.
 
@@ -135,31 +137,39 @@ to the user.
 \begin{figure}[H]
 \centering
 \caption{Add Event Sequence Diagram}
-\includegraphics[width=\textwidth]{AddEvent_sequence}
+\includegraphics[scale=0.7]{AddEvent_sequence}
 \end{figure}
+\newpage
 \begin{figure}[H]
 \centering
 \caption{Manage Event Sequence Diagram}
-\includegraphics[width=\textwidth]{ManageEvent_sequence}
+\includegraphics[scale=0.8]{ManageEvent_sequence}
 \end{figure}
+\newpage
 \begin{figure}[H]
 \centering
 \caption{Register Attendee Sequence Diagram}
-\includegraphics[width=\textwidth]{RegisterAttendee_sequence}
+\includegraphics[scale=0.8]{RegisterAttendee_sequence}
 \end{figure}
+\newpage
 \begin{figure}[H]
 \centering
 \caption{TShirtSize Create Sequence Diagram}
-\includegraphics[width=\textwidth]{TShirtSizeCreate_sequence}
+\includegraphics[scale=0.8]{TShirtSizeCreate_sequence}
 \end{figure}
+\newpage
 \subsection{UML Class Diagram}
 \begin{figure}[H]
 \centering
 \caption{UML Class Diagram of Conferenceware}
 \includegraphics[width=\textwidth]{UMLClassDiagram}
 \end{figure}
+
+\newpage
+
 \subsection{Design Explanation}
 %% Jim's WA6
+
 When we approach a large project, we must keep the entire design in mind all the time. Because Conferenceware is a project of considerable size and complexity, we need to keep conventions and separation consistent throughout the development process. Otherwise, we can not keep it 
 in a manageable state. We strive to maintain cohesion when dealing with issues as course-grained as file management and as specific as module management or the content of the classes.  Our concern for consistent design extends to all aspects of the project.
 
