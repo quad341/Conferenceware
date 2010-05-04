@@ -22,10 +22,5 @@ namespace Conferenceware.Models
 		/// </summary>
 		public SelectList Foods { get; set; }
 	}
-}s
-		{
-			get; set;
-		}
-	}
 
 }
