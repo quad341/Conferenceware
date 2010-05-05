@@ -34,6 +34,8 @@ namespace Conferenceware.Controllers
 			                   		"FrontpageContent",
 			                   		"EventRegistrationConfirmationSubjectFormat",
 			                   		"EventRegistrationConfirmationBodyFormat",
+                                    "RegistrationSubject",
+                                    "RegistrationMessage",
 			                   		"SmtpHostname",
 			                   		"SmtpPort",
 			                   		"SmtpNeedsAuthentication",
