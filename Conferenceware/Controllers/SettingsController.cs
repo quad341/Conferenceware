@@ -47,8 +47,8 @@ namespace Conferenceware.Controllers
 				try
 				{
 					sd.Save(
-						SettingsData.RESOURCE_FILE_DIR + "\\" + \
-						SettingsData.RESOURCE_FILE_NAME + \
+						SettingsData.RESOURCE_FILE_DIR + "\\" +
+						SettingsData.RESOURCE_FILE_NAME +
 						SettingsData.RESOURCE_FILE_EXT);
 					TempData["Message"] = "Settings saved";
 				}
