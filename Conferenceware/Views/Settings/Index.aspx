@@ -11,6 +11,22 @@
                 userLang: 'en',
                 americanMode: true
             });
+            $('#VolunteerRegistrationAutoCloseDateTime').datetime({
+                userLang: 'en',
+                americanMode: true
+            });
+            $('#MechManiaRegistrationAutoCloseDateTime').datetime({
+                userLang: 'en',
+                americanMode: true
+            });
+            $('#StartDate').datetime({
+                userLang: 'en',
+                americanMode: true
+            });
+            $('#EndDate').datetime({
+                userLang: 'en',
+                americanMode: true
+            });
         });
     </script>
 </asp:Content>
