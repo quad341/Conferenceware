@@ -49,8 +49,7 @@ namespace Conferenceware.Controllers
 					}
 				}
 				_repository.Save();
-				SettingsData settings = SettingsData.FromCurrent(
-					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				SettingsData settings = SettingsData.Default;
 				var message = new MailMessage(settings.EmailFrom,
 											  ved.Volunteer.People.email,
 											  settings.RegistrationSubject,

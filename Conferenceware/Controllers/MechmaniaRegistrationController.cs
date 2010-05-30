@@ -75,8 +75,7 @@ namespace Conferenceware.Controllers
 							};
 				_repository.AddMechManiaTeam(mmt);
 				_repository.Save();
-				SettingsData settings = SettingsData.FromCurrent(
-					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				SettingsData settings = SettingsData.Default;
 				var message1 = new MailMessage(settings.EmailFrom,
 											   att1.People.email,
 											   settings.RegistrationSubject,

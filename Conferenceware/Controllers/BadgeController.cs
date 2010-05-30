@@ -20,8 +20,7 @@ namespace Conferenceware.Controllers
 		public BadgeController(IRepository repository)
 		{
 			_repository = repository;
-			_sd = SettingsData.FromCurrent(
-				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+			_sd = SettingsData.Default;
 		}
 
 		//

@@ -134,6 +134,14 @@ namespace Conferenceware.Models
 
 		#endregion
 
+		public static SettingsData Default
+		{
+			get
+			{
+				return SettingsData.FromCurrent(SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+			}
+		}
+
 		public static SettingsData FromCurrent(string fileBase, string dirName)
 		{
 			ResourceManager rm = null;

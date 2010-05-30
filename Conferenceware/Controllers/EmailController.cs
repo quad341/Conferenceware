@@ -41,8 +41,7 @@ namespace Conferenceware.Controllers
 			}
 			if (ModelState.IsValid)
 			{
-				SettingsData sd = SettingsData.FromCurrent(
-					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				SettingsData sd = SettingsData.Default;
 				eed.SelectedPeopleIds = eed.SelectedPeopleIds.Distinct().ToArray();
 				if (eed.SendIndividualEmails)
 				{

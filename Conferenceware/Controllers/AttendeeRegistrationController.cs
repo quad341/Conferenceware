@@ -41,8 +41,7 @@ namespace Conferenceware.Controllers
 			{
 				_repository.AddAttendee(newAttendee);
 				_repository.Save();
-				SettingsData settings = SettingsData.FromCurrent(
-					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				SettingsData settings = SettingsData.Default;
 				var message = new MailMessage(settings.EmailFrom,
 											  newAttendee.People.email,
 											  settings.RegistrationSubject,

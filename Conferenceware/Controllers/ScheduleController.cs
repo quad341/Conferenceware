@@ -68,8 +68,7 @@ namespace Conferenceware.Controllers
 				TempData["Message"] = "You were successfully registered for the event!";
 				// eventually this should actually work; should determine how to connect to smtp server; 
 				// maybe add the setting to the settings data object
-				SettingsData settings = SettingsData.FromCurrent(
-					SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				SettingsData settings = SettingsData.Default;
 				var message = new MailMessage(settings.EmailFrom,
 											  email,
 											  String.Format(

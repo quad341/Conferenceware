@@ -15,8 +15,7 @@ namespace Conferenceware.Utils
 		/// <param name="message">The message to send</param>
 		public static void Send(MailMessage message)
 		{
-			SettingsData sd = SettingsData.FromCurrent(
-				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+			SettingsData sd = SettingsData.Default;
 			var smtpClient = new SmtpClient(sd.SmtpHostname, sd.SmtpPort);
 			if (sd.SmtpNeedsAuthentication)
 			{

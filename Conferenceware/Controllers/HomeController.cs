@@ -10,8 +10,7 @@ namespace Conferenceware.Controllers
 		]
 		public ActionResult Index()
 		{
-			SettingsData sd = SettingsData.FromCurrent(SettingsData.RESOURCE_FILE_NAME,
-													   SettingsData.RESOURCE_FILE_DIR);
+			SettingsData sd = SettingsData.Default;
 			var frontPageSettings =
 				new FrontpageSettings
 					{

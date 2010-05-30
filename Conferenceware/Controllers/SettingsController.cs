@@ -14,8 +14,7 @@ namespace Conferenceware.Controllers
 		public ActionResult Index()
 		{
 			return View("Index",
-						SettingsData.FromCurrent(
-							SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR));
+						SettingsData.Default);
 		}
 
 		[HttpPost]
