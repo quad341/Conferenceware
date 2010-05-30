@@ -313,7 +313,8 @@ namespace Conferenceware.Controllers
 			}
 			string contentLocation = Url.Content("~/Content/");
 			if (ecl.link_location != null &&
-				ecl.link_location.IndexOf(contentLocation) != 0)
+				(!SettingsData.Default.DisableLinkLocationCheck &&
+				ecl.link_location.IndexOf(contentLocation) != 0))
 			{
 				ModelState.AddModelError("link_location",
 										 String.Format(
