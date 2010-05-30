@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Web;
 using System.Web.Mvc;
 using Conferenceware.Models;
@@ -21,8 +22,7 @@ namespace Conferenceware.Controllers
 		[ValidateInput(false)]
 		public ActionResult Index(FormCollection collection)
 		{
-			SettingsData sd = SettingsData.FromCurrent(
-				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+			SettingsData sd = SettingsData.Default;
 			ProcessFiles(sd);
 			// This will try to update all the fields in the model based on the form collection
 			if (TryUpdateModel(sd,
@@ -39,10 +39,22 @@ namespace Conferenceware.Controllers
 			                   		"SmtpPort",
 			                   		"SmtpNeedsAuthentication",
 			                   		"SmtpAuthenticationUserName",
-			                   		"SmtpAuthenticationPassword"
+			                   		"SmtpAuthenticationPassword",
+									"MaxAttendees",
+									"AttendeeRegistrationAutoCloseDateTime",
+									"MaxVolunteers",
+									"VolunteerRegistrationAutoCloseDateTime",
+									"MaxMechManiaTeams",
+									"MechManiaRegistrationAutoCloseDateTime",
+									"StartDate",
+									"EndDate",
+									"ShowEvents",
+									"ShowSpeakers",
+									"DisableLinkLocationCheck"
 			                   	},
-							   collection))
+							   collection) && VerifyDatesMakeSense(sd, ModelState))
 			{
+				
 				try
 				{
 					sd.Save(
@@ -62,6 +74,18 @@ namespace Conferenceware.Controllers
 					"Settings not saved. Correct the errors below and try again";
 			}
 			return View("Index", sd);
+		}
+
+		private bool VerifyDatesMakeSense(SettingsData sd, ModelStateDictionary modelState)
+		{
+			var success = true;
+			if (sd.EndDate <= sd.StartDate)
+			{
+				modelState.AddModelError("StartDate", "Start Date must occur before end date");
+				success = false;
+			}
+			// TODO: make sure registration is closed before end date
+			return success;
 		}
 
 		private void ProcessFiles(SettingsData sd)
@@ -103,8 +127,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult GetImage(string filename)
 		{
-			SettingsData sd = SettingsData.FromCurrent(
-				SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+			SettingsData sd = SettingsData.Default;
 			Bitmap img = null;
 			switch (filename)
 			{
