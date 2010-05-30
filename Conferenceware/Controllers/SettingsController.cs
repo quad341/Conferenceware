@@ -1,7 +1,7 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Web;
 using System.Web.Mvc;
+using Conferenceware.Localization;
 using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
@@ -75,19 +75,53 @@ namespace Conferenceware.Controllers
 			}
 			return View("Index", sd);
 		}
-
-		private bool VerifyDatesMakeSense(SettingsData sd, ModelStateDictionary modelState)
+		/// <summary>
+		/// Checks to make sure that the conference ends after all the other dates
+		/// </summary>
+		/// <param name="sd">The settings data to verify</param>
+		/// <param name="modelState">The model state to use for logging errors</param>
+		/// <returns>Whether or not the settings data was valid</returns>
+		private static bool VerifyDatesMakeSense(SettingsData sd, ModelStateDictionary modelState)
 		{
 			var success = true;
 			if (sd.EndDate <= sd.StartDate)
 			{
-				modelState.AddModelError("StartDate", "Start Date must occur before end date");
+				modelState.AddModelError("StartDate",
+				                         ControllerStrings.
+				                         	SettingsController_Error_StartMustOccurBeforeEnd);
 				success = false;
 			}
-			// TODO: make sure registration is closed before end date
+			
+			if (sd.AttendeeRegistrationAutoCloseDateTime >= sd.EndDate)
+			{
+				modelState.AddModelError("AttendeeRegistrationAutoCloseDateTime",
+				                         ControllerStrings.
+				                         	SettingsController_Error_RegistrationMustOccurBeforeEnd);
+				success = false;
+			}
+
+			if (sd.VolunteerRegistrationAutoCloseDateTime >= sd.EndDate)
+			{
+				modelState.AddModelError("VolunteerRegistrationAutoCloseDateTime",
+				                         ControllerStrings.
+				                         	SettingsController_Error_RegistrationMustOccurBeforeEnd);
+				success = false;
+			}
+
+			if (sd.MechManiaRegistrationAutoCloseDateTime >= sd.EndDate)
+			{
+				modelState.AddModelError("MechManiaRegistrationAutoCloseDateTime",
+				                         ControllerStrings.
+				                         	SettingsController_Error_RegistrationMustOccurBeforeEnd);
+				success = false;
+			}
 			return success;
 		}
-
+		/// <summary>
+		/// Iterates throught the Request.Files and adds them to the 
+		/// provides settings data per which file it was
+		/// </summary>
+		/// <param name="sd">The settings data to put the files into</param>
 		private void ProcessFiles(SettingsData sd)
 		{
 			foreach (string file in Request.Files)
@@ -97,7 +131,9 @@ namespace Conferenceware.Controllers
 					continue;
 				if (hpf.ContentType != "image/png" && hpf.ContentType != "image/x-png")
 				{
-					ModelState.AddModelError(file, "Only PNG images are allowed");
+					ModelState.AddModelError(file,
+					                         ControllerStrings.
+					                         	SettingsController_Error_OnlyPNGAllowed);
 					continue;
 				}
 				var fileObj = new Bitmap(hpf.InputStream);
