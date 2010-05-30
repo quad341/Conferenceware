@@ -9,6 +9,7 @@ namespace Conferenceware.Models
 	/// <summary>
 	/// Model for holding the data to store in the Settings .resx
 	/// </summary>
+	[Serializable]
 	public class SettingsData
 	{
 		/// <summary>
@@ -270,71 +271,20 @@ namespace Conferenceware.Models
 				rm = ResourceManager.CreateFileBasedResourceManager(fileBase,
 																	_baseDir + dirName,
 																	null);
-				sd.FrontpageContent = rm.GetString("FrontpageContent") ??
-									  Settings.FrontpageContent;
-				sd.FrontpageTitle = rm.GetString("FrontpageTitle") ??
-									Settings.FrontpageTitle;
-				sd.EmailFrom = rm.GetString("EmailFrom") ?? Settings.EmailFrom;
-				sd.EventRegistrationConfirmationBodyFormat =
-					rm.GetString("EventRegistrationConfirmationBodyFormat") ??
-					Settings.EventRegistrationConfirmationBodyFormat;
-				sd.EventRegistrationConfirmationSubjectFormat =
-					rm.GetString("EventRegistrationConfirmationSubjectFormat") ??
-					Settings.EventRegistrationConfirmationSubjectFormat;
-				sd.AttendeeBadgeBackground =
-					rm.GetObject("AttendeeBadgeBackground") as Bitmap;
-				sd.MechmaniaBadgeBackground =
-					rm.GetObject("MechmaniaBadgeBackground") as Bitmap;
-				sd.SpeakerBadgeBackground =
-					rm.GetObject("SpeakerBadgeBackground") as Bitmap;
-				sd.SponsorBadgeBackground =
-					rm.GetObject("SponsorBadgeBackground") as Bitmap;
-				sd.StaffBadgeBackground =
-					rm.GetObject("StaffBadgeBackground") as Bitmap;
-				sd.VolunteerBadgeBackground =
-					rm.GetObject("VolunteerBadgeBackground") as Bitmap;
-				sd.SmtpAuthenticationPassword =
-					rm.GetString("SmtpAuthenticationPassword") ??
-					Settings.SmtpAuthenticationPassword;
-				sd.SmtpAuthenticationUserName =
-					rm.GetString("SmtpAuthenticationUserName") ??
-					Settings.SmtpAuthenticationUserName;
-				sd.SmtpHostname =
-					rm.GetString("SmtpHostname") ?? Settings.SmtpHostname;
-				sd.SmtpPort =
-					(int)(rm.GetObject("SmtpPort") ?? int.Parse(Settings.SmtpPort));
-				sd.SmtpNeedsAuthentication =
-					(bool)rm.GetObject("SmtpNeedsAuthentication");
-				sd.RegistrationSubject = rm.GetString("RegistrationSubject");
-				sd.RegistrationMessage = rm.GetString("RegistrationMessage");
-				sd.MaxAttendees = (int) (rm.GetObject("MaxAttendees") ?? 0);
-				sd.AttendeeRegistrationAutoCloseDateTime =
-					(DateTime)
-					(rm.GetObject("AttendeeRegistrationAutoCloseDateTime") ?? DateTime.Now);
-				sd.MaxVolunteers = (int) (rm.GetObject("MaxVolunteers") ?? 0);
-				sd.VolunteerRegistrationAutoCloseDateTime =
-					(DateTime)
-					(rm.GetObject("VolunteerRegistrationAutoCloseDateTime") ?? DateTime.Now);
-				sd.MaxMechManiaTeams = (int) (rm.GetObject("MaxMechManiaTeams") ?? 0);
-				sd.MechManiaRegistrationAutoCloseDateTime =
-					(DateTime)
-					(rm.GetObject("MechManiaRegistrationAutoCloseDateTime") ?? DateTime.Now);
-				sd.StartDate = (DateTime) (rm.GetObject("StartDate") ?? DateTime.Today);
-				sd.EndDate =
-					(DateTime) (rm.GetObject("EndDate") ?? DateTime.Today.AddDays(1.0));
-				sd.ShowEvents = (bool) rm.GetObject("ShowEvents");
-				sd.ShowSpeakers = (bool) rm.GetObject("ShowSpeakers");
-				sd.DisableLinkLocationCheck =
-					(bool) rm.GetObject("DisableLinkLocationCheck");
-				rm.ReleaseAllResources();
+				sd = rm.GetObject("SettingsData") as SettingsData ?? sd;
 			}
+// ReSharper disable EmptyGeneralCatchClause
 			catch
+// ReSharper restore EmptyGeneralCatchClause
+			{
+				// something went wrong; probably the file doesn't exist yet
+			}
+			finally
 			{
 				if (rm != null)
 				{
 					rm.ReleaseAllResources();
 				}
-				// something went wrong; probably the file doesn't exist yet
 			}
 			return sd;
 		}
@@ -342,41 +292,7 @@ namespace Conferenceware.Models
 		public void Save(string path)
 		{
 			var writer = new ResourceWriter(_baseDir + path);
-			writer.AddResource("FrontpageContent", FrontpageContent);
-			writer.AddResource("FrontpageTitle", FrontpageTitle);
-			writer.AddResource("EmailFrom", EmailFrom);
-			writer.AddResource("EventRegistrationConfirmationBodyFormat",
-							   EventRegistrationConfirmationBodyFormat);
-			writer.AddResource("EventRegistrationConfirmationSubjectFormat",
-							   EventRegistrationConfirmationSubjectFormat);
-			writer.AddResource("AttendeeBadgeBackground", AttendeeBadgeBackground);
-			writer.AddResource("MechmaniaBadgeBackground", MechmaniaBadgeBackground);
-			writer.AddResource("SpeakerBadgeBackground", SpeakerBadgeBackground);
-			writer.AddResource("SponsorBadgeBackground", SponsorBadgeBackground);
-			writer.AddResource("StaffBadgeBackground", StaffBadgeBackground);
-			writer.AddResource("VolunteerBadgeBackground", VolunteerBadgeBackground);
-			writer.AddResource("SmtpNeedsAuthentication", SmtpNeedsAuthentication);
-			writer.AddResource("SmtpAuthenticationUserName", SmtpAuthenticationUserName);
-			writer.AddResource("SmtpAuthenticationPassword", SmtpAuthenticationPassword);
-			writer.AddResource("SmtpHostname", SmtpHostname);
-			writer.AddResource("SmtpPort", SmtpPort);
-			writer.AddResource("RegistrationSubject", RegistrationSubject);
-			writer.AddResource("RegistrationMessage", RegistrationMessage);
-			writer.AddResource("MaxAttendees", MaxAttendees);
-			writer.AddResource("AttendeeRegistrationAutoCloseDateTime",
-			                   AttendeeRegistrationAutoCloseDateTime);
-			writer.AddResource("MaxVolunteers", MaxVolunteers);
-			writer.AddResource("VolunteerRegistrationAutoCloseDateTime",
-			                   VolunteerRegistrationAutoCloseDateTime);
-			writer.AddResource("MaxMechManiaTeams", MaxMechManiaTeams);
-			writer.AddResource("MechManiaRegistrationAutoCloseDateTime",
-			                   MechManiaRegistrationAutoCloseDateTime);
-			writer.AddResource("StartDate", StartDate);
-			writer.AddResource("EndDate", EndDate);
-			writer.AddResource("ShowEvents", ShowEvents);
-			writer.AddResource("ShowSpeakers", ShowSpeakers);
-			writer.AddResource("DisableLinkLocationCheck", DisableLinkLocationCheck);
-			
+			writer.AddResource("SettingsData", this);
 			writer.Generate();
 			writer.Close();
 		}
