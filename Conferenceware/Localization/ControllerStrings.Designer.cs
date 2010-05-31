@@ -86,5 +86,32 @@ namespace Conferenceware.Localization {
                 return ResourceManager.GetString("SettingsController_Error_StartMustOccurBeforeEnd", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End time cannot occur after conference end (can change in settings).
+        /// </summary>
+        internal static string TimeSlotController_Error_EndAfterConferenceEnd {
+            get {
+                return ResourceManager.GetString("TimeSlotController_Error_EndAfterConferenceEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time cannot be before conference starts (can change in settings).
+        /// </summary>
+        internal static string TimeSlotController_Error_StartBeforeConferenceStart {
+            get {
+                return ResourceManager.GetString("TimeSlotController_Error_StartBeforeConferenceStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start time must be before end time.
+        /// </summary>
+        internal static string TimeSlotController_Error_StartBeforeEnd {
+            get {
+                return ResourceManager.GetString("TimeSlotController_Error_StartBeforeEnd", resourceCulture);
+            }
+        }
     }
 }

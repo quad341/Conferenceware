@@ -116,4 +116,19 @@
 			Error message for when a non-PNG image is uploaded
 		</comment>
 	</data>
+	<data name="TimeSlotController_Error_StartBeforeEnd">
+		<value xml:space="preserve">Start time must be before end time</value>
+	</data>
+	<data name="TimeSlotController_Error_StartBeforeConferenceStart">
+		<value xml:space="preserve">Start time cannot be before conference starts (can change in settings)</value>
+		<comment>
+			Error for when timeslot start time is before conference start time and is not allowed
+		</comment>
+	</data>
+	<data name="TimeSlotController_Error_EndAfterConferenceEnd">
+		<value xml:space="preserve">End time cannot occur after conference end (can change in settings)</value>
+		<comment>
+			Error for when timeslot end time is after conference end time
+		</comment>
+	</data>
 </root>

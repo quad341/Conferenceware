@@ -45,8 +45,8 @@
                 <li><a href="#emailSettings" title="Email Settings">Email</a></li>
                 <li><a href="#badgeSettings" title="Badge Settings">Badges</a></li>
                 <li><a href="#registrationSettings" title="Registration Settings">Registration</a></li>
-                <li><a href="#siteDisplayRelatedSettings" title="Site Display Related Settings">Site
-                    Display Related Settings</a></li>
+                <li><a href="#siteDisplayRelatedSettings" title="Site Display Related Settings">Site Display</a></li>
+                <li><a href="#errorCheckingSettings" title="Error Checking Settings">Error Checking</a></li>
             </ul>
             <div id="frontpageSettings">
                 <div class="editor-label">
@@ -274,6 +274,13 @@
                     <%=Html.ValidationMessageFor(model => model.EndDate)%>
                 </div>
                 <div class="editor-label">
+                    <%=Html.LabelFor(model => model.Annum)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextBoxFor(model => model.Annum)%>
+                    <%=Html.ValidationMessageFor(model => model.Annum)%>
+                </div>
+                <div class="editor-label">
                     <%=Html.LabelFor(model => model.ShowEvents)%>
                 </div>
                 <div class="editor-field">
@@ -287,12 +294,28 @@
                     <%=Html.CheckBoxFor(model => model.ShowSpeakers)%>
                     <%=Html.ValidationMessageFor(model => model.ShowSpeakers)%>
                 </div>
+            </div>
+            <div id="errorCheckingSettings">
                 <div class="editor-label">
                     <%=Html.LabelFor(model => model.DisableLinkLocationCheck)%>
                 </div>
                 <div class="editor-field">
                     <%=Html.CheckBoxFor(model => model.DisableLinkLocationCheck)%>
                     <%=Html.ValidationMessageFor(model => model.DisableLinkLocationCheck)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.AllowTimeSlotsBeforeStart)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.CheckBoxFor(model => model.AllowTimeSlotsBeforeStart)%>
+                    <%=Html.ValidationMessageFor(model => model.AllowTimeSlotsBeforeStart)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.AllowTimeSlotsAfterEnd)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.CheckBoxFor(model => model.AllowTimeSlotsAfterEnd)%>
+                    <%=Html.ValidationMessageFor(model => model.AllowTimeSlotsAfterEnd)%>
                 </div>
             </div>
         </div>

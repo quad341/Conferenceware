@@ -147,7 +147,7 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// The maximum attendees allowed to register
 		/// </summary>
-		[Range(0,int.MaxValue)]
+		[Range(0, int.MaxValue)]
 		[DisplayName("Maximum number of registered attendees (0 is no limit)")]
 		public int MaxAttendees { get; set; }
 
@@ -204,6 +204,13 @@ namespace Conferenceware.Models
 		public DateTime EndDate { get; set; }
 
 		/// <summary>
+		/// The year of the conference (ie. the 15th year)
+		/// </summary>
+		[Range(1,int.MaxValue)]
+		[DisplayName("Conference Annum (eg. the 15th year)")]
+		public int Annum { get; set; }
+
+		/// <summary>
 		/// Whether or not to publically display events
 		/// </summary>
 		[DisplayName("Show the events list publically?")]
@@ -214,7 +221,9 @@ namespace Conferenceware.Models
 		/// </summary>
 		[DisplayName("Show the speakers list publically?")]
 		public bool ShowSpeakers { get; set; }
+		#endregion
 
+		#region ErrorCheckingSettings
 		/// <summary>
 		/// Whether or not to disable the location check for linked files for events
 		/// 
@@ -223,6 +232,18 @@ namespace Conferenceware.Models
 		/// </summary>
 		[DisplayName("Disable the location verification on linked files?")]
 		public bool DisableLinkLocationCheck { get; set; }
+		
+		/// <summary>
+		/// Disables a check to see if a timeslot starts before the conference starts
+		/// </summary>
+		[DisplayName("Allow Time Slots before conference start?")]
+		public bool AllowTimeSlotsBeforeStart { get; set; }
+
+		/// <summary>
+		/// Disables a check to see if a timeslot ends after the conference ends
+		/// </summary>
+		[DisplayName("Allow Time Slots after conference end?")]
+		public bool AllowTimeSlotsAfterEnd { get; set; }
 		#endregion
 
 		public static SettingsData Default
@@ -241,35 +262,35 @@ namespace Conferenceware.Models
 		{
 			ResourceManager rm = null;
 			var sd = new SettingsData
-			         	{
-			         		FrontpageContent = Settings.FrontpageContent,
-			         		FrontpageTitle = Settings.FrontpageTitle,
-			         		EmailFrom = Settings.EmailFrom,
-			         		EventRegistrationConfirmationSubjectFormat =
-			         			Settings.EventRegistrationConfirmationSubjectFormat,
-			         		EventRegistrationConfirmationBodyFormat =
-			         			Settings.EventRegistrationConfirmationBodyFormat,
-			         		AttendeeBadgeBackground = Settings.AttendeeBadgeBackground,
-			         		MechmaniaBadgeBackground = Settings.MechmaniaBadgeBackground,
-			         		SpeakerBadgeBackground = Settings.SpeakerBadgeBackground,
-			         		SponsorBadgeBackground = Settings.SponsorBadgeBackground,
-			         		StaffBadgeBackground = Settings.StaffBadgeBackground,
-			         		VolunteerBadgeBackground = Settings.VolunteerBadgeBackground,
-			         		SmtpNeedsAuthentication = true,
-			         		SmtpHostname = Settings.SmtpHostname,
-			         		SmtpPort = int.Parse(Settings.SmtpPort),
-			         		SmtpAuthenticationUserName = Settings.SmtpAuthenticationUserName,
-			         		SmtpAuthenticationPassword = Settings.SmtpAuthenticationPassword,
-			         		RegistrationSubject = Settings.RegistrationSubject,
-			         		RegistrationMessage = Settings.RegistrationMessage,
-			         		MaxAttendees = 0,
-			         		AttendeeRegistrationAutoCloseDateTime = DateTime.Now,
-			         		MaxVolunteers = 0,
-			         		VolunteerRegistrationAutoCloseDateTime = DateTime.Now,
-			         		MaxMechManiaTeams = 0,
-			         		MechManiaRegistrationAutoCloseDateTime = DateTime.Now,
-			         		StartDate = DateTime.Today,
-			         		EndDate = DateTime.Today.AddDays(1.0), // tomorrow
+						{
+							FrontpageContent = Settings.FrontpageContent,
+							FrontpageTitle = Settings.FrontpageTitle,
+							EmailFrom = Settings.EmailFrom,
+							EventRegistrationConfirmationSubjectFormat =
+								Settings.EventRegistrationConfirmationSubjectFormat,
+							EventRegistrationConfirmationBodyFormat =
+								Settings.EventRegistrationConfirmationBodyFormat,
+							AttendeeBadgeBackground = Settings.AttendeeBadgeBackground,
+							MechmaniaBadgeBackground = Settings.MechmaniaBadgeBackground,
+							SpeakerBadgeBackground = Settings.SpeakerBadgeBackground,
+							SponsorBadgeBackground = Settings.SponsorBadgeBackground,
+							StaffBadgeBackground = Settings.StaffBadgeBackground,
+							VolunteerBadgeBackground = Settings.VolunteerBadgeBackground,
+							SmtpNeedsAuthentication = true,
+							SmtpHostname = Settings.SmtpHostname,
+							SmtpPort = int.Parse(Settings.SmtpPort),
+							SmtpAuthenticationUserName = Settings.SmtpAuthenticationUserName,
+							SmtpAuthenticationPassword = Settings.SmtpAuthenticationPassword,
+							RegistrationSubject = Settings.RegistrationSubject,
+							RegistrationMessage = Settings.RegistrationMessage,
+							MaxAttendees = 0,
+							AttendeeRegistrationAutoCloseDateTime = DateTime.Now,
+							MaxVolunteers = 0,
+							VolunteerRegistrationAutoCloseDateTime = DateTime.Now,
+							MaxMechManiaTeams = 0,
+							MechManiaRegistrationAutoCloseDateTime = DateTime.Now,
+							StartDate = DateTime.Today,
+							EndDate = DateTime.Today.AddDays(1.0), // tomorrow
 							ShowEvents = false,
 							ShowSpeakers = false,
 							DisableLinkLocationCheck = false
@@ -281,9 +302,9 @@ namespace Conferenceware.Models
 																	null);
 				sd = rm.GetObject("SettingsData") as SettingsData ?? sd;
 			}
-// ReSharper disable EmptyGeneralCatchClause
+			// ReSharper disable EmptyGeneralCatchClause
 			catch
-// ReSharper restore EmptyGeneralCatchClause
+			// ReSharper restore EmptyGeneralCatchClause
 			{
 				// something went wrong; probably the file doesn't exist yet
 			}

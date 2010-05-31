@@ -25,6 +25,7 @@ namespace Conferenceware.Controllers
 			SettingsData sd = SettingsData.Default;
 			ProcessFiles(sd);
 			// This will try to update all the fields in the model based on the form collection
+			// due to files, we can't just have this nievely try all
 			if (TryUpdateModel(sd,
 							   new[]
 			                   	{
@@ -48,9 +49,12 @@ namespace Conferenceware.Controllers
 									"MechManiaRegistrationAutoCloseDateTime",
 									"StartDate",
 									"EndDate",
+									"Annum",
 									"ShowEvents",
 									"ShowSpeakers",
-									"DisableLinkLocationCheck"
+									"DisableLinkLocationCheck",
+									"AllowTimeSlotsBeforeStart",
+									"AllowTimeSlotsAfterEnd"
 			                   	},
 							   collection) && VerifyDatesMakeSense(sd, ModelState))
 			{
