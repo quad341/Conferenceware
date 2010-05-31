@@ -61,41 +61,6 @@ namespace Conferenceware.Controllers
 			return View("Create", tsToCreate);
 		}
 
-		/// <summary>
-		/// Checks if the times for the timeslot make sense (start time before end, happens during conference)
-		/// </summary>
-		/// <param name="tsToCreate">The timeslot to check</param>
-		/// <param name="modelState">The model state to use when reporting errors</param>
-		/// <returns></returns>
-		private static bool TimesMakeSense(TimeSlot tsToCreate, ModelStateDictionary modelState)
-		{
-			var success = true;
-			if (tsToCreate.end_time <= tsToCreate.start_time)
-			{
-				modelState.AddModelError("start_time",
-				                         ControllerStrings.
-				                         	TimeSlotController_Error_StartBeforeEnd);
-				success = false;
-			}
-			if (!SettingsData.Default.AllowTimeSlotsBeforeStart
-				&& tsToCreate.start_time < SettingsData.Default.StartDate)
-			{
-				modelState.AddModelError("start_time",
-				                         ControllerStrings.
-				                         	TimeSlotController_Error_StartBeforeConferenceStart);
-				success = false;
-			}
-			if (!SettingsData.Default.AllowTimeSlotsAfterEnd
-				&& tsToCreate.end_time > SettingsData.Default.EndDate)
-			{
-				modelState.AddModelError("end_time",
-				                         ControllerStrings.
-				                         	TimeSlotController_Error_EndAfterConferenceEnd);
-				success = false;
-			}
-			return success;
-		}
-
 		//
 		// GET: /TimeSlot/Edit/5
 
@@ -145,6 +110,41 @@ namespace Conferenceware.Controllers
 					"Delete anything depending on timeslot before deleting";
 			}
 			return RedirectToAction("Index");
+		}
+
+		/// <summary>
+		/// Checks if the times for the timeslot make sense (start time before end, happens during conference)
+		/// </summary>
+		/// <param name="tsToCreate">The timeslot to check</param>
+		/// <param name="modelState">The model state to use when reporting errors</param>
+		/// <returns></returns>
+		private static bool TimesMakeSense(TimeSlot tsToCreate, ModelStateDictionary modelState)
+		{
+			var success = true;
+			if (tsToCreate.end_time <= tsToCreate.start_time)
+			{
+				modelState.AddModelError("start_time",
+				                         ControllerStrings.
+				                         	TimeSlotController_Error_StartBeforeEnd);
+				success = false;
+			}
+			if (!SettingsData.Default.AllowTimeSlotsBeforeStart
+				&& tsToCreate.start_time < SettingsData.Default.StartDate)
+			{
+				modelState.AddModelError("start_time",
+				                         ControllerStrings.
+				                         	TimeSlotController_Error_StartBeforeConferenceStart);
+				success = false;
+			}
+			if (!SettingsData.Default.AllowTimeSlotsAfterEnd
+				&& tsToCreate.end_time > SettingsData.Default.EndDate)
+			{
+				modelState.AddModelError("end_time",
+				                         ControllerStrings.
+				                         	TimeSlotController_Error_EndAfterConferenceEnd);
+				success = false;
+			}
+			return success;
 		}
 	}
 }
