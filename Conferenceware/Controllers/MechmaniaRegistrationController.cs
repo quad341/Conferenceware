@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
 using Conferenceware.Models;
@@ -28,6 +29,11 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Index()
 		{
+			if (SettingsData.Default.MechManiaRegistrationAutoCloseDateTime < DateTime.Now
+				|| SettingsData.Default.MaxMechManiaTeams <= _repository.GetAllMechManiaTeams().Count())
+			{
+				return View("RegistrationClosed");
+			}
 			return View("Index", new MechmaniaTeamEditData());
 		}
 
@@ -38,6 +44,11 @@ namespace Conferenceware.Controllers
 		public ActionResult Index(MechmaniaTeamEditData mmted)
 		//FormCollection collection)
 		{
+			if (SettingsData.Default.MechManiaRegistrationAutoCloseDateTime < DateTime.Now
+				|| SettingsData.Default.MaxMechManiaTeams <= _repository.GetAllMechManiaTeams().Count())
+			{
+				return View("RegistrationClosed");
+			}
 			Attendee att1 =
 				_repository.GetAllAttendees().SingleOrDefault(
 					x => x.People.email == mmted.member_email_1);

@@ -1,4 +1,6 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Linq;
+using System.Net.Mail;
 using System.Web.Mvc;
 using Conferenceware.Models;
 using Conferenceware.Utils;
@@ -25,6 +27,11 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Index()
 		{
+			if (SettingsData.Default.VolunteerRegistrationAutoCloseDateTime < DateTime.Now
+				|| SettingsData.Default.MaxVolunteers <= _repository.GetAllVolunteers().Count())
+			{
+				return View("RegistrationClosed");
+			}
 			return View("Index",
 						VolunteerController.CreateEditDataFromVolunteer(
 							new Volunteer(), _repository));
@@ -36,6 +43,11 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Index(VolunteerEditData ved)
 		{
+			if (SettingsData.Default.VolunteerRegistrationAutoCloseDateTime < DateTime.Now
+				|| SettingsData.Default.MaxVolunteers <= _repository.GetAllVolunteers().Count())
+			{
+				return View("RegistrationClosed");
+			}
 			if (ModelState.IsValid)
 			{
 				_repository.AddVolunteer(ved.Volunteer);

@@ -223,6 +223,7 @@
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Scripts\jquery_ui_datepicker.js" />
     <Content Include="Scripts\ui.datepicker-de.js" />
+    <Content Include="Views\Shared\RegistrationClosed.aspx" />
     <Content Include="Views\Badge\Index.aspx" />
     <Content Include="Views\Email\Index.aspx" />
     <Content Include="Views\Event\AddLink.aspx" />
