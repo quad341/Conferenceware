@@ -13,6 +13,10 @@ namespace Conferenceware.Models
 	public class SettingsData
 	{
 		/// <summary>
+		/// Cached version of the default instance since it doesn't change often really
+		/// </summary>
+		protected static SettingsData _defaultInstance = null;
+		/// <summary>
 		/// The file the the updated settings will come from
 		/// </summary>
 		public const string RESOURCE_FILE_NAME = "CurrentSettings";
@@ -225,7 +229,11 @@ namespace Conferenceware.Models
 		{
 			get
 			{
-				return SettingsData.FromCurrent(SettingsData.RESOURCE_FILE_NAME, SettingsData.RESOURCE_FILE_DIR);
+				if (_defaultInstance == null)
+				{
+					_defaultInstance = FromCurrent(RESOURCE_FILE_NAME, RESOURCE_FILE_DIR);
+				}
+				return _defaultInstance;
 			}
 		}
 

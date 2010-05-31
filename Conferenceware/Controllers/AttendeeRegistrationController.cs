@@ -1,4 +1,6 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Linq;
+using System.Net.Mail;
 using System.Web.Mvc;
 using Conferenceware.Models;
 using Conferenceware.Utils;
@@ -25,6 +27,11 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Index()
 		{
+			if (SettingsData.Default.AttendeeRegistrationAutoCloseDateTime < DateTime.Now
+				|| SettingsData.Default.MaxAttendees <= _repository.GetAllAttendees().Count())
+			{
+				return View("RegistrationClosed");
+			}
 			AttendeeEditData data = MakeEditDateFromAttendee(new Attendee());
 			return View("Index", data);
 		}
@@ -35,6 +42,11 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Index(FormCollection collection)
 		{
+			if (SettingsData.Default.AttendeeRegistrationAutoCloseDateTime < DateTime.Now
+				|| SettingsData.Default.MaxAttendees <= _repository.GetAllAttendees().Count())
+			{
+				return View("RegistrationClosed");
+			}
 			var newAttendee = new Attendee();
 			// This will try to update all the fields in the model based on the form collection
 			if (TryUpdateModel(newAttendee, "Attendee", collection))
@@ -42,6 +54,7 @@ namespace Conferenceware.Controllers
 				_repository.AddAttendee(newAttendee);
 				_repository.Save();
 				SettingsData settings = SettingsData.Default;
+				//TODO: localize string replacement
 				var message = new MailMessage(settings.EmailFrom,
 											  newAttendee.People.email,
 											  settings.RegistrationSubject,
@@ -63,9 +76,11 @@ namespace Conferenceware.Controllers
 			return View("Success");
 		}
 
-		//
-		// This method creates some data for the AttendeeRegistration Form inside the view
-		//
+		/// <summary>
+		/// This method creates some data for the AttendeeRegistration Form inside the view 
+		/// </summary>
+		/// <param name="attendee">The attendee to put in the edit data</param>
+		/// <returns>An AttendeeEditData object containing the Attendee</returns>
 		private AttendeeEditData MakeEditDateFromAttendee(Attendee attendee)
 		{
 			return new AttendeeEditData
