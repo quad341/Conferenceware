@@ -27,23 +27,31 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Index()
 		{
+			if (!SettingsData.Default.ShowEvents)
+			{
+				return View("InformationUnavailable");
+			}
 			IQueryable<Event> events = _repository.GetAllEvents();
 			return View("Index", events.OrderBy(e => e.TimeSlot.start_time));
 		}
 
 		public ActionResult Details(int id)
 		{
-			Event ev = _repository.GetEventById(id);
-			if (ev == null)
+			if (!SettingsData.Default.ShowEvents)
 			{
-				return View("EventNotFound");
+				return View("InformationUnavailable");
 			}
-			return View(ev);
+			Event ev = _repository.GetEventById(id);
+			return ev == null ? View("EventNotFound") : View("Details",ev);
 		}
 
 		[HttpPost]
 		public ActionResult RegisterAttendee(int eventId, string email)
 		{
+			if (!SettingsData.Default.ShowEvents)
+			{
+				return View("InformationUnavailable");
+			}
 			Event ev = _repository.GetEventById(eventId);
 			if (ev == null)
 			{
@@ -89,6 +97,10 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Videos()
 		{
+			if (!SettingsData.Default.ShowEvents)
+			{
+				return View("InformationUnavailable");
+			}
 			IOrderedQueryable<EventContentLink> videos =
 				_repository.GetAllEventContentLinks().Where(x => x.list_on_video_page).
 					OrderBy(x => x.Event.name);

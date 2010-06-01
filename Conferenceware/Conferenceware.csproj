@@ -97,6 +97,7 @@
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
+    <Compile Include="Controllers\SpeakerInfoController.cs" />
     <Compile Include="Controllers\StaffMemberController.cs" />
     <Compile Include="Controllers\TimeSlotController.cs" />
     <Compile Include="Controllers\TShirtSizeController.cs" />
@@ -241,6 +242,10 @@
     <Content Include="Views\Page\Display.aspx" />
     <Content Include="Views\Schedule\Videos.aspx" />
     <Content Include="Views\Shared\PageNotFound.aspx" />
+    <Content Include="Views\SpeakerInfo\Display.aspx" />
+    <Content Include="Views\SpeakerInfo\Index.aspx" />
+    <Content Include="Views\Shared\InformationUnavailable.aspx" />
+    <Content Include="Views\SpeakerInfo\SpeakerNotFound.aspx" />
     <Content Include="Views\StaffMember\Create.aspx" />
     <Content Include="Views\StaffMember\Edit.aspx" />
     <Content Include="Views\StaffMember\Index.aspx" />

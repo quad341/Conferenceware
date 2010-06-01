@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Conferenceware.Models
 {
@@ -7,6 +9,14 @@ namespace Conferenceware.Models
 	public partial class Speaker : IEquatable<Speaker>
 	{
 		// linq will do most things here
+
+		public IEnumerable<Event> Events
+		{
+			get
+			{
+				return EventsSpeakers.Select(x => x.Event);
+			}
+		}
 
 		#region IEquatable<Speaker> Members
 

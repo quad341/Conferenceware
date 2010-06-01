@@ -41,6 +41,8 @@
                 <ul id="menu">
                     <li>
                         <%=Html.ActionLink("Schedule", "Index", "Schedule")%></li>
+                    <li>
+                        <%=Html.ActionLink("Speakers", "Index", "SpeakerInfo")%></li>
                     <li><a href="#">Register</a>
                         <ul class="submenu">
                             <li>
