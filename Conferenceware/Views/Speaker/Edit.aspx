@@ -43,7 +43,16 @@
                 <%=
      		Html.ValidationMessageFor(model => model.People.phone_number)%>
             </div>
-                      
+
+            <div class="editor-label">
+                <%=Html.LabelFor(model => model.bio)%>
+            </div>
+           <div class="editor-field">
+                <%=Html.TextAreaFor(model => model.bio, 15, 80, null)%>
+                <%=
+     		Html.ValidationMessageFor(model => model.bio)%>
+            </div>
+
             <p>
                 <input type="submit" value="Save" />
             </p>

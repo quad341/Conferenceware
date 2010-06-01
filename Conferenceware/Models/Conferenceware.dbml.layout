@@ -1,53 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 19.125, 19.375" name="Conferenceware">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 19.125, 19.125" name="Conferenceware">
   <DataContextMoniker Name="/ConferencewareDataContext" />
   <nestedChildShapes>
-    <classShape Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" absoluteBounds="3.5, 12.5, 2, 1.3862939453124987">
+    <classShape Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" absoluteBounds="3.5, 12.5, 2, 1.2605004882812505">
       <DataClassMoniker Name="/ConferencewareDataContext/Attendee" />
       <nestedChildShapes>
-        <elementListCompartment Id="22affe4b-a349-4013-a2b5-afc48d40dfaf" absoluteBounds="3.515, 12.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="22affe4b-a349-4013-a2b5-afc48d40dfaf" absoluteBounds="3.515, 12.96, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="36e0b017-f283-4dac-8202-dfea551687fd" absoluteBounds="0.75, 12.75, 2, 1.1939925130208344">
+    <classShape Id="36e0b017-f283-4dac-8202-dfea551687fd" absoluteBounds="0.75, 12.75, 2, 1.0961531575520844">
       <DataClassMoniker Name="/ConferencewareDataContext/TShirtSize" />
       <nestedChildShapes>
-        <elementListCompartment Id="7730468f-0c06-41e3-828e-b43ae260c92b" absoluteBounds="0.765, 13.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7730468f-0c06-41e3-828e-b43ae260c92b" absoluteBounds="0.765, 13.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7c18ab02-0eed-4a33-aaf3-2def70e6ab7a" absoluteBounds="6.25, 0.75, 2, 1.1939925130208335">
+    <classShape Id="7c18ab02-0eed-4a33-aaf3-2def70e6ab7a" absoluteBounds="6.25, 0.75, 2, 1.0961531575520833">
       <DataClassMoniker Name="/ConferencewareDataContext/EventsAttendee" />
       <nestedChildShapes>
-        <elementListCompartment Id="4647f0d5-99c9-4253-af5a-c9aa04865276" absoluteBounds="6.265, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4647f0d5-99c9-4253-af5a-c9aa04865276" absoluteBounds="6.265, 1.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="26e52121-9884-4c0f-86ca-f3cf717647bf" absoluteBounds="6.25, 2.75, 2, 1.1939925130208335">
+    <classShape Id="26e52121-9884-4c0f-86ca-f3cf717647bf" absoluteBounds="6.25, 2.75, 2, 1.0961531575520831">
       <DataClassMoniker Name="/ConferencewareDataContext/EventsSpeaker" />
       <nestedChildShapes>
-        <elementListCompartment Id="6f2d47e4-e032-4793-a309-2aed4de7ff81" absoluteBounds="6.265, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6f2d47e4-e032-4793-a309-2aed4de7ff81" absoluteBounds="6.265, 3.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5b422fb2-a7b0-460d-a068-cfbca1e1df8f" absoluteBounds="0.75, 14.75, 2, 1.1939925130208344">
+    <classShape Id="5b422fb2-a7b0-460d-a068-cfbca1e1df8f" absoluteBounds="0.75, 14.75, 2, 1.0961531575520844">
       <DataClassMoniker Name="/ConferencewareDataContext/Food" />
       <nestedChildShapes>
-        <elementListCompartment Id="c2ef6c51-5343-47b5-aa5a-dcfc7f599510" absoluteBounds="0.765, 15.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c2ef6c51-5343-47b5-aa5a-dcfc7f599510" absoluteBounds="0.765, 15.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="46dc3092-adcf-4634-9230-c54b3123b04e" absoluteBounds="0.75, 6.5, 2, 1.7708968098958327">
+    <classShape Id="46dc3092-adcf-4634-9230-c54b3123b04e" absoluteBounds="0.75, 6.5, 2, 1.5891951497395827">
       <DataClassMoniker Name="/ConferencewareDataContext/Location" />
       <nestedChildShapes>
-        <elementListCompartment Id="517456c3-4c39-4771-b09f-f5bc98e2c5d7" absoluteBounds="0.76500000059604645, 6.96000000089407, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="517456c3-4c39-4771-b09f-f5bc98e2c5d7" absoluteBounds="0.76500000059604645, 6.96000000089407, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7489df15-bad7-4a3f-9c44-f7f240ff247a" absoluteBounds="3.5, 6.875, 2, 1.0016910807291666">
-      <DataClassMoniker Name="/ConferencewareDataContext/Speaker" />
-      <nestedChildShapes>
-        <elementListCompartment Id="5a8d0bc3-2cae-474c-b8e6-a77f4d223c56" absoluteBounds="3.515, 7.3350000000000009, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="b25e0ad1-89c9-4eee-b522-dbb1c4b5a3dc" absoluteBounds="0.75, 2.625, 2, 1.3862939453124996">
+    <classShape Id="b25e0ad1-89c9-4eee-b522-dbb1c4b5a3dc" absoluteBounds="0.75, 2.625, 2, 1.26050048828125">
       <DataClassMoniker Name="/ConferencewareDataContext/TimeSlot" />
       <nestedChildShapes>
-        <elementListCompartment Id="b72ed9ee-99c0-4552-ae5d-3beacb0623c6" absoluteBounds="0.76500000059604645, 3.0850000008940697, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b72ed9ee-99c0-4552-ae5d-3beacb0623c6" absoluteBounds="0.76500000059604645, 3.0850000008940697, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.75 : 13.3181469726562); (3.5 : 13.3181469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -57,7 +51,7 @@
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 12.5); (4.5 : 11.1939925130208); (5.875 : 11.1939925130208); (5.875 : 1.34699625651042); (6.25 : 1.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 13.1302502441406); (5.57291666666667 : 13.1302502441406 : JumpStart); (5.73958333333333 : 13.1302502441406 : JumpEnd); (6 : 13.1302502441406); (6 : 2.22115315755208); (7.25 : 2.22115315755208); (7.25 : 1.84615315755208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_EventsAttendee" />
       <nodes>
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
@@ -71,39 +65,32 @@
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 6.90582026402244); (5.81607443490112 : 6.58974582912132 : JumpStart); (5.93392556509888 : 6.47189469892356 : JumpEnd); (6.15625 : 6.24957026402244); (6.15625 : 4.03774251302083); (6.25 : 3.94399251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ConferencewareDataContext/Speaker/Speaker_EventsSpeaker" />
-      <nodes>
-        <classShapeMoniker Id="7489df15-bad7-4a3f-9c44-f7f240ff247a" />
-        <classShapeMoniker Id="26e52121-9884-4c0f-86ca-f3cf717647bf" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="15eb87f4-f33a-4325-a15a-e6fe01671460" absoluteBounds="3.5, 9.75, 2, 1.1939925130208344">
+    <classShape Id="15eb87f4-f33a-4325-a15a-e6fe01671460" absoluteBounds="3.5, 9.75, 2, 1.0961531575520844">
       <DataClassMoniker Name="/ConferencewareDataContext/Volunteer" />
       <nestedChildShapes>
-        <elementListCompartment Id="759c3509-71c7-4d73-a84d-1d1e44c5779a" absoluteBounds="3.515, 10.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="759c3509-71c7-4d73-a84d-1d1e44c5779a" absoluteBounds="3.515, 10.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6e65d169-bbc9-46d0-aaed-26946939ec9a" absoluteBounds="7.125, 7, 2, 1.7708968098958335">
+    <classShape Id="6e65d169-bbc9-46d0-aaed-26946939ec9a" absoluteBounds="7.125, 7, 2, 1.5891951497395827">
       <DataClassMoniker Name="/ConferencewareDataContext/VolunteersVolunteerTimeSlot" />
       <nestedChildShapes>
-        <elementListCompartment Id="48e33216-6f4e-4cda-929b-9fd4ac050bfa" absoluteBounds="7.14, 7.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="48e33216-6f4e-4cda-929b-9fd4ac050bfa" absoluteBounds="7.14, 7.46, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0701ec78-c47b-4158-ab23-bcad4a3e987e" absoluteBounds="3.5, 4.75, 2, 1.1939925130208344">
+    <classShape Id="0701ec78-c47b-4158-ab23-bcad4a3e987e" absoluteBounds="3.5, 4.75, 2, 1.0961531575520827">
       <DataClassMoniker Name="/ConferencewareDataContext/VolunteerTimeSlot" />
       <nestedChildShapes>
-        <elementListCompartment Id="4c19efe7-351d-4f42-a386-6124453c8eee" absoluteBounds="3.515, 5.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4c19efe7-351d-4f42-a386-6124453c8eee" absoluteBounds="3.515, 5.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 10.3152840286208); (5.79166666666667 : 10.3152840286208 : JumpStart); (5.95833333333333 : 10.3152840286208 : JumpEnd); (6.65103916666667 : 10.3152840286208 : JumpStart); (6.81770583333333 : 10.3152840286208 : JumpEnd); (8.125 : 10.3152840286208); (8.125 : 8.77089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 10.3152840286208); (5.57291666666667 : 10.3152840286208 : JumpStart); (5.73958333333333 : 10.3152840286208 : JumpEnd); (5.91666666666667 : 10.3152840286208 : JumpStart); (6.08333333333333 : 10.3152840286208 : JumpEnd); (8.125 : 10.3152840286208); (8.125 : 8.77089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Volunteer/Volunteer_VolunteersVolunteerTimeSlot" />
       <nodes>
         <classShapeMoniker Id="15eb87f4-f33a-4325-a15a-e6fe01671460" />
         <classShapeMoniker Id="6e65d169-bbc9-46d0-aaed-26946939ec9a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.34699625651042); (5.79166666666667 : 5.34699625651042 : JumpStart); (5.95833333333333 : 5.34699625651042 : JumpEnd); (8.125 : 5.34699625651042); (8.125 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 5.34699625651042); (5.63541666666667 : 5.34699625651042 : JumpStart); (5.80208333333333 : 5.34699625651042 : JumpEnd); (5.91666666666667 : 5.34699625651042 : JumpStart); (6.08333333333333 : 5.34699625651042 : JumpEnd); (8.125 : 5.34699625651042); (8.125 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/VolunteerTimeSlot/VolunteerTimeSlot_VolunteersVolunteerTimeSlot" />
       <nodes>
         <classShapeMoniker Id="0701ec78-c47b-4158-ab23-bcad4a3e987e" />
@@ -117,28 +104,28 @@
         <classShapeMoniker Id="0701ec78-c47b-4158-ab23-bcad4a3e987e" />
       </nodes>
     </associationConnector>
-    <classShape Id="26bf9d63-0c12-4073-bea8-777094a40094" absoluteBounds="11.375, 13.25, 2, 2.5401025390624987">
+    <classShape Id="26bf9d63-0c12-4073-bea8-777094a40094" absoluteBounds="11.375, 13.25, 2, 2.2465844726562505">
       <DataClassMoniker Name="/ConferencewareDataContext/Company" />
       <nestedChildShapes>
-        <elementListCompartment Id="ce1b6824-4523-4a0d-ab34-86f7be4667b5" absoluteBounds="11.39, 13.71, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ce1b6824-4523-4a0d-ab34-86f7be4667b5" absoluteBounds="11.39, 13.71, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d35a35f1-a0be-47d8-98c4-579962e34c21" absoluteBounds="16.875, 17.25, 2, 1.7708968098958309">
+    <classShape Id="d35a35f1-a0be-47d8-98c4-579962e34c21" absoluteBounds="16.875, 17.25, 2, 1.5891951497395844">
       <DataClassMoniker Name="/ConferencewareDataContext/CompanyInvoiceItem" />
       <nestedChildShapes>
-        <elementListCompartment Id="7b773be2-d916-47a4-9cf9-d21b47f40504" absoluteBounds="16.89, 17.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7b773be2-d916-47a4-9cf9-d21b47f40504" absoluteBounds="16.89, 17.71, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4323fbcf-88f9-418e-b681-1527c9a760ea" absoluteBounds="14.125, 17.125, 2, 1.9631982421875023">
+    <classShape Id="4323fbcf-88f9-418e-b681-1527c9a760ea" absoluteBounds="14.125, 17.125, 2, 1.7535424804687523">
       <DataClassMoniker Name="/ConferencewareDataContext/CompanyInvoice" />
       <nestedChildShapes>
-        <elementListCompartment Id="3b39b6ba-b7a7-4efb-b213-bd25c85d742f" absoluteBounds="14.14, 17.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3b39b6ba-b7a7-4efb-b213-bd25c85d742f" absoluteBounds="14.14, 17.585, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f55c65bf-70bd-4a2d-a65c-835b669c3e11" absoluteBounds="14.125, 14.625, 2, 1.7708968098958344">
+    <classShape Id="f55c65bf-70bd-4a2d-a65c-835b669c3e11" absoluteBounds="14.125, 14.625, 2, 1.5891951497395844">
       <DataClassMoniker Name="/ConferencewareDataContext/CompanyPayment" />
       <nestedChildShapes>
-        <elementListCompartment Id="120829cf-8736-4c35-85a9-d038f34b6fa9" absoluteBounds="14.14, 15.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="120829cf-8736-4c35-85a9-d038f34b6fa9" absoluteBounds="14.14, 15.085, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(16.125 : 18.1354484049479); (16.875 : 18.1354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -162,66 +149,59 @@
         <classShapeMoniker Id="f55c65bf-70bd-4a2d-a65c-835b669c3e11" />
       </nodes>
     </associationConnector>
-    <classShape Id="6e24eddb-8d70-4d52-9a09-44842f784d83" absoluteBounds="7.625, 12.75, 2, 2.1554996744791666">
+    <classShape Id="6e24eddb-8d70-4d52-9a09-44842f784d83" absoluteBounds="7.625, 12.75, 2, 1.9178898111979166">
       <DataClassMoniker Name="/ConferencewareDataContext/MechManiaTeam" />
       <nestedChildShapes>
-        <elementListCompartment Id="7edcf0bd-e99b-4852-ac9f-3bb0daf9f9ed" absoluteBounds="7.64, 13.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7edcf0bd-e99b-4852-ac9f-3bb0daf9f9ed" absoluteBounds="7.64, 13.21, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 13.3181469726562); (7.625 : 13.3181469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 13.3181469726562); (5.57291666666667 : 13.3181469726562 : JumpStart); (5.73958333333333 : 13.3181469726562 : JumpEnd); (6.94791666666667 : 13.3181469726562 : JumpStart); (7.11458333333333 : 13.3181469726562 : JumpEnd); (7.24479416666667 : 13.3181469726562 : JumpStart); (7.55989958333333 : 13.3181469726562 : JumpEnd); (7.625 : 13.3181469726562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam" />
       <nodes>
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
         <classShapeMoniker Id="6e24eddb-8d70-4d52-9a09-44842f784d83" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 12.9715734863281); (7.625 : 12.9715734863281)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 12.9715734863281); (5.57291666666667 : 12.9715734863281 : JumpStart); (5.73958333333333 : 12.9715734863281 : JumpEnd); (5.91666666666667 : 12.9715734863281 : JumpStart); (6.08333333333333 : 12.9715734863281 : JumpEnd); (7.24479416666667 : 12.9715734863281 : JumpStart); (7.55989958333333 : 12.9715734863281 : JumpEnd); (7.625 : 12.9715734863281)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam1" />
       <nodes>
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
         <classShapeMoniker Id="6e24eddb-8d70-4d52-9a09-44842f784d83" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 13.6647204589844); (6.65103916666667 : 13.6647204589844 : JumpStart); (6.81770583333333 : 13.6647204589844 : JumpEnd); (6.94791666666667 : 13.6647204589844 : JumpStart); (7.11458333333333 : 13.6647204589844 : JumpEnd); (7.24479416666667 : 13.6647204589844 : JumpStart); (7.55989958333333 : 13.6647204589844 : JumpEnd); (7.625 : 13.6647204589844)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 13.6647204589844); (5.57291666666667 : 13.6647204589844 : JumpStart); (5.73958333333333 : 13.6647204589844 : JumpEnd); (6.94791666666667 : 13.6647204589844 : JumpStart); (7.11458333333333 : 13.6647204589844 : JumpEnd); (7.24479416666667 : 13.6647204589844 : JumpStart); (7.55989958333333 : 13.6647204589844 : JumpEnd); (7.625 : 13.6647204589844)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam2" />
       <nodes>
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
         <classShapeMoniker Id="6e24eddb-8d70-4d52-9a09-44842f784d83" />
       </nodes>
     </associationConnector>
-    <classShape Id="653b64a6-fe54-48a9-a389-8b296b359d48" absoluteBounds="3.625, 1.75, 2, 1.5785953776041666">
+    <classShape Id="653b64a6-fe54-48a9-a389-8b296b359d48" absoluteBounds="3.625, 1.75, 2, 1.424847819010417">
       <DataClassMoniker Name="/ConferencewareDataContext/Page" />
       <nestedChildShapes>
-        <elementListCompartment Id="f1cd4efb-41b7-4ddd-bc0a-9b817a4b757f" absoluteBounds="3.6399999999999997, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f1cd4efb-41b7-4ddd-bc0a-9b817a4b757f" absoluteBounds="3.6399999999999997, 2.21, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4ef5485f-a106-4d19-91bd-a6d88446e9b3" absoluteBounds="14.75, 12.875, 2, 1.5785953776041666">
+    <classShape Id="4ef5485f-a106-4d19-91bd-a6d88446e9b3" absoluteBounds="14.75, 12.875, 2, 1.4248478190104166">
       <DataClassMoniker Name="/ConferencewareDataContext/CompanyPerson" />
       <nestedChildShapes>
-        <elementListCompartment Id="da32d90a-aea3-4035-9c5b-46767ed874f5" absoluteBounds="14.765, 13.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="da32d90a-aea3-4035-9c5b-46767ed874f5" absoluteBounds="14.765, 13.335, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" absoluteBounds="6.5, 16.5, 2, 1.7708968098958331">
+    <classShape Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" absoluteBounds="6.5, 16.5, 2, 1.5891951497395844">
       <DataClassMoniker Name="/ConferencewareDataContext/People" />
       <nestedChildShapes>
-        <elementListCompartment Id="4eedfaf1-a443-4895-a529-f5d8a93f20ea" absoluteBounds="6.515, 16.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4eedfaf1-a443-4895-a529-f5d8a93f20ea" absoluteBounds="6.515, 16.96, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.03125 : 16.5); (7.03125 : 12.59375); (6.81770583333333 : 12.59375 : JumpStart); (6.65103916666667 : 12.59375 : JumpEnd); (5.5 : 12.59375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.03125 : 16.5); (7.03125 : 13.1302502441406); (5.73958333333333 : 13.1302502441406 : JumpStart); (5.57291666666667 : 13.1302502441406 : JumpEnd); (5.5 : 13.1302502441406)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/ConferencewareDataContext/People/People_Attendee" />
       <nodes>
         <classShapeMoniker Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" />
         <classShapeMoniker Id="36725bb5-a2c1-443d-9b4d-ecc18455f059" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.7343725 : 16.5); (6.7343725 : 6.90625); (5.95833333333333 : 6.90625 : JumpStart); (5.79166666666667 : 6.90625 : JumpEnd); (5.5 : 6.90625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ConferencewareDataContext/People/People_Speaker" />
-      <nodes>
-        <classShapeMoniker Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" />
-        <classShapeMoniker Id="7489df15-bad7-4a3f-9c44-f7f240ff247a" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(7.3281275 : 16.5); (7.3281275 : 10.6608907708208); (6.81770583333333 : 10.6608907708208 : JumpStart); (6.65103916666667 : 10.6608907708208 : JumpEnd); (5.95833333333333 : 10.6608907708208 : JumpStart); (5.79166666666667 : 10.6608907708208 : JumpEnd); (5.5 : 10.6608907708208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(7.3281275 : 16.5); (7.3281275 : 10.6608907708208); (6.08333333333333 : 10.6608907708208 : JumpStart); (5.91666666666667 : 10.6608907708208 : JumpEnd); (5.73958333333333 : 10.6608907708208 : JumpStart); (5.57291666666667 : 10.6608907708208 : JumpEnd); (5.5 : 10.6608907708208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/People/People_Volunteer" />
       <nodes>
         <classShapeMoniker Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" />
@@ -235,17 +215,17 @@
         <classShapeMoniker Id="4ef5485f-a106-4d19-91bd-a6d88446e9b3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 16.78125); (12.2916666666667 : 16.78125 : JumpStart); (12.4583333333333 : 16.78125 : JumpEnd); (16.46875 : 16.78125); (16.46875 : 14.4535953776042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.5 : 16.78125); (16.46875 : 16.78125); (16.46875 : 14.4535953776042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/People/People_CompanyPerson" />
       <nodes>
         <classShapeMoniker Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" />
         <classShapeMoniker Id="4ef5485f-a106-4d19-91bd-a6d88446e9b3" />
       </nodes>
     </associationConnector>
-    <classShape Id="57a390dc-c54b-4fc8-b797-c842289c8e3b" absoluteBounds="9.5, 3.375, 2, 2.1554996744791666">
+    <classShape Id="57a390dc-c54b-4fc8-b797-c842289c8e3b" absoluteBounds="9.5, 3.375, 2, 1.9178898111979166">
       <DataClassMoniker Name="/ConferencewareDataContext/Event" />
       <nestedChildShapes>
-        <elementListCompartment Id="70a1bcae-be08-4850-b27d-8231a52c496a" absoluteBounds="9.515, 3.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="70a1bcae-be08-4850-b27d-8231a52c496a" absoluteBounds="9.515, 3.835, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(10.5 : 3.375); (10.5 : 1.34699625651042); (8.25 : 1.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -262,24 +242,24 @@
         <classShapeMoniker Id="26e52121-9884-4c0f-86ca-f3cf717647bf" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.65625); (5.79166666666667 : 6.65625 : JumpStart); (5.95833333333333 : 6.65625 : JumpEnd); (10.5 : 6.65625); (10.5 : 5.53049967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 6.71875); (5.63541666666667 : 6.71875 : JumpStart); (5.80208333333333 : 6.71875 : JumpEnd); (5.91666666666667 : 6.71875 : JumpStart); (6.08333333333333 : 6.71875 : JumpEnd); (8.04166666666667 : 6.71875 : JumpStart); (8.20833333333333 : 6.71875 : JumpEnd); (10.2812475 : 6.71875); (10.2812475 : 5.29288981119792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ConferencewareDataContext/Location/Location_Event" />
       <nodes>
         <classShapeMoniker Id="46dc3092-adcf-4634-9230-c54b3123b04e" />
         <classShapeMoniker Id="57a390dc-c54b-4fc8-b797-c842289c8e3b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 4.0112939453125); (1.75 : 4.34939747265625); (3.44791666666667 : 4.34939747265625 : JumpStart); (3.61458333333333 : 4.34939747265625 : JumpEnd); (5.79166666666667 : 4.34939747265625 : JumpStart); (5.95833333333333 : 4.34939747265625 : JumpEnd); (9.5 : 4.34939747265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 4.0112939453125); (1.75 : 4.34939747265625); (3.44791666666667 : 4.34939747265625 : JumpStart); (3.61458333333333 : 4.34939747265625 : JumpEnd); (5.63541666666667 : 4.34939747265625 : JumpStart); (5.80208333333333 : 4.34939747265625 : JumpEnd); (5.91666666666667 : 4.34939747265625 : JumpStart); (6.08333333333333 : 4.34939747265625 : JumpEnd); (9.5 : 4.34939747265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/TimeSlot/TimeSlot_Event" />
       <nodes>
         <classShapeMoniker Id="b25e0ad1-89c9-4eee-b522-dbb1c4b5a3dc" />
         <classShapeMoniker Id="57a390dc-c54b-4fc8-b797-c842289c8e3b" />
       </nodes>
     </associationConnector>
-    <classShape Id="82924465-a157-4eb7-8fb2-96b23518c1f0" absoluteBounds="10.75, 8.375, 2, 1.5785953776041666">
+    <classShape Id="82924465-a157-4eb7-8fb2-96b23518c1f0" absoluteBounds="10.75, 8.375, 2, 1.4248478190104166">
       <DataClassMoniker Name="/ConferencewareDataContext/EventContentLink" />
       <nestedChildShapes>
-        <elementListCompartment Id="51a5bc2a-9047-4db4-b10c-ebeeda06e74f" absoluteBounds="10.765, 8.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="51a5bc2a-9047-4db4-b10c-ebeeda06e74f" absoluteBounds="10.765, 8.835, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(11.125 : 5.53049967447917); (11.125 : 8.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -289,10 +269,10 @@
         <classShapeMoniker Id="82924465-a157-4eb7-8fb2-96b23518c1f0" />
       </nodes>
     </associationConnector>
-    <classShape Id="e1d0dedd-4633-44f4-880b-7b6e48236b57" absoluteBounds="9.75, 10.75, 2, 1.5785953776041666">
+    <classShape Id="e1d0dedd-4633-44f4-880b-7b6e48236b57" absoluteBounds="9.75, 10.75, 2, 1.4248478190104166">
       <DataClassMoniker Name="/ConferencewareDataContext/StaffMember" />
       <nestedChildShapes>
-        <elementListCompartment Id="750a2365-05be-4f5b-81d1-6aea3225289e" absoluteBounds="9.765, 11.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="750a2365-05be-4f5b-81d1-6aea3225289e" absoluteBounds="9.765, 11.21, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(7.47656625 : 16.5); (7.47656625 : 11.5392976888021); (9.75 : 11.5392976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -300,6 +280,26 @@
       <nodes>
         <classShapeMoniker Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" />
         <classShapeMoniker Id="e1d0dedd-4633-44f4-880b-7b6e48236b57" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7325ca89-a4e1-4a18-961c-38e451c9a859" absoluteBounds="3.75, 7.25, 2, 1.0961531575520833">
+      <DataClassMoniker Name="/ConferencewareDataContext/Speaker" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2df5c7ed-a42d-4d51-8530-3bff8a080e24" absoluteBounds="3.7649999999999997, 7.7100000000000009, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.71875 : 7.25); (5.71875 : 3.54175048828125); (5.91666666666667 : 3.54175048828125 : JumpStart); (6.08333333333333 : 3.54175048828125 : JumpEnd); (6.25 : 3.54175048828125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/Speaker/Speaker_EventsSpeaker" />
+      <nodes>
+        <classShapeMoniker Id="7325ca89-a4e1-4a18-961c-38e451c9a859" />
+        <classShapeMoniker Id="26e52121-9884-4c0f-86ca-f3cf717647bf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.5 : 17.2945975748698); (5.65625 : 17.2945975748698); (5.65625 : 8.34615315755208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ConferencewareDataContext/People/People_Speaker" />
+      <nodes>
+        <classShapeMoniker Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" />
+        <classShapeMoniker Id="7325ca89-a4e1-4a18-961c-38e451c9a859" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

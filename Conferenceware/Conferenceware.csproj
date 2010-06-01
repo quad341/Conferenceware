@@ -162,6 +162,7 @@
     <Compile Include="Models\SettingsData.cs" />
     <Compile Include="Models\Speaker.cs" />
     <Compile Include="Models\SpeakerComparitor.cs" />
+    <Compile Include="Models\SpeakerMetadata.cs" />
     <Compile Include="Models\StaffMember.cs" />
     <Compile Include="Models\StaffMemberMetadata.cs" />
     <Compile Include="Models\TimeSlot.cs" />

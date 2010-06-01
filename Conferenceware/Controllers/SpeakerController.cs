@@ -39,6 +39,7 @@ namespace Conferenceware.Controllers
 		// POST: /Speaker/Create
 
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult Create(Speaker speakerToCreate)
 		{
 			if (ModelState.IsValid)
@@ -68,6 +69,7 @@ namespace Conferenceware.Controllers
 		// POST: /Speaker/Edit/5
 
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			Speaker speaker = _repository.GetSpeakerById(id);

@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Database Name="Conferenceware" Class="ConferencewareDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Conferenceware" Class="ConferencewareDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=(local);Initial Catalog=Conferenceware;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ConferencewareConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Attendees" Member="Attendees">
     <Type Name="Attendee">
@@ -35,8 +33,8 @@
     <Type Name="EventsSpeaker">
       <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="speaker_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Speaker_EventsSpeaker" Member="Speaker" ThisKey="speaker_id" OtherKey="person_id" Type="Speaker" IsForeignKey="true" />
       <Association Name="Event_EventsSpeaker" Member="Event" ThisKey="event_id" OtherKey="id" Type="Event" IsForeignKey="true" />
+      <Association Name="Speaker_EventsSpeaker" Member="Speaker" ThisKey="speaker_id" OtherKey="person_id" Type="Speaker" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Foods" Member="Foods">
@@ -54,13 +52,6 @@
       <Column Name="room_number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="notes" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Location_Event" Member="Events" ThisKey="id" OtherKey="location_id" Type="Event" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Speakers" Member="Speakers">
-    <Type Name="Speaker">
-      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Speaker_EventsSpeaker" Member="EventsSpeakers" ThisKey="person_id" OtherKey="speaker_id" Type="EventsSpeaker" />
-      <Association Name="People_Speaker" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TimeSlots" Member="TimeSlots">
@@ -187,10 +178,10 @@
       <Column Name="phone_number" Type="System.String" DbType="NChar(12) NOT NULL" CanBeNull="false" />
       <Column Name="is_alum" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="People_Attendee" Member="Attendee" ThisKey="id" OtherKey="person_id" Type="Attendee" Cardinality="One" />
-      <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
       <Association Name="People_Volunteer" Member="Volunteer" ThisKey="id" OtherKey="person_id" Type="Volunteer" Cardinality="One" />
       <Association Name="People_CompanyPerson" Member="CompanyPerson" ThisKey="id" OtherKey="person_id" Type="CompanyPerson" Cardinality="One" />
       <Association Name="People_StaffMember" Member="StaffMember" ThisKey="id" OtherKey="person_id" Type="StaffMember" Cardinality="One" />
+      <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.Events" Member="Events">
@@ -225,6 +216,14 @@
       <Column Name="password_hash" Type="System.String" DbType="NChar(40) NOT NULL" CanBeNull="false" />
       <Column Name="seed" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="People_StaffMember" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Speakers" Member="Speakers">
+    <Type Name="Speaker">
+      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="bio" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Speaker_EventsSpeaker" Member="EventsSpeakers" ThisKey="person_id" OtherKey="speaker_id" Type="EventsSpeaker" />
+      <Association Name="People_Speaker" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

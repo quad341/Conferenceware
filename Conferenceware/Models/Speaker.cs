@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Conferenceware.Models
 {
+	[MetadataType(typeof(SpeakerMetadata))]
 	public partial class Speaker : IEquatable<Speaker>
 	{
 		// linq will do most things here
