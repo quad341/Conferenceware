@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Conferenceware" Class="ConferencewareDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=(local);Initial Catalog=Conferenceware;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ConferencewareConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Attendees" Member="Attendees">
-    <Type Name="Attendee">
-      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="food_choice_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="tshirt_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Attendee_EventsAttendee" Member="EventsAttendees" ThisKey="person_id" OtherKey="attendee_id" Type="EventsAttendee" />
-      <Association Name="Attendee_MechManiaTeam" Member="MechManiaTeams" ThisKey="person_id" OtherKey="member1_id" Type="MechManiaTeam" />
-      <Association Name="Attendee_MechManiaTeam1" Member="MechManiaTeams1" ThisKey="person_id" OtherKey="member2_id" Type="MechManiaTeam" />
-      <Association Name="Attendee_MechManiaTeam2" Member="MechManiaTeams2" ThisKey="person_id" OtherKey="member3_id" Type="MechManiaTeam" />
-      <Association Name="TShirtSize_Attendee" Member="TShirtSize" ThisKey="tshirt_id" OtherKey="id" Type="TShirtSize" IsForeignKey="true" />
-      <Association Name="Food_Attendee" Member="Food" ThisKey="food_choice_id" OtherKey="id" Type="Food" IsForeignKey="true" />
-      <Association Name="People_Attendee" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TShirtSizes" Member="TShirtSizes">
     <Type Name="TShirtSize">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -25,8 +11,8 @@
     <Type Name="EventsAttendee">
       <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="attendee_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Attendee_EventsAttendee" Member="Attendee" ThisKey="attendee_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
       <Association Name="Event_EventsAttendee" Member="Event" ThisKey="event_id" OtherKey="id" Type="Event" IsForeignKey="true" />
+      <Association Name="Attendee_EventsAttendee" Member="Attendee" ThisKey="attendee_id" OtherKey="person_id" Type="Attendee" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.EventsSpeakers" Member="EventsSpeakers">
@@ -177,11 +163,11 @@
       <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="phone_number" Type="System.String" DbType="NChar(12) NOT NULL" CanBeNull="false" />
       <Column Name="is_alum" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="People_Attendee" Member="Attendee" ThisKey="id" OtherKey="person_id" Type="Attendee" Cardinality="One" />
       <Association Name="People_Volunteer" Member="Volunteer" ThisKey="id" OtherKey="person_id" Type="Volunteer" Cardinality="One" />
       <Association Name="People_CompanyPerson" Member="CompanyPerson" ThisKey="id" OtherKey="person_id" Type="CompanyPerson" Cardinality="One" />
       <Association Name="People_StaffMember" Member="StaffMember" ThisKey="id" OtherKey="person_id" Type="StaffMember" Cardinality="One" />
       <Association Name="People_Speaker" Member="Speaker" ThisKey="id" OtherKey="person_id" Type="Speaker" Cardinality="One" />
+      <Association Name="People_Attendee" Member="Attendee" ThisKey="id" OtherKey="person_id" Type="Attendee" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.Events" Member="Events">
@@ -224,6 +210,21 @@
       <Column Name="bio" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Association Name="Speaker_EventsSpeaker" Member="EventsSpeakers" ThisKey="person_id" OtherKey="speaker_id" Type="EventsSpeaker" />
       <Association Name="People_Speaker" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Attendees" Member="Attendees">
+    <Type Name="Attendee">
+      <Column Name="person_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="food_choice_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tshirt_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="checked_in" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Attendee_EventsAttendee" Member="EventsAttendees" ThisKey="person_id" OtherKey="attendee_id" Type="EventsAttendee" />
+      <Association Name="Attendee_MechManiaTeam" Member="MechManiaTeams" ThisKey="person_id" OtherKey="member1_id" Type="MechManiaTeam" />
+      <Association Name="Attendee_MechManiaTeam1" Member="MechManiaTeams1" ThisKey="person_id" OtherKey="member2_id" Type="MechManiaTeam" />
+      <Association Name="Attendee_MechManiaTeam2" Member="MechManiaTeams2" ThisKey="person_id" OtherKey="member3_id" Type="MechManiaTeam" />
+      <Association Name="Food_Attendee" Member="Food" ThisKey="food_choice_id" OtherKey="id" Type="Food" IsForeignKey="true" />
+      <Association Name="People_Attendee" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
+      <Association Name="TShirtSize_Attendee" Member="TShirtSize" ThisKey="tshirt_id" OtherKey="id" Type="TShirtSize" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

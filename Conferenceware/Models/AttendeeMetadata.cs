@@ -9,5 +9,8 @@ namespace Conferenceware.Models
 
 		[DisplayName("Food Choice")]
 		public int food_choice_id { get; set; }
+
+		[DisplayName("Checked in?")]
+		public bool checked_in { get; set; }
 	}
 }

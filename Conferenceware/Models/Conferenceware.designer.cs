@@ -30,9 +30,6 @@ namespace Conferenceware.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAttendee(Attendee instance);
-    partial void UpdateAttendee(Attendee instance);
-    partial void DeleteAttendee(Attendee instance);
     partial void InsertTShirtSize(TShirtSize instance);
     partial void UpdateTShirtSize(TShirtSize instance);
     partial void DeleteTShirtSize(TShirtSize instance);
@@ -96,6 +93,9 @@ namespace Conferenceware.Models
     partial void InsertSpeaker(Speaker instance);
     partial void UpdateSpeaker(Speaker instance);
     partial void DeleteSpeaker(Speaker instance);
+    partial void InsertAttendee(Attendee instance);
+    partial void UpdateAttendee(Attendee instance);
+    partial void DeleteAttendee(Attendee instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -126,14 +126,6 @@ namespace Conferenceware.Models
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Attendee> Attendees
-		{
-			get
-			{
-				return this.GetTable<Attendee>();
-			}
 		}
 		
 		public System.Data.Linq.Table<TShirtSize> TShirtSizes
@@ -303,350 +295,13 @@ namespace Conferenceware.Models
 				return this.GetTable<Speaker>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Attendees")]
-	public partial class Attendee : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _person_id;
-		
-		private int _food_choice_id;
-		
-		private int _tshirt_id;
-		
-		private EntitySet<EventsAttendee> _EventsAttendees;
-		
-		private EntitySet<MechManiaTeam> _MechManiaTeams;
-		
-		private EntitySet<MechManiaTeam> _MechManiaTeams1;
-		
-		private EntitySet<MechManiaTeam> _MechManiaTeams2;
-		
-		private EntityRef<TShirtSize> _TShirtSize;
-		
-		private EntityRef<Food> _Food;
-		
-		private EntityRef<People> _People;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onperson_idChanging(int value);
-    partial void Onperson_idChanged();
-    partial void Onfood_choice_idChanging(int value);
-    partial void Onfood_choice_idChanged();
-    partial void Ontshirt_idChanging(int value);
-    partial void Ontshirt_idChanged();
-    #endregion
-		
-		public Attendee()
-		{
-			this._EventsAttendees = new EntitySet<EventsAttendee>(new Action<EventsAttendee>(this.attach_EventsAttendees), new Action<EventsAttendee>(this.detach_EventsAttendees));
-			this._MechManiaTeams = new EntitySet<MechManiaTeam>(new Action<MechManiaTeam>(this.attach_MechManiaTeams), new Action<MechManiaTeam>(this.detach_MechManiaTeams));
-			this._MechManiaTeams1 = new EntitySet<MechManiaTeam>(new Action<MechManiaTeam>(this.attach_MechManiaTeams1), new Action<MechManiaTeam>(this.detach_MechManiaTeams1));
-			this._MechManiaTeams2 = new EntitySet<MechManiaTeam>(new Action<MechManiaTeam>(this.attach_MechManiaTeams2), new Action<MechManiaTeam>(this.detach_MechManiaTeams2));
-			this._TShirtSize = default(EntityRef<TShirtSize>);
-			this._Food = default(EntityRef<Food>);
-			this._People = default(EntityRef<People>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int person_id
+		public System.Data.Linq.Table<Attendee> Attendees
 		{
 			get
 			{
-				return this._person_id;
+				return this.GetTable<Attendee>();
 			}
-			set
-			{
-				if ((this._person_id != value))
-				{
-					if (this._People.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onperson_idChanging(value);
-					this.SendPropertyChanging();
-					this._person_id = value;
-					this.SendPropertyChanged("person_id");
-					this.Onperson_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_food_choice_id", DbType="Int NOT NULL")]
-		public int food_choice_id
-		{
-			get
-			{
-				return this._food_choice_id;
-			}
-			set
-			{
-				if ((this._food_choice_id != value))
-				{
-					if (this._Food.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onfood_choice_idChanging(value);
-					this.SendPropertyChanging();
-					this._food_choice_id = value;
-					this.SendPropertyChanged("food_choice_id");
-					this.Onfood_choice_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tshirt_id", DbType="Int NOT NULL")]
-		public int tshirt_id
-		{
-			get
-			{
-				return this._tshirt_id;
-			}
-			set
-			{
-				if ((this._tshirt_id != value))
-				{
-					if (this._TShirtSize.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Ontshirt_idChanging(value);
-					this.SendPropertyChanging();
-					this._tshirt_id = value;
-					this.SendPropertyChanged("tshirt_id");
-					this.Ontshirt_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_EventsAttendee", Storage="_EventsAttendees", ThisKey="person_id", OtherKey="attendee_id")]
-		public EntitySet<EventsAttendee> EventsAttendees
-		{
-			get
-			{
-				return this._EventsAttendees;
-			}
-			set
-			{
-				this._EventsAttendees.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_MechManiaTeam", Storage="_MechManiaTeams", ThisKey="person_id", OtherKey="member1_id")]
-		public EntitySet<MechManiaTeam> MechManiaTeams
-		{
-			get
-			{
-				return this._MechManiaTeams;
-			}
-			set
-			{
-				this._MechManiaTeams.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_MechManiaTeam1", Storage="_MechManiaTeams1", ThisKey="person_id", OtherKey="member2_id")]
-		public EntitySet<MechManiaTeam> MechManiaTeams1
-		{
-			get
-			{
-				return this._MechManiaTeams1;
-			}
-			set
-			{
-				this._MechManiaTeams1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_MechManiaTeam2", Storage="_MechManiaTeams2", ThisKey="person_id", OtherKey="member3_id")]
-		public EntitySet<MechManiaTeam> MechManiaTeams2
-		{
-			get
-			{
-				return this._MechManiaTeams2;
-			}
-			set
-			{
-				this._MechManiaTeams2.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TShirtSize_Attendee", Storage="_TShirtSize", ThisKey="tshirt_id", OtherKey="id", IsForeignKey=true)]
-		public TShirtSize TShirtSize
-		{
-			get
-			{
-				return this._TShirtSize.Entity;
-			}
-			set
-			{
-				TShirtSize previousValue = this._TShirtSize.Entity;
-				if (((previousValue != value) 
-							|| (this._TShirtSize.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TShirtSize.Entity = null;
-						previousValue.Attendees.Remove(this);
-					}
-					this._TShirtSize.Entity = value;
-					if ((value != null))
-					{
-						value.Attendees.Add(this);
-						this._tshirt_id = value.id;
-					}
-					else
-					{
-						this._tshirt_id = default(int);
-					}
-					this.SendPropertyChanged("TShirtSize");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Food_Attendee", Storage="_Food", ThisKey="food_choice_id", OtherKey="id", IsForeignKey=true)]
-		public Food Food
-		{
-			get
-			{
-				return this._Food.Entity;
-			}
-			set
-			{
-				Food previousValue = this._Food.Entity;
-				if (((previousValue != value) 
-							|| (this._Food.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Food.Entity = null;
-						previousValue.Attendees.Remove(this);
-					}
-					this._Food.Entity = value;
-					if ((value != null))
-					{
-						value.Attendees.Add(this);
-						this._food_choice_id = value.id;
-					}
-					else
-					{
-						this._food_choice_id = default(int);
-					}
-					this.SendPropertyChanged("Food");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Attendee", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
-		public People People
-		{
-			get
-			{
-				return this._People.Entity;
-			}
-			set
-			{
-				People previousValue = this._People.Entity;
-				if (((previousValue != value) 
-							|| (this._People.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._People.Entity = null;
-						previousValue.Attendee = null;
-					}
-					this._People.Entity = value;
-					if ((value != null))
-					{
-						value.Attendee = this;
-						this._person_id = value.id;
-					}
-					else
-					{
-						this._person_id = default(int);
-					}
-					this.SendPropertyChanged("People");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_EventsAttendees(EventsAttendee entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee = this;
-		}
-		
-		private void detach_EventsAttendees(EventsAttendee entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee = null;
-		}
-		
-		private void attach_MechManiaTeams(MechManiaTeam entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee = this;
-		}
-		
-		private void detach_MechManiaTeams(MechManiaTeam entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee = null;
-		}
-		
-		private void attach_MechManiaTeams1(MechManiaTeam entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee1 = this;
-		}
-		
-		private void detach_MechManiaTeams1(MechManiaTeam entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee1 = null;
-		}
-		
-		private void attach_MechManiaTeams2(MechManiaTeam entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee2 = this;
-		}
-		
-		private void detach_MechManiaTeams2(MechManiaTeam entity)
-		{
-			this.SendPropertyChanging();
-			entity.Attendee2 = null;
 		}
 	}
 	
@@ -774,9 +429,9 @@ namespace Conferenceware.Models
 		
 		private int _attendee_id;
 		
-		private EntityRef<Attendee> _Attendee;
-		
 		private EntityRef<Event> _Event;
+		
+		private EntityRef<Attendee> _Attendee;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -790,8 +445,8 @@ namespace Conferenceware.Models
 		
 		public EventsAttendee()
 		{
-			this._Attendee = default(EntityRef<Attendee>);
 			this._Event = default(EntityRef<Event>);
+			this._Attendee = default(EntityRef<Attendee>);
 			OnCreated();
 		}
 		
@@ -843,40 +498,6 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_EventsAttendee", Storage="_Attendee", ThisKey="attendee_id", OtherKey="person_id", IsForeignKey=true)]
-		public Attendee Attendee
-		{
-			get
-			{
-				return this._Attendee.Entity;
-			}
-			set
-			{
-				Attendee previousValue = this._Attendee.Entity;
-				if (((previousValue != value) 
-							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Attendee.Entity = null;
-						previousValue.EventsAttendees.Remove(this);
-					}
-					this._Attendee.Entity = value;
-					if ((value != null))
-					{
-						value.EventsAttendees.Add(this);
-						this._attendee_id = value.person_id;
-					}
-					else
-					{
-						this._attendee_id = default(int);
-					}
-					this.SendPropertyChanged("Attendee");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Event_EventsAttendee", Storage="_Event", ThisKey="event_id", OtherKey="id", IsForeignKey=true)]
 		public Event Event
 		{
@@ -907,6 +528,40 @@ namespace Conferenceware.Models
 						this._event_id = default(int);
 					}
 					this.SendPropertyChanged("Event");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_EventsAttendee", Storage="_Attendee", ThisKey="attendee_id", OtherKey="person_id", IsForeignKey=true)]
+		public Attendee Attendee
+		{
+			get
+			{
+				return this._Attendee.Entity;
+			}
+			set
+			{
+				Attendee previousValue = this._Attendee.Entity;
+				if (((previousValue != value) 
+							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attendee.Entity = null;
+						previousValue.EventsAttendees.Remove(this);
+					}
+					this._Attendee.Entity = value;
+					if ((value != null))
+					{
+						value.EventsAttendees.Add(this);
+						this._attendee_id = value.person_id;
+					}
+					else
+					{
+						this._attendee_id = default(int);
+					}
+					this.SendPropertyChanged("Attendee");
 				}
 			}
 		}
@@ -3802,8 +3457,6 @@ namespace Conferenceware.Models
 		
 		private bool _is_alum;
 		
-		private EntityRef<Attendee> _Attendee;
-		
 		private EntityRef<Volunteer> _Volunteer;
 		
 		private EntityRef<CompanyPerson> _CompanyPerson;
@@ -3811,6 +3464,8 @@ namespace Conferenceware.Models
 		private EntityRef<StaffMember> _StaffMember;
 		
 		private EntityRef<Speaker> _Speaker;
+		
+		private EntityRef<Attendee> _Attendee;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3830,11 +3485,11 @@ namespace Conferenceware.Models
 		
 		public People()
 		{
-			this._Attendee = default(EntityRef<Attendee>);
 			this._Volunteer = default(EntityRef<Volunteer>);
 			this._CompanyPerson = default(EntityRef<CompanyPerson>);
 			this._StaffMember = default(EntityRef<StaffMember>);
 			this._Speaker = default(EntityRef<Speaker>);
+			this._Attendee = default(EntityRef<Attendee>);
 			OnCreated();
 		}
 		
@@ -3934,35 +3589,6 @@ namespace Conferenceware.Models
 					this._is_alum = value;
 					this.SendPropertyChanged("is_alum");
 					this.Onis_alumChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Attendee", Storage="_Attendee", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
-		public Attendee Attendee
-		{
-			get
-			{
-				return this._Attendee.Entity;
-			}
-			set
-			{
-				Attendee previousValue = this._Attendee.Entity;
-				if (((previousValue != value) 
-							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Attendee.Entity = null;
-						previousValue.People = null;
-					}
-					this._Attendee.Entity = value;
-					if ((value != null))
-					{
-						value.People = this;
-					}
-					this.SendPropertyChanged("Attendee");
 				}
 			}
 		}
@@ -4079,6 +3705,35 @@ namespace Conferenceware.Models
 						value.People = this;
 					}
 					this.SendPropertyChanged("Speaker");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Attendee", Storage="_Attendee", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		public Attendee Attendee
+		{
+			get
+			{
+				return this._Attendee.Entity;
+			}
+			set
+			{
+				Attendee previousValue = this._Attendee.Entity;
+				if (((previousValue != value) 
+							|| (this._Attendee.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Attendee.Entity = null;
+						previousValue.People = null;
+					}
+					this._Attendee.Entity = value;
+					if ((value != null))
+					{
+						value.People = this;
+					}
+					this.SendPropertyChanged("Attendee");
 				}
 			}
 		}
@@ -4978,6 +4633,375 @@ namespace Conferenceware.Models
 		{
 			this.SendPropertyChanging();
 			entity.Speaker = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Attendees")]
+	public partial class Attendee : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _person_id;
+		
+		private int _food_choice_id;
+		
+		private int _tshirt_id;
+		
+		private bool _checked_in;
+		
+		private EntitySet<EventsAttendee> _EventsAttendees;
+		
+		private EntitySet<MechManiaTeam> _MechManiaTeams;
+		
+		private EntitySet<MechManiaTeam> _MechManiaTeams1;
+		
+		private EntitySet<MechManiaTeam> _MechManiaTeams2;
+		
+		private EntityRef<Food> _Food;
+		
+		private EntityRef<People> _People;
+		
+		private EntityRef<TShirtSize> _TShirtSize;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onperson_idChanging(int value);
+    partial void Onperson_idChanged();
+    partial void Onfood_choice_idChanging(int value);
+    partial void Onfood_choice_idChanged();
+    partial void Ontshirt_idChanging(int value);
+    partial void Ontshirt_idChanged();
+    partial void Onchecked_inChanging(bool value);
+    partial void Onchecked_inChanged();
+    #endregion
+		
+		public Attendee()
+		{
+			this._EventsAttendees = new EntitySet<EventsAttendee>(new Action<EventsAttendee>(this.attach_EventsAttendees), new Action<EventsAttendee>(this.detach_EventsAttendees));
+			this._MechManiaTeams = new EntitySet<MechManiaTeam>(new Action<MechManiaTeam>(this.attach_MechManiaTeams), new Action<MechManiaTeam>(this.detach_MechManiaTeams));
+			this._MechManiaTeams1 = new EntitySet<MechManiaTeam>(new Action<MechManiaTeam>(this.attach_MechManiaTeams1), new Action<MechManiaTeam>(this.detach_MechManiaTeams1));
+			this._MechManiaTeams2 = new EntitySet<MechManiaTeam>(new Action<MechManiaTeam>(this.attach_MechManiaTeams2), new Action<MechManiaTeam>(this.detach_MechManiaTeams2));
+			this._Food = default(EntityRef<Food>);
+			this._People = default(EntityRef<People>);
+			this._TShirtSize = default(EntityRef<TShirtSize>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int person_id
+		{
+			get
+			{
+				return this._person_id;
+			}
+			set
+			{
+				if ((this._person_id != value))
+				{
+					if (this._People.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperson_idChanging(value);
+					this.SendPropertyChanging();
+					this._person_id = value;
+					this.SendPropertyChanged("person_id");
+					this.Onperson_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_food_choice_id", DbType="Int NOT NULL")]
+		public int food_choice_id
+		{
+			get
+			{
+				return this._food_choice_id;
+			}
+			set
+			{
+				if ((this._food_choice_id != value))
+				{
+					if (this._Food.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onfood_choice_idChanging(value);
+					this.SendPropertyChanging();
+					this._food_choice_id = value;
+					this.SendPropertyChanged("food_choice_id");
+					this.Onfood_choice_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tshirt_id", DbType="Int NOT NULL")]
+		public int tshirt_id
+		{
+			get
+			{
+				return this._tshirt_id;
+			}
+			set
+			{
+				if ((this._tshirt_id != value))
+				{
+					if (this._TShirtSize.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Ontshirt_idChanging(value);
+					this.SendPropertyChanging();
+					this._tshirt_id = value;
+					this.SendPropertyChanged("tshirt_id");
+					this.Ontshirt_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_checked_in", DbType="Bit NOT NULL")]
+		public bool checked_in
+		{
+			get
+			{
+				return this._checked_in;
+			}
+			set
+			{
+				if ((this._checked_in != value))
+				{
+					this.Onchecked_inChanging(value);
+					this.SendPropertyChanging();
+					this._checked_in = value;
+					this.SendPropertyChanged("checked_in");
+					this.Onchecked_inChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_EventsAttendee", Storage="_EventsAttendees", ThisKey="person_id", OtherKey="attendee_id")]
+		public EntitySet<EventsAttendee> EventsAttendees
+		{
+			get
+			{
+				return this._EventsAttendees;
+			}
+			set
+			{
+				this._EventsAttendees.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_MechManiaTeam", Storage="_MechManiaTeams", ThisKey="person_id", OtherKey="member1_id")]
+		public EntitySet<MechManiaTeam> MechManiaTeams
+		{
+			get
+			{
+				return this._MechManiaTeams;
+			}
+			set
+			{
+				this._MechManiaTeams.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_MechManiaTeam1", Storage="_MechManiaTeams1", ThisKey="person_id", OtherKey="member2_id")]
+		public EntitySet<MechManiaTeam> MechManiaTeams1
+		{
+			get
+			{
+				return this._MechManiaTeams1;
+			}
+			set
+			{
+				this._MechManiaTeams1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Attendee_MechManiaTeam2", Storage="_MechManiaTeams2", ThisKey="person_id", OtherKey="member3_id")]
+		public EntitySet<MechManiaTeam> MechManiaTeams2
+		{
+			get
+			{
+				return this._MechManiaTeams2;
+			}
+			set
+			{
+				this._MechManiaTeams2.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Food_Attendee", Storage="_Food", ThisKey="food_choice_id", OtherKey="id", IsForeignKey=true)]
+		public Food Food
+		{
+			get
+			{
+				return this._Food.Entity;
+			}
+			set
+			{
+				Food previousValue = this._Food.Entity;
+				if (((previousValue != value) 
+							|| (this._Food.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Food.Entity = null;
+						previousValue.Attendees.Remove(this);
+					}
+					this._Food.Entity = value;
+					if ((value != null))
+					{
+						value.Attendees.Add(this);
+						this._food_choice_id = value.id;
+					}
+					else
+					{
+						this._food_choice_id = default(int);
+					}
+					this.SendPropertyChanged("Food");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Attendee", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		public People People
+		{
+			get
+			{
+				return this._People.Entity;
+			}
+			set
+			{
+				People previousValue = this._People.Entity;
+				if (((previousValue != value) 
+							|| (this._People.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._People.Entity = null;
+						previousValue.Attendee = null;
+					}
+					this._People.Entity = value;
+					if ((value != null))
+					{
+						value.Attendee = this;
+						this._person_id = value.id;
+					}
+					else
+					{
+						this._person_id = default(int);
+					}
+					this.SendPropertyChanged("People");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TShirtSize_Attendee", Storage="_TShirtSize", ThisKey="tshirt_id", OtherKey="id", IsForeignKey=true)]
+		public TShirtSize TShirtSize
+		{
+			get
+			{
+				return this._TShirtSize.Entity;
+			}
+			set
+			{
+				TShirtSize previousValue = this._TShirtSize.Entity;
+				if (((previousValue != value) 
+							|| (this._TShirtSize.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TShirtSize.Entity = null;
+						previousValue.Attendees.Remove(this);
+					}
+					this._TShirtSize.Entity = value;
+					if ((value != null))
+					{
+						value.Attendees.Add(this);
+						this._tshirt_id = value.id;
+					}
+					else
+					{
+						this._tshirt_id = default(int);
+					}
+					this.SendPropertyChanged("TShirtSize");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_EventsAttendees(EventsAttendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee = this;
+		}
+		
+		private void detach_EventsAttendees(EventsAttendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee = null;
+		}
+		
+		private void attach_MechManiaTeams(MechManiaTeam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee = this;
+		}
+		
+		private void detach_MechManiaTeams(MechManiaTeam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee = null;
+		}
+		
+		private void attach_MechManiaTeams1(MechManiaTeam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee1 = this;
+		}
+		
+		private void detach_MechManiaTeams1(MechManiaTeam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee1 = null;
+		}
+		
+		private void attach_MechManiaTeams2(MechManiaTeam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee2 = this;
+		}
+		
+		private void detach_MechManiaTeams2(MechManiaTeam entity)
+		{
+			this.SendPropertyChanging();
+			entity.Attendee2 = null;
 		}
 	}
 }
