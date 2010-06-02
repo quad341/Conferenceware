@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttendeeCheckInController.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />
     <Compile Include="Controllers\AttendeeRegistrationController.cs" />
     <Compile Include="Controllers\BadgeController.cs" />
@@ -119,6 +120,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Attendee.cs" />
+    <Compile Include="Models\AttendeeCheckInDisplayData.cs" />
     <Compile Include="Models\AttendeeEditData.cs" />
     <Compile Include="Models\AttendeeMetadata.cs" />
     <Compile Include="Models\Company.cs" />
@@ -225,6 +227,8 @@
     <Content Include="Scripts\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Scripts\jquery_ui_datepicker.js" />
     <Content Include="Scripts\ui.datepicker-de.js" />
+    <Content Include="Views\AttendeeCheckIn\CheckInSearchForm.ascx" />
+    <Content Include="Views\AttendeeCheckIn\Index.aspx" />
     <Content Include="Views\Shared\RegistrationClosed.aspx" />
     <Content Include="Views\Badge\Index.aspx" />
     <Content Include="Views\Email\Index.aspx" />
