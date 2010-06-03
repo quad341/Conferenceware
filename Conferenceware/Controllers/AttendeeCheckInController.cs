@@ -29,8 +29,7 @@ namespace Conferenceware.Controllers
 		{
 			var results =
 				_repository.GetAllAttendees().Where(
-					x => x.People.name.Contains(query) 
-						|| x.People.email.Contains(query));
+					x => x.People.name.Contains(query) || x.People.email.Contains(query));
 			return View("Search",
 			            new AttendeeCheckInDisplayData
 			            	{Attendees = results, Query = query});
@@ -42,6 +41,7 @@ namespace Conferenceware.Controllers
 			if (attendee != null)
 			{
 				attendee.checked_in = true;
+				_repository.Save();
 				TempData["Message"] = attendee.People.name + " was checked in.";
 			}
 			return RedirectToAction("Search", new {query});
@@ -54,6 +54,7 @@ namespace Conferenceware.Controllers
 			if (attendee != null)
 			{
 				attendee.checked_in = false;
+				_repository.Save();
 				TempData["Message"] = attendee.People.name + " was un-checked in.";
 			}
 			return RedirectToAction("Search", new {query});

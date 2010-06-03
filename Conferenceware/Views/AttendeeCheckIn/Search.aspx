@@ -8,7 +8,8 @@
 
     <h2>Search</h2>
 
-    <%= Html.RenderPartial("CheckInSearchForm", Model.Query) %>
+    <%
+    	Html.RenderPartial("CheckInSearchForm", Model.Query); %>
 
     <h4>Results:</h4>
 

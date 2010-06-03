@@ -8,6 +8,7 @@
 
     <h2>Search For Attendees</h2>
 
-    <%= Html.RenderPartial("CheckInSearchForm", "") %>
+    <%
+    	Html.RenderPartial("CheckInSearchForm", ""); %>
 
 </asp:Content>

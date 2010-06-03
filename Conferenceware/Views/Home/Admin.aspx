@@ -25,5 +25,6 @@
         <li><%=Html.ActionLink("Staff", "Index", "StaffMember")%></li>
         <li><%=Html.ActionLink("Email People", "Index", "Email")%></li>
         <li><%=Html.ActionLink("Settings","Index","Settings")%></li>
+        <li><%=Html.ActionLink("Check In Interface (no auth needed)", "Index", "AttendeeCheckIn") %></li>
     </ul>
 </asp:Content>
