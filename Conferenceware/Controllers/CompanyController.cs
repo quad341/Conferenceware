@@ -126,8 +126,37 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyNotFound");
 			}
+			return View("Delete", company);
+		}
+
+		[HttpPost]
+		public ActionResult Delete(int id, FormCollection collection)
+		{
+			Company company = _repoository.GetCompanyById(id);
+			if (company == null)
+			{
+				return View("CompanyNotFound");
+			}
 			try
 			{
+				foreach(var invoice in company.CompanyInvoices)
+				{
+					foreach (var cii in invoice.CompanyInvoiceItems)
+					{
+						_repoository.DeleteCompanyInvoiceItem(cii);
+					}
+					_repoository.Save();
+					_repoository.DeleteCompanyInvoice(invoice);
+				}
+				foreach (var payment in company.CompanyPayments)
+				{
+					_repoository.DeleteCompanyPayment(payment);
+				}
+				foreach (var cp in company.CompanyPersons)
+				{
+					_repoository.DeleteCompanyPerson(cp);
+				}
+				_repoository.Save();
 				_repoository.DeleteCompany(company);
 				_repoository.Save();
 				TempData["Message"] = "Company deleted";
@@ -135,7 +164,7 @@ namespace Conferenceware.Controllers
 			catch
 			{
 				TempData["Message"] =
-					"Company could not be deleted; remove all references first";
+					"An error occurred deleting the company or one of its dependants";
 			}
 			return RedirectToAction("Index");
 		}
