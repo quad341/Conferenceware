@@ -76,6 +76,13 @@
                     <%=Html.ValidationMessageFor(model => model.EmailFrom)%>
                 </div>
                 <div class="editor-label">
+                    <%=Html.LabelFor(model => model.BCCEmail)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextBoxFor(model => model.BCCEmail)%>
+                    <%=Html.ValidationMessageFor(model => model.BCCEmail)%>
+                </div>
+                <div class="editor-label">
                     <%=
 				Html.LabelFor(model => model.EventRegistrationConfirmationSubjectFormat)%>
                 </div>

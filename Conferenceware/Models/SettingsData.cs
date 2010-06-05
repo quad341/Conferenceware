@@ -62,6 +62,14 @@ namespace Conferenceware.Models
 		public string EmailFrom { get; set; }
 
 		/// <summary>
+		/// The email address that is automatically added to all outgoing messages as a bcc (usually for storage)
+		/// </summary>
+		[RegularExpression(@"[A-Za-z0-9_%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
+			ErrorMessage = "Invalid Email Provided")]
+		[DisplayName("Address for email sent by the system to automatically bcc")]
+		public string BCCEmail { get; set; }
+
+		/// <summary>
 		/// Format string for the body of event registration email confirmations
 		/// </summary>
 		[Required]

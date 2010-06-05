@@ -24,6 +24,10 @@ namespace Conferenceware.Utils
 				smtpClient.UseDefaultCredentials = false;
 				smtpClient.Credentials = credential;
 			}
+			if (sd.BCCEmail != null)
+			{
+				message.Bcc.Add(sd.BCCEmail);
+			}
 			smtpClient.Send(message);
 		}
 	}

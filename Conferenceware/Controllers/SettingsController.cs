@@ -30,6 +30,7 @@ namespace Conferenceware.Controllers
 							   new[]
 			                   	{
 			                   		"EmailFrom",
+									"BCCEmail",
 			                   		"FrontpageTitle",
 			                   		"FrontpageContent",
 			                   		"EventRegistrationConfirmationSubjectFormat",
