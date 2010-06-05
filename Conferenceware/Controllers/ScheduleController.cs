@@ -90,7 +90,14 @@ namespace Conferenceware.Controllers
 												ev.TimeSlot.StringValue,
 												ev.Location.StringValue));
 				//TODO find out what happens if this fails
-				Mailer.Send(message);
+				try
+				{
+					Mailer.Send(message);
+				}
+				catch
+				{
+					//TODO: log this failed
+				}
 			}
 			return RedirectToAction("Details", new { id = eventId });
 		}

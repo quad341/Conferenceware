@@ -74,7 +74,14 @@ namespace Conferenceware.Controllers
 				}
 				message.Bcc.Add(new MailAddress(person.email));
 			}
-			Mailer.Send(message);
+			try
+			{
+				Mailer.Send(message);
+			}
+			catch
+			{
+				//TODO: log this
+			}
 		}
 
 		private void SendIndividualEmails(EmailEditData eed, SettingsData sd)
@@ -92,7 +99,15 @@ namespace Conferenceware.Controllers
 									Body =
 										Regex.Replace(eed.Message, @"{\s*name\s*}", person.name)
 								};
-				Mailer.Send(message);
+
+				try
+				{
+					Mailer.Send(message);
+				}
+				catch
+				{
+					//TODO: log this
+				}
 			}
 		}
 

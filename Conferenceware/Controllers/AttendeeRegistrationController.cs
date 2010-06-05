@@ -61,7 +61,14 @@ namespace Conferenceware.Controllers
 											  settings.RegistrationMessage.Replace(
 												"{name}", newAttendee.People.name).Replace(
 													"{role}", "Attendee"));
-				Mailer.Send(message);
+				try
+				{
+					Mailer.Send(message);
+				}
+				catch
+				{
+					//TODO: log this
+				}
 				return RedirectToAction("Success");
 			}
 			AttendeeEditData data = MakeEditDateFromAttendee(newAttendee);

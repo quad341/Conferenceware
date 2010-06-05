@@ -93,21 +93,28 @@ namespace Conferenceware.Controllers
 											   settings.RegistrationMessage.Replace(
 												"{name}", att1.People.name).Replace(
 													"{role}", "Mechmania Participant"));
-				Mailer.Send(message1);
 				var message2 = new MailMessage(settings.EmailFrom,
 											   att2.People.email,
 											   settings.RegistrationSubject,
 											   settings.RegistrationMessage.Replace(
 												"{name}", att2.People.name).Replace(
 													"{role}", "Mechmania Participant"));
-				Mailer.Send(message2);
 				var message3 = new MailMessage(settings.EmailFrom,
 											   att3.People.email,
 											   settings.RegistrationSubject,
 											   settings.RegistrationMessage.Replace(
 												"{name}", att3.People.name).Replace(
 													"{role}", "Mechmania Participant"));
-				Mailer.Send(message3);
+				try
+				{
+					Mailer.Send(message1);
+					Mailer.Send(message2);
+					Mailer.Send(message3);
+				}
+				catch
+				{
+					//TODO: log this
+				}
 				return RedirectToAction("Success");
 			}
 			return View("Index", mmted);

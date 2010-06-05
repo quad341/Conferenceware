@@ -68,7 +68,17 @@ namespace Conferenceware.Controllers
 											  settings.RegistrationMessage.Replace(
 												"{name}", ved.Volunteer.People.name).Replace(
 													"{role}", "Volunteer"));
-				Mailer.Send(message);
+				try
+				{
+					Mailer.Send(message);
+					TempData["Message"] = "Confirmation email successfully sent";
+				}
+				catch
+				{
+					//TODO: add something to log this or send it to an admin. possibly just log it and have an interface for it plus a message on /Home/Admin
+					TempData["Message"] =
+						"An error occurred sending the email confirmation, but registration was successful";
+				}
 				return RedirectToAction("Success");
 			}
 			ved.VolunteerTimeSlots = _repository.GetAllVolunteerTimeSlots();
