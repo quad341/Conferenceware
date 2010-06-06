@@ -63,12 +63,10 @@ namespace Conferenceware.Models
 			renderer.RenderDocument();
 			var pdf = renderer.PdfDocument;
 
-			using (var ms = new MemoryStream())
-			{
-				pdf.Save(ms);
-				return ms;
-			}
-
+			var ms = new MemoryStream();
+			pdf.Save(ms);
+			return ms;
+			
 		}
 		/// <summary>
 		/// Adds the invoice items to the table
@@ -105,7 +103,7 @@ namespace Conferenceware.Models
 			row.Cells[0].AddParagraph("Total Price");
 			row.Cells[0].Format.Font.Bold = true;
 			row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-			row.Cells[5].AddParagraph(String.Format("{0:C}", totalExtendedPrice));
+			row.Cells[1].AddParagraph(String.Format("{0:C}", totalExtendedPrice));
 
 			// Set the borders of the specified cell range
 			table.SetEdge(1, table.Rows.Count - 1, 1, 1, Edge.Box, BorderStyle.Single, 0.75);
@@ -183,14 +181,14 @@ namespace Conferenceware.Models
 		/// Adds Date field to the given section
 		/// </summary>
 		/// <param name="section">The section to append the date field to</param>
-		private static void AddDateFields(Section section)
+		private void AddDateFields(Section section)
 		{
 			var current = DateTime.Now;
 			var due = current.AddMonths(1); //TODO get from settings data
 			var dateParagraph = section.AddParagraph();
 			dateParagraph.Format.SpaceBefore = "8cm";
 			dateParagraph.Style = "Reference";
-			dateParagraph.AddFormattedText("INVOICE", TextFormat.Bold);
+			dateParagraph.AddFormattedText("INVOICE #"+id, TextFormat.Bold);
 			dateParagraph.AddTab();
 			dateParagraph.AddText(String.Format("Date: {0:yyyy-MM-dd}", current));
 			dateParagraph.AddLineBreak();

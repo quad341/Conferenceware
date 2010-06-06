@@ -94,6 +94,7 @@
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\PageManagerController.cs" />
     <Compile Include="Controllers\BadgePdfResult.cs" />
+    <Compile Include="Controllers\PdfResult.cs" />
     <Compile Include="Controllers\PngResult.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />

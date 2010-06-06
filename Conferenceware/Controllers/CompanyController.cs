@@ -168,5 +168,15 @@ namespace Conferenceware.Controllers
 			}
 			return RedirectToAction("Index");
 		}
+
+		public ActionResult DownloadInvoice(int id)
+		{
+			var invoice = _repoository.GetCompanyInvoiceById(id);
+			if (invoice == null)
+			{
+				return View("CompanyInvoiceNotFound");
+			}
+			return new PdfResult(invoice.ToPdf(), "Invoice" + invoice.id + ".pdf"); //todo localize
+		}
 	}
 }
