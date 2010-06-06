@@ -157,7 +157,8 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// Creates the intro section of the invoice document
 		/// </summary>
-		/// <param name="section">The seciton to append to</param>
+		/// <param name="section">The section to append to</param>
+		/// <param name="fileName">The fileName of the logo to use</param>
 		private static void CreateSectionIntro(Section section, string fileName)
 		{
 
