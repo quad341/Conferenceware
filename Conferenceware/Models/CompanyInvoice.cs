@@ -40,8 +40,12 @@ namespace Conferenceware.Models
 			Section section = document.AddSection();
 			document.Info.Title = "Invoice #"+id;
 
+			// we have to put it in a file first because this thing only works on file paths
+			var fileName = Path.GetTempFileName();
+			SettingsData.Default.AttendeeBadgeBackground.Save(fileName);
+
 			DefineStyles(document);
-			CreateSectionIntro(section);
+			CreateSectionIntro(section, fileName);
 			AddAddressFrame(section);
 			AddDateFields(section);
 			var table = CreateTableWithHeader(section);
@@ -62,9 +66,10 @@ namespace Conferenceware.Models
 			renderer.PrepareRenderPages();
 			renderer.RenderDocument();
 			var pdf = renderer.PdfDocument;
+			File.Delete(fileName);
 
 			var ms = new MemoryStream();
-			pdf.Save(ms);
+			pdf.Save(ms, false);
 			return ms;
 			
 		}
@@ -153,15 +158,11 @@ namespace Conferenceware.Models
 		/// Creates the intro section of the invoice document
 		/// </summary>
 		/// <param name="section">The seciton to append to</param>
-		private static void CreateSectionIntro(Section section)
+		private static void CreateSectionIntro(Section section, string fileName)
 		{
 
 			// Put a logo in the header
-			// we have to put it in a file first because this thing only works on file paths
-			var fileName = Path.GetTempFileName();
-			SettingsData.Default.AttendeeBadgeBackground.Save(fileName);
 			Image image = section.Headers.Primary.AddImage(fileName); //TODO make from SettingsData
-			File.Delete(fileName);
 			image.Height = "2.5cm";
 			image.LockAspectRatio = true;
 			image.RelativeVertical = RelativeVertical.Line;
