@@ -47,6 +47,7 @@
                 <li><a href="#registrationSettings" title="Registration Settings">Registration</a></li>
                 <li><a href="#siteDisplayRelatedSettings" title="Site Display Related Settings">Site Display</a></li>
                 <li><a href="#errorCheckingSettings" title="Error Checking Settings">Error Checking</a></li>
+                <li><a href="#invoiceSettings" title="Invoice Settings">Invoices</a></li>
             </ul>
             <div id="frontpageSettings">
                 <div class="editor-label">
@@ -323,6 +324,61 @@
                 <div class="editor-field">
                     <%=Html.CheckBoxFor(model => model.AllowTimeSlotsAfterEnd)%>
                     <%=Html.ValidationMessageFor(model => model.AllowTimeSlotsAfterEnd)%>
+                </div>
+            </div>
+            <div id="invoiceSettings">
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.InvoiceLogo)%><br />
+                    <img src="<%=Url.Action("GetImage",
+			                             new {filename = "InvoiceLogo"})%>" class="invoice-logo"
+                        alt="Logo for Invoices" />
+                </div>
+                <div class="editor-field">
+                    <input type="file" name="InvoiceLogo" id="InvoiceLogo" />
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.SenderText)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.SenderText,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=Html.ValidationMessageFor(model => model.SenderText)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.MonthsUntilInvoiceDue) %>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextBoxFor(model => model.MonthsUntilInvoiceDue) %>
+                    <%=Html.ValidationMessageFor(model => model.MonthsUntilInvoiceDue) %>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.DaysUntilInvoiceDue) %>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextBoxFor(model => model.DaysUntilInvoiceDue) %>
+                    <%=Html.ValidationMessageFor(model => model.DaysUntilInvoiceDue) %>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.NoteAfterInvoiceItemList)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.NoteAfterInvoiceItemList,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=Html.ValidationMessageFor(model => model.NoteAfterInvoiceItemList)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.InvoiceFooterText)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.InvoiceFooterText,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=Html.ValidationMessageFor(model => model.InvoiceFooterText)%>
                 </div>
             </div>
         </div>

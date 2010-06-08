@@ -112,6 +112,13 @@ namespace Conferenceware {
             }
         }
         
+        internal static System.Drawing.Bitmap InvoiceLogo {
+            get {
+                object obj = ResourceManager.GetObject("InvoiceLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap MechmaniaBadgeBackground {
             get {
                 object obj = ResourceManager.GetObject("MechmaniaBadgeBackground", resourceCulture);
@@ -134,6 +141,19 @@ namespace Conferenceware {
         internal static string RegistrationSubject {
             get {
                 return ResourceManager.GetString("RegistrationSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Association for Computing Machinery
+        ///at The University of Illinois at Urbana-Champaign
+        ///201 N. Goodwin Ave
+        ///Rm. 1104
+        ///Urbana, IL 61801.
+        /// </summary>
+        internal static string SenderText {
+            get {
+                return ResourceManager.GetString("SenderText", resourceCulture);
             }
         }
         

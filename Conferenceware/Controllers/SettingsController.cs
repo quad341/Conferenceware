@@ -55,7 +55,12 @@ namespace Conferenceware.Controllers
 									"ShowSpeakers",
 									"DisableLinkLocationCheck",
 									"AllowTimeSlotsBeforeStart",
-									"AllowTimeSlotsAfterEnd"
+									"AllowTimeSlotsAfterEnd",
+									"SenderText",
+									"MonthsUntilInvoiceDue",
+									"DaysUntilInvoiceDue",
+									"NoteAfterInvoiceItemList",
+									"InvoiceFooterText"
 			                   	},
 							   collection) && VerifyDatesMakeSense(sd, ModelState))
 			{
@@ -162,6 +167,9 @@ namespace Conferenceware.Controllers
 					case "VolunteerBadgeBackground":
 						sd.VolunteerBadgeBackground = fileObj;
 						break;
+					case "InvoiceLogo":
+						sd.InvoiceLogo = fileObj;
+						break;
 				}
 			}
 		}
@@ -189,6 +197,9 @@ namespace Conferenceware.Controllers
 					break;
 				case "VolunteerBadgeBackground":
 					img = sd.VolunteerBadgeBackground;
+					break;
+				case "InvoiceLogo":
+					img = sd.InvoiceLogo;
 					break;
 			}
 			return new PngResult(img);

@@ -42,7 +42,7 @@ namespace Conferenceware.Models
 
 			// we have to put it in a file first because this thing only works on file paths
 			var fileName = Path.GetTempFileName();
-			SettingsData.Default.AttendeeBadgeBackground.Save(fileName);
+			SettingsData.Default.InvoiceLogo.Save(fileName);
 
 			DefineStyles(document);
 			CreateSectionIntro(section, fileName);
@@ -51,16 +51,17 @@ namespace Conferenceware.Models
 			var table = CreateTableWithHeader(section);
 			PopulateTable(table);
 
-			// Add the notes paragraph
-			var paragraph = document.LastSection.AddParagraph();
-			paragraph.Format.SpaceBefore = "1cm";
-			paragraph.Format.Borders.Width = 0.75;
-			paragraph.Format.Borders.Distance = 3;
-			paragraph.Format.Borders.Color = Colors.Black;
-			paragraph.Format.Shading.Color = Colors.LightGray;
-			paragraph.AddText("notes"); //TODO get from settings data
-
-
+			if (SettingsData.Default.NoteAfterInvoiceItemList != null)
+			{
+				// Add the notes paragraph
+				var paragraph = document.LastSection.AddParagraph();
+				paragraph.Format.SpaceBefore = "1cm";
+				paragraph.Format.Borders.Width = 0.75;
+				paragraph.Format.Borders.Distance = 3;
+				paragraph.Format.Borders.Color = Colors.Black;
+				paragraph.Format.Shading.Color = Colors.LightGray;
+				paragraph.AddText(SettingsData.Default.NoteAfterInvoiceItemList);
+			}
 
 			var renderer = new PdfDocumentRenderer(true) {Document = document};
 			renderer.PrepareRenderPages();
@@ -163,7 +164,7 @@ namespace Conferenceware.Models
 		{
 
 			// Put a logo in the header
-			Image image = section.Headers.Primary.AddImage(fileName); //TODO make from SettingsData
+			Image image = section.Headers.Primary.AddImage(fileName);
 			image.Height = "2.5cm";
 			image.LockAspectRatio = true;
 			image.RelativeVertical = RelativeVertical.Line;
@@ -172,11 +173,14 @@ namespace Conferenceware.Models
 			image.Left = ShapePosition.Right;
 			image.WrapFormat.Style = WrapStyle.Through;
 
-			// Create footer
-			Paragraph footerParagraph = section.Footers.Primary.AddParagraph();
-			footerParagraph.AddText("PowerBooks Inc · Sample Street 42 · 56789 Cologne · Germany"); // TODO add footer from SettingsData
-			footerParagraph.Format.Font.Size = 9;
-			footerParagraph.Format.Alignment = ParagraphAlignment.Center;
+			if (SettingsData.Default.InvoiceFooterText != null)
+			{
+				// Create footer
+				Paragraph footerParagraph = section.Footers.Primary.AddParagraph();
+				footerParagraph.AddText(SettingsData.Default.InvoiceFooterText);
+				footerParagraph.Format.Font.Size = 9;
+				footerParagraph.Format.Alignment = ParagraphAlignment.Center;
+			}
 
 		}
 		/// <summary>
@@ -186,7 +190,9 @@ namespace Conferenceware.Models
 		private void AddDateFields(Section section)
 		{
 			var current = DateTime.Now;
-			var due = current.AddMonths(1); //TODO get from settings data
+			var due =
+				current.AddMonths(SettingsData.Default.MonthsUntilInvoiceDue).AddDays(
+					SettingsData.Default.DaysUntilInvoiceDue);
 			var dateParagraph = section.AddParagraph();
 			dateParagraph.Format.SpaceBefore = "8cm";
 			dateParagraph.Style = "Reference";
@@ -212,7 +218,8 @@ namespace Conferenceware.Models
 			addressFrame.RelativeVertical = RelativeVertical.Page;
 
 			// Put sender in address frame
-			var senderParagraph = addressFrame.AddParagraph("PowerBooks Inc · Sample Street 42 · 56789 Cologne"); // TODO sender text from SettingsData
+			var senderParagraph =
+				addressFrame.AddParagraph(SettingsData.Default.SenderText);
 			senderParagraph.Format.Font.Name = "Times New Roman";
 			senderParagraph.Format.Font.Size = 7;
 			senderParagraph.Format.SpaceAfter = 3;
@@ -228,7 +235,10 @@ namespace Conferenceware.Models
 				receiverParagraph.AddText(Company.address_line2);
 				receiverParagraph.AddLineBreak();
 			}
-			receiverParagraph.AddText(String.Format("{0}, {1} {2}", Company.city, Company.state, Company.zip));
+			receiverParagraph.AddText(String.Format("{0}, {1} {2}",
+			                                        Company.city,
+			                                        Company.state,
+			                                        Company.zip));
 		}
 		/// <summary>
 		/// Adds the styles to the document

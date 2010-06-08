@@ -141,6 +141,9 @@
     <value>Welcome to Conferenceware</value>
     <comment>Title for the Front Page</comment>
   </data>
+  <data name="InvoiceLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources\logo.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="MechmaniaBadgeBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\mechmania.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,6 +154,14 @@
   <data name="RegistrationSubject" xml:space="preserve">
     <value>Registration Confirmation</value>
     <comment>Subject for email confirmations sent after registration</comment>
+  </data>
+  <data name="SenderText" xml:space="preserve">
+    <value>Association for Computing Machinery
+at The University of Illinois at Urbana-Champaign
+201 N. Goodwin Ave
+Rm. 1104
+Urbana, IL 61801</value>
+    <comment>The test to be used for the sender of invoices</comment>
   </data>
   <data name="SmtpAuthenticationPassword" xml:space="preserve">
     <value>password</value>

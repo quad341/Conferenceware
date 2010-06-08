@@ -168,3 +168,8 @@ div#main a:visited
     width: 3in;
     height: 4in;
 }
+
+.invoice-logo
+{
+    width: 2cm;
+}

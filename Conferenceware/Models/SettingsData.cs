@@ -51,7 +51,7 @@ namespace Conferenceware.Models
 
 		#endregion
 
-		#region EmailStrings
+		#region Email Strings
 		/// <summary>
 		/// The from email address for sending mail
 		/// </summary>
@@ -130,7 +130,7 @@ namespace Conferenceware.Models
 
 		#endregion
 
-		#region SmtpSettings
+		#region Smtp Settings
 
 		[DisplayName("SMTP server requires authentication?")]
 		public bool SmtpNeedsAuthentication { get; set; }
@@ -151,7 +151,7 @@ namespace Conferenceware.Models
 
 		#endregion
 
-		#region RegistrationSettings
+		#region Registration Settings
 		/// <summary>
 		/// The maximum attendees allowed to register
 		/// </summary>
@@ -196,7 +196,7 @@ namespace Conferenceware.Models
 		public DateTime MechManiaRegistrationAutoCloseDateTime { get; set; }
 		#endregion
 
-		#region SiteDisplayRelatedSettings
+		#region Site Display Related Settings
 		/// <summary>
 		/// The conference start date
 		/// </summary>
@@ -231,7 +231,7 @@ namespace Conferenceware.Models
 		public bool ShowSpeakers { get; set; }
 		#endregion
 
-		#region ErrorCheckingSettings
+		#region Error Checking Settings
 		/// <summary>
 		/// Whether or not to disable the location check for linked files for events
 		/// 
@@ -252,6 +252,68 @@ namespace Conferenceware.Models
 		/// </summary>
 		[DisplayName("Allow Time Slots after conference end?")]
 		public bool AllowTimeSlotsAfterEnd { get; set; }
+		#endregion
+
+		#region Invoice Settings
+		// can't validate image due to upload
+		/// <summary>
+		/// The logo to use on the invoice
+		/// </summary>
+		[DisplayName("Logo")]
+		public Bitmap InvoiceLogo { get; set; }
+
+		/// <summary>
+		/// The text of the sender for the invoice
+		/// </summary>
+		[Required]
+		[DisplayName("Text to display for who is sending the invoice")]
+		public string SenderText
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// The number of months until an invoice is due
+		/// </summary>
+		[Range(0, int.MaxValue)]
+		[DisplayName("The number of months until payment is due (will be added to the days)")]
+		public int MonthsUntilInvoiceDue
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// The number of days in addition to months until invoice is due
+		/// </summary>
+		[Range(0, int.MaxValue)]
+		[DisplayName("The number of days until payment is due (will be added to the months)")]
+		public int DaysUntilInvoiceDue
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// The optional note to display after the item list (payment instructions, etc)
+		/// </summary>
+		[DisplayName("An optional note to display after the item list (for payment instructions, etc.)")]
+		public string NoteAfterInvoiceItemList
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// The text to print at the bottom of every page of the invoice
+		/// </summary>
+		[DisplayName("The footer on every page of invoices")]
+		public string InvoiceFooterText
+		{
+			get;
+			set;
+		}
 		#endregion
 
 		public static SettingsData Default
@@ -301,7 +363,11 @@ namespace Conferenceware.Models
 							EndDate = DateTime.Today.AddDays(1.0), // tomorrow
 							ShowEvents = false,
 							ShowSpeakers = false,
-							DisableLinkLocationCheck = false
+							DisableLinkLocationCheck = false,
+							InvoiceLogo = Settings.InvoiceLogo,
+							SenderText = Settings.SenderText,
+							MonthsUntilInvoiceDue = 1,
+							DaysUntilInvoiceDue = 0
 						};
 			try
 			{
