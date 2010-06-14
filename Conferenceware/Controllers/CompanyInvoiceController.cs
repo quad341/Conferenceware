@@ -210,6 +210,7 @@ namespace Conferenceware.Controllers
 		{
 			var cieed = new CompanyInvoiceEmailEditData
 			            	{
+								//TODO: populate subject and body with default data from settings data
 								SelectedRecipiants = new int[0],
 			            		CompanyInvoiceId = ci.id,
 			            		PeopleChoices =
