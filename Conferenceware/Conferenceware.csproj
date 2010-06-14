@@ -126,6 +126,7 @@
     <Compile Include="Models\AttendeeMetadata.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyInvoice.cs" />
+    <Compile Include="Models\CompanyInvoiceEmailEditData.cs" />
     <Compile Include="Models\CompanyInvoiceItem.cs" />
     <Compile Include="Models\CompanyInvoiceItemMetadata.cs" />
     <Compile Include="Models\CompanyInvoiceMetadata.cs" />

@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mail;
 using System.Web.Mvc;
 using Conferenceware.Models;
+using Conferenceware.Utils;
 
 namespace Conferenceware.Controllers
 {
@@ -144,6 +148,76 @@ namespace Conferenceware.Controllers
 			TempData["Message"] = "Invoice and all items deleted";
 
 			return RedirectToAction("Details", "Company", new { id = ci.company_id });
+		}
+
+		public ActionResult Email(int id)
+		{
+			var ci = _repository.GetCompanyInvoiceById(id);
+			if (ci == null)
+			{
+				return View("CompanyInvoiceNotFound");
+			}
+			return View("Email", MakeEmailEditData(ci));
+		}
+
+		[HttpPost]
+		public ActionResult Email(CompanyInvoiceEmailEditData cieed)
+		{
+			var ci = _repository.GetCompanyInvoiceById(cieed.CompanyInvoiceId);
+			var message = new MailMessage();
+			if (ci == null)
+			{
+				return View("CompanyInvoiceNotFound");
+			}
+			foreach (var cp in
+				cieed.SelectedRecipiants
+					.Select(i => _repository.GetCompanyPersonById(i))
+					.Where(cp => cp != null && cp.company_id == ci.company_id))
+			{
+				message.To.Add(cp.People.email);
+			}
+			if (message.To.Count == 0)
+			{
+				ModelState.AddModelError("SelectedRecipiants", "No valid recipiants chosen");
+			}
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					message.Body = cieed.Body;
+					message.Subject = cieed.Subject;
+					message.Attachments.Add(new Attachment(ci.ToPdf(), cieed.InvoiceAttachmentFileName, "application/pdf"));
+					Mailer.Send(message);
+					TempData["Message"] = "Message sent successfully";
+				}
+				catch
+				{
+					TempData["Message"] = "Email failed to send";
+				}
+				return RedirectToAction("Edit", new {ci.id});
+			}
+			cieed.PeopleChoices =
+				_repository.GetAllCompanyPersons().Where(x => x.company_id == ci.company_id);
+			return View("Email", cieed);
+		}
+
+		/// <summary>
+		/// Helper method to create CompanyInvoiceEmailEditData objects
+		/// </summary>
+		/// <param name="ci">The company invoice from which to take the id and company id</param>
+		/// <returns>A CompanyInvoiceEmailEditData object from the CompanyInvoice</returns>
+		private CompanyInvoiceEmailEditData MakeEmailEditData(CompanyInvoice ci)
+		{
+			var cieed = new CompanyInvoiceEmailEditData
+			            	{
+								SelectedRecipiants = new int[0],
+			            		CompanyInvoiceId = ci.id,
+			            		PeopleChoices =
+			            			_repository.GetAllCompanyPersons().Where(
+			            				x => x.company_id == ci.company_id),
+								InvoiceAttachmentFileName = "Invoice" + ci.id //TODO: localize
+			            	};
+			return cieed;
 		}
 	}
 }
