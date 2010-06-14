@@ -26,7 +26,7 @@ namespace Conferenceware.Controllers
 			Filename = file;
 		}
 
-		public MemoryStream Pdf { get; set; }
+		public Stream Pdf { get; set; }
 
 		public String Filename { get; set; }
 
@@ -41,7 +41,6 @@ namespace Conferenceware.Controllers
 			context.HttpContext.Response.ContentType = "application/pdf";
 			context.HttpContext.Response.AddHeader("Content-Disposition",
 												   "attachment; filename=" + Filename ?? "attachment.pdf");
-			Pdf.Seek(0, SeekOrigin.Begin);
 			var buffer = new byte[BUFFER_SIZE];
 			int readBytes = Pdf.Read(buffer, 0, BUFFER_SIZE);
 			while (readBytes > 0)

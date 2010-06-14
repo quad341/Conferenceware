@@ -126,13 +126,11 @@ namespace Conferenceware.Utils
 										XUnit.FromInch(alumTextHeight)),
 									   XStringFormats.Center);
 				}
-
-				// reset template
-				//formGfx.Restore(template);
 				counter += 1;
 			}
 			var ms = new MemoryStream();
 			doc.Save(ms, false);
+			ms.Seek(0, SeekOrigin.Begin); // go to the beginning
 			return ms;
 		}
 	}

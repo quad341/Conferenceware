@@ -71,6 +71,7 @@ namespace Conferenceware.Models
 
 			var ms = new MemoryStream();
 			pdf.Save(ms, false);
+			ms.Seek(0, SeekOrigin.Begin); // reset the stream to the beginning
 			return ms;
 			
 		}
