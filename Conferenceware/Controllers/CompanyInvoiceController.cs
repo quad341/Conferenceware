@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
@@ -80,11 +79,11 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyInvoiceNotFound");
 			}
-			DateTime last_sent;
-			if (DateTime.TryParse(collection["last_sent"], out last_sent))
+			DateTime lastSent;
+			if (DateTime.TryParse(collection["last_sent"], out lastSent))
 			{
-				ci.last_sent = last_sent;
-				if (last_sent > DateTime.Now)
+				ci.last_sent = lastSent;
+				if (lastSent > DateTime.Now)
 				{
 					ModelState.AddModelError("last_sent",
 											 "Cannot have sent a message in the future");
@@ -115,9 +114,9 @@ namespace Conferenceware.Controllers
 		//
 		// GET: /CompanyInvoice/Delete/5
 		//
-		public ActionResult Delete(int InvoiceId)
+		public ActionResult Delete(int invoiceId)
 		{
-			CompanyInvoice ci = _repository.GetCompanyInvoiceById(InvoiceId);
+			CompanyInvoice ci = _repository.GetCompanyInvoiceById(invoiceId);
 			if (ci == null)
 			{
 				return View("CompanyInvoiceNotFound");
@@ -197,7 +196,8 @@ namespace Conferenceware.Controllers
 				return RedirectToAction("Edit", new {ci.id});
 			}
 			cieed.PeopleChoices =
-				_repository.GetAllCompanyPersons().Where(x => x.company_id == ci.company_id);
+				_repository.GetAllCompanyPersons().Where(x => x.company_id == ci.company_id)
+				.OrderBy(x => x.is_contact);
 			return View("Email", cieed);
 		}
 
@@ -215,7 +215,8 @@ namespace Conferenceware.Controllers
 			            		CompanyInvoiceId = ci.id,
 			            		PeopleChoices =
 			            			_repository.GetAllCompanyPersons().Where(
-			            				x => x.company_id == ci.company_id),
+			            				x => x.company_id == ci.company_id)
+										.OrderBy(x => x.is_contact),
 								InvoiceAttachmentFileName = "Invoice" + ci.id //TODO: localize
 			            	};
 			return cieed;
