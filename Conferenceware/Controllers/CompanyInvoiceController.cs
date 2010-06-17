@@ -168,12 +168,15 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyInvoiceNotFound");
 			}
-			foreach (var cp in
-				cieed.SelectedRecipiants
-					.Select(i => _repository.GetCompanyPersonById(i))
-					.Where(cp => cp != null && cp.company_id == ci.company_id))
+			if (cieed.SelectedRecipiants != null)
 			{
-				message.To.Add(cp.People.email);
+				foreach (var cp in
+					cieed.SelectedRecipiants
+						.Select(i => _repository.GetCompanyPersonById(i))
+						.Where(cp => cp != null && cp.company_id == ci.company_id))
+				{
+					message.To.Add(cp.People.email);
+				}
 			}
 			if (message.To.Count == 0)
 			{

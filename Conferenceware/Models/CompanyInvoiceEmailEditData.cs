@@ -16,7 +16,7 @@ namespace Conferenceware.Models
 		/// <summary>
 		/// The array of ids for the recipiants
 		/// </summary>
-		[Required]
+		[Required(ErrorMessage = "At least one recipiant is required")]
 		public int[] SelectedRecipiants { get; set; }
 		/// <summary>
 		/// The subject of the email

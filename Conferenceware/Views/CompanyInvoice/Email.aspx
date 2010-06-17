@@ -33,6 +33,8 @@
                 <br />
                 <%
      	}%>
+        
+                <%= Html.ValidationMessageFor(model => model.SelectedRecipiants) %>
             </div>
             <div class="editor-label">
                 <%= Html.LabelFor(model => model.Subject) %>

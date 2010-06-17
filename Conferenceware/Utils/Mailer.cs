@@ -28,6 +28,7 @@ namespace Conferenceware.Utils
 			{
 				message.Bcc.Add(sd.BCCEmail);
 			}
+			message.From = new MailAddress(sd.EmailFrom);
 			smtpClient.Send(message);
 		}
 	}
