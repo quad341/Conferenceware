@@ -187,6 +187,8 @@ namespace Conferenceware.Controllers
 					message.Subject = cieed.Subject;
 					message.Attachments.Add(new Attachment(ci.ToPdf(), cieed.InvoiceAttachmentFileName, "application/pdf"));
 					Mailer.Send(message);
+					ci.last_sent = DateTime.Now;
+					_repository.Save();
 					TempData["Message"] = "Message sent successfully";
 				}
 				catch

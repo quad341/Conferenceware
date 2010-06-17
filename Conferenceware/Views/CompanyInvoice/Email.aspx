@@ -14,6 +14,8 @@
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
 
+        <%= Html.HiddenFor(model => model.CompanyInvoiceId) %>
+
         <fieldset>
             <legend>Fields</legend>
                 <div class="editor-label">

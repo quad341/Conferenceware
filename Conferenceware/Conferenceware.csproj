@@ -233,6 +233,7 @@
     <Content Include="Views\AttendeeCheckIn\CheckInSearchForm.ascx" />
     <Content Include="Views\AttendeeCheckIn\Index.aspx" />
     <Content Include="Views\AttendeeCheckIn\Search.aspx" />
+    <Content Include="Views\CompanyInvoice\Email.aspx" />
     <Content Include="Views\Company\Delete.aspx" />
     <Content Include="Views\Shared\RegistrationClosed.aspx" />
     <Content Include="Views\Badge\Index.aspx" />

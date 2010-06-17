@@ -74,7 +74,8 @@
 
     <%
      }%>
-    <%= Html.ActionLink("Download", "DownloadInvoice", "Company", new { Model.id }, null)%>
+    <%= Html.ActionLink("Download", "DownloadInvoice", "Company", new { Model.id }, null)%> |
+    <%= Html.ActionLink("Email", "Email", "CompanyInvoice", new { Model.id }, null)%>
     <div class="display-label">Items</div>
     <div class="display-field">
         <ul>
