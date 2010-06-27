@@ -188,7 +188,9 @@ namespace Conferenceware.Controllers
 				{
 					message.Body = cieed.Body;
 					message.Subject = cieed.Subject;
-					message.Attachments.Add(new Attachment(ci.ToPdf(), cieed.InvoiceAttachmentFileName, "application/pdf"));
+					message.Attachments.Add(new Attachment(ci.ToPdf(),
+					                                       cieed.InvoiceAttachmentFileName,
+					                                       "application/pdf"));
 					Mailer.Send(message);
 					ci.last_sent = DateTime.Now;
 					_repository.Save();
@@ -202,7 +204,7 @@ namespace Conferenceware.Controllers
 			}
 			cieed.PeopleChoices =
 				_repository.GetAllCompanyPersons().Where(x => x.company_id == ci.company_id)
-				.OrderBy(x => x.is_contact);
+				.OrderByDescending(x => x.is_contact);
 			return View("Email", cieed);
 		}
 
@@ -221,8 +223,8 @@ namespace Conferenceware.Controllers
 			            		PeopleChoices =
 			            			_repository.GetAllCompanyPersons().Where(
 			            				x => x.company_id == ci.company_id)
-										.OrderBy(x => x.is_contact),
-								InvoiceAttachmentFileName = "Invoice" + ci.id //TODO: localize
+										.OrderByDescending(x => x.is_contact),
+								InvoiceAttachmentFileName = "Invoice" + ci.id + ".pdf"//TODO: localize
 			            	};
 			return cieed;
 		}
