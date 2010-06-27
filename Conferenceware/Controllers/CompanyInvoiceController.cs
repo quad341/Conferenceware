@@ -79,20 +79,6 @@ namespace Conferenceware.Controllers
 			{
 				return View("CompanyInvoiceNotFound");
 			}
-			DateTime lastSent;
-			if (DateTime.TryParse(collection["last_sent"], out lastSent))
-			{
-				ci.last_sent = lastSent;
-				if (lastSent > DateTime.Now)
-				{
-					ModelState.AddModelError("last_sent",
-											 "Cannot have sent a message in the future");
-				}
-			}
-			else
-			{
-				ModelState.AddModelError("last_sent", "Invalid date/time provided");
-			}
 			bool wasPaid = ci.paid;
 			ci.paid = collection["paid"] != null && collection["paid"].Contains("true");
 			if (ModelState.IsValid)

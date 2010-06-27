@@ -38,9 +38,7 @@
                 <%=Html.LabelFor(model => model.last_sent)%>
             </div>
             <div class="editor-field">
-                <%=Html.TextBoxFor(model => model.last_sent,
-     	                                  String.Format("{0:g}", Model.last_sent))%>
-                <%=Html.ValidationMessageFor(model => model.last_sent)%>
+                <%=String.Format("{0:g}", Model.last_sent)%>
             </div>
             
             <div class="editor-label">

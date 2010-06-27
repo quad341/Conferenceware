@@ -94,7 +94,8 @@
                  			"Edit",
                  			"CompanyInvoice",
                  			new {invoice.id},
-                 			null)%> (<%= Html.ActionLink("Download", "DownloadInvoice", new { invoice.id })%>)
+                 			null)%> (<%= Html.ActionLink("Download", "DownloadInvoice", new { invoice.id })%> |
+    <%= Html.ActionLink("Email", "Email", "CompanyInvoice", new { Model.id }, null)%>)
                 </li>
                 <%
                  }%>
