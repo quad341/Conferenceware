@@ -82,7 +82,7 @@ namespace Conferenceware.Models
 			@".*({0}.*{1}.*{2}|{0}.*{2}.*{1}|{1}.*{0}.*{2}|{1}.*{2}.*{0}|{2}.*{0}.*{1}|{2}.*{1}.*{0}).*"
 			,
 			ErrorMessage =
-				"Must use {0},{1},{2} for event name, event time, and event location respectively"
+				"Must use {{0}},{{1}},{{2}} for event name, event time, and event location respectively"
 			)]
 		public string EventRegistrationConfirmationBodyFormat { get; set; }
 
@@ -94,7 +94,7 @@ namespace Conferenceware.Models
 		[DisplayName(
 			"Format string for subject of email for event registration confirmations. Use {0} for event name (required)"
 			)]
-		[RegularExpression(@".*{0}.*", ErrorMessage = "Must use {0} for event name")]
+		[RegularExpression(@".*{0}.*", ErrorMessage = "Must use {{0}} for event name")]
 		public string EventRegistrationConfirmationSubjectFormat { get; set; }
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace Conferenceware.Models
 		[Required]
 		[DisplayName("Format string for the opening of a volunteer schedule email. (must use {0} for name and {1} for the recipiant's role)")]
 		[RegularExpression(@".*({0}.*{1}|{1}.*{0})", 
-			ErrorMessage = "Must use {0},{1} for name and role respectively")]
+			ErrorMessage = "Must use {{0}},{{1}} for name and role respectively")]
 		public string VolunteerScheduleEmailOpening { get; set; }
 
 		/// <summary>
@@ -137,10 +137,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		[Required]
 		[DisplayName("Format string for regular time slot entries (each item in a list). (Must use {0} for date, {1} for start time, {2} for end time, and {3} for comment)")]
-		[StringContains("{0}", ErrorMessage = "{{0}} is required for timeslot date")]
-		[StringContains("{1}", ErrorMessage = "{{1}} is required for time slot start time")]
-		[StringContains("{2}", ErrorMessage = "{{2}} is required for timeslot end time")]
-		[StringContains("{3}", ErrorMessage = "{{3}} is required for comment")]
+		[StringContains("{0}", "{1}", "{2}", "{3}", ErrorMessage = "{{0}}, {{1}}, {{2}}, {{3}} is required for timeslot date, start time, end time, and comments respectively")]
 		public string VolunteerScheduleEmailRegularTimeSlotFormatString { get; set; }
 
 		/// <summary>
@@ -148,10 +145,7 @@ namespace Conferenceware.Models
 		/// </summary>
 		[Required]
 		[DisplayName("Format string for video time slot entries (each item in a list). (Must use {0} for date, {1} for start time, {2} for end time, and {3} for comment)")]
-		[StringContains("{0}", ErrorMessage = "{{0}} is required for timeslot date")]
-		[StringContains("{1}", ErrorMessage = "{{1}} is required for time slot start time")]
-		[StringContains("{2}", ErrorMessage = "{{2}} is required for timeslot end time")]
-		[StringContains("{3}", ErrorMessage = "{{3}} is required for comment")]
+		[StringContains("{0}", "{1}", "{2}", "{3}", ErrorMessage = "{{0}}, {{1}}, {{2}}, {{3}} is required for timeslot date, start time, end time, and comments respectively")]
 		public string VolunteerScheduleEmailVideoTimeSlotFormatString { get; set; }
 
 		[DisplayName("Extra information provided for video volunteers")]

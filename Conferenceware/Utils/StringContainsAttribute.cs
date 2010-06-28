@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Conferenceware.Utils
@@ -6,14 +7,14 @@ namespace Conferenceware.Utils
 	/// <summary>
 	/// Attribute to ensure a string contains the provided value
 	/// </summary>
-	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
+	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
 	sealed public class StringContainsAttribute : ValidationAttribute 
 	{
-		readonly string _search;
+		readonly IEnumerable<String> _searchList;
 
-		public StringContainsAttribute(string search)
+		public StringContainsAttribute(params string[] searchList)
 		{
-			_search = search;
+			_searchList = searchList;
 		}
 
 		public override bool IsValid(object value)
@@ -21,7 +22,13 @@ namespace Conferenceware.Utils
 			if (value != null)
 			{
 				var toValidate = (String)value;
-				return toValidate.Contains(_search);
+				foreach (var search in _searchList)
+				{
+					if (!toValidate.Contains(search))
+					{
+						return false;
+					}
+				}
 			}
 			// only the [Required] attribute means value can't be null
 			return true;
