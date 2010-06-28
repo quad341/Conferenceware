@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Conferenceware.Models;
+using Conferenceware.Utils;
 
 namespace Conferenceware.Controllers
 {
@@ -34,8 +36,44 @@ namespace Conferenceware.Controllers
 
 		public ActionResult EmailScheduleToVolunteers()
 		{
-			// TODO Implement
-			return View("EmailScheduleToVolunteers");
+			var sd = SettingsData.Default;
+			var abort = false;
+			ICollection<String> sentTo = new List<String>();
+			foreach(var vol in _repository.GetAllVolunteers())
+			{
+				if (vol.ConfirmedVolunteerTimeSlots.Count() < 1)
+				{
+					continue;
+				}
+				var message = new MailMessage(sd.EmailFrom,
+				                              vol.People.email,
+				                              sd.VolunteerScheduleEmailSubject,
+				                              GetMessageForVolunteer(vol));
+				try
+				{
+					Mailer.Send(message);
+					sentTo.Add(String.Format("Sent to {0} at &lt;{1}&gt;",
+					                         vol.People.name,
+					                         vol.People.email)); //TODO: localize
+				}
+				catch (Exception)
+				{
+					sentTo.Add(String.Format("Send failed to {0} at &lt;{1}&gt;",
+					                         vol.People.name,
+					                         vol.People.email));
+					abort = true;
+					break;
+				}
+			}
+			if(abort)
+			{
+				TempData["Message"] = "Send aborted without completing!"; //TODO: localize
+			}
+			else
+			{
+				TempData["Message"] = "All scheduled volunteers sent to"; //TODO: localize
+			}
+			return View("SendComplete", sentTo);
 		}
 
 		public ActionResult PreviewRegularEmail()
@@ -81,7 +119,7 @@ namespace Conferenceware.Controllers
 			}
 			return GetRegularMessageForVolunteer(vol);
 		}
-		private string GetRegularMessageForVolunteer(Volunteer vol)
+		private static string GetRegularMessageForVolunteer(Volunteer vol)
 		{
 			var sd = SettingsData.Default;
 			var message =
@@ -103,7 +141,7 @@ namespace Conferenceware.Controllers
 			return message.ToString();
 		}
 
-		private string GetVideoMessageForVolunteer(Volunteer vol)
+		private static string GetVideoMessageForVolunteer(Volunteer vol)
 		{
 			var sd = SettingsData.Default;
 			var message =
