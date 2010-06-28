@@ -99,6 +99,7 @@ namespace Conferenceware.Controllers
 			{
 				vvts.is_confirmed = true;
 				vvts.is_scheduled = true;
+				vvts.comment = collection["comment"];
 				_repository.Save();
 				TempData["Message"] = "Volunteer Scheduled";
 				return RedirectToAction("Index");

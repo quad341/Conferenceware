@@ -47,6 +47,13 @@
                 <%=Html.DropDownList(
              		"VolunteersVolunteerTimeSlot", Model.Volunteers)%>
             </div>
+            <div class="editor-label">
+                Comment (optional)
+            </div>
+            <div class="editor-field">
+                <textarea name="comment" id="comment" rows="15" cols="80"></textarea>
+            </div>
+            
             
             <p>
                 <input type="submit" value="Schedule" />

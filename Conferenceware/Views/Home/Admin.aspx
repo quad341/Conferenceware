@@ -18,6 +18,7 @@
         <li><%=Html.ActionLink("Locations", "Index", "Location")%></li>
         <li><%=Html.ActionLink("MechMania Teams", "Index", "MechManiaTeam")%></li>
         <li><%=Html.ActionLink("Pages", "Index", "PageManager")%></li>
+        <li><%=Html.ActionLink("Scheduling", "Index", "Scheduling") %></li>
         <li><%=Html.ActionLink("Settings","Index","Settings")%></li>
         <li><%=Html.ActionLink("Speakers", "Index", "Speaker")%></li>
         <li><%=Html.ActionLink("Staff", "Index", "StaffMember")%></li>
