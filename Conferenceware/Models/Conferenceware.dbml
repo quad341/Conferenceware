@@ -45,8 +45,8 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="start_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="end_time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="TimeSlot_VolunteerTimeSlot" Member="VolunteerTimeSlot" ThisKey="id" OtherKey="timeslot_id" Type="VolunteerTimeSlot" Cardinality="One" />
       <Association Name="TimeSlot_Event" Member="Events" ThisKey="id" OtherKey="timeslot_id" Type="Event" />
+      <Association Name="TimeSlot_VolunteerTimeSlot" Member="VolunteerTimeSlot" ThisKey="id" OtherKey="timeslot_id" Type="VolunteerTimeSlot" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.Volunteers" Member="Volunteers">
@@ -55,25 +55,6 @@
       <Column Name="is_video_trained" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Volunteer_VolunteersVolunteerTimeSlot" Member="VolunteersVolunteerTimeSlots" ThisKey="person_id" OtherKey="volunteer_id" Type="VolunteersVolunteerTimeSlot" />
       <Association Name="People_Volunteer" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VolunteersVolunteerTimeSlots" Member="VolunteersVolunteerTimeSlots">
-    <Type Name="VolunteersVolunteerTimeSlot">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="volunteer_timeslot_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="volunteer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="is_scheduled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="is_confirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Volunteer_VolunteersVolunteerTimeSlot" Member="Volunteer" ThisKey="volunteer_id" OtherKey="person_id" Type="Volunteer" IsForeignKey="true" />
-      <Association Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot" Member="VolunteerTimeSlot" ThisKey="volunteer_timeslot_id" OtherKey="timeslot_id" Type="VolunteerTimeSlot" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VolunteerTimeSlots" Member="VolunteerTimeSlots">
-    <Type Name="VolunteerTimeSlot">
-      <Column Name="timeslot_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="is_video" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot" Member="VolunteersVolunteerTimeSlots" ThisKey="timeslot_id" OtherKey="volunteer_timeslot_id" Type="VolunteersVolunteerTimeSlot" />
-      <Association Name="TimeSlot_VolunteerTimeSlot" Member="TimeSlot" ThisKey="timeslot_id" OtherKey="id" Type="TimeSlot" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Companies" Member="Companies">
@@ -225,6 +206,29 @@
       <Association Name="Food_Attendee" Member="Food" ThisKey="food_choice_id" OtherKey="id" Type="Food" IsForeignKey="true" />
       <Association Name="People_Attendee" Member="People" ThisKey="person_id" OtherKey="id" Type="People" IsForeignKey="true" />
       <Association Name="TShirtSize_Attendee" Member="TShirtSize" ThisKey="tshirt_id" OtherKey="id" Type="TShirtSize" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VolunteerTimeSlots" Member="VolunteerTimeSlots">
+    <Type Name="VolunteerTimeSlot">
+      <Column Name="timeslot_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="is_video" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="min_volunteers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ideal_volunteers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="max_volunteers" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot" Member="VolunteersVolunteerTimeSlots" ThisKey="timeslot_id" OtherKey="volunteer_timeslot_id" Type="VolunteersVolunteerTimeSlot" />
+      <Association Name="TimeSlot_VolunteerTimeSlot" Member="TimeSlot" ThisKey="timeslot_id" OtherKey="id" Type="TimeSlot" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VolunteersVolunteerTimeSlots" Member="VolunteersVolunteerTimeSlots">
+    <Type Name="VolunteersVolunteerTimeSlot">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="volunteer_timeslot_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="volunteer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="is_scheduled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="is_confirmed" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Volunteer_VolunteersVolunteerTimeSlot" Member="Volunteer" ThisKey="volunteer_id" OtherKey="person_id" Type="Volunteer" IsForeignKey="true" />
+      <Association Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot" Member="VolunteerTimeSlot" ThisKey="volunteer_timeslot_id" OtherKey="timeslot_id" Type="VolunteerTimeSlot" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Resources;
+using Conferenceware.Utils;
 
 namespace Conferenceware.Models
 {
@@ -69,6 +70,7 @@ namespace Conferenceware.Models
 		[DisplayName("Address for email sent by the system to automatically bcc")]
 		public string BCCEmail { get; set; }
 
+		#region Registration
 		/// <summary>
 		/// Format string for the body of event registration email confirmations
 		/// </summary>
@@ -95,16 +97,55 @@ namespace Conferenceware.Models
 		[RegularExpression(@".*{0}.*", ErrorMessage = "Must use {0} for event name")]
 		public string EventRegistrationConfirmationSubjectFormat { get; set; }
 
+		/// <summary>
+		/// Registration confirmation email subject
+		/// </summary>
 		[Required]
 		[StringLength(100)]
 		[DisplayName("Registration Confirmation Email Subject")]
 		public string RegistrationSubject { get; set; }
 
+		/// <summary>
+		/// Registration email body
+		/// </summary>
 		[Required]
 		[DisplayName(
 			"Registration Message Email (use {name} for name and {role} for type (attendee, volunteer, etc.))"
 			)]
 		public string RegistrationMessage { get; set; }
+		#endregion
+		#region Volunteer Scheduling
+		/// <summary>
+		/// Volunteer scheduling email subject
+		/// </summary>
+		[Required]
+		[StringLength(100)]
+		[DisplayName("Subject for volunteer schedule emails")]
+		public string VolunteerScheduleEmailSubject { get; set; }
+
+		/// <summary>
+		/// Opening part of email that contains the person's name and role
+		/// </summary>
+		[Required]
+		[DisplayName("Format string for the opening of a volunteer schedule email. (must use {0} for name and {1} for the recipiant's role)")]
+		[RegularExpression(@".*({0}.*{1}|{1}.*{0})", 
+			ErrorMessage = "Must use {0},{1} for name and role respectively")]
+		public string VolunteerScheduleEmailOpening { get; set; }
+
+		[Required]
+		[DisplayName("Format string for regular time slot entries (each item in a list). (Must use {0} for date, {1} for start time, and {2} for end time)")]
+		[StringContains("{0}", ErrorMessage = "{0} is required for timeslot date")]
+		[StringContains("{1}", ErrorMessage = "{1} is required for time slot start time")]
+		[StringContains("{2}", ErrorMessage = "{2} is required for timeslot end time")]
+		[StringContains("{3}", ErrorMessage = "{3} is required for comment")]
+		public string VolunteerScheduleEmailRegularTimeSlotFormatString { get; set; }
+
+		public string VolunteerScheduleEmailVideoTimeSlotFormatString { get; set; }
+
+		public string VolunteerScheduleEmailExtraInformationForVideoVolunteers { get; set; }
+
+		public string VolunteerScheduleEmailClosing { get; set; }
+		#endregion
 		#endregion
 
 		#region Badge Backgrounds

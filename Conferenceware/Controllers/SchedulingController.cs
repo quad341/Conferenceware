@@ -7,6 +7,7 @@ using Conferenceware.Models;
 
 namespace Conferenceware.Controllers
 {
+	[Authorize]
     public class SchedulingController : Controller
     {
     	private readonly IRepository _repository;

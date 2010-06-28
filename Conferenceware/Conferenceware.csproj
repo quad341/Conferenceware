@@ -97,6 +97,7 @@
     <Compile Include="Controllers\PdfResult.cs" />
     <Compile Include="Controllers\PngResult.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
+    <Compile Include="Controllers\SchedulingController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SpeakerController.cs" />
     <Compile Include="Controllers\SpeakerInfoController.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Utils\Badge.cs" />
     <Compile Include="Utils\ConferenceMemberProvider.cs" />
     <Compile Include="Utils\Mailer.cs" />
+    <Compile Include="Utils\StringContainsAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\WiLstPrd.vbs" />
