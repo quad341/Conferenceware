@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Conferenceware.Models;
@@ -82,12 +83,51 @@ namespace Conferenceware.Controllers
 		}
 		private string GetRegularMessageForVolunteer(Volunteer vol)
 		{
-			throw new NotImplementedException();
+			var sd = SettingsData.Default;
+			var message =
+				new StringBuilder(String.Format(sd.VolunteerScheduleEmailOpening,
+				                                vol.People.name,
+				                                "Regular")); //TODO: localize
+			message.AppendLine();
+			foreach (var vvts in vol.VolunteersVolunteerTimeSlots.Where(x => x.is_confirmed))
+			{
+				var vts = vvts.VolunteerTimeSlot;
+				message.AppendFormat(sd.VolunteerScheduleEmailRegularTimeSlotFormatString,
+				                     vts.TimeSlot.start_time.ToString("D"),
+				                     vts.TimeSlot.start_time.ToString("t"),
+				                     vts.TimeSlot.end_time.ToString("t"),
+				                     vvts.comment);
+				message.AppendLine();
+			}
+			message.Append(sd.VolunteerScheduleEmailClosing);
+			return message.ToString();
 		}
 
 		private string GetVideoMessageForVolunteer(Volunteer vol)
 		{
-			throw new NotImplementedException();
+			var sd = SettingsData.Default;
+			var message =
+				new StringBuilder(String.Format(sd.VolunteerScheduleEmailOpening,
+												vol.People.name,
+												"Video")); //TODO: localize
+			message.AppendLine();
+			foreach (var vvts in vol.VolunteersVolunteerTimeSlots.Where(x => x.is_confirmed))
+			{
+				var vts = vvts.VolunteerTimeSlot;
+				var format = vts.is_video
+				             	? sd.VolunteerScheduleEmailVideoTimeSlotFormatString
+				             	: sd.VolunteerScheduleEmailRegularTimeSlotFormatString;
+				message.AppendFormat(format,
+									 vts.TimeSlot.start_time.ToString("D"),
+									 vts.TimeSlot.start_time.ToString("t"),
+									 vts.TimeSlot.end_time.ToString("t"),
+									 vvts.comment);
+				message.AppendLine();
+			}
+			message.AppendLine(
+				sd.VolunteerScheduleEmailExtraInformationForVideoVolunteers);
+			message.Append(sd.VolunteerScheduleEmailClosing);
+			return message.ToString();
 		}
 	}
 
