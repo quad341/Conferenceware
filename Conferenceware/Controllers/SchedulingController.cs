@@ -8,11 +8,12 @@ using Conferenceware.Models;
 namespace Conferenceware.Controllers
 {
 	[Authorize]
-    public class SchedulingController : Controller
-    {
-    	private readonly IRepository _repository;
+	public class SchedulingController : Controller
+	{
+		private readonly IRepository _repository;
 
-		public SchedulingController() : this(new ConferencewareRepository())
+		public SchedulingController()
+			: this(new ConferencewareRepository())
 		{
 			// nothing to do
 		}
@@ -22,13 +23,13 @@ namespace Conferenceware.Controllers
 			_repository = repo;
 		}
 
-        //
-        // GET: /Scheduling/
+		//
+		// GET: /Scheduling/
 
-        public ActionResult Index()
-        {
-            return View("Index");
-        }
+		public ActionResult Index()
+		{
+			return View("Index");
+		}
 
 		public ActionResult EmailScheduleToVolunteers()
 		{
@@ -79,5 +80,15 @@ namespace Conferenceware.Controllers
 			}
 			return GetRegularMessageForVolunteer(vol);
 		}
-    }
+		private string GetRegularMessageForVolunteer(Volunteer vol)
+		{
+			throw new NotImplementedException();
+		}
+
+		private string GetVideoMessageForVolunteer(Volunteer vol)
+		{
+			throw new NotImplementedException();
+		}
+	}
+
 }

@@ -42,7 +42,8 @@
         <div id="tabs">
             <ul>
                 <li><a href="#frontpageSettings" title="Frontpage Settings">Frontpage</a></li>
-                <li><a href="#emailSettings" title="Email Settings">Email</a></li>
+                <li><a href="#emailStrings" title="Email Strings">Email Strings</a></li>
+                <li><a href="#smtpSettings" title="SMTP Settings">SMTP Settings</a></li>
                 <li><a href="#badgeSettings" title="Badge Settings">Badges</a></li>
                 <li><a href="#registrationSettings" title="Registration Settings">Registration</a></li>
                 <li><a href="#siteDisplayRelatedSettings" title="Site Display Related Settings">Site Display</a></li>
@@ -68,7 +69,7 @@
                     <%=Html.ValidationMessageFor(model => model.FrontpageContent)%>
                 </div>
             </div>
-            <div id="emailSettings">
+            <div id="emailStrings">
                 <div class="editor-label">
                     <%=Html.LabelFor(model => model.EmailFrom)%>
                 </div>
@@ -127,6 +128,71 @@
                     <%=
 				Html.ValidationMessageFor(model => model.RegistrationMessage)%>
                 </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.VolunteerScheduleEmailSubject)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextBoxFor(model => model.VolunteerScheduleEmailSubject)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.VolunteerScheduleEmailSubject)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.VolunteerScheduleEmailOpening)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.VolunteerScheduleEmailOpening,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.VolunteerScheduleEmailOpening)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.VolunteerScheduleEmailRegularTimeSlotFormatString)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.VolunteerScheduleEmailRegularTimeSlotFormatString,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.VolunteerScheduleEmailRegularTimeSlotFormatString)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.VolunteerScheduleEmailVideoTimeSlotFormatString)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.VolunteerScheduleEmailVideoTimeSlotFormatString,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.VolunteerScheduleEmailVideoTimeSlotFormatString)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.VolunteerScheduleEmailExtraInformationForVideoVolunteers)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.VolunteerScheduleEmailExtraInformationForVideoVolunteers,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.VolunteerScheduleEmailExtraInformationForVideoVolunteers)%>
+                </div>
+                <div class="editor-label">
+                    <%=Html.LabelFor(model => model.VolunteerScheduleEmailClosing)%>
+                </div>
+                <div class="editor-field">
+                    <%=Html.TextAreaFor(model => model.VolunteerScheduleEmailClosing,
+			                                   15,
+			                                   80,
+			                                   null)%>
+                    <%=
+				Html.ValidationMessageFor(model => model.VolunteerScheduleEmailClosing)%>
+                </div>
+            </div>
+            <div id="smtpSettings">
                 <div class="editor-label">
                     <%=Html.LabelFor(model => model.SmtpHostname)%>
                 </div>

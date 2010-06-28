@@ -132,18 +132,33 @@ namespace Conferenceware.Models
 			ErrorMessage = "Must use {0},{1} for name and role respectively")]
 		public string VolunteerScheduleEmailOpening { get; set; }
 
+		/// <summary>
+		/// Format string for each regular timeslot entry
+		/// </summary>
 		[Required]
-		[DisplayName("Format string for regular time slot entries (each item in a list). (Must use {0} for date, {1} for start time, and {2} for end time)")]
-		[StringContains("{0}", ErrorMessage = "{0} is required for timeslot date")]
-		[StringContains("{1}", ErrorMessage = "{1} is required for time slot start time")]
-		[StringContains("{2}", ErrorMessage = "{2} is required for timeslot end time")]
-		[StringContains("{3}", ErrorMessage = "{3} is required for comment")]
+		[DisplayName("Format string for regular time slot entries (each item in a list). (Must use {0} for date, {1} for start time, {2} for end time, and {3} for comment)")]
+		[StringContains("{0}", ErrorMessage = "{{0}} is required for timeslot date")]
+		[StringContains("{1}", ErrorMessage = "{{1}} is required for time slot start time")]
+		[StringContains("{2}", ErrorMessage = "{{2}} is required for timeslot end time")]
+		[StringContains("{3}", ErrorMessage = "{{3}} is required for comment")]
 		public string VolunteerScheduleEmailRegularTimeSlotFormatString { get; set; }
 
+		/// <summary>
+		/// Format string for each video timeslot entry
+		/// </summary>
+		[Required]
+		[DisplayName("Format string for video time slot entries (each item in a list). (Must use {0} for date, {1} for start time, {2} for end time, and {3} for comment)")]
+		[StringContains("{0}", ErrorMessage = "{{0}} is required for timeslot date")]
+		[StringContains("{1}", ErrorMessage = "{{1}} is required for time slot start time")]
+		[StringContains("{2}", ErrorMessage = "{{2}} is required for timeslot end time")]
+		[StringContains("{3}", ErrorMessage = "{{3}} is required for comment")]
 		public string VolunteerScheduleEmailVideoTimeSlotFormatString { get; set; }
 
+		[DisplayName("Extra information provided for video volunteers")]
 		public string VolunteerScheduleEmailExtraInformationForVideoVolunteers { get; set; }
 
+		[Required]
+		[DisplayName("Closing for volunteer schedule emails")]
 		public string VolunteerScheduleEmailClosing { get; set; }
 		#endregion
 		#endregion

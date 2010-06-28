@@ -60,7 +60,13 @@ namespace Conferenceware.Controllers
 									"MonthsUntilInvoiceDue",
 									"DaysUntilInvoiceDue",
 									"NoteAfterInvoiceItemList",
-									"InvoiceFooterText"
+									"InvoiceFooterText",
+									"VolunteerScheduleEmailSubject",
+									"VolunteerScheduleEmailOpening",
+									"VolunteerScheduleEmailRegularTimeSlotFormatString",
+									"VolunteerScheduleEmailVideoTimeSlotFormatString",
+									"VolunteerScheduleEmailExtraInformationForVideoVolunteers",
+									"VolunteerScheduleEmailClosing"
 			                   	},
 							   collection) && VerifyDatesMakeSense(sd, ModelState))
 			{
