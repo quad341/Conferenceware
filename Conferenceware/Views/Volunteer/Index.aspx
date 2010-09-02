@@ -18,6 +18,12 @@
             <th>
                 Is Video Trained?
             </th>
+            <th>
+                Food Choice
+            </th>
+            <th>
+                T-Shirt Size
+            </th>
         </tr>
 
     <%
@@ -38,6 +44,12 @@
             </td>
             <td>
                 <%=Html.Encode(item.is_video_trained)%>
+            </td>
+            <td>
+                <%=Html.Encode(item.Food.name)%>
+            </td>
+            <td>
+                <%=Html.Encode(item.TShirtSize.name)%>
             </td>
         </tr>
     
