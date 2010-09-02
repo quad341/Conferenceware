@@ -48,9 +48,6 @@ namespace Conferenceware.Models
     partial void InsertTimeSlot(TimeSlot instance);
     partial void UpdateTimeSlot(TimeSlot instance);
     partial void DeleteTimeSlot(TimeSlot instance);
-    partial void InsertVolunteer(Volunteer instance);
-    partial void UpdateVolunteer(Volunteer instance);
-    partial void DeleteVolunteer(Volunteer instance);
     partial void InsertCompany(Company instance);
     partial void UpdateCompany(Company instance);
     partial void DeleteCompany(Company instance);
@@ -96,6 +93,9 @@ namespace Conferenceware.Models
     partial void InsertVolunteersVolunteerTimeSlot(VolunteersVolunteerTimeSlot instance);
     partial void UpdateVolunteersVolunteerTimeSlot(VolunteersVolunteerTimeSlot instance);
     partial void DeleteVolunteersVolunteerTimeSlot(VolunteersVolunteerTimeSlot instance);
+    partial void InsertVolunteer(Volunteer instance);
+    partial void UpdateVolunteer(Volunteer instance);
+    partial void DeleteVolunteer(Volunteer instance);
     #endregion
 		
 		public ConferencewareDataContext() : 
@@ -173,14 +173,6 @@ namespace Conferenceware.Models
 			get
 			{
 				return this.GetTable<TimeSlot>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Volunteer> Volunteers
-		{
-			get
-			{
-				return this.GetTable<Volunteer>();
 			}
 		}
 		
@@ -303,6 +295,14 @@ namespace Conferenceware.Models
 				return this.GetTable<VolunteersVolunteerTimeSlot>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Volunteer> Volunteers
+		{
+			get
+			{
+				return this.GetTable<Volunteer>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TShirtSizes")]
@@ -317,6 +317,8 @@ namespace Conferenceware.Models
 		
 		private EntitySet<Attendee> _Attendees;
 		
+		private EntitySet<Volunteer> _Volunteers;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -330,6 +332,7 @@ namespace Conferenceware.Models
 		public TShirtSize()
 		{
 			this._Attendees = new EntitySet<Attendee>(new Action<Attendee>(this.attach_Attendees), new Action<Attendee>(this.detach_Attendees));
+			this._Volunteers = new EntitySet<Volunteer>(new Action<Volunteer>(this.attach_Volunteers), new Action<Volunteer>(this.detach_Volunteers));
 			OnCreated();
 		}
 		
@@ -386,6 +389,19 @@ namespace Conferenceware.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TShirtSize_Volunteer", Storage="_Volunteers", ThisKey="id", OtherKey="tshirt_id")]
+		public EntitySet<Volunteer> Volunteers
+		{
+			get
+			{
+				return this._Volunteers;
+			}
+			set
+			{
+				this._Volunteers.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -413,6 +429,18 @@ namespace Conferenceware.Models
 		}
 		
 		private void detach_Attendees(Attendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.TShirtSize = null;
+		}
+		
+		private void attach_Volunteers(Volunteer entity)
+		{
+			this.SendPropertyChanging();
+			entity.TShirtSize = this;
+		}
+		
+		private void detach_Volunteers(Volunteer entity)
 		{
 			this.SendPropertyChanging();
 			entity.TShirtSize = null;
@@ -767,6 +795,8 @@ namespace Conferenceware.Models
 		
 		private EntitySet<Attendee> _Attendees;
 		
+		private EntitySet<Volunteer> _Volunteers;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -780,6 +810,7 @@ namespace Conferenceware.Models
 		public Food()
 		{
 			this._Attendees = new EntitySet<Attendee>(new Action<Attendee>(this.attach_Attendees), new Action<Attendee>(this.detach_Attendees));
+			this._Volunteers = new EntitySet<Volunteer>(new Action<Volunteer>(this.attach_Volunteers), new Action<Volunteer>(this.detach_Volunteers));
 			OnCreated();
 		}
 		
@@ -836,6 +867,19 @@ namespace Conferenceware.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Food_Volunteer", Storage="_Volunteers", ThisKey="id", OtherKey="food_choice_id")]
+		public EntitySet<Volunteer> Volunteers
+		{
+			get
+			{
+				return this._Volunteers;
+			}
+			set
+			{
+				this._Volunteers.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -863,6 +907,18 @@ namespace Conferenceware.Models
 		}
 		
 		private void detach_Attendees(Attendee entity)
+		{
+			this.SendPropertyChanging();
+			entity.Food = null;
+		}
+		
+		private void attach_Volunteers(Volunteer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Food = this;
+		}
+		
+		private void detach_Volunteers(Volunteer entity)
 		{
 			this.SendPropertyChanging();
 			entity.Food = null;
@@ -1222,161 +1278,6 @@ namespace Conferenceware.Models
 		{
 			this.SendPropertyChanging();
 			entity.TimeSlot = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Volunteers")]
-	public partial class Volunteer : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _person_id;
-		
-		private bool _is_video_trained;
-		
-		private EntitySet<VolunteersVolunteerTimeSlot> _VolunteersVolunteerTimeSlots;
-		
-		private EntityRef<People> _People;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onperson_idChanging(int value);
-    partial void Onperson_idChanged();
-    partial void Onis_video_trainedChanging(bool value);
-    partial void Onis_video_trainedChanged();
-    #endregion
-		
-		public Volunteer()
-		{
-			this._VolunteersVolunteerTimeSlots = new EntitySet<VolunteersVolunteerTimeSlot>(new Action<VolunteersVolunteerTimeSlot>(this.attach_VolunteersVolunteerTimeSlots), new Action<VolunteersVolunteerTimeSlot>(this.detach_VolunteersVolunteerTimeSlots));
-			this._People = default(EntityRef<People>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int person_id
-		{
-			get
-			{
-				return this._person_id;
-			}
-			set
-			{
-				if ((this._person_id != value))
-				{
-					if (this._People.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onperson_idChanging(value);
-					this.SendPropertyChanging();
-					this._person_id = value;
-					this.SendPropertyChanged("person_id");
-					this.Onperson_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_video_trained", DbType="Bit NOT NULL")]
-		public bool is_video_trained
-		{
-			get
-			{
-				return this._is_video_trained;
-			}
-			set
-			{
-				if ((this._is_video_trained != value))
-				{
-					this.Onis_video_trainedChanging(value);
-					this.SendPropertyChanging();
-					this._is_video_trained = value;
-					this.SendPropertyChanged("is_video_trained");
-					this.Onis_video_trainedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Volunteer_VolunteersVolunteerTimeSlot", Storage="_VolunteersVolunteerTimeSlots", ThisKey="person_id", OtherKey="volunteer_id")]
-		public EntitySet<VolunteersVolunteerTimeSlot> VolunteersVolunteerTimeSlots
-		{
-			get
-			{
-				return this._VolunteersVolunteerTimeSlots;
-			}
-			set
-			{
-				this._VolunteersVolunteerTimeSlots.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Volunteer", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
-		public People People
-		{
-			get
-			{
-				return this._People.Entity;
-			}
-			set
-			{
-				People previousValue = this._People.Entity;
-				if (((previousValue != value) 
-							|| (this._People.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._People.Entity = null;
-						previousValue.Volunteer = null;
-					}
-					this._People.Entity = value;
-					if ((value != null))
-					{
-						value.Volunteer = this;
-						this._person_id = value.id;
-					}
-					else
-					{
-						this._person_id = default(int);
-					}
-					this.SendPropertyChanged("People");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
-		{
-			this.SendPropertyChanging();
-			entity.Volunteer = this;
-		}
-		
-		private void detach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
-		{
-			this.SendPropertyChanging();
-			entity.Volunteer = null;
 		}
 	}
 	
@@ -3062,8 +2963,6 @@ namespace Conferenceware.Models
 		
 		private bool _is_alum;
 		
-		private EntityRef<Volunteer> _Volunteer;
-		
 		private EntityRef<CompanyPerson> _CompanyPerson;
 		
 		private EntityRef<StaffMember> _StaffMember;
@@ -3071,6 +2970,8 @@ namespace Conferenceware.Models
 		private EntityRef<Speaker> _Speaker;
 		
 		private EntityRef<Attendee> _Attendee;
+		
+		private EntityRef<Volunteer> _Volunteer;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3090,11 +2991,11 @@ namespace Conferenceware.Models
 		
 		public People()
 		{
-			this._Volunteer = default(EntityRef<Volunteer>);
 			this._CompanyPerson = default(EntityRef<CompanyPerson>);
 			this._StaffMember = default(EntityRef<StaffMember>);
 			this._Speaker = default(EntityRef<Speaker>);
 			this._Attendee = default(EntityRef<Attendee>);
+			this._Volunteer = default(EntityRef<Volunteer>);
 			OnCreated();
 		}
 		
@@ -3194,35 +3095,6 @@ namespace Conferenceware.Models
 					this._is_alum = value;
 					this.SendPropertyChanged("is_alum");
 					this.Onis_alumChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Volunteer", Storage="_Volunteer", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
-		public Volunteer Volunteer
-		{
-			get
-			{
-				return this._Volunteer.Entity;
-			}
-			set
-			{
-				Volunteer previousValue = this._Volunteer.Entity;
-				if (((previousValue != value) 
-							|| (this._Volunteer.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Volunteer.Entity = null;
-						previousValue.People = null;
-					}
-					this._Volunteer.Entity = value;
-					if ((value != null))
-					{
-						value.People = this;
-					}
-					this.SendPropertyChanged("Volunteer");
 				}
 			}
 		}
@@ -3339,6 +3211,35 @@ namespace Conferenceware.Models
 						value.People = this;
 					}
 					this.SendPropertyChanged("Attendee");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Volunteer", Storage="_Volunteer", ThisKey="id", OtherKey="person_id", IsUnique=true, IsForeignKey=false)]
+		public Volunteer Volunteer
+		{
+			get
+			{
+				return this._Volunteer.Entity;
+			}
+			set
+			{
+				Volunteer previousValue = this._Volunteer.Entity;
+				if (((previousValue != value) 
+							|| (this._Volunteer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Volunteer.Entity = null;
+						previousValue.People = null;
+					}
+					this._Volunteer.Entity = value;
+					if ((value != null))
+					{
+						value.People = this;
+					}
+					this.SendPropertyChanged("Volunteer");
 				}
 			}
 		}
@@ -4855,9 +4756,9 @@ namespace Conferenceware.Models
 		
 		private string _comment;
 		
-		private EntityRef<Volunteer> _Volunteer;
-		
 		private EntityRef<VolunteerTimeSlot> _VolunteerTimeSlot;
+		
+		private EntityRef<Volunteer> _Volunteer;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4879,8 +4780,8 @@ namespace Conferenceware.Models
 		
 		public VolunteersVolunteerTimeSlot()
 		{
-			this._Volunteer = default(EntityRef<Volunteer>);
 			this._VolunteerTimeSlot = default(EntityRef<VolunteerTimeSlot>);
+			this._Volunteer = default(EntityRef<Volunteer>);
 			OnCreated();
 		}
 		
@@ -5012,40 +4913,6 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Volunteer_VolunteersVolunteerTimeSlot", Storage="_Volunteer", ThisKey="volunteer_id", OtherKey="person_id", IsForeignKey=true)]
-		public Volunteer Volunteer
-		{
-			get
-			{
-				return this._Volunteer.Entity;
-			}
-			set
-			{
-				Volunteer previousValue = this._Volunteer.Entity;
-				if (((previousValue != value) 
-							|| (this._Volunteer.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Volunteer.Entity = null;
-						previousValue.VolunteersVolunteerTimeSlots.Remove(this);
-					}
-					this._Volunteer.Entity = value;
-					if ((value != null))
-					{
-						value.VolunteersVolunteerTimeSlots.Add(this);
-						this._volunteer_id = value.person_id;
-					}
-					else
-					{
-						this._volunteer_id = default(int);
-					}
-					this.SendPropertyChanged("Volunteer");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="VolunteerTimeSlot_VolunteersVolunteerTimeSlot", Storage="_VolunteerTimeSlot", ThisKey="volunteer_timeslot_id", OtherKey="timeslot_id", IsForeignKey=true)]
 		public VolunteerTimeSlot VolunteerTimeSlot
 		{
@@ -5080,6 +4947,40 @@ namespace Conferenceware.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Volunteer_VolunteersVolunteerTimeSlot", Storage="_Volunteer", ThisKey="volunteer_id", OtherKey="person_id", IsForeignKey=true)]
+		public Volunteer Volunteer
+		{
+			get
+			{
+				return this._Volunteer.Entity;
+			}
+			set
+			{
+				Volunteer previousValue = this._Volunteer.Entity;
+				if (((previousValue != value) 
+							|| (this._Volunteer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Volunteer.Entity = null;
+						previousValue.VolunteersVolunteerTimeSlots.Remove(this);
+					}
+					this._Volunteer.Entity = value;
+					if ((value != null))
+					{
+						value.VolunteersVolunteerTimeSlots.Add(this);
+						this._volunteer_id = value.person_id;
+					}
+					else
+					{
+						this._volunteer_id = default(int);
+					}
+					this.SendPropertyChanged("Volunteer");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -5098,6 +4999,291 @@ namespace Conferenceware.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Volunteers")]
+	public partial class Volunteer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _person_id;
+		
+		private bool _is_video_trained;
+		
+		private int _tshirt_id;
+		
+		private int _food_choice_id;
+		
+		private EntitySet<VolunteersVolunteerTimeSlot> _VolunteersVolunteerTimeSlots;
+		
+		private EntityRef<Food> _Food;
+		
+		private EntityRef<People> _People;
+		
+		private EntityRef<TShirtSize> _TShirtSize;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onperson_idChanging(int value);
+    partial void Onperson_idChanged();
+    partial void Onis_video_trainedChanging(bool value);
+    partial void Onis_video_trainedChanged();
+    partial void Ontshirt_idChanging(int value);
+    partial void Ontshirt_idChanged();
+    partial void Onfood_choice_idChanging(int value);
+    partial void Onfood_choice_idChanged();
+    #endregion
+		
+		public Volunteer()
+		{
+			this._VolunteersVolunteerTimeSlots = new EntitySet<VolunteersVolunteerTimeSlot>(new Action<VolunteersVolunteerTimeSlot>(this.attach_VolunteersVolunteerTimeSlots), new Action<VolunteersVolunteerTimeSlot>(this.detach_VolunteersVolunteerTimeSlots));
+			this._Food = default(EntityRef<Food>);
+			this._People = default(EntityRef<People>);
+			this._TShirtSize = default(EntityRef<TShirtSize>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_person_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int person_id
+		{
+			get
+			{
+				return this._person_id;
+			}
+			set
+			{
+				if ((this._person_id != value))
+				{
+					if (this._People.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperson_idChanging(value);
+					this.SendPropertyChanging();
+					this._person_id = value;
+					this.SendPropertyChanged("person_id");
+					this.Onperson_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_is_video_trained", DbType="Bit NOT NULL")]
+		public bool is_video_trained
+		{
+			get
+			{
+				return this._is_video_trained;
+			}
+			set
+			{
+				if ((this._is_video_trained != value))
+				{
+					this.Onis_video_trainedChanging(value);
+					this.SendPropertyChanging();
+					this._is_video_trained = value;
+					this.SendPropertyChanged("is_video_trained");
+					this.Onis_video_trainedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tshirt_id", DbType="Int NOT NULL")]
+		public int tshirt_id
+		{
+			get
+			{
+				return this._tshirt_id;
+			}
+			set
+			{
+				if ((this._tshirt_id != value))
+				{
+					if (this._TShirtSize.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Ontshirt_idChanging(value);
+					this.SendPropertyChanging();
+					this._tshirt_id = value;
+					this.SendPropertyChanged("tshirt_id");
+					this.Ontshirt_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_food_choice_id", DbType="Int NOT NULL")]
+		public int food_choice_id
+		{
+			get
+			{
+				return this._food_choice_id;
+			}
+			set
+			{
+				if ((this._food_choice_id != value))
+				{
+					if (this._Food.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onfood_choice_idChanging(value);
+					this.SendPropertyChanging();
+					this._food_choice_id = value;
+					this.SendPropertyChanged("food_choice_id");
+					this.Onfood_choice_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Volunteer_VolunteersVolunteerTimeSlot", Storage="_VolunteersVolunteerTimeSlots", ThisKey="person_id", OtherKey="volunteer_id")]
+		public EntitySet<VolunteersVolunteerTimeSlot> VolunteersVolunteerTimeSlots
+		{
+			get
+			{
+				return this._VolunteersVolunteerTimeSlots;
+			}
+			set
+			{
+				this._VolunteersVolunteerTimeSlots.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Food_Volunteer", Storage="_Food", ThisKey="food_choice_id", OtherKey="id", IsForeignKey=true)]
+		public Food Food
+		{
+			get
+			{
+				return this._Food.Entity;
+			}
+			set
+			{
+				Food previousValue = this._Food.Entity;
+				if (((previousValue != value) 
+							|| (this._Food.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Food.Entity = null;
+						previousValue.Volunteers.Remove(this);
+					}
+					this._Food.Entity = value;
+					if ((value != null))
+					{
+						value.Volunteers.Add(this);
+						this._food_choice_id = value.id;
+					}
+					else
+					{
+						this._food_choice_id = default(int);
+					}
+					this.SendPropertyChanged("Food");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="People_Volunteer", Storage="_People", ThisKey="person_id", OtherKey="id", IsForeignKey=true)]
+		public People People
+		{
+			get
+			{
+				return this._People.Entity;
+			}
+			set
+			{
+				People previousValue = this._People.Entity;
+				if (((previousValue != value) 
+							|| (this._People.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._People.Entity = null;
+						previousValue.Volunteer = null;
+					}
+					this._People.Entity = value;
+					if ((value != null))
+					{
+						value.Volunteer = this;
+						this._person_id = value.id;
+					}
+					else
+					{
+						this._person_id = default(int);
+					}
+					this.SendPropertyChanged("People");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="TShirtSize_Volunteer", Storage="_TShirtSize", ThisKey="tshirt_id", OtherKey="id", IsForeignKey=true)]
+		public TShirtSize TShirtSize
+		{
+			get
+			{
+				return this._TShirtSize.Entity;
+			}
+			set
+			{
+				TShirtSize previousValue = this._TShirtSize.Entity;
+				if (((previousValue != value) 
+							|| (this._TShirtSize.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TShirtSize.Entity = null;
+						previousValue.Volunteers.Remove(this);
+					}
+					this._TShirtSize.Entity = value;
+					if ((value != null))
+					{
+						value.Volunteers.Add(this);
+						this._tshirt_id = value.id;
+					}
+					else
+					{
+						this._tshirt_id = default(int);
+					}
+					this.SendPropertyChanged("TShirtSize");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
+		{
+			this.SendPropertyChanging();
+			entity.Volunteer = this;
+		}
+		
+		private void detach_VolunteersVolunteerTimeSlots(VolunteersVolunteerTimeSlot entity)
+		{
+			this.SendPropertyChanging();
+			entity.Volunteer = null;
 		}
 	}
 }
