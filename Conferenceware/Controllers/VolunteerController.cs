@@ -144,7 +144,10 @@ namespace Conferenceware.Controllers
 							Volunteer = volunteer,
 							VolunteerTimeSlots = repo.GetAllVolunteerTimeSlots(),
 							ChosenTimeSlots =
-								new int[volunteer.VolunteersVolunteerTimeSlots.Count]
+								new int[volunteer.VolunteersVolunteerTimeSlots.Count],
+							Foods = new SelectList(repo.GetAllFoods(), "id", "name"),
+							TShirtSizes =
+								new SelectList(repo.GetAllTShirtSizes(), "id", "name")
 						};
 			for (int i = 0; i < volunteer.VolunteersVolunteerTimeSlots.Count; i++)
 			{

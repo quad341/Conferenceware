@@ -431,7 +431,8 @@ namespace Conferenceware.Models
 				var vvts = new VolunteersVolunteerTimeSlot
 							{
 								Volunteer = v,
-								VolunteerTimeSlot = vts
+								VolunteerTimeSlot = vts,
+								comment = ""
 							};
 				_conferenceware.VolunteersVolunteerTimeSlots.InsertOnSubmit(vvts);
 			}

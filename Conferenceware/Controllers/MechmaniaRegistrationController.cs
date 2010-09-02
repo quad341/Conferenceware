@@ -29,8 +29,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Index()
 		{
-			if (SettingsData.Default.MechManiaRegistrationAutoCloseDateTime < DateTime.Now
-				|| SettingsData.Default.MaxMechManiaTeams <= _repository.GetAllMechManiaTeams().Count())
+			if (!MechmaniaRegistrationIsOpen())
 			{
 				return View("RegistrationClosed");
 			}
@@ -44,8 +43,7 @@ namespace Conferenceware.Controllers
 		public ActionResult Index(MechmaniaTeamEditData mmted)
 		//FormCollection collection)
 		{
-			if (SettingsData.Default.MechManiaRegistrationAutoCloseDateTime < DateTime.Now
-				|| SettingsData.Default.MaxMechManiaTeams <= _repository.GetAllMechManiaTeams().Count())
+			if (!MechmaniaRegistrationIsOpen())
 			{
 				return View("RegistrationClosed");
 			}
@@ -123,6 +121,13 @@ namespace Conferenceware.Controllers
 		public ActionResult Success()
 		{
 			return View("Success");
+		}
+
+		private bool MechmaniaRegistrationIsOpen()
+		{
+			return !(SettingsData.Default.MechManiaRegistrationAutoCloseDateTime < DateTime.Now
+				|| (SettingsData.Default.MaxMechManiaTeams > 0 &&
+					SettingsData.Default.MaxMechManiaTeams <= _repository.GetAllMechManiaTeams().Count()));
 		}
 	}
 }

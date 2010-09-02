@@ -27,8 +27,7 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult Index()
 		{
-			if (SettingsData.Default.AttendeeRegistrationAutoCloseDateTime < DateTime.Now
-				|| SettingsData.Default.MaxAttendees <= _repository.GetAllAttendees().Count())
+			if (!AttendeeRegistrationIsOpen())
 			{
 				return View("RegistrationClosed");
 			}
@@ -42,8 +41,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Index(FormCollection collection)
 		{
-			if (SettingsData.Default.AttendeeRegistrationAutoCloseDateTime < DateTime.Now
-				|| SettingsData.Default.MaxAttendees <= _repository.GetAllAttendees().Count())
+			if (!AttendeeRegistrationIsOpen())
 			{
 				return View("RegistrationClosed");
 			}
@@ -97,6 +95,13 @@ namespace Conferenceware.Controllers
 						TShirtSizes =
 							new SelectList(_repository.GetAllTShirtSizes(), "id", "name")
 					};
+		}
+
+		private bool AttendeeRegistrationIsOpen()
+		{
+			return !(SettingsData.Default.AttendeeRegistrationAutoCloseDateTime < DateTime.Now
+				|| (SettingsData.Default.MaxAttendees > 0 &&
+					SettingsData.Default.MaxAttendees <= _repository.GetAllAttendees().Count()));
 		}
 	}
 }

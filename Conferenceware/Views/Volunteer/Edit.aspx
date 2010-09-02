@@ -49,7 +49,28 @@
                 <%=
      		Html.ValidationMessageFor(model => model.Volunteer.People.phone_number)%>
             </div>
+             
+            <div class="editor-label">
+                <%=Html.LabelFor(model => model.Volunteer.tshirt_id)%>
+            </div>
+            <div class="editor-field">
+                <%=Html.DropDownListFor(model => model.Volunteer.tshirt_id,
+     	                                       Model.TShirtSizes)%>
+                <%=
+     		Html.ValidationMessageFor(model => model.Volunteer.tshirt_id)%>
+            </div>
+           
+            <div class="editor-label">
+                <%=Html.LabelFor(model => model.Volunteer.food_choice_id)%>
+            </div>
+            <div class="editor-field">
+                <%=
+     		Html.DropDownListFor(model => model.Volunteer.food_choice_id, Model.Foods)%>
+                <%=
+     		Html.ValidationMessageFor(model => model.Volunteer.food_choice_id)%>
+            </div>
             
+
             <div class="editor-label">
                 <%=Html.LabelFor(model => model.Volunteer.is_video_trained)%>
             </div>

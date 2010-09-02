@@ -27,8 +27,7 @@ namespace Conferenceware.Controllers
 
 		public ActionResult Index()
 		{
-			if (SettingsData.Default.VolunteerRegistrationAutoCloseDateTime < DateTime.Now
-				|| SettingsData.Default.MaxVolunteers <= _repository.GetAllVolunteers().Count())
+			if (!VolunteerRegistrationOpen())
 			{
 				return View("RegistrationClosed");
 			}
@@ -43,8 +42,7 @@ namespace Conferenceware.Controllers
 		[HttpPost]
 		public ActionResult Index(VolunteerEditData ved)
 		{
-			if (SettingsData.Default.VolunteerRegistrationAutoCloseDateTime < DateTime.Now
-				|| SettingsData.Default.MaxVolunteers <= _repository.GetAllVolunteers().Count())
+			if (!VolunteerRegistrationOpen())
 			{
 				return View("RegistrationClosed");
 			}
@@ -90,6 +88,13 @@ namespace Conferenceware.Controllers
 		public ActionResult Success()
 		{
 			return View("Success");
+		}
+
+		private bool VolunteerRegistrationOpen()
+		{
+			return !(SettingsData.Default.VolunteerRegistrationAutoCloseDateTime < DateTime.Now
+				|| (SettingsData.Default.MaxVolunteers != 0 &&
+					SettingsData.Default.MaxVolunteers <= _repository.GetAllVolunteers().Count()));
 		}
 	}
 }
