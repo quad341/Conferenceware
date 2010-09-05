@@ -167,6 +167,11 @@ namespace Conferenceware.Controllers
 			message.Append(sd.VolunteerScheduleEmailClosing);
 			return message.ToString();
 		}
+
+		public ActionResult JsVolunteerScheduling()
+		{
+			return View("JsVolunteerScheduling");
+		}
 	}
 
 }

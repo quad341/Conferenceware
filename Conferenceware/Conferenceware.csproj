@@ -238,6 +238,7 @@
     <Content Include="Views\CompanyInvoice\Email.aspx" />
     <Content Include="Views\Company\Delete.aspx" />
     <Content Include="Views\Scheduling\Index.aspx" />
+    <Content Include="Views\Scheduling\JsVolunteerScheduling.aspx" />
     <Content Include="Views\Scheduling\PreviewEmail.aspx" />
     <Content Include="Views\Scheduling\SendComplete.aspx" />
     <Content Include="Views\Shared\RegistrationClosed.aspx" />
