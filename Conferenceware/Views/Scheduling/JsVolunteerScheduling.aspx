@@ -33,11 +33,13 @@
         </div>
         <table id="events">
             <tr>
+                <th>Time</th>
                 <th colspan="2">Friday</th>
                 <th colspan="2">Saturday</th>
                 <th colspan="2">Sunday</th>
             </tr>
             <tr>
+                <td class="time">16:00</td>
                 <td class="empty"></td>
                 <td class="empty"></td>
                 <td class="empty"></td>
@@ -46,6 +48,7 @@
                 <td class="empty"></td>
             </tr>
             <tr>
+                <td class="time">17:00</td>
                 <td class="empty"></td>
                 <td class="empty"></td>
                 <td class="empty"></td>
@@ -68,6 +71,7 @@
                 <td class="empty"></td>
             </tr>
             <tr>
+                <td class="time">18:00</td>
                 <td class="event" id="event1">
                     <span class="nowrap"><span class="eventTitle">Event 1</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                     <div class="eventNumbers">
@@ -105,6 +109,7 @@
                 <td class="empty"></td>
             </tr>
             <tr>
+                <td class="time">19:00</td>
                 <td class="empty"></td>
                 <!-- rowspan event2 -->
                 <td class="empty"></td>
@@ -113,6 +118,7 @@
                 <td class="empty"></td>
             </tr>
             <tr>
+                <td class="time">20:00</td>
                 <td class="empty"></td>
                 <td class="empty"></td>
                 <td class="empty"></td>
@@ -121,6 +127,7 @@
                 <td class="empty"></td>
             </tr>
             <tr>
+                <td class="time">21:00</td>
                 <td class="empty"></td>
                 <td class="empty"></td>
                 <td class="empty"></td>
@@ -135,9 +142,10 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ExtraHeadContent" runat="server">
 <style type="text/css">
+.time { font-weight: bold; }
 #participants { float: left; padding-right: 2em; }
 #events { float: left; width: auto; }
-.participant { clear: both; }
+.participant { clear: both; border: 1px solid #888; background-color: #ccc; margin-bottom: .2em; }
 .nowrap { white-space: nowrap; }
 .details { display: none; }
 .closeDetails { display: block; float: left; }

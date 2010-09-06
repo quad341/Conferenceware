@@ -197,6 +197,7 @@
     <Content Include="App_Data\WiLstPrd.vbs" />
     <Content Include="App_Data\WiRunSQL.vbs" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\spacer.gif" />
     <Content Include="Content\img\top.gif" />
     <Content Include="Content\south-street\images\ui-bg_glass_55_fcf0ba_1x400.png" />
     <Content Include="Content\south-street\images\ui-bg_gloss-wave_100_ece8da_500x100.png" />
