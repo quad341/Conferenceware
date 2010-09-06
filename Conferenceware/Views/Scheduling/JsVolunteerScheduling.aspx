@@ -159,10 +159,15 @@
 img.ui-icon { display: inline; width: 16px; height: 16px; }
 </style>
 <script type="text/javascript">
+// static test data
+// participants
+    var participants = new Array();
+    participants[1] = { name: "John Doe", id: 1, allowEvents: [1, 2, 3] };
+    participants[2] = { name: "Jane Smith", id: 2, allowEvents: [2] };
 // events is static testing data already parsed for the static html
 var events = new Array();
-events[1] = { title:"Event 1", id: 1, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 19:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
-events[2] = { title: "Event 2", id: 2, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 20:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+events[1] = { title: "Event 1", id: 1, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 19:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+events[2] = { title: "Event 2", id: 2, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 20:00'), current: 0, min: 1, ideal: 1, max: 2, participants: [1], lastStatus: null, status: null };
 events[3] = { title: "Event 3", id: 3, start: new Date('Oct. 17 2010 17:00'), end: new Date('Oct. 17 2010 18:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
 // functions
 function dateObjectSort(a, b) {
@@ -204,17 +209,18 @@ function updateStatus(eventEntry) {
         $(id).addClass(eventEntry.status);
     }
 }
-function processAddParticipant(event, participant) {
+function processAddParticipant(event, participant, ignoreArray) {
+    if (ignoreArray == null) force = false;
     var participantCheckboxId = "#" + participant.attr("id") + "-" + event.attr("id");
     var eventCheckboxId = "#" + event.attr("id") + "-" + participant.attr("id");
     $(participantCheckboxId).attr('checked', true);
     $(eventCheckboxId).attr('checked', true);
 
     var eventId = parseInt(event.attr("id").substring(5)); //event is 5 characters
-    if (jQuery.inArray(participant.attr("id"), events[eventId].participants) != -1)
+    if (!ignoreArray && $.inArray(parseInt(participant.attr("id").substring(11)), events[eventId].participants) != -1) //"participant" is 11 characters
         return;
     events[eventId].current++;
-    events[eventId].participants.push(participant.attr("id"));
+    if(!ignoreArray) events[eventId].participants.push(parseInt(participant.attr("id").substring(11))); //"participant" is 11 characters
     var participantCounter = participant.children().first().children('.participantEventCount').first();
     participantCounter.text("(" + (parseInt(participantCounter.text().substring(1, participantCounter.text().length-1)) + 1) + ")"); // pull out the middle
     var eventCounter = event.children(".eventNumbers").first().children(".current").first();
@@ -234,7 +240,7 @@ function processRemoveParticipant(event, participant) {
 
     var eventId = parseInt(event.attr("id").substring(5)); //event is 5 characters
     var i;
-    if ((i=jQuery.inArray(participant.attr("id"), events[eventId].participants)) == -1)
+    if ((i = $.inArray(parseInt(participant.attr("id").substring(11)), events[eventId].participants)) == -1) //"participant" is 11 characters
         return;
     events[eventId].current--;
     events[eventId].participants.splice(i, 1);
@@ -299,6 +305,13 @@ $(function () {
     $(".participant input:checkbox").click(function () { processParticipantCheck($(this)); });
     $(".event input:checkbox").click(function () { processEventCheck($(this)); });
     $(".event").each(function (i, e) { updateStatus(events[parseInt($(e).attr("id").substring(5))]); });
+    for(var i in events) {
+        if (events[i].participants.length > 0) {
+            for (var pIdx = 0; pIdx < events[i].participants.length; pIdx++) { 
+                processAddParticipant($("#event" + events[i].id).first(), $("#participant" + events[i].participants[pIdx]).first(), true);
+            }
+        }
+    }
 });
 
 </script>
