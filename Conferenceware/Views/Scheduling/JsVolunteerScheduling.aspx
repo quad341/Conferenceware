@@ -152,9 +152,9 @@ img.ui-icon { display: inline; width: 16px; height: 16px; }
 </style>
 <script type="text/javascript">
 var events = new Array();
-events[1] = { title:"Event 1", id: 1, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: "minNotHit", status: "minNotHit" };
-events[2] = { title: "Event 2", id: 2, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: "minNotHit", status: "minNotHit" };
-events[3] = { title: "Event 3", id: 3, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: "minNotHit", status: "minNotHit" };
+events[1] = { title:"Event 1", id: 1, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+events[2] = { title: "Event 2", id: 2, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+events[3] = { title: "Event 3", id: 3, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
 function updateStatus(eventEntry) {
     eventEntry.lastStatus = eventEntry.status;
     eventEntry.status = "minNotHit";
@@ -264,7 +264,8 @@ $(function () {
     $(".closeDetails").click(function () { $(this).parent().hide(); });
     $(".participant input:checkbox").click(function () { processParticipantCheck($(this)); });
     $(".event input:checkbox").click(function () { processEventCheck($(this)); });
+    $(".event").each(function (i, e) { updateStatus(events[parseInt($(e).attr("id").substring(5))]); });
 });
-$(".event").each(function (i, e) { updateStatus(events[parseInt(e.attr("id").substring(5))]); });
+
 </script>
 </asp:Content>
