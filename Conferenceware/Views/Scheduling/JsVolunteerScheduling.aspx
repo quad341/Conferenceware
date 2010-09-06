@@ -11,7 +11,7 @@
     <div id="scheduleHolder">
         <div id="participants">
             <div class="participant" id="participant1">
-                <span class="nowrap"><img class="ui-icon ui-icon-grip-dotted-vertical" alt="dotted vertical grip" src="/Content/img/spacer.gif"/><span class="participantName">John Doe</span><span class="participantEventCount">(0)</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
+                <span class="nowrap"><img class="ui-icon ui-icon-grip-dotted-vertical" alt="dotted vertical grip" src="/Content/img/spacer.gif"/><span class="participantName">John Doe</span><dfn title="Number of slots assigned" class="participantEventCount">(0)</dfn><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                 <div class="details" id="participant1details">
                     <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                     <ul class="eventBinding">
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="participant" id="participant2">
-                <span class="nowrap"><img class="ui-icon ui-icon-grip-dotted-vertical" alt="dotted vertical grip" src="/Content/img/spacer.gif"/><span class="participantName">Jane Smith</span><span class="participantEventCount">(0)</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
+                <span class="nowrap"><img class="ui-icon ui-icon-grip-dotted-vertical" alt="dotted vertical grip" src="/Content/img/spacer.gif"/><span class="participantName">Jane Smith</span><dfn title="Number of slots assigned" class="participantEventCount">(0)</dfn><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                 <div class="details" id="participant2details">
                     <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                     <ul class="eventBinding">
@@ -53,15 +53,15 @@
                 <td class="event" id="event3">
                     <span class="nowrap"><span class="eventTitle">Event 3</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                     <div class="eventNumbers">
-                        <span class="current" id="event3current">0</span>
-                        (<span class="minimum" id="event3min">1</span>
-                        |<span class="ideal" id="event3ideal">1</span>
-                        |<span class="maximum" id="event3max">2</span>)
+                        <dfn title="Number of assignees" class="current" id="event3current">0</dfn>
+                        (<dfn title="Mimimum number of assignees" class="minimum" id="event3min">1</dfn>
+                        |<dfn title="Ideal number of assignees" class="ideal" id="event3ideal">1</dfn>
+                        |<dfn title="Maximum number of assignees" class="maximum" id="event3max">2</dfn>)
                     </div>
                     <div class="details" id="event3details">
                         <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                         <ul class="eventBinding">
-                            <li><input type="checkbox" id="event3-participant1" value="1" /></li>
+                            <li><input type="checkbox" id="event3-participant1" value="1" /><label>John Doe</label></li>
                         </ul>
                     </div>
                 </td>
@@ -71,31 +71,31 @@
                 <td class="event" id="event1">
                     <span class="nowrap"><span class="eventTitle">Event 1</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                     <div class="eventNumbers">
-                        <span class="current" id="event1current">0</span>
-                        (<span class="minimum" id="event1min">1</span>
-                        |<span class="ideal" id="event1ideal">1</span>
-                        |<span class="maximum" id="event1max">2</span>)
+                        <dfn title="Number of assignees" class="current" id="event1current">0</dfn>
+                        (<dfn title="Mimimum number of assignees" class="minimum" id="event1min">1</dfn>
+                        |<dfn title="Ideal number of assignees" class="ideal" id="event1ideal">1</dfn>
+                        |<dfn title="Maximum number of assignees" class="maximum" id="event1max">2</dfn>)
                     </div>
                     <div class="details" id="event1details">
                         <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                         <ul class="eventBinding">
-                            <li><input type="checkbox" id="event1-participant1" value="1" /></li>
+                            <li><input type="checkbox" id="event1-participant1" value="1" /><label>John Doe</label></li>
                         </ul>
                     </div>
                 </td>
                 <td class="event" id="event2" rowspan="2">
                     <span class="nowrap"><span class="eventTitle">Event 2</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                     <div class="eventNumbers">
-                        <span class="current" id="event2current">0</span>
-                        (<span class="minimum" id="event2min">1</span>
-                        |<span class="ideal" id="event2ideal">1</span>
-                        |<span class="maximum" id="event2max">2</span>)
+                        <dfn title="Number of assignees" class="current" id="event2current">0</dfn>
+                        (<dfn title="Mimimum number of assignees" class="minimum" id="event2min">1</dfn>
+                        |<dfn title="Ideal number of assignees" class="ideal" id="event2ideal">1</dfn>
+                        |<dfn title="Maximum number of assignees" class="maximum" id="event2max">2</dfn>)
                     </div>
                     <div class="details" id="event2details">
                         <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                         <ul class="eventBinding">
-                            <li><input type="checkbox" id="event2-participant1" value="1" /></li>
-                            <li><input type="checkbox" id="event2-participant2" value="1" /></li>
+                            <li><input type="checkbox" id="event2-participant1" value="1" /><label>John Doe</label></li>
+                            <li><input type="checkbox" id="event2-participant2" value="1" /><label>Jane Smith</label></li>
                         </ul>
                     </div>
                 </td>
@@ -171,8 +171,8 @@ function updateStatus(eventEntry) {
     }
 }
 function processAddParticipant(event, participant) {
-    var participantCheckboxId = "#" + participant.attr("id") + event.attr("id");
-    var eventCheckboxId = "#" + event.attr("id") + participant.attr("id");
+    var participantCheckboxId = "#" + participant.attr("id") + "-" + event.attr("id");
+    var eventCheckboxId = "#" + event.attr("id") + "-" + participant.attr("id");
     $(participantCheckboxId).attr('checked', true);
     $(eventCheckboxId).attr('checked', true);
 
@@ -193,8 +193,8 @@ function processAddParticipant(event, participant) {
 }
 
 function processRemoveParticipant(event, participant) {
-    var participantCheckboxId = "#" + participant.attr("id") + event.attr("id");
-    var eventCheckboxId = "#" + event.attr("id") + participant.attr("id");
+    var participantCheckboxId = "#" + participant.attr("id") + "-" + event.attr("id");
+    var eventCheckboxId = "#" + event.attr("id") + "-" + participant.attr("id");
     $(participantCheckboxId).attr('checked', false);
     $(eventCheckboxId).attr('checked', false);
 
@@ -203,13 +203,33 @@ function processRemoveParticipant(event, participant) {
     if ((i=jQuery.inArray(participant.attr("id"), events[eventId].participants)) == -1)
         return;
     events[eventId].current--;
-    events[eventId].participants.slice(i, i);
+    events[eventId].participants.splice(i, 1);
     var participantCounter = participant.children().first().children('.participantEventCount').first();
     participantCounter.text("(" + (parseInt(participantCounter.text().substring(1, participantCounter.text().length - 1)) - 1) + ")"); // pull out the middle
     var eventCounter = event.children(".eventNumbers").first().children(".current").first();
     eventCounter.text(parseInt(eventCounter.text()) - 1);
     updateStatus(events[eventId]);
     event.droppable("option", "disabled", false);
+}
+
+function processEventCheck(checkbox) {
+    var ids = checkbox.attr("id").split("-");
+    if (checkbox.attr("checked")) {
+        processAddParticipant($("#" + ids[0]).first(), $("#" + ids[1]).first());
+    }
+    else {
+        processRemoveParticipant($("#" + ids[0]).first(), $("#" + ids[1]).first());
+    }
+}
+
+function processParticipantCheck(checkbox) {
+    var ids = checkbox.attr("id").split("-");
+    if (checkbox.attr("checked")) {
+        processAddParticipant($("#" + ids[1]).first(), $("#" + ids[0]).first()); ;
+    }
+    else {
+        processRemoveParticipant($("#" + ids[1]).first(), $("#" + ids[0]).first());
+    }
 }
 $(function () {
     $(".participant").draggable({
@@ -242,6 +262,8 @@ $(function () {
     });
     $(".showDetails").click(function () { $(this).parent().parent().children(".details").show(); });
     $(".closeDetails").click(function () { $(this).parent().hide(); });
+    $(".participant input:checkbox").click(function () { processParticipantCheck($(this)); });
+    $(".event input:checkbox").click(function () { processEventCheck($(this)); });
 });
 $(".event").each(function (i, e) { updateStatus(events[parseInt(e.attr("id").substring(5))]); });
 </script>
