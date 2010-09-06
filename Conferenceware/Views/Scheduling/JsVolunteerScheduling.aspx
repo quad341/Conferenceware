@@ -175,6 +175,12 @@ var initialData = { minsResolution: 60, containerId: "scheduleHolder2", particip
 
 function initialize(data) {
     // build and wire up the page in the container
+    var myParticipants = data.participants;
+    var myEvents = data.events;
+    var target = $("#" + data.containerId);
+    if (target.attr('id') != data.containerId) return; // error
+    // build table and events
+    // build participants area and add accept events for droppable
 }
 
 function dateObjectSort(a, b) {
