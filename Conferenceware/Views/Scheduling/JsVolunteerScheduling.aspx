@@ -169,7 +169,14 @@ var events = new Array();
 events[1] = { title: "Event 1", id: 1, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 19:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
 events[2] = { title: "Event 2", id: 2, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 20:00'), current: 0, min: 1, ideal: 1, max: 2, participants: [1], lastStatus: null, status: null };
 events[3] = { title: "Event 3", id: 3, start: new Date('Oct. 17 2010 17:00'), end: new Date('Oct. 17 2010 18:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+// put it all together
+var initialData = { minsResolution: 60, containerId: "scheduleHolder2", participants: participants, events: events };
 // functions
+
+function initialize(data) {
+    // build and wire up the page in the container
+}
+
 function dateObjectSort(a, b) {
     if (a.date < b.date) return -1;
     if (a.date > b.date) return 1;
