@@ -159,10 +159,35 @@
 img.ui-icon { display: inline; width: 16px; height: 16px; }
 </style>
 <script type="text/javascript">
+// events is static testing data already parsed for the static html
 var events = new Array();
 events[1] = { title:"Event 1", id: 1, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
 events[2] = { title: "Event 2", id: 2, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
 events[3] = { title: "Event 3", id: 3, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+// functions
+function dateObjectSort(a, b) {
+    if (a.date < b.date) return -1;
+    if (a.date > b.date) return 1;
+    return 0;
+}
+function getMaxOverlap(timeslots) {
+    var timeline = new Array();
+    for (var i = 0; i < timeslots.length; i++) {
+        timeline.push({ type: "start", date: timeslots[i].start });
+        timeslot.push({ type: "end", date: timeslots[i].end });
+    }
+    timeline.sort(dateObjectSort);
+    var max = 0;
+    var level = 0;
+    for(var tlPos = 0; tlPos < timeline.length; tlPos++) {
+        if(timeline[tlPos].type=="start") {
+            level++;
+            max = level > max ? level : max;
+        } else {
+            level--;
+        }
+        return max;
+}
 function updateStatus(eventEntry) {
     eventEntry.lastStatus = eventEntry.status;
     eventEntry.status = "minNotHit";
