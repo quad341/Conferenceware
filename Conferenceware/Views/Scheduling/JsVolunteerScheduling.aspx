@@ -34,9 +34,9 @@
         <table id="events">
             <tr>
                 <th>Time</th>
-                <th colspan="2">Friday</th>
-                <th colspan="2">Saturday</th>
-                <th colspan="2">Sunday</th>
+                <th colspan="2">Friday <small>Oct. 15, 2010</small></th>
+                <th colspan="2">Saturday <small>Oct. 16, 2010</small></th>
+                <th colspan="2">Sunday <small>Oct. 17, 2010</small></th>
             </tr>
             <tr>
                 <td class="time">16:00</td>
@@ -161,9 +161,9 @@ img.ui-icon { display: inline; width: 16px; height: 16px; }
 <script type="text/javascript">
 // events is static testing data already parsed for the static html
 var events = new Array();
-events[1] = { title:"Event 1", id: 1, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
-events[2] = { title: "Event 2", id: 2, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
-events[3] = { title: "Event 3", id: 3, current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+events[1] = { title:"Event 1", id: 1, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 19:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+events[2] = { title: "Event 2", id: 2, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 20:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
+events[3] = { title: "Event 3", id: 3, start: new Date('Oct. 17 2010 17:00'), end: new Date('Oct. 17 2010 18:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
 // functions
 function dateObjectSort(a, b) {
     if (a.date < b.date) return -1;
@@ -179,14 +179,15 @@ function getMaxOverlap(timeslots) {
     timeline.sort(dateObjectSort);
     var max = 0;
     var level = 0;
-    for(var tlPos = 0; tlPos < timeline.length; tlPos++) {
-        if(timeline[tlPos].type=="start") {
+    for (var tlPos = 0; tlPos < timeline.length; tlPos++) {
+        if (timeline[tlPos].type == "start") {
             level++;
             max = level > max ? level : max;
         } else {
             level--;
         }
-        return max;
+    }
+    return max;
 }
 function updateStatus(eventEntry) {
     eventEntry.lastStatus = eventEntry.status;
