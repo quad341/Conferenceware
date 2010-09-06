@@ -11,22 +11,22 @@
     <div id="scheduleHolder">
         <div id="participants">
             <div class="participant" id="participant1">
-                <span class="participantTitle"><span class="ui-icon ui-icon-grip-dotted-vertical"></span><span class="participantName">John Doe</span><span class="participantEventCount">(0)</span><span class="ui-icon ui-icon-wrench showDetails"></span></span>
-                <div class="participantDetails" id="participant1details">
+                <span class="nowrap"><img class="ui-icon ui-icon-grip-dotted-vertical" alt="dotted vertical grip" src="/Content/img/spacer.gif"/><span class="participantName">John Doe</span><span class="participantEventCount">(0)</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
+                <div class="details" id="participant1details">
                     <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                     <ul class="eventBinding">
-                        <li><input type="checkbox" id="participant1event1" value="1" /><label>Event 1</label></li>
-                        <li><input type="checkbox" id="participant1event2" value="1" /><label>Event 2</label></li>
-                        <li><input type="checkbox" id="participant1event3" value="1" /><label>Event 3</label></li>
+                        <li><input type="checkbox" id="participant1-event1" value="1" /><label>Event 1</label></li>
+                        <li><input type="checkbox" id="participant1-event2" value="1" /><label>Event 2</label></li>
+                        <li><input type="checkbox" id="participant1-event3" value="1" /><label>Event 3</label></li>
                     </ul>
                 </div>
             </div>
             <div class="participant" id="participant2">
-                <span class="participantTitle"><span class="ui-icon ui-icon-grip-dotted-vertical"></span><span class="participantName">Jane Smith</span><span class="participantEventCount">(0)</span><span class="ui-icon ui-icon-wrench showDetails"></span></span>
-                <div class="participantDetails" id="participant2details">
+                <span class="nowrap"><img class="ui-icon ui-icon-grip-dotted-vertical" alt="dotted vertical grip" src="/Content/img/spacer.gif"/><span class="participantName">Jane Smith</span><span class="participantEventCount">(0)</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
+                <div class="details" id="participant2details">
                     <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                     <ul class="eventBinding">
-                        <li><input type="checkbox" id="participant2event2" value="1" /><label>Event 2</label></li>
+                        <li><input type="checkbox" id="participant2-event2" value="1" /><label>Event 2</label></li>
                     </ul>
                 </div>
             </div>
@@ -51,16 +51,17 @@
                 <td class="empty"></td>
                 <td class="empty"></td>
                 <td class="event" id="event3">
-                    <span class="eventTitle">Event 3</span>
+                    <span class="nowrap"><span class="eventTitle">Event 3</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                     <div class="eventNumbers">
                         <span class="current" id="event3current">0</span>
                         (<span class="minimum" id="event3min">1</span>
                         |<span class="ideal" id="event3ideal">1</span>
                         |<span class="maximum" id="event3max">2</span>)
                     </div>
-                    <div class="eventDetails" id="event3details">
+                    <div class="details" id="event3details">
+                        <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                         <ul class="eventBinding">
-                            <li><input type="checkbox" id="event3participant1" value="1" /></li>
+                            <li><input type="checkbox" id="event3-participant1" value="1" /></li>
                         </ul>
                     </div>
                 </td>
@@ -68,31 +69,33 @@
             </tr>
             <tr>
                 <td class="event" id="event1">
-                    <span class="eventTitle">Event 1</span>
+                    <span class="nowrap"><span class="eventTitle">Event 1</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                     <div class="eventNumbers">
                         <span class="current" id="event1current">0</span>
                         (<span class="minimum" id="event1min">1</span>
                         |<span class="ideal" id="event1ideal">1</span>
                         |<span class="maximum" id="event1max">2</span>)
                     </div>
-                    <div class="eventDetails" id="event1details">
+                    <div class="details" id="event1details">
+                        <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                         <ul class="eventBinding">
-                            <li><input type="checkbox" id="event1participant1" value="1" /></li>
+                            <li><input type="checkbox" id="event1-participant1" value="1" /></li>
                         </ul>
                     </div>
                 </td>
                 <td class="event" id="event2" rowspan="2">
-                    <span class="eventTitle">Event 2</span>
+                    <span class="nowrap"><span class="eventTitle">Event 2</span><img class="ui-icon ui-icon-wrench showDetails" alt="Show Details" src="/Content/img/spacer.gif"/></span>
                     <div class="eventNumbers">
                         <span class="current" id="event2current">0</span>
                         (<span class="minimum" id="event2min">1</span>
                         |<span class="ideal" id="event2ideal">1</span>
                         |<span class="maximum" id="event2max">2</span>)
                     </div>
-                    <div class="eventDetails" id="event2details">
+                    <div class="details" id="event2details">
+                        <span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>
                         <ul class="eventBinding">
-                            <li><input type="checkbox" id="event2participant1" value="1" /></li>
-                            <li><input type="checkbox" id="event2participant2" value="1" /></li>
+                            <li><input type="checkbox" id="event2-participant1" value="1" /></li>
+                            <li><input type="checkbox" id="event2-participant2" value="1" /></li>
                         </ul>
                     </div>
                 </td>
@@ -135,9 +138,8 @@
 #participants { float: left; padding-right: 2em; }
 #events { float: left; width: auto; }
 .participant { clear: both; }
-.participantTitle { white-space: nowrap; }
-.eventDetails { display: none; }
-.participantDetails { display: none; }
+.nowrap { white-space: nowrap; }
+.details { display: none; }
 .closeDetails { display: block; float: left; }
 .eventBinding { float: left; }
 #events tr { height: 2em; }
@@ -146,6 +148,7 @@
 .minHit { background-color: Yellow; }
 .idealHit { background-color: Green; }
 .maxHit { background-color: Blue; }
+img.ui-icon { display: inline; width: 16px; height: 16px; }
 </style>
 <script type="text/javascript">
 var events = new Array();
@@ -173,13 +176,13 @@ function processAddParticipant(event, participant) {
     $(participantCheckboxId).attr('checked', true);
     $(eventCheckboxId).attr('checked', true);
 
-    var eventId = parseInt(event.attr("id").substring(5));
+    var eventId = parseInt(event.attr("id").substring(5)); //event is 5 characters
     if (jQuery.inArray(participant.attr("id"), events[eventId].participants) != -1)
         return;
     events[eventId].current++;
     events[eventId].participants.push(participant.attr("id"));
     var participantCounter = participant.children().first().children('.participantEventCount').first();
-    participantCounter.text("(" + (parseInt(participantCounter.text().substring(1, 2)) + 1) + ")");
+    participantCounter.text("(" + (parseInt(participantCounter.text().substring(1, participantCounter.text().length-1)) + 1) + ")"); // pull out the middle
     var eventCounter = event.children(".eventNumbers").first().children(".current").first();
     eventCounter.text(parseInt(eventCounter.text())+1);
     updateStatus(events[eventId]);
@@ -187,7 +190,26 @@ function processAddParticipant(event, participant) {
     if (events[eventId].status == "maxHit") {
         event.droppable("option", "disabled", true);
     }
+}
 
+function processRemoveParticipant(event, participant) {
+    var participantCheckboxId = "#" + participant.attr("id") + event.attr("id");
+    var eventCheckboxId = "#" + event.attr("id") + participant.attr("id");
+    $(participantCheckboxId).attr('checked', false);
+    $(eventCheckboxId).attr('checked', false);
+
+    var eventId = parseInt(event.attr("id").substring(5)); //event is 5 characters
+    var i;
+    if ((i=jQuery.inArray(participant.attr("id"), events[eventId].participants)) == -1)
+        return;
+    events[eventId].current--;
+    events[eventId].participants.slice(i, i);
+    var participantCounter = participant.children().first().children('.participantEventCount').first();
+    participantCounter.text("(" + (parseInt(participantCounter.text().substring(1, participantCounter.text().length - 1)) - 1) + ")"); // pull out the middle
+    var eventCounter = event.children(".eventNumbers").first().children(".current").first();
+    eventCounter.text(parseInt(eventCounter.text()) - 1);
+    updateStatus(events[eventId]);
+    event.droppable("option", "disabled", false);
 }
 $(function () {
     $(".participant").draggable({
@@ -218,7 +240,7 @@ $(function () {
             processAddParticipant($(this), ui.draggable);
         }
     });
-    $(".showDetails").click(function () { $(this).parent().parent().children(".participantDetails").show(); });
+    $(".showDetails").click(function () { $(this).parent().parent().children(".details").show(); });
     $(".closeDetails").click(function () { $(this).parent().hide(); });
 });
 $(".event").each(function (i, e) { updateStatus(events[parseInt(e.attr("id").substring(5))]); });
