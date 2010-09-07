@@ -188,23 +188,35 @@ function dateObjectSort(a, b) {
     if (a.date > b.date) return 1;
     return 0;
 }
-function getMaxOverlap(timeslots) {
+function getTimeslotStats(timeslots) {
     var timeline = new Array();
     for (var i = 0; i < timeslots.length; i++) {
         timeline.push({ type: "start", date: timeslots[i].start });
         timeslot.push({ type: "end", date: timeslots[i].end });
     }
     timeline.sort(dateObjectSort);
-    var max = 0;
+    var firstDate = new Date(timeline[0].getFullYear(), timeline[0].getMonth(), timeline[0].getDate());
+    var lastIdx = timeline.length - 1;
+    var lastDate = new Date(timeline[lastIdx].getFullYear(), timeline[lastIdx].getMonth(), timeline[lastIdx].getDate());
+    var maxOverlap = 0;
+    var earliestHour = new Date('23:59');
+    var latestHour = new Date('00:00');
     var level = 0;
     for (var tlPos = 0; tlPos < timeline.length; tlPos++) {
+        var thisHour = timeline[tlPos].date.getHour();
         if (timeline[tlPos].type == "start") {
             level++;
-            max = level > max ? level : max;
+            maxOverlap = level > maxOverlap ? level : max;
         } else {
             level--;
         }
+        if (thisHour < earliestHour.getHour()) {
+            earliestHour.setHours(thisHour);
+        } else if (thisHour > latestHour.getHour()) {
+            latestHour.setHours(thisHour);
+        }
     }
+    return { firstDate: firstDate, lastDate: lastDate, earliestHour: earliestHour, latestHour: latestHour, maxOverlap: maxOverlap };
     return max;
 }
 function updateStatus(eventEntry) {
