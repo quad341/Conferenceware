@@ -170,17 +170,100 @@ events[1] = { title: "Event 1", id: 1, start: new Date('Oct. 15 2010 18:00'), en
 events[2] = { title: "Event 2", id: 2, start: new Date('Oct. 15 2010 18:00'), end: new Date('Oct. 15 2010 20:00'), current: 0, min: 1, ideal: 1, max: 2, participants: [1], lastStatus: null, status: null };
 events[3] = { title: "Event 3", id: 3, start: new Date('Oct. 17 2010 17:00'), end: new Date('Oct. 17 2010 18:00'), current: 0, min: 1, ideal: 1, max: 2, participants: new Array(), lastStatus: null, status: null };
 // put it all together
-var initialData = { minsResolution: 60, containerId: "scheduleHolder2", participants: participants, events: events };
+var initialData = { minsResolution: 60, containerId: "scheduleHolder2" /* this won't be used; it will be an each statment */, participants: participants, events: events };
 // functions
 
 function initialize(data) {
+    var MILISECONDS_IN_ONE_DAY = 86400000;
     // build and wire up the page in the container
     var myParticipants = data.participants;
     var myEvents = data.events;
-    var target = $("#" + data.containerId);
+    var target = $("#" + data.containerId).first();
     if (target.attr('id') != data.containerId) return; // error
+    var resolution = getAcceptableResolution(data.minsResolution);
+    // we really only care about effective times for events
+    // we can't assume that the array is 0 indexed
+    for (var index in myEvents) {
+        myEvents[index].start = getEffectiveTime(myEvents[index].start);
+        myEvents[index].end = getEffectiveTime(myEvents[index].end);
+    }
     // build table and events
+    var eventsData = getTimeStats(myEvents);
+    if (null == eventsData) return; // error
+    var numDays = Math.ceil((eventsData.lastDate - eventsData.firstDate) / MILISECONDS_IN_ONE_DAY);
+    var numSlots = (eventsData.latestHour - eventsData.earliestHour) * 60 / resolution;
+    if (numSlots < 1) return; // error
+    // we'll compute the table in a matrix that is numDays*eventsData.maxOverlap columns (to ensure enough columns for all the events on each day)
+    //    and numSlots rows and just use row spans if something takes more than 1 slot
+    var cols = numDays*eventsData.maxOverlap;
+    var eventsMatrix = new Array(cols);
+    // we initialize everything to objects with no element and a status of empty
+    //   we will use the status of element to indicate an element is present
+    //   and a status of taken to imply the entry is in use by an spanned event above
+    for (var colNum = 0; colNum < cols; colNum++) {
+        eventsMatrix[colNum] = new Array(numSlots);
+        for (var rowNum = 0; rowNum < numSlots; rowNum++) {
+            eventsMatrix[colNum][rowNum] = { status: "empty", element: null };
+        }
+    }
     // build participants area and add accept events for droppable
+}
+
+function getAcceptableResolution(baseMins) {
+    // we only allow .25, .5, 1, 2 * 60 increments
+    if (baseMins == 15
+        || baseMins == 30
+        || baseMins == 60
+        || baseMins == 120)
+        return baseMins;
+    // default to 60
+    return 60;
+}
+
+// rounds time based on resolution; returns a clone of the date
+//    with the proper hour/minutes set
+//    this function only considers to the minute resolution
+function getEffectiveTime(resolution, realTime) {
+    var timeClone = $.extend({}, realTime);
+    var minutes = timeClone.getMinutes();
+    var hours = timeClone.getHours();
+    switch (resolution) {
+        case 15:
+            if (minutes < 8)
+                timeClone.setMinutes(0);
+            else if (minutes < 23)
+                timeClone.setMinutes(15);
+            else if (minutes < 38)
+                timeClone.setMinutes(30);
+            else if (minutes < 53)
+                timeClone.setMinutes(45);
+            else {
+                timeClone.setMinutes(0);
+                timeClone.setHours(hours + 1);
+            }
+            break;
+        case 30:
+            if (minutes < 15)
+                timeClone.setMinutes(0);
+            else if (minutes < 45)
+                timeClone.setMinutes(30);
+            else {
+                timeClone.setMinutes(0);
+                timeClone.setHours(hours + 1);
+            }
+            break;
+        case 60:
+            timeClone.setMinutes(0);
+            if (minutes >= 30)
+                timeClone.setHours(hours + 1);
+            break;
+        case 120:
+            timeClone.setMinutes(0);
+            if (hours % 2 == 1)
+                timeClone.setHours(hours + 1);
+            break;
+    }
+    return timeClone;
 }
 
 function dateObjectSort(a, b) {
@@ -189,6 +272,7 @@ function dateObjectSort(a, b) {
     return 0;
 }
 function getTimeslotStats(timeslots) {
+    if (timeslots.length < 1) return null;
     var timeline = new Array();
     for (var i = 0; i < timeslots.length; i++) {
         timeline.push({ type: "start", date: timeslots[i].start });
@@ -199,8 +283,8 @@ function getTimeslotStats(timeslots) {
     var lastIdx = timeline.length - 1;
     var lastDate = new Date(timeline[lastIdx].getFullYear(), timeline[lastIdx].getMonth(), timeline[lastIdx].getDate());
     var maxOverlap = 0;
-    var earliestHour = new Date('23:59');
-    var latestHour = new Date('00:00');
+    var earliestHour = 24;
+    var latestHour = -1;
     var level = 0;
     for (var tlPos = 0; tlPos < timeline.length; tlPos++) {
         var thisHour = timeline[tlPos].date.getHour();
@@ -210,14 +294,14 @@ function getTimeslotStats(timeslots) {
         } else {
             level--;
         }
-        if (thisHour < earliestHour.getHour()) {
-            earliestHour.setHours(thisHour);
+        if (thisHour < earliestHour) {
+            earliestHour = thisHour;
         } else if (thisHour > latestHour.getHour()) {
-            latestHour.setHours(thisHour);
+            var offset = timeline[tlPos].date.getMinute() > 0 ? 1 : 0;
+            latestHour = thisHour + offset;
         }
     }
     return { firstDate: firstDate, lastDate: lastDate, earliestHour: earliestHour, latestHour: latestHour, maxOverlap: maxOverlap };
-    return max;
 }
 function updateStatus(eventEntry) {
     eventEntry.lastStatus = eventEntry.status;
