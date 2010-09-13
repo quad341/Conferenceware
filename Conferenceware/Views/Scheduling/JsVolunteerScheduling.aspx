@@ -251,14 +251,37 @@ function initialize(data) {
                         '<ul class="eventBinding">' +
                         '</ul>');
                 eventDetails.appendTo(elem);
+                elem.droppable({
+                    activeClass: "ui-state-default",
+                    hoverClass: "ui-state-hover",
+                    accept: "",
+                    drop: function (event, ui) {
+                        processAddParticipant($(this), ui.draggable);
+                    }
+                });
                 eventsMatrix[colIdx][slotOffset] = { status: "element", element: elem };
                 for (var additionalIdx = slotOffset + 1; additionalIdx < slotOffset + totalNeededSpots; additionalIdx++) {
                     eventsMatrix[colIdx][additionalIdx] = { status: "taken", element: null };
                 }
+            } // end if (goodToInsert)
+        } // end for ... colIdx ...
+    } // end for index in myEvents
+    // matrix should be built; build table
+    var table = $.create("<table/>", { id: "events" });
+    for (var slotIdx = 0; slotIdx < numSlots; slotIdx++) {
+        var row = $.create("<tr/>");
+        for (var colIdx = 0; colIdx < cols; colIdx++) {
+            if (eventsMatrix[colIdx][slotIdx].status == "empty") {
+                $.create('<td class="empty"></td>').appendTo(row);
+            } else if (eventsMatrix[colIdx][slotIdx].status == "element") {
+                eventsMatrix[colIdx][slotIdx].element.appendTo(row);
             }
+            // else if (eventsMatrix[colIdx][slotIdx].status == "taken") { /* do nothing */ }
         }
+        row.appendTo(table);
     }
-    // build participants area and add accept events for droppable
+    // table is built
+    // build participants area and add accept events for droppables
 }
 
 function getAcceptableResolution(baseMins) {
