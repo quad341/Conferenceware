@@ -174,7 +174,10 @@ var initialData = { minsResolution: 60, containerId: "scheduleHolder2" /* this w
 // functions
 
 function initialize(data) {
+    // constants
     var MILISECONDS_IN_ONE_DAY = 86400000;
+    var MILISECONDS_IN_ONE_MINUTE = 60000;
+    var SPACER_SRC = data.spacerSrc ? data.spacerSrc : "/Content/img/spacer.gif";
     // build and wire up the page in the container
     var myParticipants = data.participants;
     var myEvents = data.events;
@@ -206,6 +209,55 @@ function initialize(data) {
             eventsMatrix[colNum][rowNum] = { status: "empty", element: null };
         }
     }
+    // insert the events into the matrix
+    for (var index in myEvents) {
+        var thisDate = new Date(myEvents[index].start.getYears(), myEvents[index].start.getMonths(), myEvents[index].start.getDate());
+        var dateOffset = Math.ceil((thisDate - eventsData.firstDate) / MILISECONDS_IN_ONE_DAY) * eventsData.maxOverlap;
+        var totalNeededSpots = Math.ceil((myEvents[index].end - myEvents[index].start) / MILISECONDS_IN_ONE_MINUTE);
+        var slotOffset = (((myEvents[index].start.getHours() - eventsData.earliestHour) * 60) + myEvents[index].start.getMinutes()) / resolution;
+        var goodToInsert = false;
+        for (var colIdx = dateOffset; colIdx <= dateOffset + eventsData.maxOverlap; colIdx++) {
+            for (var slotIdx = slotOffset; slotIdx < slotOffset + totalNeededSpots; slotIdx++) {
+                if (eventsMatrix[colIdx][slotIdx].status != "empty")
+                    break;
+                if (slotIdx == slotOffset + totalNeededSpots - 1)
+                    goodToInsert = true;
+            }
+            if (goodToInsert) {
+                var eid = myEvents[index].id;
+                var elem = $.create("<td/>", {
+                    rowspan: totalNeededSpots,
+                    class: "event",
+                    id: "event" + eid
+                });
+                var nowrap = $.create("<span/>", { class: "nowrap" });
+                $.create("<span/>", {
+                    class: "eventTitle",
+                    text: myEvents[index].title
+                }).appendTo(nowrap);
+                $.create("<img/>", {
+                    class: "ui-icon ui-icon-wrench showDetails",
+                    alt: "Show Details",
+                    src: SPACER_SRC
+                }).appendTo(nowrap);
+                var eventNumbers = $.create("<div/>", { class: "eventNumbers" });
+                eventNumbers.attr("innerHTML", '<dfn title="Number of assignees" class="current" id="event' + eid + 'current">0</dfn>' +
+                        '(<dfn title="Mimimum number of assignees" class="minimum" id="event' + eid + 'min">1</dfn>' +
+                        '|<dfn title="Ideal number of assignees" class="ideal" id="event' + eid + 'ideal">1</dfn>' +
+                        '|<dfn title="Maximum number of assignees" class="maximum" id="event' + eid + 'max">2</dfn>)');
+                eventNumbers.appendTo(elem);
+                var eventDetails = $.create("<div/>", { class: "details", id: "event" + eid + "details" });
+                eventDetails.attr("innerHTML", '<span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>' +
+                        '<ul class="eventBinding">' +
+                        '</ul>');
+                eventDetails.appendTo(elem);
+                eventsMatrix[colIdx][slotOffset] = { status: "element", element: elem };
+                for (var additionalIdx = slotOffset + 1; additionalIdx < slotOffset + totalNeededSpots; additionalIdx++) {
+                    eventsMatrix[colIdx][additionalIdx] = { status: "taken", element: null };
+                }
+            }
+        }
+    }
     // build participants area and add accept events for droppable
 }
 
@@ -225,6 +277,7 @@ function getAcceptableResolution(baseMins) {
 //    this function only considers to the minute resolution
 function getEffectiveTime(resolution, realTime) {
     var timeClone = $.extend({}, realTime);
+    timeClone.setSeconds(0); // since we do not consider seconds, this makes math more int-y
     var minutes = timeClone.getMinutes();
     var hours = timeClone.getHours();
     switch (resolution) {
