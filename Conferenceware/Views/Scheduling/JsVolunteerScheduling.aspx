@@ -8,6 +8,7 @@
 
     <h2>Advanced Volunteer Scheduling</h2>
 
+    <div id="scheduleHolder2"></div>
     <div id="scheduleHolder">
         <div id="participants">
             <div class="participant" id="participant1">
@@ -203,10 +204,23 @@ function initialize(data) {
     // we initialize everything to objects with no element and a status of empty
     //   we will use the status of element to indicate an element is present
     //   and a status of taken to imply the entry is in use by an spanned event above
-    for (var colNum = 0; colNum < cols; colNum++) {
-        eventsMatrix[colNum] = new Array(numSlots);
-        for (var rowNum = 0; rowNum < numSlots; rowNum++) {
-            eventsMatrix[colNum][rowNum] = { status: "empty", element: null };
+    // first column is time for the slot; top slot is the heading
+    for (var colNum = 0; colNum < cols + 1; colNum++) {
+        eventsMatrix[colNum] = new Array(numSlots + 1);
+        for (var rowNum = 0; rowNum < numSlots + 1; rowNum++) {
+            if (rowNum == 0) {
+                // headings
+                if (colNum == 0) eventsMatrix[0][0] = { status: "element", element: $.create("<th/>", { text: "Time" }) };
+                else {
+                    // TODO: figure out how to determine dates easily
+                    eventsMatrix[colIdx][0] = { status: "element", element: $.create("<th/>", { colspan: eventsData.maxOverlap, text: "TODO Day" }) };
+                }
+            }
+            else if (colNum == 0) {
+                // TODO: figure out timeslot start time
+                eventsMatrix[0][rowNum] = { status: "element", element: $.create("<td/>", { "class": "time", text: "TODO time" }) };
+            } else
+                eventsMatrix[colNum][rowNum] = { status: "empty", element: null };
         }
     }
     // insert the events into the matrix
@@ -227,33 +241,33 @@ function initialize(data) {
                 var eid = myEvents[index].id;
                 var elem = $.create("<td/>", {
                     rowspan: totalNeededSpots,
-                    class: "event",
+                    "class": "event",
                     id: "event" + eid
                 });
-                var nowrap = $.create("<span/>", { class: "nowrap" });
+                var nowrap = $.create("<span/>", { "class": "nowrap" });
                 $.create("<span/>", {
-                    class: "eventTitle",
+                    "class": "eventTitle",
                     text: myEvents[index].title
                 }).appendTo(nowrap);
                 $.create("<img/>", {
-                    class: "ui-icon ui-icon-wrench showDetails",
+                    "class": "ui-icon ui-icon-wrench showDetails",
                     alt: "Show Details",
                     src: SPACER_SRC
                 }).appendTo(nowrap);
-                var eventNumbers = $.create("<div/>", { class: "eventNumbers" });
+                var eventNumbers = $.create("<div/>", { "class": "eventNumbers" });
                 eventNumbers.attr("innerHTML", '<dfn title="Number of assignees" class="current" id="event' + eid + 'current">0</dfn>' +
-                        '(<dfn title="Mimimum number of assignees" class="minimum" id="event' + eid + 'min">1</dfn>' +
-                        '|<dfn title="Ideal number of assignees" class="ideal" id="event' + eid + 'ideal">1</dfn>' +
-                        '|<dfn title="Maximum number of assignees" class="maximum" id="event' + eid + 'max">2</dfn>)');
+                        '(<dfn title="Mimimum number of assignees" class="minimum" id="event' + eid + 'min">' + myEvents[index].min + '</dfn>' +
+                        '|<dfn title="Ideal number of assignees" class="ideal" id="event' + eid + 'ideal">' + myEvents[index].ideal + '</dfn>' +
+                        '|<dfn title="Maximum number of assignees" class="maximum" id="event' + eid + 'max">' + myEvents[index].max + '</dfn>)');
                 eventNumbers.appendTo(elem);
-                var eventDetails = $.create("<div/>", { class: "details", id: "event" + eid + "details" });
+                var eventDetails = $.create("<div/>", { "class": "details", id: "event" + eid + "details" });
                 eventDetails.attr("innerHTML", '<span class="ui-icon ui-icon-squaresmall-close closeDetails"></span>' +
                         '<ul class="eventBinding">' +
                         '</ul>');
                 eventDetails.appendTo(elem);
                 elem.droppable({
-                    activeClass: "ui-state-default",
-                    hoverClass: "ui-state-hover",
+                    activeclass: "ui-state-default",
+                    hoverclass: "ui-state-hover",
                     accept: "",
                     drop: function (event, ui) {
                         processAddParticipant($(this), ui.draggable);
@@ -282,6 +296,45 @@ function initialize(data) {
     }
     // table is built
     // build participants area and add accept events for droppables
+    var participantsDiv = $.create("<div/>", { id: "participants" });
+    // add divs for each participant
+    for (var partIdx in myParticipants) {
+        var pid = myParticipants[partIdx].id;
+        var container = $.create("<div/>", { "class": "participant", id: "participant" + pid });
+        var nowrap = $.create("<span/>", { "class": "nowrap" });
+        $.create("<img/>", { "class": "ui-icon ui-icon-grip-dotted-vertical", alt: "dotted vertical grip", src: SPACER_SRC }).appendTo(nowrap);
+        $.create("<span/>", { "class": "participantName", text: myParticipants[partIdx].name }).appendTo(nowrap);
+        $.create("<dfn/>", { "class": "participantEventCount", title: "Number of slots assigned", text: "(0)" }).appendTo(nowrap);
+        $.create("<img/>", { "class": "ui-icon ui-icon-wrench showDetails", alt: "Show Details", src: SPACER_SRC }).appendTo(nowrap);
+        nowrap.appendTo(container);
+        var details = $.create("<div/>", { "class": "details", id: "participant" + pid + "details" });
+        $.create("<span/>", { "class": "ui-icon ui-icon-squaresmall-close closeDetails" }).appendTo(details);
+        var eventBinding = $.create("<ul/>", { "class": "eventBinding" });
+        // this is where we add the checkboxes to both the event and the list
+        //   because of how the generic selectors work, we only have to update droppable here
+        $.each(myParticipants[partIdx].allowEvents, function (i, v) {
+            var event = $("#event" + v, table).first();
+            var li = $.create("<li/>");
+            $.create("<input/>", { type: "checkbox", id: "participant" + pid + "-event" + v, value: "1" }).appendTo(li);
+            $.create("<label/>", { text: $(".eventTitle", event).text() }).appendTo(li); // easier than trying to consult data since there is no correlation between id an index
+            li.appendTo(eventBinding);
+            var eventLi = $.create("<li/>");
+            $.create("<input/>", { type: "checkbox", id: "event" + v + "-participant" + pid, value: "1" }).appendTo(eventLi);
+            $.create("<label/>", { text: myParticipants[partIdx].name }).appendTo(eventLi);
+            eventLi.appendTo($(".eventBinding", event).first());
+            //getter
+            var accept = event.droppable("option", "accept");
+            accept = accept == "" ? "#participant" + pid : accept + ", #participant" + pid;
+            event.droppable("option", "accept", accept);
+        });
+        eventBinding.appendTo(details);
+        details.appendTo(container);
+        container.appendTo(participantsDiv);
+    }
+    // participantsDiv has been created
+    participantsDiv.appendTo(target);
+    table.appendTo(target);
+    // the initializing code should do the rest
 }
 
 function getAcceptableResolution(baseMins) {
@@ -456,35 +509,36 @@ function processParticipantCheck(checkbox) {
         processRemoveParticipant($("#" + ids[1]).first(), $("#" + ids[0]).first());
     }
 }
+initialize(initialData);
 $(function () {
     $(".participant").draggable({
         appendTo: "body",
         helper: "clone"
     });
-    $("#event3").droppable({
-        activeClass: "ui-state-default",
-        hoverClass: "ui-state-hover",
+    /*$("#event3").droppable({
+        active"class": "ui-state-default",
+        hover"class": "ui-state-hover",
         accept: "#participant1",
         drop: function (event, ui) {
             processAddParticipant($(this), ui.draggable);
         }
     });
     $("#event2").droppable({
-        activeClass: "ui-state-default",
-        hoverClass: "ui-state-hover",
+        active"class": "ui-state-default",
+        hover"class": "ui-state-hover",
         accept: "#participant1, #participant2",
         drop: function (event, ui) {
             processAddParticipant($(this), ui.draggable);
         }
     });
     $("#event1").droppable({
-        activeClass: "ui-state-default",
-        hoverClass: "ui-state-hover",
+        active"class": "ui-state-default",
+        hover"class": "ui-state-hover",
         accept: "#participant1",
         drop: function (event, ui) {
             processAddParticipant($(this), ui.draggable);
         }
-    });
+    });*/
     $(".showDetails").click(function () { $(this).parent().parent().children(".details").show(); });
     $(".closeDetails").click(function () { $(this).parent().hide(); });
     $(".participant input:checkbox").click(function () { processParticipantCheck($(this)); });
