@@ -103,7 +103,14 @@ namespace Conferenceware.Utils
 											string oldPassword,
 											string newPassword)
 		{
-			throw new NotImplementedException();
+			StaffMember user = _repository.GetAllStaffMembers().SingleOrDefault(x => x.auth_name == username);
+			if (user != null)
+			{
+				user.SetPassword(newPassword);
+				_repository.Save();
+				return true;
+			}
+			return false;
 		}
 
 		public override bool ChangePasswordQuestionAndAnswer(string username,
@@ -165,7 +172,10 @@ namespace Conferenceware.Utils
 
 		public override MembershipUser GetUser(string username, bool userIsOnline)
 		{
-			throw new NotImplementedException();
+			// we don't monitor online status
+			return
+				_repository.GetAllStaffMembers().SingleOrDefault(
+					x => x.auth_name == username);
 		}
 
 		public override MembershipUser GetUser(object providerUserKey,

@@ -89,7 +89,10 @@ namespace Conferenceware.Controllers
 			{
 				if (needsHash)
 				{
-					sm.SetPassword(sm.password_hash);
+					AccountController ac = new AccountController();
+					ac.MembershipService.ChangePassword(sm.auth_name,
+					                                    sm.password_hash,
+					                                    collection["password_hash"]);
 				}
 				_repository.Save();
 				TempData["Message"] = "Staff Member updated";

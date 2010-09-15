@@ -2,11 +2,12 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web.Security;
 
 namespace Conferenceware.Models
 {
 	[MetadataType(typeof(StaffMemberMetadata))]
-	public partial class StaffMember
+	public partial class StaffMember : MembershipUser
 	{
 		// yay linq
 		private const string STATIC_SEED = "xyzzyafeafaen12$";
@@ -69,6 +70,24 @@ namespace Conferenceware.Models
 			if (lowerCase)
 				return builder.ToString().ToLower();
 			return builder.ToString();
+		}
+
+		/// <summary>
+		/// Formal change password option to make this operate like a MembershipUser
+		/// </summary>
+		/// <param name="oldPassword">The old password (currently not checked)</param>
+		/// <param name="newPassword">What to set the password to</param>
+		/// <returns>True</returns>
+		public override bool ChangePassword(string oldPassword, string newPassword)
+		{
+			// we currently do not validate the old password
+			//if (VerifyPassword(oldPassword))
+			{
+				SetPassword(newPassword);
+				return true;
+			}
+			// because of unconditional, this will never execute
+			//return false;
 		}
 	}
 }
