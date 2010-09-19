@@ -11,7 +11,7 @@ namespace Conferenceware.Models
 		public string name { get; set; }
 
 		[Required]
-		[RegularExpression(@"[A-Za-z0-9_%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
+		[RegularExpression(@"[A-Za-z0-9_%+-\.]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
 			ErrorMessage = "Invalid Email Provided")]
 		[DataType(DataType.EmailAddress)]
 		[DisplayName("EMail Address")]
