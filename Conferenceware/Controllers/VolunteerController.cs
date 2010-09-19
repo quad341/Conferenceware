@@ -110,7 +110,7 @@ namespace Conferenceware.Controllers
 				_repository.Save();
 				return RedirectToAction("Index");
 			}
-			return View("Edit", ved);
+			return View("Edit", CreateEditDataFromVolunteer(vol, _repository));
 		}
 
 		//
