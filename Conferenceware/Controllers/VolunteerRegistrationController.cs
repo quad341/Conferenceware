@@ -79,8 +79,7 @@ namespace Conferenceware.Controllers
 				}
 				return RedirectToAction("Success");
 			}
-			ved.VolunteerTimeSlots = _repository.GetAllVolunteerTimeSlots();
-			return View("Index", ved);
+			return View("Index", VolunteerController.CreateEditDataFromVolunteer(ved.Volunteer, _repository));
 		}
 
 		// GET: /VolunteerRegistration/Success
