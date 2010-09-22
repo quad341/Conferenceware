@@ -21,6 +21,7 @@ namespace Conferenceware.Models
 		[RegularExpression(@"[0-9]{3}-[0-9]{3}-[0-9]{4}",
 			ErrorMessage = "Invalid phone number. Ex. 123-456-7890")]
 		[DisplayName("Phone Number")]
+        [DefaultValue("111-111-1111")]
 		public string phone_number { get; set; }
 
 		[DisplayName("University alum?")]
