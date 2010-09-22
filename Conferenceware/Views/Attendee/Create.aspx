@@ -36,8 +36,9 @@
                 <%=
      		Html.ValidationMessageFor(model => model.Attendee.People.email)%>
             </div>
-            
-            
+            <!-- Wohoo ASP.NET MVC 2 bug -->
+            <input type="hidden" name="Volunteer.People.phone_number" value="111-111-1111" />
+  
              
             <div class="editor-label">
                 <%=Html.LabelFor(model => model.Attendee.tshirt_id)%>
