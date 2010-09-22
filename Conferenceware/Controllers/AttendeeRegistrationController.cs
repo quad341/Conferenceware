@@ -69,6 +69,8 @@ namespace Conferenceware.Controllers
 				}
 				return RedirectToAction("Success");
 			}
+			// TODO: make validation messages show
+			// this isn't showing error messages; eventually that should be investigated
 			AttendeeEditData data = MakeEditDateFromAttendee(newAttendee);
 			return RedirectToAction("Index", data);
 		}

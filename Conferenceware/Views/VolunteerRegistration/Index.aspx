@@ -2,14 +2,14 @@
 <%@ Import Namespace="Conferenceware.Models" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+	Volunteer Registration
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <%
     	Html.EnableClientValidation();%>
-    <h2>Index</h2>
+    <h2>Volunteer Registration</h2>
 
     <%
     	using (Html.BeginForm())

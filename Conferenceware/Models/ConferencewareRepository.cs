@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Conferenceware.Models
 {
@@ -441,10 +442,13 @@ namespace Conferenceware.Models
 		public void UnRegisterVolunteerForVolunteerTimeSlot(Volunteer v,
 															VolunteerTimeSlot vts)
 		{
-			VolunteersVolunteerTimeSlot vvts =
-				_conferenceware.VolunteersVolunteerTimeSlots.SingleOrDefault(
+			// there appears to be a weird race condition here where if someone times it just right
+			// or is editted just right, they can actually get registered for something twice
+			// that would cause this to blow up if we look for SingleOrDefault
+			IEnumerable<VolunteersVolunteerTimeSlot> vvtss =
+				_conferenceware.VolunteersVolunteerTimeSlots.Where(
 					x => x.Volunteer == v && x.VolunteerTimeSlot == vts);
-			_conferenceware.VolunteersVolunteerTimeSlots.DeleteOnSubmit(vvts);
+			_conferenceware.VolunteersVolunteerTimeSlots.DeleteAllOnSubmit(vvtss);
 		}
 
 		public void AddMechManiaTeam(MechManiaTeam mmt)
