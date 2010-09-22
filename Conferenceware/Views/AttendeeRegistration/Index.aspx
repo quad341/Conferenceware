@@ -38,16 +38,7 @@
      		Html.ValidationMessageFor(model => model.Attendee.People.email)%>
             </div>
             
-            <div class="editor-label">
-                <%=
-     		Html.LabelFor(model => model.Attendee.People.phone_number)%>
-            </div>
-            <div class="editor-field">
-                <%=
-     		Html.TextBoxFor(model => model.Attendee.People.phone_number)%>
-                <%=
-     		Html.ValidationMessageFor(model => model.Attendee.People.phone_number)%>
-            </div>
+            
              
             <div class="editor-label">
                 <%=Html.LabelFor(model => model.Attendee.tshirt_id)%>
