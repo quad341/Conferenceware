@@ -10,6 +10,7 @@
     <h2>Register for Mechmania</h2>
     
     <p>Note: if you want to register a team with less than 3 members, just repeat one of the member's emails address' for member 3</p>
+    <p><strong>All team members MUST <a href="/Conferenceware/AttendeeRegistration">be registered as Attendees</a> (using the same email address) to participate</strong></p>
     <%
     	using (Html.BeginForm())
      {%>
