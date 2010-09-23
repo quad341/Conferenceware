@@ -60,6 +60,7 @@
            
             <div class="editor-label">
                 <%=Html.LabelFor(model => model.Volunteer.food_choice_id)%>
+                <br /><strong>Note: Vounteers recieve a free food credit</strong>
             </div>
             <div class="editor-field">
                 <%=
