@@ -29,7 +29,7 @@
                 <%=Html.LabelFor(model => model.Event.description)%>
             </div>
             <div class="editor-field">
-                <%=Html.TextBoxFor(model => model.Event.description)%>
+                <%=Html.TextAreaFor(model => model.Event.description,15,80,null)%>
                 <%=
      		Html.ValidationMessageFor(model => model.Event.description)%>
             </div>
