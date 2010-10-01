@@ -18,7 +18,7 @@ namespace Conferenceware.Models
 		/// First team member's email
 		/// </summary>
 		[Required]
-		[RegularExpression(@"[A-Za-z0-9_%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
+		[RegularExpression(@"[A-Za-z0-9_%+-\.]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
 			ErrorMessage = "Invalid Email Provided")]
 		[DisplayName("Member 1 Email")]
 		public String member_email_1 { get; set; }
@@ -27,7 +27,7 @@ namespace Conferenceware.Models
 		/// Second team member's email
 		/// </summary>
 		[Required]
-		[RegularExpression(@"[A-Za-z0-9_%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
+		[RegularExpression(@"[A-Za-z0-9_%+-\.]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
 			ErrorMessage = "Invalid Email Provided")]
 		[DisplayName("Member 2 Email")]
 		public String member_email_2 { get; set; }
@@ -36,7 +36,7 @@ namespace Conferenceware.Models
 		/// Third team member's email
 		/// </summary>
 		[Required]
-		[RegularExpression(@"[A-Za-z0-9_%+-]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
+		[RegularExpression(@"[A-Za-z0-9_%+-\.]+@([A-Za-z0-9-]+\.)+[A-Za-z]{2,4}",
 			ErrorMessage = "Invalid Email Provided")]
 		[DisplayName("Member 3 Email")]
 		public String member_email_3 { get; set; }
