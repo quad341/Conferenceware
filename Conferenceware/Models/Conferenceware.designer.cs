@@ -4066,7 +4066,7 @@ namespace Conferenceware.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image", DbType="Text NULL")]
 		public string image
 		{
 			get
