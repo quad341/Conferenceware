@@ -8,5 +8,9 @@ namespace Conferenceware.Models
 		[Required]
 		[DisplayName("Biography (HTML ok)")]
 		public string bio { get; set; }
+
+        [DisplayName("Speaker Pic URL (full path) (Optional)")]
+        [RegularExpression(@"^http://", ErrorMessage="Please use a full path")]
+        public string image { get; set; }
 	}
 }

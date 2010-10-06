@@ -3997,6 +3997,8 @@ namespace Conferenceware.Models
 		
 		private string _bio;
 		
+		private string _image;
+		
 		private EntitySet<EventsSpeaker> _EventsSpeakers;
 		
 		private EntityRef<People> _People;
@@ -4009,6 +4011,8 @@ namespace Conferenceware.Models
     partial void Onperson_idChanged();
     partial void OnbioChanging(string value);
     partial void OnbioChanged();
+    partial void OnimageChanging(string value);
+    partial void OnimageChanged();
     #endregion
 		
 		public Speaker()
@@ -4058,6 +4062,26 @@ namespace Conferenceware.Models
 					this._bio = value;
 					this.SendPropertyChanged("bio");
 					this.OnbioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image")]
+		public string image
+		{
+			get
+			{
+				return this._image;
+			}
+			set
+			{
+				if ((this._image != value))
+				{
+					this.OnimageChanging(value);
+					this.SendPropertyChanging();
+					this._image = value;
+					this.SendPropertyChanged("image");
+					this.OnimageChanged();
 				}
 			}
 		}

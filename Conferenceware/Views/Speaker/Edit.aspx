@@ -52,6 +52,13 @@
                 <%=
      		Html.ValidationMessageFor(model => model.bio)%>
             </div>
+            <div class="editor-label">
+                <%=Html.LabelFor(model => model.image) %>
+            </div>
+            <div class="editor-field">
+                <%=Html.TextBoxFor(model => model.image) %>
+                <%=Html.ValidationMessageFor(model => model.image) %>
+            </div>
 
             <p>
                 <input type="submit" value="Save" />
