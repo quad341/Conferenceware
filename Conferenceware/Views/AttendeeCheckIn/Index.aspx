@@ -7,8 +7,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Search For Attendees</h2>
-
+    <!-- disallow external access the ghetto way -->
+    <% if (Request.UserHostAddress != "128.174.251.38" && Request.UserHostAddress != "128.174.251.40" && Request.UserHostAddress != "128.174.251.28")
+       {%>
     <%
-    	Html.RenderPartial("CheckInSearchForm", ""); %>
-
+        Html.RenderPartial("CheckInSearchForm", ""); %>
+    <%} %>
 </asp:Content>

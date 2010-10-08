@@ -4,7 +4,7 @@
     <% using (Html.BeginForm("Search", "AttendeeCheckIn", FormMethod.Get))
        {%>
        <div class="display-label">
-        Search Query <small>All or part of the person's name or email, case sensitive</small>
+        Search Query <small>All or part of the person's name or email</small>
        </div>
        <div class="display-data">
         <input type="text" name="query" value="<%= Model %>"/>
