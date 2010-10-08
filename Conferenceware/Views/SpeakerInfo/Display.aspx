@@ -14,6 +14,7 @@
         
         <div class="display-label">Name</div>
         <div class="display-field"><%= Html.Encode(Model.People.name) %></div>
+        <div class="display-label"><img height="300" src="<%=Html.Encode(Model.image) %>" alt="<%=Html.Encode(Model.People.name) %>" /></div>
         
         <div class="display-label">Biography</div>
         <div class="display-field"><%= Model.bio %></div>
