@@ -15,7 +15,7 @@
         <div class="display-field"><%=Html.Encode(Model.name)%></div>
         
         <div class="display-label">Description</div>
-        <div class="display-field"><%=Html.Encode(Model.description)%></div>
+        <div class="display-field"><%=Model.description%></div>
         
         <div class="display-label">Max Attendees</div>
         <div class="display-field"><%=Html.Encode(Model.max_attendees)%></div>

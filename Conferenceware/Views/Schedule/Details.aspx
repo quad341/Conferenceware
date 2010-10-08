@@ -41,7 +41,7 @@
         <div class="display-label">
             Description</div>
         <div class="display-field">
-            <%=Html.Encode(Model.description)%></div>
+            <%=Model.description%></div>
         <div class="display-label">
             When?</div>
         <div class="display-field">

@@ -32,7 +32,7 @@
             <div class="editor-field">
                 <%=Html.TextAreaFor(model => model.Event.description,15,80,null)%>
                 <%=
-     		Html.ValidationMessageFor(model => model.Event.description)%>
+                Html.ValidationMessageFor(model => model.Event.description)%>
             </div>
             
             <div class="editor-label">
