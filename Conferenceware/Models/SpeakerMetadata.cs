@@ -10,7 +10,7 @@ namespace Conferenceware.Models
 		public string bio { get; set; }
 
         [DisplayName("Speaker Pic URL (full path) (Optional)")]
-        [RegularExpression(@"^http://", ErrorMessage="Please use a full path")]
+        [RegularExpression(@"^http://www.acm.uiuc.edu/.*", ErrorMessage="Please use a full path")]
         public string image { get; set; }
 	}
 }

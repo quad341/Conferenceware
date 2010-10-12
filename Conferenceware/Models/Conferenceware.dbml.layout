@@ -114,7 +114,7 @@
         <classShapeMoniker Id="4ef5485f-a106-4d19-91bd-a6d88446e9b3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 16.7812505); (10.4479166666667 : 16.7812505 : JumpStart); (10.6145833333333 : 16.7812505 : JumpEnd); (12.2916666666667 : 16.7812505 : JumpStart); (12.4583333333333 : 16.7812505 : JumpEnd); (16.46875 : 16.7812505); (16.46875 : 14.2998478190104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.5 : 16.7812505); (12.2916666666667 : 16.7812505 : JumpStart); (12.4583333333333 : 16.7812505 : JumpEnd); (16.46875 : 16.7812505); (16.46875 : 14.2998478190104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/People/People_CompanyPerson" />
       <nodes>
         <classShapeMoniker Id="ad17cb9b-6b7f-4e2a-8f02-6e331be7a93b" />
@@ -141,14 +141,14 @@
         <classShapeMoniker Id="26e52121-9884-4c0f-86ca-f3cf717647bf" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.80266066731771); (10.2812475 : 6.80266066731771); (10.2812475 : 5.29288981119792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 6.80266066731771); (3.44791666666667 : 6.80266066731771 : JumpStart); (3.61458333333333 : 6.80266066731771 : JumpEnd); (5.63541666666667 : 6.80266066731771 : JumpStart); (5.80208333333333 : 6.80266066731771 : JumpEnd); (10.2812475 : 6.80266066731771); (10.2812475 : 5.29288981119792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Location/Location_Event" />
       <nodes>
         <classShapeMoniker Id="46dc3092-adcf-4634-9230-c54b3123b04e" />
         <classShapeMoniker Id="57a390dc-c54b-4fc8-b797-c842289c8e3b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 3.88550048828125); (1.75 : 4.16150074414062); (3.44791666666667 : 4.16150074414062 : JumpStart); (3.61458333333333 : 4.16150074414062 : JumpEnd); (5.63541666666667 : 4.16150074414062 : JumpStart); (5.92708333333333 : 4.16150074414062 : JumpEnd); (9.5 : 4.16150074414062)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.75 : 3.88550048828125); (1.75 : 4.16150074414062); (5.63541666666667 : 4.16150074414062 : JumpStart); (5.92708333333333 : 4.16150074414062 : JumpEnd); (9.5 : 4.16150074414062)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/TimeSlot/TimeSlot_Event" />
       <nodes>
         <classShapeMoniker Id="b25e0ad1-89c9-4eee-b522-dbb1c4b5a3dc" />
@@ -187,7 +187,7 @@
         <elementListCompartment Id="2df5c7ed-a42d-4d51-8530-3bff8a080e24" absoluteBounds="3.7649999999999997, 7.7100000000000009, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.71875 : 7.25); (5.71875 : 3.54175048828125); (5.76041666666667 : 3.54175048828125 : JumpStart); (5.92708333333333 : 3.54175048828125 : JumpEnd); (6.25 : 3.54175048828125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.71875 : 7.25); (5.71875 : 3.54175048828125); (6.25 : 3.54175048828125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Speaker/Speaker_EventsSpeaker" />
       <nodes>
         <classShapeMoniker Id="7325ca89-a4e1-4a18-961c-38e451c9a859" />
@@ -214,7 +214,7 @@
         <classShapeMoniker Id="7c18ab02-0eed-4a33-aaf3-2def70e6ab7a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.875 : 13.3374239095052); (7.29166666666667 : 13.3374239095052 : JumpStart); (7.45833333333333 : 13.3374239095052 : JumpEnd); (7.625 : 13.3374239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.875 : 13.3374239095052); (6.94791466666667 : 13.3374239095052 : JumpStart); (7.11458133333333 : 13.3374239095052 : JumpEnd); (7.29166666666667 : 13.3374239095052 : JumpStart); (7.45833333333333 : 13.3374239095052 : JumpEnd); (7.625 : 13.3374239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Attendee/Attendee_MechManiaTeam" />
       <nodes>
         <classShapeMoniker Id="ffe9a86d-d2d9-451e-9b6d-3fe22573ed9e" />
@@ -275,7 +275,7 @@
         <classShapeMoniker Id="2fe3d165-d7cb-491e-8c70-116e853963db" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.53125 : 6.08919514973958); (3.53125 : 9.46875); (5.76041666666667 : 9.46875 : JumpStart); (6.08333333333333 : 9.46875 : JumpEnd); (6.25 : 9.46875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.53125 : 6.08919514973958); (3.53125 : 9.46875); (5.91666666666667 : 9.46875 : JumpStart); (6.08333333333333 : 9.46875 : JumpEnd); (6.25 : 9.46875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/VolunteerTimeSlot/VolunteerTimeSlot_VolunteersVolunteerTimeSlot" />
       <nodes>
         <classShapeMoniker Id="2fe3d165-d7cb-491e-8c70-116e853963db" />
@@ -288,7 +288,7 @@
         <elementListCompartment Id="e3550bec-5df7-444d-bb20-3f391cad662f" absoluteBounds="3.6400000000000006, 10.085, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.625 : 10.3374239095052); (6.25 : 10.3374239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.625 : 10.3374239095052); (5.91666666666667 : 10.3374239095052 : JumpStart); (6.08333333333333 : 10.3374239095052 : JumpEnd); (6.25 : 10.3374239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ConferencewareDataContext/Volunteer/Volunteer_VolunteersVolunteerTimeSlot" />
       <nodes>
         <classShapeMoniker Id="e083ce7f-5b94-463a-8f1f-e21a24a9d31e" />
