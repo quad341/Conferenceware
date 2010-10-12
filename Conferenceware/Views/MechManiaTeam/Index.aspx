@@ -19,10 +19,19 @@
                 Member1
             </th>
             <th>
+                Member1 Tshirt Size
+            </th>
+            <th>
                 Member2
             </th>
             <th>
+                Member2 Tshirt Size
+            </th>
+            <th>
                 Member3
+            </th>
+            <th>
+                Member 3 Tshirt Size
             </th>
             <th>
                 Account Name
@@ -45,10 +54,19 @@
                 <%=Html.Encode(item.Attendee.People.name)%>
             </td>
             <td>
+                <%=Html.Encode(item.Attendee.TShirtSize) %>
+            </td>
+            <td>
                 <%=Html.Encode(item.Attendee1.People.name)%>
             </td>
             <td>
+                <%=Html.Encode(item.Attendee1.TShirtSize) %>
+            </td>
+            <td>
                 <%=Html.Encode(item.Attendee2.People.name)%>
+            </td>
+            <td>
+                <%=Html.Encode(item.Attendee2.TShirtSize) %>
             </td>
             <td>
                 <%=Html.Encode(item.account_name)%>
@@ -59,7 +77,7 @@
      }%>
 
     </table>
-
+    
     <p>
         <%=Html.ActionLink("Create New", "Create")%>
     </p>
