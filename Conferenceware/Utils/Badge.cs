@@ -55,7 +55,7 @@ namespace Conferenceware.Utils
 			// graphic for form
 			XGraphics formGfx = XGraphics.FromForm(badge);
 			// add background image to template
-			formGfx.DrawImage(background, 0, 0, XUnit.FromInch(2.8), XUnit.FromInch(3.8));
+			formGfx.DrawImage(background, 0, 0, XUnit.FromInch(badgeWidth), XUnit.FromInch(badgeHeight));
 			// Save the template to clone out with people's names
 			//var template = formGfx.Save();
 			int counter = 0;
