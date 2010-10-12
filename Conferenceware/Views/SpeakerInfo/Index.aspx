@@ -7,15 +7,22 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <h2>Speaker List</h2>
-
-    <ul>
-    <% foreach (var item in Model) { %>
+    <div id="images">
+    <% foreach (var item in Model)
+       {%>
+           <%=Server.HtmlDecode(Html.ActionLink("<img height=\"150\" src=\"" + item.image + "\" alt=\"" + item.People.name + "\" title=\"" + item.People.name + "\" />", "Display", new { id = item.person_id }).ToHtmlString()) %>
+     <%}%>
+    </div>
+    <div id="names">
+        <ul>
+        <% foreach (var item in Model) { %>
     
-            <li>
-                <%= Html.ActionLink(Html.Encode(item.People.name), "Display", new { id = item.person_id })%>
-            </li>
+                <li>
+                    <%= Html.ActionLink(Html.Encode(item.People.name), "Display", new { id = item.person_id })%>
+                </li>
     
-    <% } %>
-    </ul>
+        <% } %>
+        </ul>
+    </div>
 
 </asp:Content>
