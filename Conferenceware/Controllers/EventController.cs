@@ -88,6 +88,7 @@ namespace Conferenceware.Controllers
 		// POST: /Event/Edit/5
 
 		[HttpPost]
+        [ValidateInput(false)]
 		public ActionResult Edit(int id, FormCollection collection)
 		{
 			Event ev = _repository.GetEventById(id);
