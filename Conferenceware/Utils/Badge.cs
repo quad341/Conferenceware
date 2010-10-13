@@ -19,24 +19,24 @@ namespace Conferenceware.Utils
 		public static MemoryStream MakeBadge(IEnumerable<People> people,
 											 Image background)
 		{
-			// settings for Avery 5392 cardstock with badges printed vertically (taller than wide)
+			// settings for Avery 5392 cardstock with badges printed horizontally (4 x 3)
 			// offsets used to layout the text
-			const double baseXOffset = 1.0;
-			const double baseYOffset = .25;
-			const double imageXOffset = .1;
+			const double baseYOffset = 1.0;
+			const double baseXOffset = .25;
 			const double imageYOffset = .1;
-			const double textWidth = 2.5;
-			const double nameTextXOffset = .25;
-			const double nameTextYOffset = 2.3;
+			const double imageXOffset = .1;
+			const double textWidth = 3.5;
+			const double nameTextXOffset = 0.25;
+			const double nameTextYOffset = 1.3;
 			const double nameTextHeight = .3;
-			const double companyTextXOffset = .25;
-			const double companyTextYOffset = 2.7;
+			const double companyTextXOffset = 0.25;
+			const double companyTextYOffset = 1.7;
 			const double companyTextHeight = .2;
-			const double alumTextXOffset = .25;
-			const double alumTextYOffset = 2.9;
+			const double alumTextXOffset = 0.25;
+			const double alumTextYOffset = 1.9;
 			const double alumTextHeight = .2;
-			const double badgeWidth = 2.8;
-			const double badgeHeight = 3.8;
+			const double badgeWidth = 3.8;
+			const double badgeHeight = 2.8;
 			const int maxNameBigFontLength = 17;
 			const int bigFontSize = 20;
 			const int smallFontSize = 16;
@@ -71,14 +71,14 @@ namespace Conferenceware.Utils
 				var titleFont = new XFont(fontName, titleFontSize, titleFontStyle);
 				// there are 3 columns with 2 rows with each column being 3 inches and row being 4 inches
 				// these offsets choose which badge is being printed by simple algebra
-				double columnOffset = ((counter % 6) / 2) * 3.0;
-				double rowOffset = (counter % 2) * 4.0;
+				double rowOffset = ((counter % 6) / 2) * 3.0;
+				double columnOffset = (counter % 2) * 4.0;
 				if (counter % 6 == 0)
 				{
 					// add a new page
 					page = doc.AddPage();
 					// set it landscape
-					page.Orientation = PageOrientation.Landscape;
+					//page.Orientation = PageOrientation.Landscape;
 					// make a graphic on the page
 					pageGfx = XGraphics.FromPdfPage(page);
 				}
