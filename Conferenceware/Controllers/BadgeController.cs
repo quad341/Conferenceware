@@ -10,6 +10,12 @@ namespace Conferenceware.Controllers
 	{
 		private readonly IRepository _repository;
 		private readonly SettingsData _sd;
+        private List<People> mmpeople = new List<People>();
+        private List<People> attendees = new List<People>();
+        private List<People> speakers = new List<People>();
+        private List<People> sponsors = new List<People>();
+        private List<People> staff = new List<People>();
+        private List<People> volunteers = new List<People>();
 
 		public BadgeController()
 			: this(new ConferencewareRepository())
@@ -21,6 +27,20 @@ namespace Conferenceware.Controllers
 		{
 			_repository = repository;
 			_sd = SettingsData.Default;
+            foreach (MechManiaTeam mmt in _repository.GetAllMechManiaTeams())
+            {
+                mmpeople.Add(mmt.Attendee.People);
+                mmpeople.Add(mmt.Attendee1.People);
+                mmpeople.Add(mmt.Attendee2.People);
+            }
+
+            speakers = _repository.GetAllSpeakers().Select(x => x.People).ToList();
+            volunteers = _repository.GetAllVolunteers().Select(x => x.People).ToList();
+            staff = _repository.GetAllStaffMembers().Select(x => x.People).ToList();
+            sponsors = _repository.GetAllCompanyPersons().Select(x => x.People).ToList();
+            attendees = _repository.GetAllAttendees().Select(x => x.People).Where(x => !speakers.Contains(x) && !volunteers.Contains(x) && !mmpeople.Contains(x) && !staff.Contains(x) && !speakers.Contains(x)).ToList();
+
+
 		}
 
 		//
@@ -37,7 +57,7 @@ namespace Conferenceware.Controllers
 		public ActionResult AttendeeBadges()
 		{
 			return new BadgePdfResult(
-				_repository.GetAllAttendees().Select(x => x.People),
+				attendees,
 				_sd.AttendeeBadgeBackground,
 				"AttendeeBadges.pdf");
 		}
@@ -47,13 +67,6 @@ namespace Conferenceware.Controllers
 		//
 		public ActionResult MechmaniaBadges()
 		{
-			var mmpeople = new List<People>();
-			foreach (MechManiaTeam mmt in _repository.GetAllMechManiaTeams())
-			{
-				mmpeople.Add(mmt.Attendee.People);
-				mmpeople.Add(mmt.Attendee1.People);
-				mmpeople.Add(mmt.Attendee2.People);
-			}
 			return new BadgePdfResult(
 				mmpeople,
 				_sd.MechmaniaBadgeBackground,
@@ -66,7 +79,7 @@ namespace Conferenceware.Controllers
 		public ActionResult SpeakerBadges()
 		{
 			return new BadgePdfResult(
-				_repository.GetAllSpeakers().Select(x => x.People),
+				speakers,
 				_sd.SpeakerBadgeBackground,
 				"SpeakerBadges.pdf");
 		}
@@ -77,7 +90,7 @@ namespace Conferenceware.Controllers
 		public ActionResult SponsorBadges()
 		{
 			return new BadgePdfResult(
-				_repository.GetAllCompanyPersons().Select(x => x.People),
+				sponsors,
 				_sd.SponsorBadgeBackground,
 				"SponsorBadges.pdf");
 		}
@@ -88,7 +101,7 @@ namespace Conferenceware.Controllers
 		public ActionResult StaffBadges()
 		{
 			return new BadgePdfResult(
-				_repository.GetAllStaffMembers().Select(x => x.People),
+				staff,
 				_sd.StaffBadgeBackground,
 				"StaffBadges.pdf");
 		}
@@ -99,7 +112,7 @@ namespace Conferenceware.Controllers
 		public ActionResult VolunteerBadges()
 		{
 			return new BadgePdfResult(
-				_repository.GetAllVolunteers().Select(x => x.People),
+				volunteers,
 				_sd.VolunteerBadgeBackground,
 				"VolunteerBadges.pdf");
 		}
