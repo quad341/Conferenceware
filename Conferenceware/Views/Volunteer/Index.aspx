@@ -24,6 +24,9 @@
             <th>
                 T-Shirt Size
             </th>
+            <th>
+                Timeslot
+            </th>
         </tr>
 
     <%
@@ -51,13 +54,21 @@
             <td>
                 <%=Html.Encode(item.TShirtSize.name)%>
             </td>
+            <td>
+            <%foreach(var time in item.ScheduledVolunteerTimeSlots.Select(x => x.TimeSlot)){ %>
+                <%=Html.Encode(time)%>
+                <br />
+            <%} %>
+            </td>
         </tr>
     
     <%
      }%>
 
     </table>
-
+    <p>
+        There are <%=Html.Encode(Model.Count())%> volunteers.
+    </p>
     <p>
         <%=Html.ActionLink("Create New", "Create")%>
     </p>
