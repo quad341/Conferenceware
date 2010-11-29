@@ -71,7 +71,9 @@
             </div>
           
             <p>
-                <input type="submit" value="Submit" />
+                <input id="submit-button" type="submit" value="Submit"
+                onclick="document.getElementById('submit-button').style.visibility='hidden'; document.getElementById('submit-text').style.visibility='visible';return true;"/>
+                <span id='submit-text' style="visibility:hidden">Registering. This can take up to 10 seconds. You will recieve a confirmation email when registration is complete.</span>
             </p>
         </fieldset>
 
