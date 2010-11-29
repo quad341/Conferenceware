@@ -77,7 +77,9 @@
      }%>
 
     </table>
-    
+    <p>
+        There are <%=Html.Encode(Model.Count()) %> mechmania teams.
+    </p>
     <p>
         <%=Html.ActionLink("Create New", "Create")%>
     </p>
