@@ -38,7 +38,7 @@ namespace Conferenceware.Controllers
             volunteers = _repository.GetAllVolunteers().Select(x => x.People).ToList();
             staff = _repository.GetAllStaffMembers().Select(x => x.People).ToList();
             sponsors = _repository.GetAllCompanyPersons().Select(x => x.People).ToList();
-            attendees = _repository.GetAllAttendees().Select(x => x.People).Where(x => !speakers.Contains(x) && !volunteers.Contains(x) && !mmpeople.Contains(x) && !staff.Contains(x) && !speakers.Contains(x)).ToList();
+            attendees = _repository.GetAllAttendees().Select(x => x.People).Where(x => (x.Attendee.food_choice_id > 3) && !speakers.Contains(x) && !volunteers.Contains(x) && !mmpeople.Contains(x) && !staff.Contains(x) && !speakers.Contains(x)).ToList();
 
 
 		}
